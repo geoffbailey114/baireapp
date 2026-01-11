@@ -1,94 +1,46 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import Stripe from 'stripe'
-import { cookies } from 'next/headers'
-import { SignJWT } from 'jose'
+
+export const dynamic = 'force-dynamic'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-06-20',
 })
 
-const JWT_COOKIE_NAME = 'baire_auth'
-
-async function signJWT(payload: any): Promise<string> {
-  const secret = new TextEncoder().encode(process.env.JWT_SECRET)
-  const token = await new SignJWT(payload)
-    .setProtectedHeader({ alg: 'HS256' })
-    .setIssuedAt()
-    .setExpirationTime('365d')
-    .sign(secret)
-  return token
-}
-
 export default async function AccessPage({
   searchParams,
 }: {
-  searchParams: Promise<{ session_id?: string }>
+  searchParams: { session_id?: string }
 }) {
-  const params = await searchParams
-  const sessionId = params.session_id
+  const sessionId = searchParams.session_id
 
-  // If no session_id, check if user already has access
+  // If no session_id, redirect to pricing
   if (!sessionId) {
-    const cookieStore = cookies()
-    const token = cookieStore.get(JWT_COOKIE_NAME)?.value
-    
-    if (token) {
-      // User has a token, show welcome back
-      return <AccessContent email="Valued Customer" isNewPurchase={false} />
-    }
-    
-    // No session_id and no token, redirect to pricing
     redirect('/pricing')
   }
+
+  let email = 'Valued Customer'
+  let isValid = false
 
   try {
     // Verify the Stripe session
     const session = await stripe.checkout.sessions.retrieve(sessionId)
 
-    if (session.payment_status !== 'paid') {
-      redirect('/pricing')
+    if (session.payment_status === 'paid') {
+      isValid = true
+      email = session.customer_email || session.customer_details?.email || 'Valued Customer'
     }
-
-    const email = session.customer_email || session.customer_details?.email || 'Valued Customer'
-
-    // Create JWT payload
-    const jwtPayload = {
-      paid: true,
-      email,
-      tier: 'BAIRE',
-      purchasePurpose: 'home-buying',
-      createdAt: Date.now(),
-      expiryMode: 'userClosing',
-    }
-
-    // Sign the JWT
-    const token = await signJWT(jwtPayload)
-
-    // Set the cookie
-    const cookieStore = cookies()
-    cookieStore.set(JWT_COOKIE_NAME, token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-      maxAge: 60 * 60 * 24 * 365,
-    })
-
-    return <AccessContent email={email} isNewPurchase={true} />
   } catch (error) {
     console.error('Error verifying session:', error)
+  }
+
+  // If payment not valid, redirect to pricing
+  if (!isValid) {
     redirect('/pricing')
   }
-}
 
-function AccessContent({ 
-  email, 
-  isNewPurchase 
-}: { 
-  email: string
-  isNewPurchase: boolean 
-}) {
+  // Payment is valid - show access page
   return (
     <div className="min-h-screen bg-white py-16">
       <div className="max-w-2xl mx-auto px-4">
@@ -99,12 +51,10 @@ function AccessContent({
             </svg>
           </div>
           <h1 className="text-3xl font-bold text-gray-900">
-            {isNewPurchase ? 'Welcome to BAIRE!' : 'Welcome Back!'}
+            Welcome to BAIRE!
           </h1>
           <p className="mt-4 text-lg text-gray-600">
-            {isNewPurchase 
-              ? 'Your payment was successful. You now have full access to BAIRE for your home-buying journey.'
-              : 'You have active access to BAIRE. Continue your home-buying journey.'}
+            Your payment was successful. You now have full access to BAIRE for your home-buying journey.
           </p>
         </div>
 
