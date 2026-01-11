@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server'
-import { stripe } from '@/lib/stripe'
-import { PRICE_AMOUNT, PRODUCT_NAME, APP_URL } from '@/lib/constants'
+import Stripe from 'stripe'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-06-20',
+})
 
 export async function POST() {
   try {
-    const baseUrl = process.env.APP_BASE_URL || APP_URL
+    const baseUrl = process.env.APP_BASE_URL || 'https://baireapp.vercel.app'
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
@@ -14,15 +17,14 @@ export async function POST() {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: PRODUCT_NAME,
+              name: 'BAIRE Buyer Consultant',
               description: 'Full access to BAIRE for your home-buying transaction. Educational guidance until closing.',
             },
-            unit_amount: PRICE_AMOUNT * 100, // Stripe uses cents
+            unit_amount: 59900,
           },
           quantity: 1,
         },
       ],
-      customer_email: undefined, // Let customer enter email
       success_url: `${baseUrl}/access?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/pricing`,
       metadata: {
