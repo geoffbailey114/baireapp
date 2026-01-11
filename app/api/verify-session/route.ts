@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
 import { verifyJWT } from '@/lib/jwt'
-import { getAuthCookie } from '@/lib/cookies'
+import { JWT_COOKIE_NAME } from '@/lib/constants'
+
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
-    const token = await getAuthCookie()
+    const cookieStore = cookies()
+    const token = cookieStore.get(JWT_COOKIE_NAME)?.value
 
     if (!token) {
       return NextResponse.json({
