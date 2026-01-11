@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
 import { openai, OPENAI_MODEL } from '@/lib/openai'
 import { verifyJWT } from '@/lib/jwt'
-import { getAuthCookie } from '@/lib/cookies'
-import { DISCLAIMER_CHAT, FREE_TRIAL_QUERY_LIMIT } from '@/lib/constants'
+import { DISCLAIMER_CHAT, FREE_TRIAL_QUERY_LIMIT, JWT_COOKIE_NAME } from '@/lib/constants'
 
-// Simple in-memory rate limiting (resets on server restart)
+export const dynamic = 'force-dynamic'
+
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
-const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
-const RATE_LIMIT_MAX = 20 // requests per minute
+const RATE_LIMIT_WINDOW = 60 * 1000
+const RATE_LIMIT_MAX = 20
 
 function checkRateLimit(identifier: string): boolean {
   const now = Date.now()
@@ -33,7 +34,6 @@ interface ChatMessage {
 
 export async function POST(request: NextRequest) {
   try {
-    // Get client IP for rate limiting
     const ip = request.headers.get('x-forwarded-for') || 
                request.headers.get('x-real-ip') || 
                'unknown'
@@ -45,7 +45,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Parse request body
     const body = await request.json()
     const { message, history = [] } = body
 
@@ -63,8 +62,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check authentication
-    const token = await getAuthCookie()
+    const cookieStore = cookies()
+    const token = cookieStore.get(JWT_COOKIE_NAME)?.value
     let isPaid = false
     
     if (token) {
@@ -72,7 +71,6 @@ export async function POST(request: NextRequest) {
       isPaid = payload?.paid === true
     }
 
-    // Build messages array
     const messages: ChatMessage[] = [
       {
         role: 'system',
@@ -80,17 +78,14 @@ export async function POST(request: NextRequest) {
       },
     ]
 
-    // Add conversation history (limited)
     const limitedHistory = (history as ChatMessage[]).slice(-10)
     messages.push(...limitedHistory)
 
-    // Add current user message
     messages.push({
       role: 'user',
       content: message,
     })
 
-    // Additional system message for trial users
     if (!isPaid) {
       messages.push({
         role: 'system',
@@ -98,7 +93,6 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Call OpenAI
     const completion = await openai.chat.completions.create({
       model: OPENAI_MODEL,
       messages: messages as any,
@@ -115,18 +109,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // For trial users, potentially restrict certain content
     let finalMessage = responseMessage
     let isTrialRestricted = false
 
     if (!isPaid) {
-      // Check if response contains templates or detailed checklists
       const restrictedPatterns = [
         /checklist:/i,
         /step-by-step:/i,
         /template:/i,
         /action items:/i,
-        /\[\s*\]/g, // Checkbox patterns
+        /\[\s*\]/g,
       ]
 
       const hasRestrictedContent = restrictedPatterns.some(pattern => 
@@ -134,7 +126,6 @@ export async function POST(request: NextRequest) {
       )
 
       if (hasRestrictedContent && responseMessage.length > 500) {
-        // Truncate and blur indication
         finalMessage = responseMessage.substring(0, 500) + '...\n\n[Upgrade to BAIRE for full access to detailed templates and checklists]'
         isTrialRestricted = true
       }
@@ -147,7 +138,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Chat API error:', error)
     
-    // Check for specific OpenAI errors
     if (error instanceof Error) {
       if (error.message.includes('rate limit')) {
         return NextResponse.json(
