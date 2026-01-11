@@ -49,12 +49,6 @@ export async function POST(request: NextRequest) {
         metadata: session.metadata,
       })
 
-      // In a production app with a database, you would:
-      // 1. Create/update user record
-      // 2. Store payment info
-      // 3. Send confirmation email
-      
-      // For MVP without DB, JWT is created on redirect to /access
       break
     }
 
@@ -75,11 +69,4 @@ export async function POST(request: NextRequest) {
   }
 
   return NextResponse.json({ received: true })
-}
-
-// Stripe webhooks need the raw body, so we disable body parsing
-export const config = {
-  api: {
-    bodyParser: false,
-  },
 }
