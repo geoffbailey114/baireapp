@@ -1,0 +1,13 @@
+<!-- 
+  OG Image Placeholder
+  
+  Replace this with an actual PNG image (1200x630px recommended)
+  
+  Suggested design:
+  - Background: #f6f7f6 (sage-50)
+  - Logo: "BAIRE" in #627362 (sage-600)
+  - Tagline: "AI Home Buying Consultant" in #334155 (slate-700)
+  - Optional: Simple home icon or abstract shape
+  
+  Keep it clean, professional, and readable at small sizes.
+-->
