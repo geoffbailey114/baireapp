@@ -1,44 +1,44 @@
-import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { CheckCircle, ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { stripe } from '@/lib/stripe'
-import { signJWT, createJWTPayload } from '@/lib/jwt'
-import { setAuthCookie, getAuthCookie } from '@/lib/cookies'
-import { verifyJWT } from '@/lib/jwt'
-import { APP_NAME } from '@/lib/constants'
+import Stripe from 'stripe'
+import { cookies } from 'next/headers'
+import { SignJWT } from 'jose'
 
-export const metadata: Metadata = {
-  title: 'Access Granted',
-  description: 'Welcome to BAIRE. Your AI home-buying consultant is ready.',
-  robots: {
-    index: false,
-    follow: false,
-  },
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-06-20',
+})
+
+const JWT_COOKIE_NAME = 'baire_auth'
+
+async function signJWT(payload: any): Promise<string> {
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET)
+  const token = await new SignJWT(payload)
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime('365d')
+    .sign(secret)
+  return token
 }
 
-interface AccessPageProps {
+export default async function AccessPage({
+  searchParams,
+}: {
   searchParams: Promise<{ session_id?: string }>
-}
-
-export default async function AccessPage({ searchParams }: AccessPageProps) {
+}) {
   const params = await searchParams
   const sessionId = params.session_id
 
-  // Check if user already has valid auth
-  const existingToken = await getAuthCookie()
-  if (existingToken) {
-    const payload = await verifyJWT(existingToken)
-    if (payload?.paid) {
-      // Already authenticated, show welcome back
-      return <AccessContent email={payload.email} isNewPurchase={false} />
-    }
-  }
-
-  // No existing auth, need session_id to verify purchase
+  // If no session_id, check if user already has access
   if (!sessionId) {
+    const cookieStore = cookies()
+    const token = cookieStore.get(JWT_COOKIE_NAME)?.value
+    
+    if (token) {
+      // User has a token, show welcome back
+      return <AccessContent email="Valued Customer" isNewPurchase={false} />
+    }
+    
+    // No session_id and no token, redirect to pricing
     redirect('/pricing')
   }
 
@@ -50,17 +50,30 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
       redirect('/pricing')
     }
 
-    const email = session.customer_email || session.customer_details?.email
+    const email = session.customer_email || session.customer_details?.email || 'Valued Customer'
 
-    if (!email) {
-      console.error('No email found in Stripe session')
-      redirect('/pricing')
+    // Create JWT payload
+    const jwtPayload = {
+      paid: true,
+      email,
+      tier: 'BAIRE',
+      purchasePurpose: 'home-buying',
+      createdAt: Date.now(),
+      expiryMode: 'userClosing',
     }
 
-    // Create and set JWT
-    const jwtPayload = createJWTPayload(email)
+    // Sign the JWT
     const token = await signJWT(jwtPayload)
-    await setAuthCookie(token)
+
+    // Set the cookie
+    const cookieStore = cookies()
+    cookieStore.set(JWT_COOKIE_NAME, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365,
+    })
 
     return <AccessContent email={email} isNewPurchase={true} />
   } catch (error) {
@@ -77,82 +90,72 @@ function AccessContent({
   isNewPurchase: boolean 
 }) {
   return (
-    <div className="py-16 md:py-24">
-      <div className="container">
-        <div className="mx-auto max-w-2xl">
-          <div className="text-center mb-8">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sage-100 mb-6">
-              <CheckCircle className="h-8 w-8 text-sage-600" />
+    <div className="min-h-screen bg-white py-16">
+      <div className="max-w-2xl mx-auto px-4">
+        <div className="text-center mb-8">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 mb-6">
+            <svg className="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900">
+            {isNewPurchase ? 'Welcome to BAIRE!' : 'Welcome Back!'}
+          </h1>
+          <p className="mt-4 text-lg text-gray-600">
+            {isNewPurchase 
+              ? 'Your payment was successful. You now have full access to BAIRE for your home-buying journey.'
+              : 'You have active access to BAIRE. Continue your home-buying journey.'}
+          </p>
+        </div>
+
+        <div className="bg-gray-50 rounded-lg p-6 mb-8">
+          <h2 className="text-lg font-semibold mb-4">Your Account</h2>
+          <div className="space-y-3">
+            <div>
+              <span className="text-sm text-gray-500">Email:</span>
+              <p className="text-gray-900">{email}</p>
             </div>
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              {isNewPurchase ? 'Welcome to BAIRE!' : 'Welcome Back!'}
-            </h1>
-            <p className="mt-4 text-lg text-slate-600">
-              {isNewPurchase 
-                ? 'Your payment was successful. You now have full access to BAIRE for your home-buying journey.'
-                : 'You have active access to BAIRE. Continue your home-buying journey.'}
-            </p>
+            <div>
+              <span className="text-sm text-gray-500">Plan:</span>
+              <p className="text-gray-900">BAIRE Buyer Consultant</p>
+            </div>
+            <div>
+              <span className="text-sm text-gray-500">Access:</span>
+              <p className="text-gray-900">Active until you close on your home</p>
+            </div>
           </div>
+        </div>
 
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>Your Account</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <dl className="space-y-4">
-                <div>
-                  <dt className="text-sm font-medium text-slate-500">Email</dt>
-                  <dd className="mt-1 text-slate-900">{email}</dd>
-                </div>
-                <div>
-                  <dt className="text-sm font-medium text-slate-500">Plan</dt>
-                  <dd className="mt-1 text-slate-900">BAIRE Buyer Consultant</dd>
-                </div>
-                <div>
-                  <dt className="text-sm font-medium text-slate-500">Access</dt>
-                  <dd className="mt-1 text-slate-900">
-                    Active until you close on your home
-                  </dd>
-                </div>
-              </dl>
-            </CardContent>
-          </Card>
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+          <h2 className="text-lg font-semibold text-green-900 mb-3">Getting Started</h2>
+          <p className="text-green-800 mb-4">
+            BAIRE is here to help you understand every step of your home-buying 
+            journey. Here are some things you can ask about:
+          </p>
+          <ul className="space-y-2 text-green-800">
+            <li>• Understanding purchase agreements and contracts</li>
+            <li>• What to expect during home inspections</li>
+            <li>• Explaining closing costs and fees</li>
+            <li>• Questions to ask your mortgage lender</li>
+            <li>• Understanding contingencies and timelines</li>
+          </ul>
+        </div>
 
-          <Card className="mb-8 border-sage-200 bg-sage-50">
-            <CardHeader>
-              <CardTitle>Getting Started</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-slate-600 mb-4">
-                BAIRE is here to help you understand every step of your home-buying 
-                journey. Here are some things you can ask about:
-              </p>
-              <ul className="space-y-2 text-slate-600">
-                <li>• Understanding purchase agreements and contracts</li>
-                <li>• What to expect during home inspections</li>
-                <li>• Explaining closing costs and fees</li>
-                <li>• Questions to ask your mortgage lender</li>
-                <li>• Understanding contingencies and timelines</li>
-              </ul>
-            </CardContent>
-          </Card>
+        <div className="text-center">
+          <Link 
+            href="/consultant"
+            className="inline-block bg-green-700 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-green-800"
+          >
+            Start Chatting with BAIRE →
+          </Link>
+        </div>
 
-          <div className="text-center">
-            <Button asChild size="xl">
-              <Link href="/consultant">
-                Start Chatting with BAIRE
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-
-          <div className="mt-8 text-center">
-            <p className="text-sm text-slate-500">
-              Remember: BAIRE provides educational information only. For specific 
-              legal, financial, or professional advice, please consult licensed 
-              professionals.
-            </p>
-          </div>
+        <div className="mt-8 text-center">
+          <p className="text-sm text-gray-500">
+            Remember: BAIRE provides educational information only. For specific 
+            legal, financial, or professional advice, please consult licensed 
+            professionals.
+          </p>
         </div>
       </div>
     </div>
