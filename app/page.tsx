@@ -3,20 +3,16 @@ import { Features } from '@/components/features'
 import { HowItWorks } from '@/components/how-it-works'
 import { FAQ } from '@/components/faq'
 import { CTASection } from '@/components/cta-section'
-import { Navigation } from '@/components/navigation'
-import { Footer } from '@/components/footer'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 
 export default function HomePage() {
   return (
     <>
-      <Navigation />
       <Hero />
       <Features />
       <HowItWorks />
       <FAQ />
       <CTASection />
-      <Footer />
 
       {/* Service Schema for SEO */}
       <script
