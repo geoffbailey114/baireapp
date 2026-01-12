@@ -34,14 +34,13 @@ export function CTASection() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button 
-              variant="outline" 
-              size="xl" 
-              asChild
-              className="border-white text-white hover:bg-sage-600 hover:text-white"
-            >
-              <Link href="/consultant">Try Free</Link>
-            </Button>
+            <Button
+  size="xl"
+  asChild
+  className="bg-transparent border-2 border-white text-white hover:bg-sage-600 hover:text-white"
+>
+  <Link href="/consultant">Try Free</Link>
+</Button>
           </div>
         </motion.div>
       </div>
