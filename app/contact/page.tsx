@@ -37,10 +37,10 @@ export default function ContactPage() {
                     For general questions about BAIRE and our services.
                   </p>
                   <a
-                    href="mailto:hello@baire.ai"
+                    href="mailto:hello@baireapp.com"
                     className="mt-3 inline-block text-sage-700 hover:text-sage-800 font-medium"
                   >
-                    hello@baire.ai
+                    hello@baireapp.com
                   </a>
                 </div>
               </div>
@@ -59,10 +59,10 @@ export default function ContactPage() {
                     Technical support and account-related questions.
                   </p>
                   <a
-                    href="mailto:support@baire.ai"
+                    href="mailto:support@baireapp.com"
                     className="mt-3 inline-block text-sage-700 hover:text-sage-800 font-medium"
                   >
-                    support@baire.ai
+                    support@baireapp.com
                   </a>
                 </div>
               </div>
@@ -81,10 +81,10 @@ export default function ContactPage() {
                     Questions about our terms, privacy policy, or legal matters.
                   </p>
                   <a
-                    href="mailto:legal@baire.ai"
+                    href="mailto:legal@baireapp.com"
                     className="mt-3 inline-block text-sage-700 hover:text-sage-800 font-medium"
                   >
-                    legal@baire.ai
+                    legal@baireapp.com
                   </a>
                 </div>
               </div>
