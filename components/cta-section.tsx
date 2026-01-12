@@ -38,7 +38,7 @@ export function CTASection() {
               variant="outline" 
               size="xl" 
               asChild
-              className="border-sage-300 text-white hover:bg-sage-700 hover:text-white"
+              className="border-white text-white hover:bg-sage-600 hover:text-white"
             >
               <Link href="/consultant">Try Free</Link>
             </Button>
