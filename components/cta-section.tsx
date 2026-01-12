@@ -37,7 +37,7 @@ export function CTASection() {
             <Button
   size="xl"
   asChild
-  className="bg-transparent border-2 border-white text-white hover:bg-sage-600 hover:text-white"
+  className="bg-transparent border-2 border-white text-white hover:bg-white/10 hover:text-white transition-colors"
 >
   <Link href="/consultant">Try Free</Link>
 </Button>
