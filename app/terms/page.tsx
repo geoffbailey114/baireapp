@@ -125,7 +125,7 @@ export default function TermsPage() {
 
           <h2>12. Contact</h2>
           <p>
-            For questions about these Terms, please contact us at legal@baire.ai.
+            For questions about these Terms, please contact us at legal@baireapp.com.
           </p>
         </article>
       </div>
