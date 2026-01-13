@@ -2,50 +2,63 @@
 
 import { motion } from 'framer-motion'
 import { 
-  FileText, 
-  HelpCircle, 
-  CheckCircle, 
-  Clock, 
-  DollarSign, 
-  Users 
+  Search,
+  Home,
+  FileText,
+  HelpCircle,
+  Target,
+  ClipboardCheck,
+  Landmark,
+  Clock,
+  Heart,
+  ShieldCheck,
+  Scale
 } from 'lucide-react'
 
 const features = [
   {
+    icon: Search,
+    title: 'Identify red flags in listings',
+  },
+  {
+    icon: Home,
+    title: 'Prepare for tours and walkthroughs',
+  },
+  {
     icon: FileText,
-    title: 'Document Understanding',
-    description:
-      'Get clear explanations of contracts, disclosures, and other documents. Understand what you\'re signing before you sign it.',
+    title: 'Craft strong offers',
   },
   {
     icon: HelpCircle,
-    title: 'Questions Answered',
-    description:
-      'Ask anything about the home-buying process. Get straightforward answers in plain English, not jargon.',
+    title: 'Explain terms and contingencies',
   },
   {
-    icon: CheckCircle,
-    title: 'Process Guidance',
-    description:
-      'Understand each step of the journey from offer to closing. Know what to expect and what questions to ask.',
+    icon: Target,
+    title: 'Plan negotiation strategy',
+  },
+  {
+    icon: ClipboardCheck,
+    title: 'Guide inspections and appraisals',
+  },
+  {
+    icon: Landmark,
+    title: 'Support financing and closing',
   },
   {
     icon: Clock,
-    title: 'Available 24/7',
-    description:
-      'Get help whenever you need it. BAIRE is here to assist whether it\'s morning coffee or midnight questions.',
+    title: '24/7 availability',
   },
   {
-    icon: DollarSign,
-    title: 'One-Time Fee',
-    description:
-      '$599 for your entire home-buying transaction. No commissions, no surprises, no recurring charges.',
+    icon: Heart,
+    title: 'No sales incentives',
   },
   {
-    icon: Users,
-    title: 'You Stay in Control',
-    description:
-      'BAIRE educates and informs. You make all the decisions. We encourage consulting professionals for specific advice.',
+    icon: ShieldCheck,
+    title: 'No pressure',
+  },
+  {
+    icon: Scale,
+    title: 'No conflict of interest',
   },
 ]
 
@@ -54,32 +67,28 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.05,
     },
   },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.3 },
   },
 }
 
 export function Features() {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-20 md:py-28 bg-slate-50">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Everything you need to buy with confidence
+            Everything a good buyer's agent does — without commissions.
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
-            BAIRE helps you understand the home-buying process so you can make 
-            informed decisions. We educate and empower—you decide and act.
-          </p>
         </div>
 
         <motion.div
@@ -87,23 +96,20 @@ export function Features() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          className="mx-auto max-w-4xl grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
         >
           {features.map((feature) => (
             <motion.div
               key={feature.title}
               variants={itemVariants}
-              className="relative rounded-2xl border border-slate-200 bg-white p-8 transition-shadow hover:shadow-lg"
+              className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white p-4"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-sage-100">
-                <feature.icon className="h-6 w-6 text-sage-700" aria-hidden="true" />
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-sage-100">
+                <feature.icon className="h-5 w-5 text-sage-700" aria-hidden="true" />
               </div>
-              <h3 className="mt-6 text-lg font-semibold text-slate-900">
+              <span className="text-slate-700 font-medium">
                 {feature.title}
-              </h3>
-              <p className="mt-2 text-slate-600 leading-relaxed">
-                {feature.description}
-              </p>
+              </span>
             </motion.div>
           ))}
         </motion.div>
