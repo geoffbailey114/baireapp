@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Shield, BookOpen, MessageCircle } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function Hero() {
@@ -16,7 +16,7 @@ export function Hero() {
             transition={{ duration: 0.5 }}
           >
             <span className="inline-flex items-center rounded-full bg-sage-100 px-3 py-1 text-sm font-medium text-sage-700 mb-6">
-              Your AI-Powered Home Buying Guide
+              Buy Without a Buyer's Agent
             </span>
           </motion.div>
 
@@ -26,8 +26,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl"
           >
-            Buy your home with{' '}
-            <span className="text-sage-600">confidence</span>
+            Tour homes and make offers{' '}
+            <span className="text-sage-600">without hiring a buyer's agent.</span>
           </motion.h1>
 
           <motion.p
@@ -36,10 +36,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-lg text-slate-600 leading-relaxed"
           >
-            BAIRE is an AI-powered educational consultant that helps self-represented 
-            home buyers understand the process, terminology, and considerations 
-            involved in purchasing a home. Get clear answers to your questions, 
-            understand documents, and feel empowered throughout your journey.
+            BAIRE gives you the tools, confidence, and AI expertise to buy — without paying buyer commissions.
           </motion.p>
 
           <motion.div
@@ -50,35 +47,24 @@ export function Hero() {
           >
             <Button asChild size="xl">
               <Link href="/pricing">
-                Get Started
+                Create Account (Free 48-Hour Trial)
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" size="xl" asChild>
-              <Link href="/consultant">Try Free</Link>
+              <Link href="#how-it-works">See How BAIRE Works</Link>
             </Button>
           </motion.div>
 
-          {/* Trust indicators */}
-          <motion.div
+          {/* Reassurance line */}
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500"
+            className="mt-6 text-sm text-slate-500"
           >
-            <div className="flex items-center gap-2">
-              <Shield className="h-4 w-4 text-sage-600" />
-              <span>Educational only</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <BookOpen className="h-4 w-4 text-sage-600" />
-              <span>Plain English</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MessageCircle className="h-4 w-4 text-sage-600" />
-              <span>24/7 availability</span>
-            </div>
-          </motion.div>
+            No obligation. No agent. Just smart help when you need it.
+          </motion.p>
         </div>
       </div>
 
