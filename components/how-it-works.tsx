@@ -1,46 +1,45 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const steps = [
   {
     number: '01',
-    title: 'Start with a question',
+    title: 'Share a home you\'re interested in.',
     description:
-      'Ask BAIRE anything about home buying. Whether you\'re curious about earnest money, inspection contingencies, or closing costs—just ask.',
+      'Paste a link from Zillow, Redfin, or any listing site.',
   },
   {
     number: '02',
-    title: 'Get clear explanations',
+    title: 'Tour with confidence.',
     description:
-      'Receive straightforward answers in plain English. No jargon, no complexity. Just the information you need to understand your situation.',
+      'I\'ll tell you what to look for and what questions to ask during your walkthrough.',
   },
   {
     number: '03',
-    title: 'Make informed decisions',
+    title: 'Prepare your offer.',
     description:
-      'Use what you learn to guide your home-buying journey. BAIRE helps you know what questions to ask and what to consider.',
+      'I\'ll help you think through price, terms, contingencies, and negotiation strategy — no guesswork.',
   },
   {
     number: '04',
-    title: 'Close with confidence',
+    title: 'Close without commissions.',
     description:
-      'When you\'ve completed your purchase, mark your transaction as closed. You\'ll feel good about understanding every step of the process.',
+      'From inspections to appraisal, title, and closing, I\'m with you every step of the way.',
   },
 ]
 
 export function HowItWorks() {
   return (
-    <section className="py-20 md:py-28 bg-slate-50">
+    <section id="how-it-works" className="py-20 md:py-28 bg-white">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            How BAIRE works
+            Buy smarter in four steps.
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
-            A simple process designed to empower you with knowledge throughout 
-            your home-buying journey.
-          </p>
         </div>
 
         <div className="mx-auto max-w-4xl">
@@ -73,6 +72,22 @@ export function HowItWorks() {
               </motion.div>
             ))}
           </div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-12 text-center"
+          >
+            <Button asChild size="xl">
+              <Link href="/pricing">
+                Create Account (Free 48-Hour Trial)
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </div>
     </section>
