@@ -35,12 +35,12 @@ export function CTASection() {
               </Link>
             </Button>
             <Button
-  size="xl"
-  asChild
-  className="bg-transparent border-2 border-white text-white hover:bg-white/10 hover:text-white transition-colors"
->
-  <Link href="/consultant">Try Free</Link>
-</Button>
+              size="xl"
+              asChild
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-sage-700 transition-colors"
+            >
+              <Link href="/consultant">Try Free</Link>
+            </Button>
           </div>
         </motion.div>
       </div>
