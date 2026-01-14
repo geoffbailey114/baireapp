@@ -10,35 +10,41 @@ const steps = [
     number: '01',
     title: 'Share a home you\'re interested in.',
     description:
-      'Paste a link from Zillow, Redfin, or any listing site.',
+      'Paste a Zillow, Redfin, or MLS link.',
   },
   {
     number: '02',
-    title: 'Tour with confidence.',
+    title: 'Schedule your own showing.',
     description:
-      'I\'ll tell you what to look for and what questions to ask during your walkthrough.',
+      'BAIRE provides a script, waiver, and steps to book tours without hiring a buyer\'s agent.',
   },
   {
     number: '03',
-    title: 'Prepare your offer.',
+    title: 'Tour with confidence.',
     description:
-      'I\'ll help you think through price, terms, contingencies, and negotiation strategy — no guesswork.',
+      'Know what to look for, what to ask, and how to spot red flags during walkthroughs.',
   },
   {
     number: '04',
+    title: 'Prepare a winning offer.',
+    description:
+      'BAIRE helps you think through price, terms, contingencies, and negotiation strategy — without a buyer\'s agent.',
+  },
+  {
+    number: '05',
     title: 'Close without commissions.',
     description:
-      'From inspections to appraisal, title, and closing, I\'m with you every step of the way.',
+      'From inspections to appraisal, title, and closing, BAIRE stays with you until the finish line.',
   },
 ]
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 md:py-28 bg-white">
+    <section id="how-it-works" className="py-20 md:py-28 bg-slate-50">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Buy smarter in four steps.
+            Buying without a buyer's agent is now simple.
           </h2>
         </div>
 
@@ -83,7 +89,7 @@ export function HowItWorks() {
           >
             <Button asChild size="xl">
               <Link href="/pricing">
-                Create Account (Free 48-Hour Trial)
+                Start Free — 48-Hour Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
