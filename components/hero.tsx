@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-sage-50/50 to-white">
       <div className="container py-20 md:py-28 lg:py-32">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -33,25 +33,26 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-lg text-slate-600 leading-relaxed"
+            className="mt-6 text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto"
           >
-            BAIRE helps you prepare stronger offers without a buyer's agent.
+            BAIRE helps you go from walkthrough to winning offer — without hiring a buyer's agent or paying their commission.
           </motion.p>
 
-          {/* Micro-line with financial justification */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="mt-4 text-base text-slate-500 leading-relaxed"
-          >
-            Saving the 2–3% buyer agent commission can mean $10,000–$15,000. Buyers pay it — agents get it — BAIRE eliminates it.
-          </motion.p>
-
+          {/* Value prop card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-8 inline-flex items-center gap-3 rounded-xl bg-slate-100 px-6 py-3"
+          >
+            <span className="text-2xl font-bold text-sage-700">$10K–$15K</span>
+            <span className="text-slate-600">saved on a typical home purchase</span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button asChild size="xl">
@@ -64,6 +65,16 @@ export function Hero() {
               <Link href="#how-it-works">How BAIRE Works</Link>
             </Button>
           </motion.div>
+
+          {/* Micro-line */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-4 text-sm text-slate-500"
+          >
+            Unlock offer strategy for $99 only when you're ready to compete.
+          </motion.p>
         </div>
       </div>
 
