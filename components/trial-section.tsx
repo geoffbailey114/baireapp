@@ -30,7 +30,7 @@ export function TrialSection() {
               className="bg-white text-sage-700 hover:bg-sage-50"
             >
               <Link href="/pricing">
-                Create Account (Free 48-Hour Trial)
+                Start Free — 48-Hour Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
