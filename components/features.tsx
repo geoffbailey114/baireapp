@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { 
-  Search,
-  Home,
   FileText,
   HelpCircle,
   Target,
@@ -17,16 +15,8 @@ import {
 
 const features = [
   {
-    icon: Search,
-    title: 'Identify red flags in listings',
-  },
-  {
-    icon: Home,
-    title: 'Prepare for tours and walkthroughs',
-  },
-  {
     icon: FileText,
-    title: 'Craft strong offers',
+    title: 'Prepare stronger offers',
   },
   {
     icon: HelpCircle,
@@ -38,15 +28,15 @@ const features = [
   },
   {
     icon: ClipboardCheck,
-    title: 'Guide inspections and appraisals',
+    title: 'Inspect + appraise with guidance',
   },
   {
     icon: Landmark,
-    title: 'Support financing and closing',
+    title: 'Support financing + closing',
   },
   {
     icon: Clock,
-    title: '24/7 availability',
+    title: '24/7 always-on (no waiting for call/text)',
   },
   {
     icon: Heart,
