@@ -26,8 +26,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl"
           >
-            Tour homes and make offers{' '}
-            <span className="text-sage-600">without hiring a buyer's agent.</span>
+            Win the house you want.
           </motion.h1>
 
           <motion.p
@@ -36,7 +35,17 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-lg text-slate-600 leading-relaxed"
           >
-            BAIRE gives you the tools, confidence, and AI expertise to buy — without paying buyer commissions.
+            BAIRE helps you prepare stronger offers without a buyer's agent.
+          </motion.p>
+
+          {/* Micro-line with financial justification */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="mt-4 text-base text-slate-500 leading-relaxed"
+          >
+            Saving the 2–3% buyer agent commission can mean $10,000–$15,000. Buyers pay it — agents get it — BAIRE eliminates it.
           </motion.p>
 
           <motion.div
@@ -47,24 +56,14 @@ export function Hero() {
           >
             <Button asChild size="xl">
               <Link href="/pricing">
-                Create Account (Free 48-Hour Trial)
+                Start Free — 48-Hour Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" size="xl" asChild>
-              <Link href="#how-it-works">See How BAIRE Works</Link>
+              <Link href="#how-it-works">How BAIRE Works</Link>
             </Button>
           </motion.div>
-
-          {/* Reassurance line */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-6 text-sm text-slate-500"
-          >
-            No obligation. No agent. Just smart help when you need it.
-          </motion.p>
         </div>
       </div>
 
