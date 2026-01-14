@@ -26,7 +26,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl"
           >
-            Win the house you want.
+            Get the House You Want.{' '}
+            <span className="text-sage-600">Skip the Buyer Agent Commission.</span>
           </motion.h1>
 
           <motion.p
@@ -35,17 +36,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-lg text-slate-600 leading-relaxed"
           >
-            BAIRE helps you prepare stronger offers without a buyer's agent.
-          </motion.p>
-
-          {/* Micro-line with financial justification */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="mt-4 text-base text-slate-500 leading-relaxed"
-          >
-            Saving the 2–3% buyer agent commission can mean $10,000–$15,000. Buyers pay it — agents get it — BAIRE eliminates it.
+            Go from walkthrough to winning offer without a buyer's agent.
           </motion.p>
 
           <motion.div
@@ -64,6 +55,16 @@ export function Hero() {
               <Link href="#how-it-works">How BAIRE Works</Link>
             </Button>
           </motion.div>
+
+          {/* Micro-line */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-6 text-sm text-slate-500"
+          >
+            Unlock offer strategy for $99 only when you're ready to compete.
+          </motion.p>
         </div>
       </div>
 
