@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/stripe/charge-trials",
+      "schedule": "0 * * * *"
+    }
+  ]
+}
