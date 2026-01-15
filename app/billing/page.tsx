@@ -53,40 +53,50 @@ export default async function BillingPage() {
               <div className="flex justify-between items-center">
                 <div>
                   <span className="text-slate-900 font-medium">BAIRE Access</span>
-                  <p className="text-sm text-slate-500">Offer prep, negotiation playbooks</p>
+                  <p className="text-sm text-slate-500">Showings scripts, waivers, checklists</p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-sm ${
                   access.purchases.access 
                     ? 'bg-sage-100 text-sage-700' 
                     : 'bg-slate-100 text-slate-500'
                 }`}>
-                  {access.purchases.access ? 'Purchased' : 'Not purchased'}
+                  {access.purchases.access ? 'Purchased ($99)' : 'Not purchased'}
                 </span>
               </div>
               <div className="flex justify-between items-center">
                 <div>
-                  <span className="text-slate-900 font-medium">BAIRE Showings</span>
-                  <p className="text-sm text-slate-500">Scripts, waivers, checklists</p>
+                  <span className="text-slate-900 font-medium">BAIRE Offer</span>
+                  <p className="text-sm text-slate-500">Offer prep, negotiation playbooks</p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-sm ${
-                  access.purchases.showings 
+                  access.purchases.offer 
                     ? 'bg-sage-100 text-sage-700' 
                     : 'bg-slate-100 text-slate-500'
                 }`}>
-                  {access.purchases.showings ? 'Purchased' : 'Not purchased'}
+                  {access.purchases.offer ? 'Purchased ($200)' : 'Not purchased'}
                 </span>
               </div>
               <div className="flex justify-between items-center">
                 <div>
                   <span className="text-slate-900 font-medium">BAIRE Closing</span>
-                  <p className="text-sm text-slate-500">Full closing support</p>
+                  <p className="text-sm text-slate-500">Post-close payment</p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-sm ${
                   access.purchases.closing 
                     ? 'bg-sage-100 text-sage-700' 
                     : 'bg-slate-100 text-slate-500'
                 }`}>
-                  {access.purchases.closing ? 'Purchased' : 'Not purchased'}
+                  {access.purchases.closing ? 'Purchased ($300)' : 'Not purchased'}
+                </span>
+              </div>
+            </div>
+
+            {/* Total spent */}
+            <div className="mt-6 pt-4 border-t border-slate-200">
+              <div className="flex justify-between items-center">
+                <span className="text-slate-600">Total spent</span>
+                <span className="font-semibold text-slate-900">
+                  ${(access.purchases.access ? 99 : 0) + (access.purchases.offer ? 200 : 0) + (access.purchases.closing ? 300 : 0)}
                 </span>
               </div>
             </div>
