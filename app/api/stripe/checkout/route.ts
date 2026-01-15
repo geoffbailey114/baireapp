@@ -91,8 +91,9 @@ export async function GET(request: Request) {
 
     // Determine price and settings based on tier
     let priceId: string
-    let mode: 'payment' | 'subscription' | 'setup' = 'payment'
+    let mode: 'payment' | 'setup' = 'payment'
     let trialEnd: number | undefined
+    let successUrl: string
 
     switch (tier) {
       case 'trial':
@@ -100,18 +101,23 @@ export async function GET(request: Request) {
         mode = 'setup'
         priceId = '' // No price for setup mode
         trialEnd = Math.floor(Date.now() / 1000) + (48 * 60 * 60)
+        successUrl = `${baseUrl}/consultant?trial_started=true`
         break
       
       case 'access':
         priceId = process.env.STRIPE_PRICE_ACCESS!
+        successUrl = `${baseUrl}/consultant?upgraded=access`
         break
       
-      case 'showings':
-        priceId = process.env.STRIPE_PRICE_SHOWINGS!
+      case 'offer':
+        // Support both STRIPE_PRICE_OFFER and STRIPE_PRICE_SHOWINGS for backwards compatibility
+        priceId = process.env.STRIPE_PRICE_OFFER || process.env.STRIPE_PRICE_SHOWINGS!
+        successUrl = `${baseUrl}/consultant?upgraded=offer`
         break
       
       case 'closing':
         priceId = process.env.STRIPE_PRICE_CLOSING!
+        successUrl = `${baseUrl}/consultant?upgraded=closing`
         break
       
       default:
@@ -127,7 +133,7 @@ export async function GET(request: Request) {
         mode: 'setup',
         customer: customerId,
         payment_method_types: ['card'],
-        success_url: `${baseUrl}/consultant?trial_started=true`,
+        success_url: successUrl,
         cancel_url: `${baseUrl}/pricing`,
         metadata: {
           user_id: jwt.sub,
@@ -146,7 +152,7 @@ export async function GET(request: Request) {
             quantity: 1,
           },
         ],
-        success_url: `${baseUrl}/consultant?upgraded=${tier}`,
+        success_url: successUrl,
         cancel_url: `${baseUrl}/pricing`,
         metadata: {
           user_id: jwt.sub,
@@ -166,13 +172,3 @@ export async function GET(request: Request) {
     )
   }
 }
-
-
-
-
-
-
-
-
-
-
