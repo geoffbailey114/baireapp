@@ -1,0 +1,273 @@
+import Stripe from 'stripe'
+import { cookies } from 'next/headers'
+import { jwtVerify } from 'jose'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-06-20',
+})
+
+// Access tiers in order
+export type AccessTier = 'none' | 'trial' | 'access' | 'showings' | 'closing'
+
+export interface UserAccess {
+  tier: AccessTier
+  email: string | null
+  stripeCustomerId: string | null
+  trialEndsAt: number | null // Unix timestamp
+  isTrialExpired: boolean
+  purchases: {
+    access: boolean
+    showings: boolean
+    closing: boolean
+  }
+}
+
+interface JWTPayload {
+  sub: string
+  email: string
+  stripe_customer_id?: string
+  trial_ends_at?: number
+}
+
+/**
+ * Get JWT payload from HttpOnly cookie
+ */
+export async function getJWTPayload(): Promise<JWTPayload | null> {
+  try {
+    const cookieStore = await cookies()
+    const token = cookieStore.get('baire_auth')?.value
+    
+    if (!token) return null
+    
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET)
+    const { payload } = await jwtVerify(token, secret)
+    
+    return payload as unknown as JWTPayload
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Fetch user's purchase history from Stripe
+ */
+async function getStripePurchases(customerId: string): Promise<{
+  access: boolean
+  showings: boolean
+  closing: boolean
+  trialEndsAt: number | null
+}> {
+  const purchases = {
+    access: false,
+    showings: false,
+    closing: false,
+    trialEndsAt: null as number | null,
+  }
+
+  try {
+    // Get all successful payments for this customer
+    const paymentIntents = await stripe.paymentIntents.list({
+      customer: customerId,
+      limit: 100,
+    })
+
+    const priceAccess = process.env.STRIPE_PRICE_ACCESS
+    const priceShowings = process.env.STRIPE_PRICE_SHOWINGS
+    const priceClosing = process.env.STRIPE_PRICE_CLOSING
+
+    // Check checkout sessions for metadata
+    const sessions = await stripe.checkout.sessions.list({
+      customer: customerId,
+      limit: 100,
+    })
+
+    for (const session of sessions.data) {
+      if (session.payment_status === 'paid') {
+        const priceId = session.metadata?.price_id
+        
+        if (priceId === priceAccess) purchases.access = true
+        if (priceId === priceShowings) purchases.showings = true
+        if (priceId === priceClosing) purchases.closing = true
+      }
+      
+      // Check for trial end time
+      if (session.metadata?.trial_ends_at) {
+        purchases.trialEndsAt = parseInt(session.metadata.trial_ends_at)
+      }
+    }
+
+    // Also check payment intents metadata as backup
+    for (const pi of paymentIntents.data) {
+      if (pi.status === 'succeeded') {
+        const priceId = pi.metadata?.price_id
+        
+        if (priceId === priceAccess) purchases.access = true
+        if (priceId === priceShowings) purchases.showings = true
+        if (priceId === priceClosing) purchases.closing = true
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching Stripe purchases:', error)
+  }
+
+  return purchases
+}
+
+/**
+ * Get user's current access level (server-side, authoritative)
+ */
+export async function getUserAccess(): Promise<UserAccess> {
+  const defaultAccess: UserAccess = {
+    tier: 'none',
+    email: null,
+    stripeCustomerId: null,
+    trialEndsAt: null,
+    isTrialExpired: false,
+    purchases: {
+      access: false,
+      showings: false,
+      closing: false,
+    },
+  }
+
+  const jwt = await getJWTPayload()
+  if (!jwt) return defaultAccess
+
+  const now = Math.floor(Date.now() / 1000)
+  
+  // If no Stripe customer yet, check if in trial period
+  if (!jwt.stripe_customer_id) {
+    const trialEndsAt = jwt.trial_ends_at || null
+    const isTrialExpired = trialEndsAt ? now > trialEndsAt : false
+    
+    return {
+      tier: isTrialExpired ? 'none' : 'trial',
+      email: jwt.email,
+      stripeCustomerId: null,
+      trialEndsAt,
+      isTrialExpired,
+      purchases: { access: false, showings: false, closing: false },
+    }
+  }
+
+  // Fetch purchases from Stripe (source of truth)
+  const stripePurchases = await getStripePurchases(jwt.stripe_customer_id)
+  
+  // Determine trial status
+  const trialEndsAt = stripePurchases.trialEndsAt || jwt.trial_ends_at || null
+  const isTrialExpired = trialEndsAt ? now > trialEndsAt : false
+
+  // Determine tier based on purchases
+  let tier: AccessTier = 'none'
+  
+  if (stripePurchases.closing) {
+    tier = 'closing'
+  } else if (stripePurchases.showings) {
+    tier = 'showings'
+  } else if (stripePurchases.access) {
+    tier = 'access'
+  } else if (!isTrialExpired && trialEndsAt) {
+    tier = 'trial'
+  }
+
+  return {
+    tier,
+    email: jwt.email,
+    stripeCustomerId: jwt.stripe_customer_id,
+    trialEndsAt,
+    isTrialExpired,
+    purchases: stripePurchases,
+  }
+}
+
+/**
+ * Check if user can access a specific feature
+ */
+export function canAccess(userAccess: UserAccess, requiredTier: AccessTier): boolean {
+  const tierOrder: AccessTier[] = ['none', 'trial', 'access', 'showings', 'closing']
+  const userTierIndex = tierOrder.indexOf(userAccess.tier)
+  const requiredTierIndex = tierOrder.indexOf(requiredTier)
+  
+  return userTierIndex >= requiredTierIndex
+}
+
+/**
+ * Get the next tier user needs to purchase
+ */
+export function getNextTier(userAccess: UserAccess): AccessTier | null {
+  if (userAccess.tier === 'closing') return null
+  if (userAccess.tier === 'showings') return 'closing'
+  if (userAccess.tier === 'access') return 'showings'
+  if (userAccess.tier === 'trial') return 'access'
+  return 'access' // For 'none'
+}
+
+/**
+ * Get price ID for a tier
+ */
+export function getPriceIdForTier(tier: AccessTier): string | null {
+  switch (tier) {
+    case 'access':
+      return process.env.STRIPE_PRICE_ACCESS || null
+    case 'showings':
+      return process.env.STRIPE_PRICE_SHOWINGS || null
+    case 'closing':
+      return process.env.STRIPE_PRICE_CLOSING || null
+    default:
+      return null
+  }
+}
+
+/**
+ * Feature flags based on tier
+ */
+export const TIER_FEATURES = {
+  trial: {
+    generalQA: true,
+    educationalContent: true,
+    basicGuidance: true,
+    offerPrep: false,
+    negotiationPlaybooks: false,
+    stateSpecificLanguage: false,
+    showingScripts: false,
+    waivers: false,
+    walkthroughChecklists: false,
+    closingSupport: false,
+  },
+  access: {
+    generalQA: true,
+    educationalContent: true,
+    basicGuidance: true,
+    offerPrep: true,
+    negotiationPlaybooks: true,
+    stateSpecificLanguage: true,
+    showingScripts: false,
+    waivers: false,
+    walkthroughChecklists: false,
+    closingSupport: false,
+  },
+  showings: {
+    generalQA: true,
+    educationalContent: true,
+    basicGuidance: true,
+    offerPrep: true,
+    negotiationPlaybooks: true,
+    stateSpecificLanguage: true,
+    showingScripts: true,
+    waivers: true,
+    walkthroughChecklists: true,
+    closingSupport: false,
+  },
+  closing: {
+    generalQA: true,
+    educationalContent: true,
+    basicGuidance: true,
+    offerPrep: true,
+    negotiationPlaybooks: true,
+    stateSpecificLanguage: true,
+    showingScripts: true,
+    waivers: true,
+    walkthroughChecklists: true,
+    closingSupport: true,
+  },
+} as const
