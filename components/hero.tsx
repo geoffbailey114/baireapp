@@ -62,7 +62,7 @@ export function Hero() {
               </Link>
             </Button>
             <Button variant="outline" size="xl" asChild>
-              <Link href="#how-it-works">How BAIRE Works</Link>
+              <Link href="/how-baire-works">How BAIRE Works</Link>
             </Button>
           </motion.div>
 
