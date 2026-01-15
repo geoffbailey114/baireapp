@@ -6,8 +6,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-06-20',
 })
 
-// Access tiers in order
-export type AccessTier = 'none' | 'trial' | 'access' | 'showings' | 'closing'
+// Access tiers in order (renamed: showings -> offer)
+export type AccessTier = 'none' | 'trial' | 'access' | 'offer' | 'closing'
 
 export interface UserAccess {
   tier: AccessTier
@@ -17,7 +17,7 @@ export interface UserAccess {
   isTrialExpired: boolean
   purchases: {
     access: boolean
-    showings: boolean
+    offer: boolean
     closing: boolean
   }
 }
@@ -53,13 +53,13 @@ export async function getJWTPayload(): Promise<JWTPayload | null> {
  */
 async function getStripePurchases(customerId: string): Promise<{
   access: boolean
-  showings: boolean
+  offer: boolean
   closing: boolean
   trialEndsAt: number | null
 }> {
   const purchases = {
     access: false,
-    showings: false,
+    offer: false,
     closing: false,
     trialEndsAt: null as number | null,
   }
@@ -72,7 +72,7 @@ async function getStripePurchases(customerId: string): Promise<{
     })
 
     const priceAccess = process.env.STRIPE_PRICE_ACCESS
-    const priceShowings = process.env.STRIPE_PRICE_SHOWINGS
+    const priceOffer = process.env.STRIPE_PRICE_OFFER || process.env.STRIPE_PRICE_SHOWINGS // Support both names
     const priceClosing = process.env.STRIPE_PRICE_CLOSING
 
     // Check checkout sessions for metadata
@@ -84,10 +84,11 @@ async function getStripePurchases(customerId: string): Promise<{
     for (const session of sessions.data) {
       if (session.payment_status === 'paid') {
         const priceId = session.metadata?.price_id
+        const tier = session.metadata?.tier
         
-        if (priceId === priceAccess) purchases.access = true
-        if (priceId === priceShowings) purchases.showings = true
-        if (priceId === priceClosing) purchases.closing = true
+        if (priceId === priceAccess || tier === 'access') purchases.access = true
+        if (priceId === priceOffer || tier === 'offer' || tier === 'showings') purchases.offer = true
+        if (priceId === priceClosing || tier === 'closing') purchases.closing = true
       }
       
       // Check for trial end time
@@ -100,10 +101,11 @@ async function getStripePurchases(customerId: string): Promise<{
     for (const pi of paymentIntents.data) {
       if (pi.status === 'succeeded') {
         const priceId = pi.metadata?.price_id
+        const tier = pi.metadata?.tier
         
-        if (priceId === priceAccess) purchases.access = true
-        if (priceId === priceShowings) purchases.showings = true
-        if (priceId === priceClosing) purchases.closing = true
+        if (priceId === priceAccess || tier === 'access') purchases.access = true
+        if (priceId === priceOffer || tier === 'offer' || tier === 'showings') purchases.offer = true
+        if (priceId === priceClosing || tier === 'closing') purchases.closing = true
       }
     }
   } catch (error) {
@@ -125,7 +127,7 @@ export async function getUserAccess(): Promise<UserAccess> {
     isTrialExpired: false,
     purchases: {
       access: false,
-      showings: false,
+      offer: false,
       closing: false,
     },
   }
@@ -146,7 +148,7 @@ export async function getUserAccess(): Promise<UserAccess> {
       stripeCustomerId: null,
       trialEndsAt,
       isTrialExpired,
-      purchases: { access: false, showings: false, closing: false },
+      purchases: { access: false, offer: false, closing: false },
     }
   }
 
@@ -162,8 +164,8 @@ export async function getUserAccess(): Promise<UserAccess> {
   
   if (stripePurchases.closing) {
     tier = 'closing'
-  } else if (stripePurchases.showings) {
-    tier = 'showings'
+  } else if (stripePurchases.offer) {
+    tier = 'offer'
   } else if (stripePurchases.access) {
     tier = 'access'
   } else if (!isTrialExpired && trialEndsAt) {
@@ -184,7 +186,7 @@ export async function getUserAccess(): Promise<UserAccess> {
  * Check if user can access a specific feature
  */
 export function canAccess(userAccess: UserAccess, requiredTier: AccessTier): boolean {
-  const tierOrder: AccessTier[] = ['none', 'trial', 'access', 'showings', 'closing']
+  const tierOrder: AccessTier[] = ['none', 'trial', 'access', 'offer', 'closing']
   const userTierIndex = tierOrder.indexOf(userAccess.tier)
   const requiredTierIndex = tierOrder.indexOf(requiredTier)
   
@@ -196,8 +198,8 @@ export function canAccess(userAccess: UserAccess, requiredTier: AccessTier): boo
  */
 export function getNextTier(userAccess: UserAccess): AccessTier | null {
   if (userAccess.tier === 'closing') return null
-  if (userAccess.tier === 'showings') return 'closing'
-  if (userAccess.tier === 'access') return 'showings'
+  if (userAccess.tier === 'offer') return 'closing'
+  if (userAccess.tier === 'access') return 'offer'
   if (userAccess.tier === 'trial') return 'access'
   return 'access' // For 'none'
 }
@@ -209,8 +211,8 @@ export function getPriceIdForTier(tier: AccessTier): string | null {
   switch (tier) {
     case 'access':
       return process.env.STRIPE_PRICE_ACCESS || null
-    case 'showings':
-      return process.env.STRIPE_PRICE_SHOWINGS || null
+    case 'offer':
+      return process.env.STRIPE_PRICE_OFFER || process.env.STRIPE_PRICE_SHOWINGS || null
     case 'closing':
       return process.env.STRIPE_PRICE_CLOSING || null
     default:
@@ -226,48 +228,48 @@ export const TIER_FEATURES = {
     generalQA: true,
     educationalContent: true,
     basicGuidance: true,
-    offerPrep: false,
-    negotiationPlaybooks: false,
-    stateSpecificLanguage: false,
     showingScripts: false,
     waivers: false,
     walkthroughChecklists: false,
+    offerPrep: false,
+    negotiationPlaybooks: false,
+    stateSpecificLanguage: false,
     closingSupport: false,
   },
   access: {
     generalQA: true,
     educationalContent: true,
     basicGuidance: true,
-    offerPrep: true,
-    negotiationPlaybooks: true,
-    stateSpecificLanguage: true,
-    showingScripts: false,
-    waivers: false,
-    walkthroughChecklists: false,
-    closingSupport: false,
-  },
-  showings: {
-    generalQA: true,
-    educationalContent: true,
-    basicGuidance: true,
-    offerPrep: true,
-    negotiationPlaybooks: true,
-    stateSpecificLanguage: true,
     showingScripts: true,
     waivers: true,
     walkthroughChecklists: true,
+    offerPrep: false,
+    negotiationPlaybooks: false,
+    stateSpecificLanguage: false,
+    closingSupport: false,
+  },
+  offer: {
+    generalQA: true,
+    educationalContent: true,
+    basicGuidance: true,
+    showingScripts: true,
+    waivers: true,
+    walkthroughChecklists: true,
+    offerPrep: true,
+    negotiationPlaybooks: true,
+    stateSpecificLanguage: true,
     closingSupport: false,
   },
   closing: {
     generalQA: true,
     educationalContent: true,
     basicGuidance: true,
-    offerPrep: true,
-    negotiationPlaybooks: true,
-    stateSpecificLanguage: true,
     showingScripts: true,
     waivers: true,
     walkthroughChecklists: true,
+    offerPrep: true,
+    negotiationPlaybooks: true,
+    stateSpecificLanguage: true,
     closingSupport: true,
   },
 } as const
