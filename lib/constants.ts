@@ -1,7 +1,7 @@
 // Application constants
 export const APP_NAME = 'BAIRE'
 export const APP_DESCRIPTION = 'AI-powered home-buying consultant for self-represented buyers. Get expert guidance without the traditional agent commission.'
-export const APP_URL = process.env.APP_BASE_URL || 'https://baire.ai'
+export const APP_URL = process.env.APP_BASE_URL || 'https://baireapp.com'
 
 // Pricing
 export const PRICE_AMOUNT = 599
@@ -30,6 +30,7 @@ export const SEO_KEYWORDS = [
 // Navigation links
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/how-baire-works', label: 'How It Works' },
   { href: '/pricing', label: 'Pricing' },
 ]
 
@@ -73,3 +74,13 @@ TONE AND STYLE:
 When users ask for advice that crosses into legal, tax, or financial territory, gently redirect them to consult appropriate professionals while still providing educational context where possible.
 
 Always end responses that touch on legal, financial, or high-stakes matters with a reminder that users should verify information with licensed professionals.`
+
+
+
+
+
+
+
+
+
+
