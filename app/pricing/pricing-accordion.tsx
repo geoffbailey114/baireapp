@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, Check } from 'lucide-react'
+import { ChevronDown, Check, Lock } from 'lucide-react'
 
 const pricingSteps = [
   {
@@ -17,6 +17,7 @@ const pricingSteps = [
       'Process guidance',
     ],
     note: 'After 48 hours, you\'re automatically upgraded to Access ($99).',
+    locked: false,
   },
   {
     id: 'access',
@@ -34,6 +35,7 @@ const pricingSteps = [
       'Basic offer strategy',
     ],
     note: 'Charged automatically after your 48-hour trial, or pay now to skip the trial.',
+    locked: false,
   },
   {
     id: 'offer',
@@ -41,7 +43,7 @@ const pricingSteps = [
     price: '$200',
     priceNote: 'when ready',
     fullPrice: '$300',
-    description: 'When you\'re ready to make an offer, unlock full offer preparation tools.',
+    description: 'When you\'re ready to make an offer, BAIRE will prompt you to unlock full offer preparation tools.',
     features: [
       'Everything in Access',
       'Full offer generation & strategy',
@@ -50,7 +52,8 @@ const pricingSteps = [
       'Price & terms guidance',
       'Counteroffer strategies',
     ],
-    note: 'BAIRE will prompt you when you say you\'re ready to make an offer.',
+    note: 'Unlocked inside BAIRE when you\'re ready to make an offer. Not available upfront.',
+    locked: true,
   },
   {
     id: 'closing',
@@ -67,6 +70,7 @@ const pricingSteps = [
       'Closing day checklist',
     ],
     note: 'Only charged after you confirm you\'ve closed. This is your final payment.',
+    locked: true,
   },
 ]
 
@@ -100,6 +104,12 @@ export function PricingAccordion() {
                     <span className="text-slate-400 text-sm line-through">{step.fullPrice}</span>
                   )}
                   <span className="text-slate-500 text-sm">{step.priceNote}</span>
+                  {step.locked && (
+                    <span className="inline-flex items-center gap-1 text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded">
+                      <Lock className="h-3 w-3" />
+                      In-app only
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -121,7 +131,12 @@ export function PricingAccordion() {
                   </li>
                 ))}
               </ul>
-              <p className="text-sm text-slate-500 bg-slate-50 rounded-lg p-3">
+              <p className={`text-sm rounded-lg p-3 ${
+                step.locked 
+                  ? 'text-slate-500 bg-slate-50 border border-slate-200' 
+                  : 'text-slate-500 bg-slate-50'
+              }`}>
+                {step.locked && <Lock className="h-3 w-3 inline mr-1" />}
                 {step.note}
               </p>
             </div>
@@ -134,7 +149,7 @@ export function PricingAccordion() {
         <div className="flex items-center justify-between">
           <div>
             <span className="font-semibold text-slate-900">Total (start to finish)</span>
-            <p className="text-sm text-slate-600">Only pay for what you use</p>
+            <p className="text-sm text-slate-600">Pay as you go — only when you need it</p>
           </div>
           <div className="text-right">
             <div className="flex items-center gap-2">
