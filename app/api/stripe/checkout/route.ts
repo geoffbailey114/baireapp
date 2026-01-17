@@ -32,6 +32,49 @@ async function getJWTPayload(): Promise<JWTPayload | null> {
   }
 }
 
+async function getUserPurchases(customerId: string): Promise<{
+  access: boolean
+  offer: boolean
+  closing: boolean
+}> {
+  const purchases = { access: false, offer: false, closing: false }
+  
+  try {
+    const sessions = await stripe.checkout.sessions.list({
+      customer: customerId,
+      limit: 100,
+    })
+
+    for (const session of sessions.data) {
+      if (session.payment_status === 'paid') {
+        const tier = session.metadata?.tier
+        if (tier === 'access') purchases.access = true
+        if (tier === 'offer' || tier === 'showings') purchases.offer = true
+        if (tier === 'closing') purchases.closing = true
+      }
+    }
+
+    // Also check payment intents
+    const paymentIntents = await stripe.paymentIntents.list({
+      customer: customerId,
+      limit: 100,
+    })
+
+    for (const pi of paymentIntents.data) {
+      if (pi.status === 'succeeded') {
+        const tier = pi.metadata?.tier
+        if (tier === 'access') purchases.access = true
+        if (tier === 'offer' || tier === 'showings') purchases.offer = true
+        if (tier === 'closing') purchases.closing = true
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching purchases:', error)
+  }
+
+  return purchases
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -89,6 +132,30 @@ export async function GET(request: Request) {
       })
     }
 
+    // Check user's current purchases to enforce tier order
+    const purchases = await getUserPurchases(customerId)
+
+    // BLOCK: Offer tier requires Access tier first
+    if (tier === 'offer' && !purchases.access) {
+      return NextResponse.redirect(new URL('/pricing?error=access_required', request.url))
+    }
+
+    // BLOCK: Closing tier requires Offer tier first
+    if (tier === 'closing' && !purchases.offer) {
+      return NextResponse.redirect(new URL('/pricing?error=offer_required', request.url))
+    }
+
+    // BLOCK: Can't repurchase a tier they already have
+    if (tier === 'access' && purchases.access) {
+      return NextResponse.redirect(new URL('/consultant?already_purchased=access', request.url))
+    }
+    if (tier === 'offer' && purchases.offer) {
+      return NextResponse.redirect(new URL('/consultant?already_purchased=offer', request.url))
+    }
+    if (tier === 'closing' && purchases.closing) {
+      return NextResponse.redirect(new URL('/consultant?already_purchased=closing', request.url))
+    }
+
     // Determine price and settings based on tier
     let priceId: string
     let mode: 'payment' | 'setup' = 'payment'
@@ -110,7 +177,6 @@ export async function GET(request: Request) {
         break
       
       case 'offer':
-        // Support both STRIPE_PRICE_OFFER and STRIPE_PRICE_SHOWINGS for backwards compatibility
         priceId = process.env.STRIPE_PRICE_OFFER || process.env.STRIPE_PRICE_SHOWINGS!
         successUrl = `${baseUrl}/consultant?upgraded=offer`
         break
