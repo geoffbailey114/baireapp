@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Loader2 } from 'lucide-react'
 
 interface CancelFormProps {
   customerId: string | null
@@ -12,34 +11,31 @@ interface CancelFormProps {
 export function CancelForm({ customerId, trialEndsAt }: CancelFormProps) {
   const [loading, setLoading] = useState(false)
   const [canceled, setCanceled] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [showConfirm, setShowConfirm] = useState(false)
 
   const handleCancel = async () => {
     if (!customerId) {
-      setError('No account found')
+      setError('No customer ID found')
       return
     }
 
-    const confirmed = window.confirm(
-      'Are you sure you want to cancel your trial? You\'ll still have access until the trial period ends, but you won\'t be charged.'
-    )
-
-    if (!confirmed) return
-
     setLoading(true)
-    setError('')
+    setError(null)
 
     try {
-      const res = await fetch('/api/stripe/cancel-trial', {
+      const response = await fetch('/api/stripe/cancel-trial', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ customerId }),
       })
 
-      const data = await res.json()
+      const data = await response.json()
 
-      if (!res.ok) {
-        throw new Error(data.error || 'Cancellation failed')
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to cancel trial')
       }
 
       setCanceled(true)
@@ -47,20 +43,53 @@ export function CancelForm({ customerId, trialEndsAt }: CancelFormProps) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
     } finally {
       setLoading(false)
+      setShowConfirm(false)
     }
   }
 
   if (canceled) {
     return (
-      <div className="bg-sage-50 border border-sage-200 rounded-lg p-4 text-center">
-        <p className="text-sage-800 font-medium mb-2">
-          Canceled. You won't be charged. Thanks for trying BAIRE.
+      <div className="bg-sage-50 border border-sage-200 rounded-lg p-4">
+        <p className="text-sage-800 font-medium">
+          Canceled. You won't be charged.
         </p>
-        {trialEndsAt && (
-          <p className="text-sm text-sage-600">
-            You'll have access until {new Date(trialEndsAt * 1000).toLocaleString()}
-          </p>
-        )}
+        <p className="text-sage-600 text-sm mt-1">
+          Thanks for trying BAIRE. You still have access until{' '}
+          {trialEndsAt
+            ? new Date(trialEndsAt * 1000).toLocaleString()
+            : 'your trial ends'}
+          .
+        </p>
+      </div>
+    )
+  }
+
+  if (showConfirm) {
+    return (
+      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+        <p className="text-amber-800 font-medium mb-3">
+          Are you sure you want to cancel?
+        </p>
+        <p className="text-amber-700 text-sm mb-4">
+          You'll still have access until your trial ends, but you won't be charged after that.
+        </p>
+        <div className="flex gap-3">
+          <Button
+            onClick={handleCancel}
+            disabled={loading}
+            variant="destructive"
+            size="sm"
+          >
+            {loading ? 'Canceling...' : 'Yes, cancel my trial'}
+          </Button>
+          <Button
+            onClick={() => setShowConfirm(false)}
+            variant="outline"
+            size="sm"
+          >
+            Keep my trial
+          </Button>
+        </div>
       </div>
     )
   }
@@ -68,24 +97,14 @@ export function CancelForm({ customerId, trialEndsAt }: CancelFormProps) {
   return (
     <div>
       {error && (
-        <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
-          {error}
-        </div>
+        <p className="text-red-600 text-sm mb-3">{error}</p>
       )}
       <Button
+        onClick={() => setShowConfirm(true)}
         variant="outline"
-        onClick={handleCancel}
-        disabled={loading}
-        className="border-red-300 text-red-600 hover:bg-red-50 hover:text-red-700"
+        className="text-slate-600"
       >
-        {loading ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Canceling...
-          </>
-        ) : (
-          'Cancel Trial'
-        )}
+        Cancel Trial
       </Button>
     </div>
   )
