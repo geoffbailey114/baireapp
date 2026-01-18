@@ -1,294 +1,305 @@
+// FILE: app/how-baire-works/page.tsx (REPLACE EXISTING)
+// Copy everything below this line into GitHub
+
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Check, X } from 'lucide-react'
+import { ArrowRight, Check, X, Target, Search, Key, FileText, MessageSquare, Home } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { APP_NAME } from '@/lib/constants'
-import { FinancialImpact } from './financial-impact'
 
 export const metadata: Metadata = {
   title: 'How BAIRE Works',
-  description: `Learn how ${APP_NAME} helps motivated buyers self-represent—tour homes, write strong offers, and navigate deals without hiring a buyer's agent.`,
+  description: `Learn how ${APP_NAME} helps you tour homes, write strong offers, and navigate deals without hiring a buyer's agent.`,
   robots: {
     index: true,
     follow: true,
   },
 }
 
+const steps = [
+  {
+    icon: Target,
+    title: 'Set your win conditions',
+    time: '5 min',
+    description: 'Define your price range, must-haves, timeline, and risk tolerance.',
+    output: 'Your personal Offer Strategy Profile',
+  },
+  {
+    icon: Search,
+    title: 'Pressure-test a home',
+    time: '10 min',
+    description: 'Evaluate listings for red flags, comp range, and offer posture.',
+    output: 'Go / No-Go recommendation',
+  },
+  {
+    icon: Key,
+    title: 'Schedule your showing',
+    time: 'Ongoing',
+    description: 'Use open houses, listing agents, or showing tools. BAIRE provides scripts and checklists.',
+    output: 'Confident access without a buyer agent',
+  },
+  {
+    icon: FileText,
+    title: 'Build your offer',
+    time: '15 min',
+    description: 'Generate offer price, terms, inspection strategy, and appraisal gap logic.',
+    output: 'Clear offer package strategy',
+  },
+  {
+    icon: MessageSquare,
+    title: 'Negotiate clearly',
+    time: 'As needed',
+    description: 'Decide what to ask for, respond to counteroffers, keep the deal moving.',
+    output: 'Leverage without emotion',
+  },
+  {
+    icon: Home,
+    title: 'Close with control',
+    time: 'Final days',
+    description: 'Track deadlines, documents, final walkthrough, and closing day readiness.',
+    output: 'Calm, prepared, hard to rattle',
+  },
+]
+
+const faqs = [
+  {
+    q: 'Will sellers refuse to work with me?',
+    a: 'Most listing sides care about two things: Are you qualified? Can you perform? BAIRE helps you show both—fast.',
+  },
+  {
+    q: 'What if I already signed with an agent?',
+    a: 'Review your buyer representation agreement carefully. You may be committed for a period. Consult an attorney if needed before changing course.',
+  },
+  {
+    q: "I'm worried I'll mess up paperwork.",
+    a: "The goal isn't \"know everything.\" Follow a proven sequence, use clean scripts, and bring in the right pro at the right time.",
+  },
+]
+
 export default function HowBAIREWorksPage() {
   return (
-    <div className="py-16 md:py-24">
-      <div className="container">
-        <article className="prose-legal">
+    <div>
+      {/* Hero Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-b from-sage-50 to-white">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+              How BAIRE Works
+            </h1>
+            <p className="mt-6 text-xl text-slate-600 leading-relaxed">
+              BAIRE helps motivated buyers self-represent—so you can tour homes, write strong offers, and navigate the deal <strong className="text-slate-900">without hiring a buyer's agent</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
 
-          {/* ============================================ */}
-          {/* SECTION 1 — How BAIRE Works (High-Level Clarity) */}
-          {/* ============================================ */}
-          
-          <h1>How BAIRE Works</h1>
-          
-          <div className="bg-sage-50 border border-sage-200 rounded-xl p-6 mb-8">
-            <p className="text-lg text-slate-700 mb-0">
-              BAIRE helps motivated buyers self-represent—so you can tour homes, write strong offers, and navigate the deal <strong>without hiring a buyer's agent</strong>.
+      {/* Who it's for */}
+      <section className="py-16 border-b border-slate-100">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Good fit */}
+              <div>
+                <h2 className="flex items-center gap-2 text-lg font-semibold text-sage-800 mb-4">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-sage-100">
+                    <Check className="h-4 w-4 text-sage-600" />
+                  </span>
+                  BAIRE is for buyers who:
+                </h2>
+                <ul className="space-y-3 text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sage-500 mt-1">•</span>
+                    Are ready to buy in the next 0–90 days
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sage-500 mt-1">•</span>
+                    Want a clear, guided path to purchase
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sage-500 mt-1">•</span>
+                    Prefer handling showings and decisions themselves
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sage-500 mt-1">•</span>
+                    Want to avoid paying for an agent they don't need
+                  </li>
+                </ul>
+              </div>
+
+              {/* Not for */}
+              <div>
+                <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-600 mb-4">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100">
+                    <X className="h-4 w-4 text-slate-500" />
+                  </span>
+                  BAIRE is not for:
+                </h2>
+                <ul className="space-y-3 text-slate-500">
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-400 mt-1">•</span>
+                    People who want full-service agent support
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-400 mt-1">•</span>
+                    Buyers uncomfortable with showings or open houses
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-400 mt-1">•</span>
+                    Shoppers wanting months of weekend tours with an agent
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Process - Visual Timeline */}
+      <section className="py-20 bg-white">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900">
+              From "found it" to closed
+            </h2>
+            <p className="mt-4 text-lg text-slate-600">
+              Six stages. Clear outputs. No guessing.
             </p>
           </div>
 
-          {/* Who BAIRE is for / Who BAIRE is not for */}
-          <h2>Who BAIRE is for</h2>
-          
-          <div className="grid md:grid-cols-2 gap-6 my-6">
-            <div className="bg-sage-50 border border-sage-200 rounded-xl p-6">
-              <h3 className="flex items-center gap-2 text-sage-800 mt-0">
-                <Check className="h-5 w-5 text-sage-600" />
-                BAIRE is built for buyers who:
-              </h3>
-              <ul className="space-y-2 mb-0">
-                <li>Are serious (ready in the next 0–90 days)</li>
-                <li>Want a clear, guided path to purchase</li>
-                <li>Prefer to handle showings and decisions themselves</li>
-                <li>Want to avoid paying for a buyer's agent they don't need</li>
-              </ul>
-            </div>
-            
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
-              <h3 className="flex items-center gap-2 text-slate-700 mt-0">
-                <X className="h-5 w-5 text-slate-500" />
-                BAIRE is not for:
-              </h3>
-              <ul className="space-y-2 mb-0">
-                <li>People who want a full-service agent to lead the entire process</li>
-                <li>Buyers who aren't comfortable doing showings or open houses</li>
-                <li>Shoppers who want months of touring every weekend with an agent</li>
-              </ul>
-            </div>
-          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              {/* Vertical line connector */}
+              <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-sage-200 via-sage-300 to-sage-200 hidden sm:block" />
 
-          {/* What BAIRE is / What BAIRE is not */}
-          <h2>What BAIRE is (and isn't)</h2>
-          
-          <div className="grid md:grid-cols-2 gap-6 my-6">
-            <div className="bg-sage-50 border border-sage-200 rounded-xl p-6">
-              <h3 className="flex items-center gap-2 text-sage-800 mt-0">
-                <Check className="h-5 w-5 text-sage-600" />
-                BAIRE is:
-              </h3>
-              <ul className="space-y-2 mb-0">
-                <li>A step-by-step system that replaces uncertainty with a process</li>
-                <li>A decision engine for offer terms and negotiation posture</li>
-                <li>A walkthrough and communication playbook</li>
-                <li>Built to help you <strong>self-represent confidently</strong></li>
-              </ul>
-            </div>
-            
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
-              <h3 className="flex items-center gap-2 text-slate-700 mt-0">
-                <X className="h-5 w-5 text-slate-500" />
-                BAIRE is not:
-              </h3>
-              <ul className="space-y-2 mb-0">
-                <li>A real estate brokerage</li>
-                <li>A lawyer or lender</li>
-                <li>A guarantee of outcome</li>
-                <li>A substitute for state-specific legal advice</li>
-              </ul>
+              {/* Steps */}
+              <div className="space-y-8">
+                {steps.map((step, index) => (
+                  <div key={step.title} className="relative flex gap-4 md:gap-6">
+                    {/* Icon */}
+                    <div className="relative z-10 flex-shrink-0">
+                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-sage-100 flex items-center justify-center">
+                        <step.icon className="w-6 h-6 md:w-7 md:h-7 text-sage-600" />
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 pb-2">
+                      <div className="flex flex-wrap items-baseline gap-2 mb-1">
+                        <h3 className="text-lg md:text-xl font-semibold text-slate-900">
+                          {step.title}
+                        </h3>
+                        <span className="text-sm text-slate-400">{step.time}</span>
+                      </div>
+                      <p className="text-slate-600 mb-2">
+                        {step.description}
+                      </p>
+                      <p className="text-sm text-sage-700 font-medium">
+                        → {step.output}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <p className="text-sage-700 font-medium">
-            <strong>Good rule:</strong> BAIRE handles the strategy and structure. Licensed pros handle legal and escrow specifics.
-          </p>
+      {/* What BAIRE is / isn't - Compact */}
+      <section className="py-16 bg-slate-50">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl font-bold text-slate-900 text-center mb-8">
+              What BAIRE is (and isn't)
+            </h2>
 
-          {/* ============================================ */}
-          {/* SECTION 2 — The BAIRE Decision System */}
-          {/* ============================================ */}
-          
-          <h2>The BAIRE Decision System</h2>
-          
-          <p>
-            BAIRE replaces buyer-agent judgment with a repeatable decision framework. 
-            Instead of waiting for someone to tell you what to do, you answer the right questions—and the path forward becomes clear.
-          </p>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl p-6 shadow-sm">
+                <h3 className="font-semibold text-sage-800 mb-3">BAIRE is:</h3>
+                <ul className="space-y-2 text-sm text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-sage-500 mt-0.5 flex-shrink-0" />
+                    A step-by-step system replacing uncertainty with process
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-sage-500 mt-0.5 flex-shrink-0" />
+                    A decision engine for offers and negotiation
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-sage-500 mt-0.5 flex-shrink-0" />
+                    A communication playbook with scripts
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-sage-500 mt-0.5 flex-shrink-0" />
+                    Built for confident self-representation
+                  </li>
+                </ul>
+              </div>
 
-          {/* Setting Win Conditions */}
-          <div className="border border-slate-200 rounded-xl p-6 my-6">
-            <h3 className="text-sage-700 mt-0">Setting your win conditions</h3>
-            <p>BAIRE turns your situation into a simple plan:</p>
-            <ul>
-              <li>Price range and monthly payment comfort</li>
-              <li>Must-haves vs dealbreakers</li>
-              <li>Timeline and urgency level</li>
-              <li>Risk tolerance (inspection, repairs, appraisal gap)</li>
-            </ul>
-            <p className="text-sage-700 font-medium mb-0">
-              <strong>Output:</strong> a personal "Offer Strategy Profile" so every next step is faster and clearer.
+              <div className="bg-white rounded-xl p-6 shadow-sm">
+                <h3 className="font-semibold text-slate-700 mb-3">BAIRE is not:</h3>
+                <ul className="space-y-2 text-sm text-slate-500">
+                  <li className="flex items-start gap-2">
+                    <X className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
+                    A real estate brokerage
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
+                    A lawyer or lender
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
+                    A guarantee of outcome
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
+                    A substitute for state-specific legal advice
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="text-center text-sm text-slate-500 mt-6">
+              <strong>Good rule:</strong> BAIRE handles strategy and structure. Licensed pros handle legal specifics.
             </p>
           </div>
+        </div>
+      </section>
 
-          {/* Pressure-Testing a Home */}
-          <div className="border border-slate-200 rounded-xl p-6 my-6">
-            <h3 className="text-sage-700 mt-0">Pressure-testing a home</h3>
-            <p>When you find a listing you like, BAIRE helps you evaluate it:</p>
-            <ul>
-              <li>Red flags to check in the listing and disclosures</li>
-              <li>What matters in the neighborhood and comp range</li>
-              <li>Offer posture: aggressive, balanced, or conservative</li>
-            </ul>
-            <p className="text-sage-700 font-medium mb-0">
-              <strong>Output:</strong> a "Go / No-Go" recommendation and a suggested offer path.
-            </p>
-          </div>
+      {/* FAQ - Accordion style but simpler */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-2xl font-bold text-slate-900 text-center mb-10">
+              Common questions
+            </h2>
 
-          {/* Risk, Timing, and Urgency */}
-          <div className="border border-slate-200 rounded-xl p-6 my-6">
-            <h3 className="text-sage-700 mt-0">Risk tolerance, timing, and urgency</h3>
-            <p>Every decision in a deal involves tradeoffs. BAIRE helps you calibrate:</p>
-            <ul>
-              <li>When to be aggressive vs when to hold back</li>
-              <li>How much risk to take on inspection or appraisal gaps</li>
-              <li>Whether speed or terms matter more for your situation</li>
-            </ul>
-            <p className="text-slate-600 mb-0">
-              The goal: make decisions that match <em>your</em> situation, not generic advice.
-            </p>
-          </div>
-
-          {/* ============================================ */}
-          {/* SECTION 3 — Execution Without a Buyer's Agent */}
-          {/* ============================================ */}
-          
-          <h2>Execution without a buyer's agent</h2>
-          
-          <p>
-            Self-representation doesn't mean figuring it out alone. BAIRE guides you through each phase with scripts, checklists, and playbooks.
-          </p>
-
-          {/* Showings */}
-          <div className="border-2 border-sage-300 bg-sage-50/50 rounded-xl p-6 my-6">
-            <h3 className="text-sage-700 mt-0">Showings</h3>
-            <p>
-              The industry trained buyers to believe: <em>"You need an agent to get into homes."</em><br />
-              You don't—<strong>you need a plan.</strong>
-            </p>
-            <p><strong>Common options:</strong></p>
-            <ul>
-              <li>Open houses (tour with zero buyer agreement required in most cases)</li>
-              <li>Request a showing via the listing agent or listing brokerage</li>
-              <li>Use the listing's showing instructions (many homes use scheduling tools)</li>
-              <li>New construction model homes (often the easiest path)</li>
-            </ul>
-            <p><strong>BAIRE gives you:</strong></p>
-            <ul className="mb-0">
-              <li>A simple script to request access confidently</li>
-              <li>What to say (and not say) to protect your position</li>
-              <li>A checklist for what to look for during the walkthrough</li>
-            </ul>
-          </div>
-
-          {/* Offers */}
-          <div className="border border-slate-200 rounded-xl p-6 my-6">
-            <h3 className="text-sage-700 mt-0">Offers</h3>
-            <p>BAIRE helps you build a clear offer package:</p>
-            <ul>
-              <li>Offer price and terms (earnest money, closing date, contingencies)</li>
-              <li>Inspection strategy and what to request</li>
-              <li>Appraisal gap logic (when to use it, when not to)</li>
-              <li>Clean, confident communication to the listing side</li>
-            </ul>
-            <p className="text-sage-700 font-medium mb-0">
-              <strong>Output:</strong> a clear offer package strategy you can take to the professionals you choose (attorney, title, lender).
-            </p>
-          </div>
-
-          {/* Negotiation */}
-          <div className="border border-slate-200 rounded-xl p-6 my-6">
-            <h3 className="text-sage-700 mt-0">Negotiation</h3>
-            <p>Negotiation isn't about being "tough." It's about being clear.</p>
-            <p>BAIRE helps you:</p>
-            <ul className="mb-0">
-              <li>Decide what to ask for (repairs, credits, price reduction)</li>
-              <li>Prioritize safety vs cosmetic vs optional fixes</li>
-              <li>Respond to counteroffers without emotion</li>
-              <li>Keep the deal moving without giving away leverage</li>
-            </ul>
-          </div>
-
-          {/* Closing */}
-          <div className="border border-slate-200 rounded-xl p-6 my-6">
-            <h3 className="text-sage-700 mt-0">Closing</h3>
-            <p>BAIRE keeps you organized through:</p>
-            <ul>
-              <li>Deadlines (inspection, financing, appraisal, title)</li>
-              <li>What documents matter and when</li>
-              <li>Final walk-through checklist</li>
-              <li>"Closing day" readiness</li>
-            </ul>
-            <p className="text-sage-700 font-medium mb-0">
-              <strong>Output:</strong> you show up calm, prepared, and hard to rattle.
-            </p>
-          </div>
-
-          {/* ============================================ */}
-          {/* SECTION 4 — What This Changes for You */}
-          {/* ============================================ */}
-          
-          <h2>What this changes for you</h2>
-          
-          <p>BAIRE is built around outcomes that matter:</p>
-          
-          <ul>
-            <li><strong>Speed:</strong> clear next steps so you don't stall</li>
-            <li><strong>Confidence:</strong> you always know what matters most</li>
-            <li><strong>Leverage:</strong> affordability improves when you keep costs optional</li>
-            <li><strong>Fewer surprises:</strong> deadlines, documents, and decisions are organized</li>
-            <li><strong>Cleaner negotiations:</strong> respond without emotion, keep the deal moving</li>
-          </ul>
-
-          {/* Financial Impact (Collapsible) */}
-          <FinancialImpact />
-
-          {/* ============================================ */}
-          {/* FAQ Section */}
-          {/* ============================================ */}
-          
-          <h2>Common questions</h2>
-
-          <div className="space-y-6 my-6">
-            <div className="border border-slate-200 rounded-xl p-6">
-              <h3 className="text-slate-800 mt-0">"Will sellers or listing agents refuse to work with me?"</h3>
-              <p>Most listing sides care about two things:</p>
-              <ol className="list-decimal list-inside text-slate-600 mb-4 space-y-2">
-                <li>Are you qualified (financing proof)?</li>
-                <li>Can you perform (clean contract, clear communication)?</li>
-              </ol>
-              <p className="mb-0">BAIRE helps you show both—fast.</p>
-            </div>
-
-            <div className="border border-slate-200 rounded-xl p-6">
-              <h3 className="text-slate-800 mt-0">"What if I already signed something with an agent?"</h3>
-              <p className="mb-0">
-                If you signed a buyer agency or buyer representation agreement, you may be committed for a period of time. BAIRE will tell you to review it carefully and, if needed, consult an attorney before changing course.
-              </p>
-            </div>
-
-            <div className="border border-slate-200 rounded-xl p-6">
-              <h3 className="text-slate-800 mt-0">"I'm worried I'll mess up paperwork."</h3>
-              <p>That's normal. The goal isn't "know everything." The goal is:</p>
-              <ul>
-                <li>Follow a proven sequence</li>
-                <li>Use clean scripts and checklists</li>
-                <li>Bring in the right pro at the right time (title, attorney, lender)</li>
-              </ul>
-              <p className="mb-0">BAIRE is designed to reduce "unknown unknowns."</p>
+            <div className="space-y-6">
+              {faqs.map((faq) => (
+                <div key={faq.q} className="border-b border-slate-100 pb-6">
+                  <h3 className="font-semibold text-slate-900 mb-2">
+                    "{faq.q}"
+                  </h3>
+                  <p className="text-slate-600">
+                    {faq.a}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* ============================================ */}
-          {/* FINAL CTA */}
-          {/* ============================================ */}
-          
-          <div className="bg-sage-600 text-white rounded-xl p-8 my-8 text-center">
-            <h2 className="text-white text-2xl font-bold mt-0 mb-6">
+      {/* Final CTA */}
+      <section className="py-20 bg-sage-600">
+        <div className="container">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Buying without a buyer's agent is now simple.
             </h2>
+            <p className="text-sage-100 mb-8">
+              Get the guidance you need. Keep the control you want.
+            </p>
             <Button 
               asChild 
               size="xl" 
@@ -300,9 +311,8 @@ export default function HowBAIREWorksPage() {
               </Link>
             </Button>
           </div>
-
-        </article>
-      </div>
+        </div>
+      </section>
     </div>
   )
 }
