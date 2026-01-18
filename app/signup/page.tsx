@@ -2,29 +2,46 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { ArrowRight, Loader2, Eye, EyeOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { UserAgreement } from '@/components/user-agreement'
 
 export default function SignupPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [agreementAccepted, setAgreementAccepted] = useState(false)
+  const [agreementError, setAgreementError] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate agreement checkbox
+    if (!agreementAccepted) {
+      setAgreementError(true)
+      return
+    }
+    
     setLoading(true)
     setError(null)
+    setAgreementError(false)
+
+    // Capture consent timestamp
+    const consentTimestamp = new Date().toISOString()
 
     try {
       // First create the account
       const signupRes = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ 
+          email, 
+          password,
+          consentTimestamp,
+          agreementVersion: '1.0',
+        }),
       })
 
       const signupData = await signupRes.json()
@@ -40,6 +57,8 @@ export default function SignupPage() {
         body: JSON.stringify({ 
           email,
           tier: 'trial',
+          consentTimestamp,
+          agreementVersion: '1.0',
         }),
       })
 
@@ -113,6 +132,16 @@ export default function SignupPage() {
                 </button>
               </div>
             </div>
+
+            {/* User Agreement */}
+            <UserAgreement
+              checked={agreementAccepted}
+              onCheckedChange={(checked) => {
+                setAgreementAccepted(checked)
+                if (checked) setAgreementError(false)
+              }}
+              error={agreementError}
+            />
 
             {error && (
               <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
