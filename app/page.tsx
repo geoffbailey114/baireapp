@@ -16,7 +16,7 @@ export default function HomePage() {
       <ProblemSection />
       <Features />
       <HowItWorks />
-      <WhyBAIREWorks />
+      <WhyBaireWorks />
       <ExampleResponses />
       <CommissionSection />
       <TrialSection />
