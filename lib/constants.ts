@@ -31,7 +31,6 @@ export const SEO_KEYWORDS = [
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/how-baire-works', label: 'How It Works' },
-  { href: '/savings-calculator', label: 'Calculator' },
   { href: '/pricing', label: 'Pricing' },
 ]
 
