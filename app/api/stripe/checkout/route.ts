@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { verifyJWT } from '@/lib/jwt'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2024-06-20',
 })
 
 const baseUrl = process.env.APP_BASE_URL || 'https://baireapp.com'
