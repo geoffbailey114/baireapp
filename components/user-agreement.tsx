@@ -67,7 +67,7 @@ export function UserAgreement({ checked, onCheckedChange, error }: UserAgreement
               <li>Does not owe fiduciary duties of loyalty, care, or confidentiality</li>
             </ul>
             <p className="text-sm text-slate-600 mb-3">
-              BAIRE provides educational information, AI-assisted tools, and workflow guidance only.
+              BAIRE provides educational information, AI-assisted tools, and workflow guidance only. No reasonable user should understand BAIRE to be acting as a real estate agent or fiduciary, and BAIRE expressly disclaims any such role.
             </p>
 
             {/* Section 3 */}
