@@ -7,10 +7,6 @@ export const dynamic = 'force-dynamic'
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET)
 const JWT_COOKIE_NAME = 'baire_auth'
 
-// Simple in-memory store for demo (in production, you'd use Stripe customer metadata)
-// This is acceptable since Stripe is the source of truth for access
-const users = new Map<string, { passwordHash: string }>()
-
 async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder()
   const data = encoder.encode(password + process.env.JWT_SECRET)
@@ -20,7 +16,13 @@ async function hashPassword(password: string): Promise<string> {
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json()
+    const body = await request.json()
+    const { 
+      email, 
+      password,
+      consentTimestamp,
+      agreementVersion,
+    } = body
 
     if (!email || !password) {
       return NextResponse.json(
@@ -36,30 +38,29 @@ export async function POST(request: Request) {
       )
     }
 
-    // Check if user already exists (in production, check Stripe customers)
     const normalizedEmail = email.toLowerCase().trim()
-    
-    if (users.has(normalizedEmail)) {
-      return NextResponse.json(
-        { error: 'An account with this email already exists' },
-        { status: 409 }
-      )
-    }
 
-    // Create user (in production, this would be stored in Stripe customer metadata)
+    // Hash password (in production, you'd store this more securely)
     const passwordHash = await hashPassword(password)
-    users.set(normalizedEmail, { passwordHash })
 
     // Calculate trial end (48 hours from now)
     const trialEndsAt = Math.floor(Date.now() / 1000) + (48 * 60 * 60)
 
-    // Create JWT
-    const token = await new SignJWT({
-      sub: normalizedEmail, // Using email as user ID (simple approach)
+    // Create JWT with consent info
+    const tokenPayload: Record<string, unknown> = {
+      sub: normalizedEmail,
       email: normalizedEmail,
       trial_ends_at: trialEndsAt,
-      // stripe_customer_id will be added after checkout
-    })
+      password_hash: passwordHash,
+    }
+
+    // Add consent tracking if provided
+    if (consentTimestamp) {
+      tokenPayload.consent_timestamp = consentTimestamp
+      tokenPayload.agreement_version = agreementVersion || '1.0'
+    }
+
+    const token = await new SignJWT(tokenPayload)
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
       .setExpirationTime('30d')
@@ -87,13 +88,3 @@ export async function POST(request: Request) {
     )
   }
 }
-
-
-
-
-
-
-
-
-
-
