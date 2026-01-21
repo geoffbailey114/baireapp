@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { ArrowRight, Loader2, Eye, EyeOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { UserAgreement } from '@/components/user-agreement'
 
-export default function SignupPage() {
+function SignupForm() {
   const searchParams = useSearchParams()
   const tierParam = searchParams.get('tier')
   
@@ -85,133 +85,157 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center py-12 px-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">
-            {isAccessTier ? 'Get Started with Access' : 'Start your free trial'}
-          </h1>
-          <p className="mt-2 text-slate-600">
+    <div className="w-full max-w-md">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-slate-900">
+          {isAccessTier ? 'Get Started with Access' : 'Start your free trial'}
+        </h1>
+        <p className="mt-2 text-slate-600">
+          {isAccessTier 
+            ? 'Create your account to continue to checkout ($99).' 
+            : '48 hours free. Cancel anytime.'}
+        </p>
+      </div>
+
+      <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+              Email address
+            </label>
+            <input
+              id="email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none transition-colors"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-2">
+              Password
+            </label>
+            <div className="relative">
+              <input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                required
+                minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full px-4 py-3 pr-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none transition-colors"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600 transition-colors"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5" />
+                ) : (
+                  <Eye className="h-5 w-5" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* User Agreement */}
+          <UserAgreement
+            checked={agreementAccepted}
+            onCheckedChange={(checked) => {
+              setAgreementAccepted(checked)
+              if (checked) setAgreementError(false)
+            }}
+            error={agreementError}
+          />
+
+          {error && (
+            <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-sm text-red-600">{error}</p>
+            </div>
+          )}
+
+          <Button
+            type="submit"
+            disabled={loading}
+            size="lg"
+            className="w-full"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Setting up...
+              </>
+            ) : (
+              <>
+                {isAccessTier ? 'Continue to Payment ($99)' : 'Continue to Payment'}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </>
+            )}
+          </Button>
+
+          <p className="text-center text-sm text-slate-500">
             {isAccessTier 
-              ? 'Create your account to continue to checkout ($99).' 
-              : '48 hours free. Cancel anytime.'}
+              ? 'You will be charged $99 after completing checkout.'
+              : 'Credit card required · No charge today · Cancel within 48 hours to avoid billing'}
+          </p>
+        </form>
+
+        <div className="mt-6 pt-6 border-t border-slate-200">
+          <p className="text-center text-sm text-slate-600">
+            Already have an account?{' '}
+            <Link href="/login" className="font-medium text-sage-600 hover:text-sage-700">
+              Log in
+            </Link>
           </p>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                Email address
-              </label>
-              <input
-                id="email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none transition-colors"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  required
-                  minLength={8}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="w-full px-4 py-3 pr-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none transition-colors"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600 transition-colors"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-5 w-5" />
-                  ) : (
-                    <Eye className="h-5 w-5" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* User Agreement */}
-            <UserAgreement
-              checked={agreementAccepted}
-              onCheckedChange={(checked) => {
-                setAgreementAccepted(checked)
-                if (checked) setAgreementError(false)
-              }}
-              error={agreementError}
-            />
-
-            {error && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-sm text-red-600">{error}</p>
-              </div>
-            )}
-
-            <Button
-              type="submit"
-              disabled={loading}
-              size="lg"
-              className="w-full"
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Setting up...
-                </>
-              ) : (
-                <>
-                  {isAccessTier ? 'Continue to Payment ($99)' : 'Continue to Payment'}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </>
-              )}
-            </Button>
-
-            <p className="text-center text-sm text-slate-500">
-              {isAccessTier 
-                ? 'You will be charged $99 after completing checkout.'
-                : 'Credit card required · No charge today · Cancel within 48 hours to avoid billing'}
-            </p>
-          </form>
-
-          <div className="mt-6 pt-6 border-t border-slate-200">
-            <p className="text-center text-sm text-slate-600">
-              Already have an account?{' '}
-              <Link href="/login" className="font-medium text-sage-600 hover:text-sage-700">
-                Log in
-              </Link>
-            </p>
+        {/* Toggle option */}
+        {isAccessTier ? (
+          <div className="mt-4 text-center">
+            <Link href="/signup" className="text-sm text-slate-500 hover:text-slate-700 underline">
+              ← Start with free trial instead
+            </Link>
           </div>
+        ) : (
+          <div className="mt-4 text-center">
+            <Link href="/signup?tier=access" className="text-sm text-slate-500 hover:text-slate-700 underline">
+              Skip trial and start with Access ($99) →
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
 
-          {/* Toggle option */}
-          {isAccessTier ? (
-            <div className="mt-4 text-center">
-              <Link href="/signup" className="text-sm text-slate-500 hover:text-slate-700 underline">
-                ← Start with free trial instead
-              </Link>
-            </div>
-          ) : (
-            <div className="mt-4 text-center">
-              <Link href="/signup?tier=access" className="text-sm text-slate-500 hover:text-slate-700 underline">
-                Skip trial and start with Access ($99) →
-              </Link>
-            </div>
-          )}
+function SignupFormFallback() {
+  return (
+    <div className="w-full max-w-md">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-slate-900">Start your free trial</h1>
+        <p className="mt-2 text-slate-600">48 hours free. Cancel anytime.</p>
+      </div>
+      <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-sage-600" />
         </div>
       </div>
+    </div>
+  )
+}
+
+export default function SignupPage() {
+  return (
+    <div className="min-h-[80vh] flex items-center justify-center py-12 px-4">
+      <Suspense fallback={<SignupFormFallback />}>
+        <SignupForm />
+      </Suspense>
     </div>
   )
 }
