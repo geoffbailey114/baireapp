@@ -1,12 +1,20 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { ArrowRight, Loader2, Eye, EyeOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { UserAgreement } from '@/components/user-agreement'
 
 export default function SignupPage() {
+  const searchParams = useSearchParams()
+  const tierParam = searchParams.get('tier')
+  
+  // Determine which tier to checkout for
+  const tier = tierParam === 'access' ? 'access' : 'trial'
+  const isAccessTier = tier === 'access'
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -50,13 +58,13 @@ export default function SignupPage() {
         throw new Error(signupData.error || 'Failed to create account')
       }
 
-      // Then redirect to Stripe checkout for trial setup
+      // Then redirect to Stripe checkout for the appropriate tier
       const checkoutRes = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           email,
-          tier: 'trial',
+          tier,
           consentTimestamp,
           agreementVersion: '1.0',
         }),
@@ -80,9 +88,13 @@ export default function SignupPage() {
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">Start your free trial</h1>
+          <h1 className="text-3xl font-bold text-slate-900">
+            {isAccessTier ? 'Get Started with Access' : 'Start your free trial'}
+          </h1>
           <p className="mt-2 text-slate-600">
-            48 hours free. Cancel anytime.
+            {isAccessTier 
+              ? 'Create your account to continue to checkout ($99).' 
+              : '48 hours free. Cancel anytime.'}
           </p>
         </div>
 
@@ -162,14 +174,16 @@ export default function SignupPage() {
                 </>
               ) : (
                 <>
-                  Continue to Payment
+                  {isAccessTier ? 'Continue to Payment ($99)' : 'Continue to Payment'}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </>
               )}
             </Button>
 
             <p className="text-center text-sm text-slate-500">
-              Credit card required · No charge today · Cancel within 48 hours to avoid billing
+              {isAccessTier 
+                ? 'You will be charged $99 after completing checkout.'
+                : 'Credit card required · No charge today · Cancel within 48 hours to avoid billing'}
             </p>
           </form>
 
@@ -181,6 +195,21 @@ export default function SignupPage() {
               </Link>
             </p>
           </div>
+
+          {/* Toggle option */}
+          {isAccessTier ? (
+            <div className="mt-4 text-center">
+              <Link href="/signup" className="text-sm text-slate-500 hover:text-slate-700 underline">
+                ← Start with free trial instead
+              </Link>
+            </div>
+          ) : (
+            <div className="mt-4 text-center">
+              <Link href="/signup?tier=access" className="text-sm text-slate-500 hover:text-slate-700 underline">
+                Skip trial and start with Access ($99) →
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
