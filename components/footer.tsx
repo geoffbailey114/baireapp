@@ -41,7 +41,7 @@ export function Footer() {
           </div>
 
           <p className="text-sm text-slate-400">
-            © {currentYear} {APP_NAME}. All rights reserved.
+            © {currentYear} BAIRE, LLC. All rights reserved.
           </p>
         </div>
       </div>
