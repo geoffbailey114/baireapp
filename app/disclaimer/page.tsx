@@ -3,113 +3,116 @@ import { APP_NAME } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Disclaimer',
-  description: `Important disclaimer about ${APP_NAME} services. BAIRE is an educational tool, not a real estate agent or legal advisor.`,
-  robots: {
-    index: true,
-    follow: true,
-  },
+  description: `Important disclaimers about ${APP_NAME}. Understand what BAIRE is and is not.`,
 }
 
 export default function DisclaimerPage() {
   return (
     <div className="py-16 md:py-24">
       <div className="container">
-        <article className="prose-legal">
+        <article className="prose-legal mx-auto max-w-3xl">
           <h1>Disclaimer</h1>
-          <p className="text-sm text-slate-500">Last updated: January 2025</p>
-
-          <h2>Educational Purpose Only</h2>
-          <p>
-            BAIRE is an educational platform designed to help users understand the 
-            home-buying process. All information, guidance, and content provided by 
-            BAIRE is for general educational purposes only and should not be construed 
-            as professional advice of any kind.
+          
+          <p className="text-slate-500">
+            <strong>BAIRE, LLC</strong><br />
+            Last Updated: January 19, 2026
           </p>
 
-          <h2>BAIRE Is Not:</h2>
+          <h2>Educational Tool Only</h2>
+          <p>
+            BAIRE is an educational technology platform designed to provide general information 
+            and AI-assisted tools to help self-represented home buyers understand and organize 
+            aspects of the residential home-buying process.
+          </p>
+
+          <h2>Not a Real Estate Agent or Broker</h2>
+          <p>
+            BAIRE is <strong>not</strong> a real estate agent, broker, or brokerage. BAIRE does not:
+          </p>
           <ul>
-            <li>A real estate agent or broker</li>
-            <li>A licensed attorney or law firm</li>
-            <li>A financial advisor or planner</li>
-            <li>A tax advisor or CPA</li>
-            <li>A home inspector or appraiser</li>
-            <li>A mortgage lender or broker</li>
-            <li>A fiduciary representative</li>
+            <li>Represent you or any other party in real estate transactions</li>
+            <li>Negotiate on your behalf</li>
+            <li>Provide real estate agency services</li>
+            <li>Owe fiduciary duties to any user</li>
+          </ul>
+          <p>
+            <strong>No reasonable user should understand BAIRE to be acting as a real estate 
+            agent or fiduciary, and BAIRE expressly disclaims any such role.</strong>
+          </p>
+
+          <h2>Not Legal, Financial, or Tax Advice</h2>
+          <p>
+            BAIRE does <strong>not</strong> provide:
+          </p>
+          <ul>
+            <li>Legal advice or create an attorney-client relationship</li>
+            <li>Financial or investment advice</li>
+            <li>Tax advice or tax planning services</li>
+            <li>Appraisals, valuations, or property inspections</li>
+          </ul>
+          <p>
+            All information provided through BAIRE is for general educational purposes only 
+            and should not be relied upon as professional advice.
+          </p>
+
+          <h2>Self-Representation</h2>
+          <p>
+            By using BAIRE, you acknowledge that you are representing yourself in any real 
+            estate transaction. You are solely responsible for:
+          </p>
+          <ul>
+            <li>All decisions related to your home purchase</li>
+            <li>Verifying all information before acting on it</li>
+            <li>Consulting with licensed professionals for personalized advice</li>
+            <li>Understanding and complying with all applicable laws and regulations</li>
           </ul>
 
-          <h2>BAIRE Does Not:</h2>
+          <h2>AI-Generated Content</h2>
+          <p>
+            BAIRE uses artificial intelligence to generate educational content and guidance. 
+            AI-generated outputs:
+          </p>
           <ul>
-            <li>Provide legal, financial, or tax advice</li>
-            <li>Negotiate on behalf of users</li>
-            <li>Contact sellers, agents, or other parties for users</li>
-            <li>Create any agency or fiduciary relationship</li>
-            <li>Represent users in any transaction</li>
-            <li>Guarantee the accuracy of any information provided</li>
-            <li>Make recommendations about specific properties or transactions</li>
+            <li>May not account for every local rule, regulation, or unique situation</li>
+            <li>May contain errors or inaccuracies</li>
+            <li>Should be independently verified before relying on them</li>
+            <li>Are not a substitute for professional judgment</li>
           </ul>
 
-          <h2>Your Responsibility</h2>
+          <h2>No Guarantees</h2>
           <p>
-            By using BAIRE, you acknowledge and agree that:
+            BAIRE does not guarantee:
           </p>
           <ul>
-            <li>
-              <strong>You are solely responsible</strong> for all decisions related to 
-              your home purchase.
-            </li>
-            <li>
-              <strong>You should consult licensed professionals</strong> including real 
-              estate attorneys, CPAs, licensed real estate agents, home inspectors, and 
-              other qualified experts for specific advice related to your situation.
-            </li>
-            <li>
-              <strong>You should verify all information</strong> provided by BAIRE with 
-              appropriate professionals and official sources.
-            </li>
-            <li>
-              <strong>Real estate laws and practices vary</strong> by state and locality. 
-              BAIRE provides general information that may not apply to your specific 
-              jurisdiction or circumstances.
-            </li>
-            <li>
-              <strong>Real estate transactions involve significant financial risk.</strong> You 
-              should not rely solely on BAIRE for any transaction decisions.
-            </li>
+            <li>Any specific cost savings</li>
+            <li>The availability of any property</li>
+            <li>The outcome of any transaction</li>
+            <li>The acceptance of any offer</li>
+            <li>Seller concessions or cooperation</li>
           </ul>
-
-          <h2>No Professional Relationship</h2>
           <p>
-            Using BAIRE does not create any professional relationship, including but not 
-            limited to attorney-client, agent-principal, or fiduciary relationships. BAIRE 
-            is a software tool, not a professional service provider.
+            Real estate transactions involve numerous factors outside of BAIRE's control, 
+            including market conditions, seller decisions, and local regulations.
           </p>
 
-          <h2>Limitation of Liability</h2>
+          <h2>Consult Professionals</h2>
           <p>
-            BAIRE provides information on an &quot;as is&quot; basis without any warranties, express 
-            or implied. We are not liable for any damages arising from your use of BAIRE 
-            or reliance on any information provided, including but not limited to financial 
-            losses, property damages, or legal consequences.
-          </p>
-
-          <h2>Seek Professional Advice</h2>
-          <p>
-            We strongly encourage you to work with licensed professionals throughout your 
-            home-buying journey. Consider consulting:
+            We strongly encourage you to consult with licensed professionals, including:
           </p>
           <ul>
-            <li>A real estate attorney for legal matters and contract review</li>
-            <li>A licensed real estate agent if you want professional representation</li>
-            <li>A CPA or tax advisor for tax implications</li>
-            <li>A licensed home inspector for property condition assessment</li>
-            <li>A mortgage professional for financing advice</li>
-            <li>An insurance agent for homeowner&apos;s insurance</li>
+            <li>Real estate attorneys</li>
+            <li>Licensed home inspectors</li>
+            <li>Mortgage lenders and financial advisors</li>
+            <li>Tax professionals</li>
+            <li>Title companies and escrow officers</li>
           </ul>
 
           <h2>Contact</h2>
           <p>
-            If you have questions about this disclaimer, please contact us at 
-            legal@baire.ai.
+            If you have questions about this Disclaimer, please contact us at:{' '}
+            <a href="mailto:legal@baireapp.com" className="text-sage-600 hover:text-sage-700">
+              legal@baireapp.com
+            </a>
           </p>
         </article>
       </div>
