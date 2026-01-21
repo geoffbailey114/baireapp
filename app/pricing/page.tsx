@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 import { PricingAccordion } from './pricing-accordion'
+import { SkipTrialButton } from './skip-trial-button'
 
 export const metadata: Metadata = {
   title: 'Pricing',
@@ -67,12 +68,7 @@ export default function PricingPage() {
 
           {/* Skip Trial Option */}
           <div className="text-center mt-4">
-            <Link 
-              href="/api/stripe/checkout?tier=access" 
-              className="text-sm text-sage-600 hover:text-sage-700 underline"
-            >
-              Skip trial and start with Access ($99) →
-            </Link>
+            <SkipTrialButton />
           </div>
         </div>
 
