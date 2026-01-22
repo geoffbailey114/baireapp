@@ -1,26 +1,18 @@
 import { Hero } from '@/components/hero'
-import { ProblemSection } from '@/components/problem-section'
+import { ValueProp } from '@/components/value-prop'
 import { Features } from '@/components/features'
 import { HowItWorks } from '@/components/how-it-works'
-import { WhyBaireWorks } from '@/components/why-baire-works'
-import { ExampleResponses } from '@/components/example-responses'
-import { CommissionSection } from '@/components/commission-section'
-import { TrialSection } from '@/components/trial-section'
-import { FAQ } from '@/components/faq'
+import { CTASection } from '@/components/cta-section'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <ProblemSection />
+      <ValueProp />
       <Features />
       <HowItWorks />
-      <WhyBaireWorks />
-      <ExampleResponses />
-      <CommissionSection />
-      <TrialSection />
-      <FAQ />
+      <CTASection />
 
       {/* Service Schema for SEO */}
       <script
@@ -31,13 +23,13 @@ export default function HomePage() {
             '@type': 'Service',
             name: `${APP_NAME} - AI Home Buying Consultant`,
             description:
-              'AI-powered consultant that helps you tour homes and make offers without hiring a buyer\'s agent. Save thousands on commissions.',
+              'AI-powered educational consultant for self-represented home buyers. Get guidance, understand documents, and feel confident throughout your home-buying journey.',
             provider: {
               '@type': 'Organization',
               name: APP_NAME,
               url: APP_URL,
             },
-            serviceType: 'Real Estate Buying Assistance',
+            serviceType: 'Educational Consulting',
             areaServed: 'US',
             offers: {
               '@type': 'Offer',
