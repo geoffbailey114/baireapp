@@ -11,7 +11,7 @@ const faqs = [
   {
     question: 'What is BAIRE?',
     answer:
-      'BAIRE is an AI-powered educational consultant designed to help self-represented home buyers understand the home-buying process. We provide clear explanations, answer your questions, and help you feel confident throughout your journey. We are not a real estate agent, broker, lawyer, or financial advisor.',
+      "BAIRE is an AI-powered educational consultant designed to help self-represented home buyers understand the home-buying process. We provide clear explanations, answer your questions, and help you feel confident throughout your journey. We are not a real estate agent, broker, lawyer, or financial advisor.",
   },
   {
     question: 'Does BAIRE negotiate on my behalf?',
@@ -55,7 +55,7 @@ export function FAQ() {
     <section className="py-24 md:py-32 bg-white">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
             Frequently asked questions
           </h2>
           <p className="mt-6 text-xl text-slate-600 leading-relaxed">
