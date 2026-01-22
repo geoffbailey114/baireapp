@@ -9,7 +9,7 @@ const features = [
   {
     icon: FileText,
     title: 'Understand documents',
-    description: 'Upload purchase agreements, disclosures, and contracts. BAIRE explains what you're signing.',
+    description: "Upload purchase agreements, disclosures, and contracts. BAIRE explains what you're signing.",
   },
   {
     icon: CheckCircle,
