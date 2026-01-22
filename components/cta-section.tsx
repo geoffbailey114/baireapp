@@ -1,48 +1,37 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function CTASection() {
   return (
-    <section className="py-20 md:py-28 bg-sage-600">
+    <section className="py-24 md:py-32 bg-sage-700">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto max-w-2xl text-center"
-        >
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Ready to buy your home with confidence?
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            Ready to buy smarter?
           </h2>
-          <p className="mt-4 text-lg text-sage-100">
-            Join buyers who have used BAIRE to understand the home-buying 
-            process. Start with a free trial or get full access for $599.
+          <p className="mt-6 text-xl text-sage-100">
+            Start your free 48-hour trial. No credit card required.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               asChild 
               size="xl" 
-              className="bg-white text-sage-700 hover:bg-sage-50"
+              className="bg-white text-sage-700 hover:bg-sage-50 text-lg px-8"
             >
-              <Link href="/pricing">
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <Link href="/signup">
+                Start Free Trial
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button
-              size="xl"
-              asChild
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-sage-700 transition-colors"
-            >
-              <Link href="/consultant">Try Free</Link>
-            </Button>
           </div>
-        </motion.div>
+
+          {/* Pricing hint */}
+          <p className="mt-8 text-sage-200 text-sm">
+            $599 total after trial · Pay as you go · Cancel anytime
+          </p>
+        </div>
       </div>
     </section>
   )
