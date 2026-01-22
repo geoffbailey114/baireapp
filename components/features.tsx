@@ -1,108 +1,50 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { 
-  FileText,
-  HelpCircle,
-  Target,
-  ClipboardCheck,
-  Landmark,
-  Clock,
-  Heart,
-  ShieldCheck,
-  Scale
-} from 'lucide-react'
+import { FileText, MessageSquare, CheckCircle } from 'lucide-react'
 
 const features = [
   {
+    icon: MessageSquare,
+    title: 'Ask anything',
+    description: 'Get instant answers about contracts, negotiations, inspections, and closing. Plain English, no jargon.',
+  },
+  {
     icon: FileText,
-    title: 'Prepare stronger offers',
+    title: 'Understand documents',
+    description: 'Upload purchase agreements, disclosures, and contracts. BAIRE explains what you're signing.',
   },
   {
-    icon: HelpCircle,
-    title: 'Explain terms and contingencies',
-  },
-  {
-    icon: Target,
-    title: 'Plan negotiation strategy',
-  },
-  {
-    icon: ClipboardCheck,
-    title: 'Inspect + appraise with guidance',
-  },
-  {
-    icon: Landmark,
-    title: 'Support financing + closing',
-  },
-  {
-    icon: Clock,
-    title: '24/7 always-on (no waiting for call/text)',
-  },
-  {
-    icon: Heart,
-    title: 'No sales incentives',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'No pressure',
-  },
-  {
-    icon: Scale,
-    title: 'No conflict of interest',
+    icon: CheckCircle,
+    title: 'Stay on track',
+    description: 'Know exactly what to do at each stage — from offer to keys in hand.',
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.3 },
-  },
-}
-
 export function Features() {
   return (
-    <section className="py-20 md:py-28 bg-slate-50">
+    <section className="py-24 md:py-32 bg-white">
       <div className="container">
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Everything a good buyer's agent does — without commissions.
+        <div className="mx-auto max-w-5xl">
+          {/* Section header */}
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 text-center mb-20">
+            Everything you need to buy with confidence
           </h2>
-        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="mx-auto max-w-4xl grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {features.map((feature) => (
-            <motion.div
-              key={feature.title}
-              variants={itemVariants}
-              className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white p-4"
-            >
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-sage-100">
-                <feature.icon className="h-5 w-5 text-sage-700" aria-hidden="true" />
+          {/* Features grid - more spacing, no borders */}
+          <div className="grid md:grid-cols-3 gap-16">
+            {features.map((feature) => (
+              <div key={feature.title} className="text-center">
+                <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-sage-100 mb-6">
+                  <feature.icon className="h-8 w-8 text-sage-700" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
-              <span className="text-slate-700 font-medium">
-                {feature.title}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
