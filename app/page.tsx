@@ -1,7 +1,7 @@
 import { Hero } from '@/components/hero'
-import { ValueProp } from '@/components/value-prop'
 import { Features } from '@/components/features'
 import { HowItWorks } from '@/components/how-it-works'
+import { FAQ } from '@/components/faq'
 import { CTASection } from '@/components/cta-section'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 
@@ -9,9 +9,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ValueProp />
       <Features />
       <HowItWorks />
+      <FAQ />
       <CTASection />
 
       {/* Service Schema for SEO */}
