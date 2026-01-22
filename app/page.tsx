@@ -1,18 +1,22 @@
 import { Hero } from '@/components/hero'
+import { IndustryReality } from '@/components/industry-reality'
 import { Features } from '@/components/features'
 import { HowItWorks } from '@/components/how-it-works'
+import { TacticalAnswers } from '@/components/tactical-answers'
+import { PricingCTA } from '@/components/pricing-cta'
 import { FAQ } from '@/components/faq'
-import { CTASection } from '@/components/cta-section'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <IndustryReality />
       <Features />
       <HowItWorks />
+      <TacticalAnswers />
+      <PricingCTA />
       <FAQ />
-      <CTASection />
 
       {/* Service Schema for SEO */}
       <script
@@ -33,9 +37,9 @@ export default function HomePage() {
             areaServed: 'US',
             offers: {
               '@type': 'Offer',
-              price: '599',
+              price: '99',
               priceCurrency: 'USD',
-              description: 'One-time fee for entire home-buying transaction',
+              description: 'Access tier for home-buying transaction support',
             },
           }),
         }}
