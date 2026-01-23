@@ -1,99 +1,82 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { MessageSquare } from 'lucide-react'
 
-const steps = [
-  {
-    number: '01',
-    title: "Share a home you're interested in.",
-    description: 'Paste a Zillow, Redfin, or MLS link.',
-  },
-  {
-    number: '02',
-    title: 'Schedule your own showing.',
-    description: "BAIRE provides a script, waiver, and steps to book tours without hiring a buyer's agent.",
-  },
-  {
-    number: '03',
-    title: 'Tour with confidence.',
-    description: 'Know what to look for, what to ask, and how to spot red flags during walkthroughs.',
-  },
-  {
-    number: '04',
-    title: 'Prepare a winning offer.',
-    description: "BAIRE helps you think through price, terms, contingencies, and negotiation strategy — without a buyer's agent.",
-  },
-  {
-    number: '05',
-    title: 'Close without commissions.',
-    description: 'From inspections to appraisal, title, and closing, BAIRE stays with you until the finish line.',
-  },
+const examples = [
+  "I'd offer $420k here with a shorter inspection timeline and an appraisal cushion. It positions you to win without overpaying.",
+  "That furnace is near end-of-life — budget around $6,000 or negotiate a credit. I'll help you decide which fits your situation.",
+  "This home is likely to get multiple offers. Do you want an aggressive approach or a safer one? I'll lay out both.",
+  "If you're using VA financing, here's how I'd structure your terms so your offer still looks strong to the seller.",
 ]
 
-export function HowItWorks() {
+export function TacticalAnswers() {
   return (
-    <section className="py-24 md:py-32 bg-slate-50">
-      <div className="container">
-        <div className="mx-auto max-w-3xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-center mb-16"
-          >
-            Buying without a buyer&apos;s agent is now simple.
-          </motion.h2>
-
-          <div className="space-y-12">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative flex gap-6"
-              >
-                <div className="flex-shrink-0">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sage-600 text-white font-semibold">
-                    {step.number}
-                  </div>
-                  {index < steps.length - 1 && (
-                    <div className="absolute left-6 top-12 h-full w-px bg-sage-200" />
-                  )}
-                </div>
-                <div className="pt-1">
-                  <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+    <>
+      {/* Emotional section */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900"
+            >
+              Buying is emotional.<br />BAIRE isn&apos;t.
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mt-6 text-xl text-slate-600 leading-relaxed"
+            >
+              BAIRE thinks like a seasoned buyer&apos;s agent — but without anxiety, 
+              pressure, or commissions. BAIRE is always available, always strategic, 
+              and always working in your best interest.
+            </motion.p>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-16 text-center"
-          >
-            <Button asChild size="xl" className="text-base px-8 h-14 rounded-full">
-              <Link href="/signup">
-                Start Free — 48-Hour Trial
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Tactical answers section */}
+      <section className="py-24 md:py-32 bg-slate-50">
+        <div className="container">
+          <div className="mx-auto max-w-3xl">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-center mb-12"
+            >
+              Ask anything. Get tactical answers.
+            </motion.h2>
+
+            <div className="space-y-4">
+              {examples.map((example, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="flex gap-4 bg-white rounded-2xl p-6"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 flex-shrink-0">
+                    <MessageSquare className="h-5 w-5 text-slate-500" />
+                  </div>
+                  <p className="text-slate-600 italic leading-relaxed pt-1">
+                    &quot;{example}&quot;
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
