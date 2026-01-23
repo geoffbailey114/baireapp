@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { Inter } from 'next/font/google'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { APP_NAME, APP_URL, APP_DESCRIPTION } from '@/lib/constants'
 import './globals.css'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
@@ -61,8 +62,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="min-h-screen bg-white font-sans antialiased">
+    <html lang="en">
+      <body className={`${inter.className} min-h-screen bg-white antialiased`}>
         <Navigation />
         <main>{children}</main>
         <Footer />
