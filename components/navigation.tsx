@@ -11,7 +11,6 @@ import { cn } from '@/lib/utils'
 const navLinks = [
   { href: '/how-baire-works', label: 'How It Works' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/faq', label: 'FAQ' },
 ]
 
 export function Navigation() {
