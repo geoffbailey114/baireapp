@@ -1,90 +1,111 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { APP_NAME, NAV_LINKS } from '@/lib/constants'
+
+const navLinks = [
+  { href: '/how-baire-works', label: 'How It Works' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/faq', label: 'FAQ' },
+]
 
 export function Navigation() {
-  const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  // Don't show navigation on consultant page (full-screen chat)
+  if (pathname === '/consultant') {
+    return null
+  }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container flex h-16 items-center justify-between" aria-label="Main navigation">
-        <Link 
-          href="/" 
-          className="flex items-center space-x-2 font-semibold text-xl tracking-tight"
-          aria-label={`${APP_NAME} home`}
-        >
-          <span className="text-sage-700">{APP_NAME}</span>
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+      <nav className="container flex h-16 items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="BAIRE"
+            width={120}
+            height={56}
+            className="h-8 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex md:items-center md:gap-6">
-          {NAV_LINKS.map((link) => (
+        <div className="hidden md:flex md:items-center md:gap-8">
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
+                'text-sm font-medium transition-colors hover:text-sage-600',
                 pathname === link.href
-                  ? 'text-foreground'
-                  : 'text-muted-foreground'
+                  ? 'text-sage-600'
+                  : 'text-slate-600'
               )}
             >
               {link.label}
             </Link>
           ))}
-          <Button asChild size="sm">
-            <Link href="/pricing">Get Started</Link>
+        </div>
+
+        {/* Desktop CTA */}
+        <div className="hidden md:flex md:items-center md:gap-4">
+          <Button variant="ghost" asChild>
+            <Link href="/login">Log In</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/signup">Start Free Trial</Link>
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-accent hover:text-foreground"
+          className="md:hidden p-2 text-slate-600"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-expanded={mobileMenuOpen}
-          aria-controls="mobile-menu"
           aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
         >
           {mobileMenuOpen ? (
-            <X className="h-6 w-6" aria-hidden="true" />
+            <X className="h-6 w-6" />
           ) : (
-            <Menu className="h-6 w-6" aria-hidden="true" />
+            <Menu className="h-6 w-6" />
           )}
         </button>
       </nav>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div id="mobile-menu" className="md:hidden border-t">
-          <div className="container py-4 space-y-3">
-            {NAV_LINKS.map((link) => (
+        <div className="md:hidden border-t border-slate-200 bg-white">
+          <div className="container py-4 space-y-4">
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
                   'block py-2 text-base font-medium transition-colors',
                   pathname === link.href
-                    ? 'text-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'text-sage-600'
+                    : 'text-slate-600'
                 )}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="pt-2">
+            <div className="pt-4 border-t border-slate-200 space-y-3">
+              <Button variant="outline" asChild className="w-full">
+                <Link href="/login">Log In</Link>
+              </Button>
               <Button asChild className="w-full">
-                <Link href="/pricing" onClick={() => setMobileMenuOpen(false)}>
-                  Get Started
-                </Link>
+                <Link href="/signup">Start Free Trial</Link>
               </Button>
             </div>
           </div>
