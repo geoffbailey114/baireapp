@@ -37,7 +37,7 @@ export function Navigation() {
           />
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - All Right Aligned */}
         <div className="hidden md:flex md:items-center md:gap-8">
           {navLinks.map((link) => (
             <Link
@@ -53,10 +53,6 @@ export function Navigation() {
               {link.label}
             </Link>
           ))}
-        </div>
-
-        {/* Desktop CTA */}
-        <div className="hidden md:flex md:items-center md:gap-4">
           <Button variant="ghost" asChild>
             <Link href="/login">Log In</Link>
           </Button>
