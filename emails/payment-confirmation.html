@@ -3,138 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to BAIRE - Payment Confirmed</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      color: #334155;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f8fafc;
-    }
-    .container {
-      background-color: #ffffff;
-      border-radius: 8px;
-      padding: 32px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-      color: #627362;
-      margin-bottom: 24px;
-    }
-    .success-icon {
-      width: 48px;
-      height: 48px;
-      background-color: #e3e7e3;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-    h1 {
-      font-size: 24px;
-      color: #0f172a;
-      margin-bottom: 16px;
-    }
-    p {
-      margin-bottom: 16px;
-    }
-    .receipt {
-      background-color: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      padding: 16px;
-      margin: 24px 0;
-    }
-    .receipt-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .receipt-row:last-child {
-      border-bottom: none;
-      font-weight: 600;
-    }
-    .button {
-      display: inline-block;
-      background-color: #627362;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-weight: 500;
-      margin: 16px 0;
-    }
-    .info-box {
-      background-color: #f6f7f6;
-      border-radius: 6px;
-      padding: 16px;
-      margin: 24px 0;
-    }
-    .footer {
-      margin-top: 32px;
-      padding-top: 16px;
-      border-top: 1px solid #e2e8f0;
-      font-size: 12px;
-      color: #64748b;
-    }
-    .disclaimer {
-      font-size: 11px;
-      color: #94a3b8;
-      margin-top: 16px;
-    }
-  </style>
+  <title>Payment Confirmation - BAIRE</title>
 </head>
-<body>
-  <div class="container">
-    <div class="logo">BAIRE</div>
-    
-    <div class="success-icon">✓</div>
-    
-    <h1>Payment Confirmed</h1>
-    
-    <p>Hi {{CUSTOMER_NAME}},</p>
-    
-    <p>Thank you for choosing BAIRE for your home-buying journey. Your payment has been successfully processed.</p>
-    
-    <div class="receipt">
-      <div class="receipt-row">
-        <span>Product</span>
-        <span>BAIRE Buyer Consultant</span>
-      </div>
-      <div class="receipt-row">
-        <span>Access Period</span>
-        <span>Until you close on your home</span>
-      </div>
-      <div class="receipt-row">
-        <span>Date</span>
-        <span>{{PURCHASE_DATE}}</span>
-      </div>
-      <div class="receipt-row">
-        <span>Total</span>
-        <span>$599.00</span>
-      </div>
-    </div>
-    
-    <a href="{{BASE_URL}}/consultant" class="button">Start Using BAIRE</a>
-    
-    <div class="info-box">
-      <strong>What's next?</strong>
-      <p style="margin-bottom: 0;">You now have full access to BAIRE. Start by asking any questions you have about the home-buying process. BAIRE can help you understand documents, terminology, timelines, and what to expect at each step.</p>
-    </div>
-    
-    <p>If you have any questions, reach out to us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1c6f696c6c736e685c7e7d756e79327d75">[email&#160;protected]</a>.</p>
-    
-    <p>Best wishes on your home-buying journey,<br>The BAIRE Team</p>
-    
-    <div class="footer">
-      <p>BAIRE - AI Home Buying Consultant</p>
-      <p class="disclaimer">
-        BAIRE is an educational tool, not a real estate agent, broker, attorney, or financial advisor. 
-        BAIRE does not provide legal, tax, or financial advice
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8fafc;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td align="center" style="padding: 40px 20px;">
+        <table role="presentation" style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+          <!-- Header -->
+          <tr>
+            <td style="padding: 40px 40px 20px 40px; text-align: center;">
+              <img src="https://baireapp.com/logo.png" alt="BAIRE" style="height: 40px; width: auto;">
+            </td>
+          </tr>
+          
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 20px 40px;">
+              <h1 style="margin: 0 0 20px 0; font-size: 28px; color: #1e293b; text-align: center;">
+                Payment Confirmed ✓
+              </h1>
+              <p style="margin: 0 0 20px 0; font-size: 16px; color: #475569; line-height: 1.6;">
+                Hi {{user_name}},
+              </p>
+              <p style="margin: 0 0 20px 0; font-size: 16px; color: #475569; line-height: 1.6;">
+                Thank you for your payment! Your BAIRE access is now active.
+              </p>
+              
+              <!-- Order Details -->
+              <table style="width: 100%; background-color: #f8fafc; border-radius: 8px; margin: 30px 0;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <p style="margin: 0 0 10px 0; font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
+                      Order Details
+                    </p>
+                    <table style="width: 100%;">
+                      <tr>
+                        <td style="padding: 8px 0; font-size: 15px; color: #334155;">Plan:</td>
+                        <td style="padding: 8px 0; font-size: 15px; color: #1e293b; text-align: right; font-weight: 600;">{{plan_name}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0; font-size: 15px; color: #334155;">Amount:</td>
+                        <td style="padding: 8px 0; font-size: 15px; color: #1e293b; text-align: right; font-weight: 600;">{{amount}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0; font-size: 15px; color: #334155;">Date:</td>
+                        <td style="padding: 8px 0; font-size: 15px; color: #1e293b; text-align: right;">{{date}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0; font-size: 15px; color: #334155;">Receipt #:</td>
+                        <td style="padding: 8px 0; font-size: 15px; color: #1e293b; text-align: right;">{{receipt_number}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              
+              <!-- CTA Button -->
+              <table style="width: 100%;">
+                <tr>
+                  <td align="center" style="padding: 20px 0;">
+                    <a href="https://baireapp.com/consultant" style="display: inline-block; padding: 16px 32px; background-color: #4a5a4a; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px;">
+                      Start Using BAIRE
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              
+              <p style="margin: 20px 0 0 0; font-size: 16px; color: #475569; line-height: 1.6;">
+                Questions? We're here to help at <a href="mailto:support@baireapp.com" style="color: #4a5a4a;">support@baireapp.com</a>
+              </p>
+            </td>
+          </tr>
+          
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 30px 40px; border-top: 1px solid #e2e8f0; text-align: center;">
+              <p style="margin: 0; font-size: 13px; color: #94a3b8;">
+                © 2026 BAIRE. All rights reserved.
+              </p>
+              <p style="margin: 10px 0 0 0; font-size: 13px; color: #94a3b8;">
+                <a href="https://baireapp.com/terms" style="color: #64748b; text-decoration: none;">Terms</a>
+                &nbsp;&nbsp;•&nbsp;&nbsp;
+                <a href="https://baireapp.com/privacy" style="color: #64748b; text-decoration: none;">Privacy</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
