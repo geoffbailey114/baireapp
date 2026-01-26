@@ -1,53 +1,81 @@
 import Link from 'next/link'
-
-const footerLinks = [
-  { label: 'Terms of Use', href: '/terms' },
-  { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'Disclaimer', href: '/disclaimer' },
-  { label: 'Contact', href: '/contact' },
-]
+import Image from 'next/image'
 
 export function Footer() {
+  const currentYear = new Date().getFullYear()
+  
   return (
-    <footer className="bg-slate-50 border-t border-slate-200">
+    <footer className="bg-slate-900 text-slate-300">
       <div className="container py-12">
-        {/* Disclaimer */}
-        <div className="mb-10 p-6 bg-white rounded-xl border border-slate-200">
-          <p className="text-sm text-slate-500 leading-relaxed">
-            BAIRE is an educational tool, not a real estate agent, broker, lawyer, or financial advisor. 
-            BAIRE does not negotiate on your behalf or provide legal, tax, or financial advice. 
-            Always consult licensed professionals for specific guidance.
-          </p>
-        </div>
-
-        {/* Footer content */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
-            <Link 
-              href="/" 
-              className="font-bold text-xl text-slate-900"
-            >
-              BAIRE
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Logo & Description */}
+          <div className="md:col-span-2">
+            <Link href="/" className="inline-block mb-4">
+              <Image
+                src="/logo-white.png"
+                alt="BAIRE"
+                width={100}
+                height={40}
+                className="h-8 w-auto"
+              />
             </Link>
-            <nav>
-              <ul className="flex flex-wrap gap-6">
-                {footerLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-slate-500 hover:text-slate-700 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <p className="text-slate-400 max-w-md">
+              Your AI-powered home-buying consultant. Navigate your purchase with 
+              confidence and keep more money in your pocket.
+            </p>
           </div>
-
-          <p className="text-sm text-slate-400">
-            © 2026 BAIRE, LLC. All rights reserved.
+          
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/how-baire-works" className="hover:text-white transition-colors">
+                  How It Works
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="hover:text-white transition-colors">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition-colors">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Legal */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">Legal</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/terms" className="hover:text-white transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        {/* Bottom Bar */}
+        <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-400 text-sm">
+            © {currentYear} BAIRE. All rights reserved.
           </p>
+          <a 
+            href="mailto:hello@baireapp.com"
+            className="text-slate-400 hover:text-white transition-colors text-sm"
+          >
+            hello@baireapp.com
+          </a>
         </div>
       </div>
     </footer>
