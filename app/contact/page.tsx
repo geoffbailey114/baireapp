@@ -1,107 +1,94 @@
-import type { Metadata } from 'next'
-import { Mail } from 'lucide-react'
-import { APP_NAME } from '@/lib/constants'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Contact',
-  description: `Contact ${APP_NAME}. Get in touch with our team for questions and support.`,
-  robots: {
-    index: true,
-    follow: true,
-  },
-}
+import { Mail, MessageCircle, FileText } from 'lucide-react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function ContactPage() {
   return (
-    <div className="py-16 md:py-24">
-      <div className="container">
-        <div className="mx-auto max-w-2xl">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Contact Us
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <div className="container py-16 md:py-24">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            Get in Touch
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
-            Have questions about BAIRE? We&apos;re here to help.
+          <p className="text-xl text-slate-600">
+            Have questions about BAIRE? We're here to help you navigate your 
+            home-buying journey with confidence.
           </p>
+        </div>
 
-          <div className="mt-12 space-y-8">
-            <div className="rounded-lg border border-slate-200 bg-white p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage-100">
-                  <Mail className="h-5 w-5 text-sage-700" aria-hidden="true" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-slate-900">
-                    General Inquiries
-                  </h2>
-                  <p className="mt-1 text-slate-600">
-                    For general questions about BAIRE and our services.
-                  </p>
-                  <a
-                    href="mailto:hello@baireapp.com"
-                    className="mt-3 inline-block text-sage-700 hover:text-sage-800 font-medium"
-                  >
-                    hello@baireapp.com
-                  </a>
-                </div>
+        {/* Contact Options */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {/* General Inquiries */}
+          <Card className="text-center hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="w-14 h-14 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Mail className="w-7 h-7 text-sage-600" />
               </div>
-            </div>
+              <CardTitle className="text-xl">General Inquiries</CardTitle>
+              <CardDescription>
+                Questions about BAIRE or how we can help you
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <a 
+                href="mailto:hello@baireapp.com"
+                className="text-sage-600 hover:text-sage-700 font-medium"
+              >
+                hello@baireapp.com
+              </a>
+            </CardContent>
+          </Card>
 
-            <div className="rounded-lg border border-slate-200 bg-white p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage-100">
-                  <Mail className="h-5 w-5 text-sage-700" aria-hidden="true" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-slate-900">
-                    Support
-                  </h2>
-                  <p className="mt-1 text-slate-600">
-                    Technical support and account-related questions.
-                  </p>
-                  <a
-                    href="mailto:support@baireapp.com"
-                    className="mt-3 inline-block text-sage-700 hover:text-sage-800 font-medium"
-                  >
-                    support@baireapp.com
-                  </a>
-                </div>
+          {/* Customer Support */}
+          <Card className="text-center hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="w-14 h-14 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MessageCircle className="w-7 h-7 text-sage-600" />
               </div>
-            </div>
+              <CardTitle className="text-xl">Customer Support</CardTitle>
+              <CardDescription>
+                Help with your account or technical issues
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <a 
+                href="mailto:support@baireapp.com"
+                className="text-sage-600 hover:text-sage-700 font-medium"
+              >
+                support@baireapp.com
+              </a>
+            </CardContent>
+          </Card>
 
-            <div className="rounded-lg border border-slate-200 bg-white p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage-100">
-                  <Mail className="h-5 w-5 text-sage-700" aria-hidden="true" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-slate-900">
-                    Legal & Privacy
-                  </h2>
-                  <p className="mt-1 text-slate-600">
-                    Questions about our terms, privacy policy, or legal matters.
-                  </p>
-                  <a
-                    href="mailto:legal@baireapp.com"
-                    className="mt-3 inline-block text-sage-700 hover:text-sage-800 font-medium"
-                  >
-                    legal@baireapp.com
-                  </a>
-                </div>
+          {/* Legal */}
+          <Card className="text-center hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="w-14 h-14 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <FileText className="w-7 h-7 text-sage-600" />
               </div>
-            </div>
-          </div>
+              <CardTitle className="text-xl">Legal</CardTitle>
+              <CardDescription>
+                Privacy, terms, or legal matters
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <a 
+                href="mailto:legal@baireapp.com"
+                className="text-sage-600 hover:text-sage-700 font-medium"
+              >
+                legal@baireapp.com
+              </a>
+            </CardContent>
+          </Card>
+        </div>
 
-          <div className="mt-12 rounded-lg bg-slate-50 p-6">
-            <h2 className="text-lg font-semibold text-slate-900">
-              Before You Reach Out
-            </h2>
-            <p className="mt-2 text-slate-600">
-              Please note that BAIRE provides educational information only. We cannot 
-              provide legal, financial, or real estate advice. For specific questions 
-              about your home purchase, please consult with licensed professionals in 
-              your area.
-            </p>
-          </div>
+        {/* Response Time */}
+        <div className="text-center mt-16">
+          <p className="text-slate-600">
+            We typically respond within 24 hours during business days.
+          </p>
         </div>
       </div>
     </div>
