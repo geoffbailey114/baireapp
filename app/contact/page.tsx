@@ -84,9 +84,10 @@ export default function ContactPage() {
           </Card>
         </div>
 
-        {/* Response Time */}
-        <div className="text-center mt-16">
-          <p className="text-slate-600">
+        {/* Company Info */}
+        <div className="text-center mt-16 pt-8 border-t border-slate-200 max-w-md mx-auto">
+          <p className="font-semibold text-slate-900">BAIREAPP, LLC</p>
+          <p className="text-slate-600 mt-2">
             We typically respond within 24 hours during business days.
           </p>
         </div>
