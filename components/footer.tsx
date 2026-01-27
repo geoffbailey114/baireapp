@@ -68,7 +68,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-400 text-sm">
-            © {currentYear} BAIRE. All rights reserved.
+            © {currentYear} BAIREAPP, LLC. All rights reserved.
           </p>
           <a 
             href="mailto:hello@baireapp.com"
