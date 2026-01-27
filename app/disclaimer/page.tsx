@@ -14,7 +14,7 @@ export default function DisclaimerPage() {
           <h1>Disclaimer</h1>
           
           <p className="text-slate-500">
-            <strong>BAIRE, LLC</strong><br />
+            <strong>BAIREAPP, LLC</strong><br />
             Last Updated: January 19, 2026
           </p>
 
