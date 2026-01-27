@@ -124,6 +124,18 @@ export default function LoginPage() {
                 </Link>
               </p>
             </div>
+
+            <p className="mt-4 text-xs text-slate-500 text-center">
+              By logging in, you acknowledge that BAIRE provides educational information only, 
+              not professional advice, and that AI-assisted outputs require your independent verification.{' '}
+              <Link href="/terms" className="text-sage-600 hover:text-sage-700 underline">
+                Terms
+              </Link>
+              {' · '}
+              <Link href="/privacy" className="text-sage-600 hover:text-sage-700 underline">
+                Privacy
+              </Link>
+            </p>
           </div>
         </div>
       </div>
