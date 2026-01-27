@@ -36,7 +36,22 @@ export default function PrivacyPage() {
                 <li>Personalize your experience with BAIRE</li>
               </ul>
               
-              <h2>3. Information Sharing</h2>
+              <h2>3. Data Privacy and Compliance</h2>
+              <p>
+                BAIREAPP, LLC complies with all applicable data privacy laws, including 
+                the California Consumer Privacy Act (CCPA) for users in California.
+              </p>
+              <p>
+                User data is collected only with consent, used solely for stated purposes, 
+                and protected with industry-standard security measures. No data shall be 
+                shared without anonymization or explicit user consent.
+              </p>
+              <p>
+                BAIREAPP, LLC conducts annual compliance reviews and bias audits for AI 
+                tools to ensure no violations of fair housing or consumer protection laws.
+              </p>
+
+              <h2>4. Information Sharing</h2>
               <p>
                 We do not sell your personal information. We may share information 
                 with third parties only in the following circumstances:
@@ -48,21 +63,21 @@ export default function PrivacyPage() {
                 <li>With service providers who assist in our operations (e.g., payment processing)</li>
               </ul>
               
-              <h2>4. Data Security</h2>
+              <h2>5. Data Security</h2>
               <p>
                 We implement appropriate technical and organizational measures to 
-                protect your personal information. However, no method of transmission 
-                over the Internet is 100% secure.
+                protect your personal information with industry-standard security. 
+                However, no method of transmission over the Internet is 100% secure.
               </p>
               
-              <h2>5. Data Retention</h2>
+              <h2>6. Data Retention</h2>
               <p>
                 We retain your information for as long as your account is active or 
                 as needed to provide you services. You may request deletion of your 
                 data at any time.
               </p>
               
-              <h2>6. Your Rights</h2>
+              <h2>7. Your Rights</h2>
               <p>You have the right to:</p>
               <ul>
                 <li>Access your personal information</li>
@@ -71,27 +86,43 @@ export default function PrivacyPage() {
                 <li>Object to processing of your data</li>
                 <li>Request data portability</li>
               </ul>
+
+              <h2>8. California Privacy Rights (CCPA)</h2>
+              <p>If you are a California resident, you have additional rights under the CCPA:</p>
+              <ul>
+                <li>Right to know what personal information is collected about you</li>
+                <li>Right to know whether your personal information is sold or disclosed</li>
+                <li>Right to say no to the sale of personal information</li>
+                <li>Right to access your personal information</li>
+                <li>Right to equal service and price, even if you exercise your privacy rights</li>
+              </ul>
+              <p>
+                To exercise any of these rights, please contact us at{' '}
+                <a href="mailto:privacy@baireapp.com" className="text-sage-600 hover:text-sage-700">
+                  privacy@baireapp.com
+                </a>
+              </p>
               
-              <h2>7. Cookies and Tracking</h2>
+              <h2>9. Cookies and Tracking</h2>
               <p>
                 We use cookies and similar technologies to improve your experience, 
                 understand usage patterns, and deliver personalized content. You can 
                 control cookies through your browser settings.
               </p>
               
-              <h2>8. Children's Privacy</h2>
+              <h2>10. Children's Privacy</h2>
               <p>
                 Our Service is not intended for children under 18. We do not knowingly 
                 collect information from children under 18.
               </p>
               
-              <h2>9. Changes to This Policy</h2>
+              <h2>11. Changes to This Policy</h2>
               <p>
                 We may update this Privacy Policy from time to time. We will notify 
                 you of any changes by posting the new Privacy Policy on this page.
               </p>
               
-              <h2>10. Contact Us</h2>
+              <h2>12. Contact Us</h2>
               <p>
                 If you have questions about this Privacy Policy or our data practices, 
                 please contact us at{' '}
