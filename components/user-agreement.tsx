@@ -54,49 +54,69 @@ export function UserAgreement({ checked, onCheckedChange, error }: UserAgreement
               <li>All decisions, communications, and actions are ultimately my responsibility</li>
             </ul>
 
-            {/* Section 2 */}
-            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">2. BAIRE Is Not an Agent or Advisor</h4>
+            {/* Section 2 - Non-Professional Services Covenant (OA 1.8) */}
+            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">2. Non-Professional Services Covenant</h4>
             <p className="text-sm text-slate-600 mb-2">
-              I understand and agree that BAIRE is a technology platform, not a real estate brokerage, agent, attorney, or fiduciary.
+              BAIREAPP, LLC is expressly prohibited from acting, and shall not act, as a real estate broker, 
+              real estate agent, attorney, fiduciary, financial advisor, or representative of any user or third party.
             </p>
-            <p className="text-sm text-slate-600 mb-1">BAIRE:</p>
+            <p className="text-sm text-slate-600 mb-1">BAIREAPP, LLC shall not:</p>
             <ul className="text-sm text-slate-600 list-disc list-inside space-y-1 mb-2">
-              <li>Does not represent me or any other party</li>
-              <li>Does not negotiate on my behalf</li>
-              <li>Does not provide licensed real estate, legal, or financial advice</li>
-              <li>Does not owe fiduciary duties of loyalty, care, or confidentiality</li>
+              <li>Negotiate, advocate, or communicate on my behalf</li>
+              <li>Transact or execute documents on my behalf</li>
+              <li>Represent me or any other party</li>
+              <li>Owe fiduciary duties of loyalty, care, or confidentiality</li>
             </ul>
             <p className="text-sm text-slate-600 mb-3">
-              BAIRE provides educational information, AI-assisted tools, and workflow guidance only. No reasonable user should understand BAIRE to be acting as a real estate agent or fiduciary, and BAIRE expressly disclaims any such role.
+              BAIREAPP, LLC provides only general educational information and user-controlled software tools. 
+              All decisions and actions remain solely with me.
             </p>
 
-            {/* Section 3 */}
-            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">3. No Professional Relationship Created</h4>
-            <p className="text-sm text-slate-600 mb-1">I understand that using BAIRE does not create:</p>
-            <ul className="text-sm text-slate-600 list-disc list-inside space-y-1 mb-2">
-              <li>An agency relationship</li>
-              <li>A fiduciary relationship</li>
-              <li>An attorney-client relationship</li>
-              <li>An advisor-client relationship</li>
-            </ul>
-            <p className="text-sm text-slate-600 mb-3">
-              I may engage licensed professionals (attorneys, inspectors, lenders, agents) at any time, and BAIRE does not restrict or discourage doing so.
-            </p>
-
-            {/* Section 4 */}
-            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">4. AI-Assisted Guidance Acknowledgment</h4>
+            {/* Section 3 - AI-Assisted Outputs (OA 1.9) */}
+            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">3. AI-Assisted Outputs Disclaimer</h4>
             <p className="text-sm text-slate-600 mb-2">
               I understand that BAIRE uses artificial intelligence to generate guidance, explanations, and checklists.
+              "AI-Assisted Outputs" are automated informational outputs generated using software algorithms or machine learning models.
             </p>
-            <p className="text-sm text-slate-600 mb-1">I acknowledge that:</p>
+            <p className="text-sm text-slate-600 mb-1">I acknowledge that AI-Assisted Outputs:</p>
+            <ul className="text-sm text-slate-600 list-disc list-inside space-y-1 mb-2">
+              <li>Are general in nature and not professional advice</li>
+              <li>Are not tailored recommendations</li>
+              <li>Require independent judgment and verification prior to reliance</li>
+              <li>May not account for every local rule or unique situation</li>
+              <li>May contain errors or inaccuracies</li>
+            </ul>
+            <p className="text-sm text-slate-600 mb-3">
+              Final decisions are mine alone.
+            </p>
+
+            {/* Section 4 - No User Reliance (OA 1.10) */}
+            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">4. No Reliance</h4>
+            <p className="text-sm text-slate-600 mb-2">
+              BAIREAPP, LLC does not intend for, and expressly disclaims, reliance by users on the Company 
+              or its software as a substitute for professional judgment. I assume full responsibility for 
+              evaluating information and making all decisions.
+            </p>
+            <p className="text-sm text-slate-600 mb-3">
+              BAIREAPP, LLC disclaims all warranties, express or implied, including accuracy, merchantability, 
+              and fitness for a particular purpose. Liability is limited to the amount paid by me in the prior 12 months.
+            </p>
+
+            {/* Section 5 - Data Privacy (OA 1.11) */}
+            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">5. Data Privacy</h4>
+            <p className="text-sm text-slate-600 mb-2">
+              I consent to BAIREAPP, LLC collecting and using my data as described in the Privacy Policy.
+            </p>
+            <p className="text-sm text-slate-600 mb-1">I understand that:</p>
             <ul className="text-sm text-slate-600 list-disc list-inside space-y-1 mb-3">
-              <li>AI outputs may not account for every local rule or unique situation</li>
-              <li>I am responsible for verifying information before relying on it</li>
-              <li>Final decisions are mine alone</li>
+              <li>My data will be collected only with consent and used solely for stated purposes</li>
+              <li>My data will be protected with industry-standard security</li>
+              <li>No data will be shared without anonymization or my consent</li>
+              <li>BAIREAPP, LLC complies with applicable data privacy laws (e.g., CCPA for California users)</li>
             </ul>
 
-            {/* Section 5 */}
-            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">5. No Guarantees or Promises</h4>
+            {/* Section 6 */}
+            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">6. No Guarantees or Promises</h4>
             <p className="text-sm text-slate-600 mb-1">I understand that BAIRE does not guarantee:</p>
             <ul className="text-sm text-slate-600 list-disc list-inside space-y-1 mb-2">
               <li>Cost savings</li>
@@ -109,17 +129,18 @@ export function UserAgreement({ checked, onCheckedChange, error }: UserAgreement
               Market conditions and seller decisions are outside BAIRE's control.
             </p>
 
-            {/* Section 6 */}
-            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">6. Voluntary Use</h4>
+            {/* Section 7 */}
+            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">7. Voluntary Use</h4>
             <p className="text-sm text-slate-600 mb-1">I acknowledge that:</p>
             <ul className="text-sm text-slate-600 list-disc list-inside space-y-1 mb-3">
               <li>My use of BAIRE is voluntary</li>
               <li>I may stop using BAIRE at any time</li>
               <li>I am not required to complete any transaction using BAIRE</li>
+              <li>I may engage licensed professionals at any time</li>
             </ul>
 
-            {/* Section 7 */}
-            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">7. Affirmative Consent</h4>
+            {/* Section 8 */}
+            <h4 className="text-sm font-semibold text-slate-800 mt-4 mb-2">8. Affirmative Consent</h4>
             <p className="text-sm text-slate-600 mb-1">
               By checking the box below and continuing, I confirm that:
             </p>
@@ -127,6 +148,8 @@ export function UserAgreement({ checked, onCheckedChange, error }: UserAgreement
               <li>I have read and understand this agreement</li>
               <li>I knowingly choose to self-represent</li>
               <li>I understand BAIRE is a tool, not a representative or advisor</li>
+              <li>I understand AI outputs require my independent verification</li>
+              <li>I consent to data collection as described in the Privacy Policy</li>
             </ul>
           </div>
         </div>
@@ -153,9 +176,14 @@ export function UserAgreement({ checked, onCheckedChange, error }: UserAgreement
             >
               Self-Representation Agreement
             </button>
-            {' '}and{' '}
+            {', '}
             <Link href="/terms" target="_blank" className="text-sage-600 hover:text-sage-700 underline inline-flex items-center gap-1">
               Terms of Service
+              <ExternalLink className="h-3 w-3" />
+            </Link>
+            {', and '}
+            <Link href="/privacy" target="_blank" className="text-sage-600 hover:text-sage-700 underline inline-flex items-center gap-1">
+              Privacy Policy
               <ExternalLink className="h-3 w-3" />
             </Link>
           </span>
