@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function TrialEndedPage() {
@@ -18,25 +18,37 @@ export default function TrialEndedPage() {
               Your trial has ended
             </h1>
             
-            <p className="text-slate-600 mb-8">
-              Upgrade to continue using BAIRE for your home buying journey.
+            <p className="text-slate-600 mb-6">
+              Ready to schedule showings or make an offer? Unlock full access to continue your journey.
             </p>
 
+            {/* Pricing */}
+            <div className="mb-6 p-4 bg-slate-50 rounded-lg">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <span className="text-2xl font-bold text-slate-900">$500</span>
+                <span className="text-slate-400 line-through">$900</span>
+              </div>
+              <span className="inline-flex items-center gap-1 text-xs text-amber-700 font-semibold bg-amber-100 px-2 py-0.5 rounded border border-amber-200">
+                <Clock className="h-3 w-3" />
+                LIMITED TIME
+              </span>
+            </div>
+
             <Button asChild size="xl" className="w-full mb-4">
-              <Link href="/api/stripe/checkout?tier=access">
-                Upgrade to Access — $99
+              <Link href="/api/stripe/checkout?tier=offer">
+                Unlock Full Access
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
 
             <p className="text-sm text-slate-500">
-              Unlock offer prep, negotiation playbooks, and state-specific guidance.
+              Includes showing scripts, waivers, offer prep, and closing support.
             </p>
           </div>
 
           <div className="mt-6">
             <Link href="/pricing" className="text-sm text-sage-600 hover:text-sage-700">
-              View all pricing options →
+              View pricing details →
             </Link>
           </div>
         </div>

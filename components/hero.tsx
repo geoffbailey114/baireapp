@@ -73,7 +73,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="mt-6 text-sm text-slate-500"
           >
-            Unlock offer strategy for $99 only when you&apos;re ready to compete.
+            Pay only when you&apos;re ready to make an offer. Limited time: $599 total.
           </motion.p>
         </div>
       </div>

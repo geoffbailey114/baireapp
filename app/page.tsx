@@ -37,9 +37,9 @@ export default function HomePage() {
             areaServed: 'US',
             offers: {
               '@type': 'Offer',
-              price: '99',
+              price: '599',
               priceCurrency: 'USD',
-              description: 'Access tier for home-buying transaction support',
+              description: 'Full access for home-buying transaction support (limited time pricing)',
             },
           }),
         }}

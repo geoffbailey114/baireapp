@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { X, ArrowRight, FileText, Target, Scale } from 'lucide-react'
+import { X, ArrowRight, FileText, Target, Scale, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface OfferUpgradeModalProps {
@@ -44,10 +44,10 @@ export function OfferUpgradeModal({ isOpen, onClose }: OfferUpgradeModalProps) {
             <FileText className="h-6 w-6 text-sage-700" />
           </div>
           <h2 className="text-xl font-bold text-slate-900 mb-2">
-            Ready to Make an Offer?
+            Ready for Showings or an Offer?
           </h2>
           <p className="text-slate-600">
-            Unlock full offer preparation tools to compete confidently.
+            Unlock showing scripts, waiver templates, offer tools, and closing support.
           </p>
         </div>
 
@@ -56,15 +56,15 @@ export function OfferUpgradeModal({ isOpen, onClose }: OfferUpgradeModalProps) {
           <ul className="space-y-3">
             <li className="flex items-start gap-3 text-sm text-slate-700">
               <FileText className="h-4 w-4 text-sage-600 mt-0.5 flex-shrink-0" />
-              <span>Full offer generation & strategy</span>
+              <span>Showing scripts & waiver templates</span>
             </li>
             <li className="flex items-start gap-3 text-sm text-slate-700">
               <Target className="h-4 w-4 text-sage-600 mt-0.5 flex-shrink-0" />
-              <span>Negotiation playbooks</span>
+              <span>Full offer generation & negotiation playbooks</span>
             </li>
             <li className="flex items-start gap-3 text-sm text-slate-700">
               <Scale className="h-4 w-4 text-sage-600 mt-0.5 flex-shrink-0" />
-              <span>State-specific language & terms</span>
+              <span>State-specific language & closing support</span>
             </li>
           </ul>
         </div>
@@ -72,10 +72,15 @@ export function OfferUpgradeModal({ isOpen, onClose }: OfferUpgradeModalProps) {
         {/* Pricing */}
         <div className="text-center mb-6">
           <div className="flex items-center justify-center gap-2">
-            <span className="text-2xl font-bold text-slate-900">$200</span>
-            <span className="text-slate-400 line-through">$300</span>
+            <span className="text-2xl font-bold text-slate-900">$500</span>
+            <span className="text-slate-400 line-through">$900</span>
           </div>
-          <p className="text-sm text-sage-600 font-medium">Promo pricing - Save $100</p>
+          <div className="mt-2">
+            <span className="inline-flex items-center gap-1 text-xs text-amber-700 font-semibold bg-amber-100 px-2 py-0.5 rounded border border-amber-200">
+              <Clock className="h-3 w-3" />
+              LIMITED TIME - Save $400
+            </span>
+          </div>
         </div>
 
         {/* CTA */}
@@ -87,14 +92,14 @@ export function OfferUpgradeModal({ isOpen, onClose }: OfferUpgradeModalProps) {
         >
           {loading ? 'Redirecting...' : (
             <>
-              Unlock Offer Tools
+              Unlock Full Access
               <ArrowRight className="ml-2 h-4 w-4" />
             </>
           )}
         </Button>
 
         <p className="text-xs text-slate-500 text-center mt-4">
-          One-time payment. No subscriptions.
+          One-time payment. Includes everything through closing.
         </p>
       </div>
     </div>

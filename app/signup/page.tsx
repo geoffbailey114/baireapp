@@ -2,19 +2,11 @@
 
 import { useState, Suspense } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
-import { ArrowRight, Loader2, Eye, EyeOff } from 'lucide-react'
+import { ArrowRight, Loader2, Eye, EyeOff, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { UserAgreement } from '@/components/user-agreement'
 
 function SignupForm() {
-  const searchParams = useSearchParams()
-  const tierParam = searchParams.get('tier')
-  
-  // Determine which tier to checkout for
-  const tier = tierParam === 'access' ? 'access' : 'trial'
-  const isAccessTier = tier === 'access'
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -58,13 +50,13 @@ function SignupForm() {
         throw new Error(signupData.error || 'Failed to create account')
       }
 
-      // Then redirect to Stripe checkout for the appropriate tier
+      // Then redirect to Stripe checkout for trial
       const checkoutRes = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           email,
-          tier,
+          tier: 'trial',
           consentTimestamp,
           agreementVersion: '1.0',
         }),
@@ -87,13 +79,15 @@ function SignupForm() {
   return (
     <div className="w-full max-w-md">
       <div className="text-center mb-8">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-800 mb-4 border border-amber-200">
+          <Clock className="h-3.5 w-3.5" />
+          Limited Time Pricing
+        </span>
         <h1 className="text-3xl font-bold text-slate-900">
-          {isAccessTier ? 'Get Started with Access' : 'Start your free trial'}
+          Start your free trial
         </h1>
         <p className="mt-2 text-slate-600">
-          {isAccessTier 
-            ? 'Create your account to continue to checkout ($99).' 
-            : '48 hours free. Cancel anytime.'}
+          48 hours free. No charge if you cancel.
         </p>
       </div>
 
@@ -173,16 +167,14 @@ function SignupForm() {
               </>
             ) : (
               <>
-                {isAccessTier ? 'Continue to Payment ($99)' : 'Continue to Payment'}
+                Start Free Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
               </>
             )}
           </Button>
 
           <p className="text-center text-sm text-slate-500">
-            {isAccessTier 
-              ? 'You will be charged $99 after completing checkout.'
-              : 'Credit card required · No charge today · Cancel within 48 hours to avoid billing'}
+            Credit card required · No charge today · Cancel within 48 hours to avoid billing
           </p>
         </form>
 
@@ -195,20 +187,14 @@ function SignupForm() {
           </p>
         </div>
 
-        {/* Toggle option */}
-        {isAccessTier ? (
-          <div className="mt-4 text-center">
-            <Link href="/signup" className="text-sm text-slate-500 hover:text-slate-700 underline">
-              ← Start with free trial instead
-            </Link>
-          </div>
-        ) : (
-          <div className="mt-4 text-center">
-            <Link href="/signup?tier=access" className="text-sm text-slate-500 hover:text-slate-700 underline">
-              Skip trial and start with Access ($99) →
-            </Link>
-          </div>
-        )}
+        {/* Pricing summary */}
+        <div className="mt-4 p-3 bg-slate-50 rounded-lg text-center">
+          <p className="text-xs text-slate-600">
+            <span className="line-through text-slate-400">$999</span>{' '}
+            <span className="font-semibold text-sage-700">$599 total</span>{' '}
+            — Pay only when you're ready to make an offer
+          </p>
+        </div>
       </div>
     </div>
   )

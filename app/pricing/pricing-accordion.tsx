@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, Check, Lock } from 'lucide-react'
+import { ChevronDown, Check, Clock } from 'lucide-react'
 
 const pricingSteps = [
   {
@@ -9,68 +9,43 @@ const pricingSteps = [
     title: 'Free Trial',
     price: '$0',
     priceNote: '48 hours',
-    description: 'Try BAIRE free. Cancel anytime within 48 hours and you won\'t be charged.',
+    description: 'Try BAIRE free for 48 hours. Explore, learn, and prepare — upgrade anytime to unlock showings and offer tools.',
     features: [
-      'Full chat access',
-      'General home buying Q&A',
-      'Educational content',
-      'Process guidance',
+      'Chat access for Q&A',
+      'General home buying education',
+      'Terminology & process guidance',
+      'Timeline planning help',
+      'Red flag spotting tips',
+      'Basic walkthrough guidance',
     ],
-    note: 'After 48 hours, you\'re automatically upgraded to Access ($99).',
-    locked: false,
-  },
-  {
-    id: 'access',
-    title: 'Access',
-    price: '$99',
-    priceNote: 'after trial',
-    fullPrice: null,
-    description: 'Unlock everything you need from first search through showing day.',
-    features: [
-      'Everything in Trial',
-      'Showing scripts & request templates',
-      'Buyer waivers',
-      'Walkthrough checklists',
-      'Red flag spotting guide',
-      'Basic offer strategy',
+    excludes: [
+      'Showing scheduling scripts',
+      'Waiver templates',
+      'Offer preparation tools',
     ],
-    note: 'Charged automatically after your 48-hour trial, or pay now to skip the trial.',
-    locked: false,
+    note: 'No charge during trial. Cancel anytime within 48 hours.',
   },
   {
     id: 'offer',
-    title: 'Offer',
-    price: '$200',
+    title: 'Full Access',
+    price: '$500',
     priceNote: 'when ready',
-    fullPrice: '$300',
-    description: 'When you\'re ready to make an offer, BAIRE will prompt you to unlock full offer preparation tools.',
+    fullPrice: '$900',
+    description: 'Unlock everything when you\'re ready to schedule showings or make an offer.',
     features: [
-      'Everything in Access',
+      'Everything in Trial, plus:',
+      'Showing scheduling scripts & templates',
+      'Buyer waiver templates',
       'Full offer generation & strategy',
       'Negotiation playbooks',
-      'State-specific language',
+      'State-specific language & terms',
       'Price & terms guidance',
       'Counteroffer strategies',
-    ],
-    note: 'Unlocked inside BAIRE when you\'re ready to make an offer. Not available upfront.',
-    locked: true,
-  },
-  {
-    id: 'closing',
-    title: 'Closing',
-    price: '$300',
-    priceNote: 'after you close',
-    fullPrice: '$600',
-    description: 'Final payment after you\'ve successfully closed on your home.',
-    features: [
-      'Everything in Offer',
       'Closing disclosure review',
-      'Deadline tracking',
       'Final walkthrough prep',
       'Closing day checklist',
     ],
-    note: 'Only charged after you confirm you\'ve closed. This is your final payment.',
-    locked: true,
+    note: 'One-time payment. Includes everything through closing.',
   },
 ]
 
@@ -104,12 +79,6 @@ export function PricingAccordion() {
                     <span className="text-slate-400 text-sm line-through">{step.fullPrice}</span>
                   )}
                   <span className="text-slate-500 text-sm">{step.priceNote}</span>
-                  {step.locked && (
-                    <span className="inline-flex items-center gap-1 text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded">
-                      <Lock className="h-3 w-3" />
-                      In-app only
-                    </span>
-                  )}
                 </div>
               </div>
             </div>
@@ -131,12 +100,20 @@ export function PricingAccordion() {
                   </li>
                 ))}
               </ul>
-              <p className={`text-sm rounded-lg p-3 ${
-                step.locked 
-                  ? 'text-slate-500 bg-slate-50 border border-slate-200' 
-                  : 'text-slate-500 bg-slate-50'
-              }`}>
-                {step.locked && <Lock className="h-3 w-3 inline mr-1" />}
+              {step.excludes && (
+                <div className="mb-4 p-3 bg-slate-100 rounded-lg">
+                  <p className="text-xs font-medium text-slate-500 mb-2">Upgrade to unlock:</p>
+                  <ul className="space-y-1">
+                    {step.excludes.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-slate-500">
+                        <span className="text-slate-400">→</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <p className="text-sm text-slate-500 bg-slate-50 rounded-lg p-3">
                 {step.note}
               </p>
             </div>
@@ -149,14 +126,17 @@ export function PricingAccordion() {
         <div className="flex items-center justify-between">
           <div>
             <span className="font-semibold text-slate-900">Total (start to finish)</span>
-            <p className="text-sm text-slate-600">Pay as you go — only when you need it</p>
+            <p className="text-sm text-slate-600">Pay when you're ready for showings or offers</p>
           </div>
           <div className="text-right">
             <div className="flex items-center gap-2">
               <span className="text-slate-400 line-through">$999</span>
               <span className="text-2xl font-bold text-sage-700">$599</span>
             </div>
-            <span className="text-xs text-sage-600 font-medium">PROMO PRICING</span>
+            <span className="inline-flex items-center gap-1 text-xs text-amber-700 font-semibold bg-amber-100 px-2 py-0.5 rounded border border-amber-200">
+              <Clock className="h-3 w-3" />
+              LIMITED TIME
+            </span>
           </div>
         </div>
       </div>

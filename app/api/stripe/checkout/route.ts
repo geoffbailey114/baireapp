@@ -9,18 +9,14 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 const baseUrl = process.env.APP_BASE_URL || 'https://baireapp.com'
 
-type Tier = 'trial' | 'access' | 'offer' | 'closing'
+type Tier = 'trial' | 'offer'
 
 function getPriceIdForTier(tier: Tier): string | null {
   switch (tier) {
     case 'trial':
       return null // Trial uses setup mode, not a price
-    case 'access':
-      return process.env.STRIPE_PRICE_ACCESS!
     case 'offer':
-      return process.env.STRIPE_PRICE_OFFER || process.env.STRIPE_PRICE_SHOWINGS!
-    case 'closing':
-      return process.env.STRIPE_PRICE_CLOSING!
+      return process.env.STRIPE_PRICE_OFFER!
     default:
       return null
   }
@@ -44,7 +40,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate tier
-    const validTiers: Tier[] = ['trial', 'access', 'offer', 'closing']
+    const validTiers: Tier[] = ['trial', 'offer']
     if (!validTiers.includes(tier)) {
       return NextResponse.json(
         { error: 'Invalid tier' },
@@ -52,8 +48,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // For offer/closing tiers, verify user has purchased previous tier
-    if (tier === 'offer' || tier === 'closing') {
+    // For offer tier, verify user is authenticated
+    if (tier === 'offer') {
       const cookieStore = await cookies()
       const token = cookieStore.get('baire_auth')?.value
 
@@ -74,18 +70,8 @@ export async function POST(request: NextRequest) {
 
       const purchases = payload.purchases as Record<string, boolean> || {}
 
-      // Block offer tier if access not purchased
-      if (tier === 'offer' && !purchases.access) {
-        return NextResponse.redirect(`${baseUrl}/pricing?error=access_required`)
-      }
-
-      // Block closing tier if offer not purchased
-      if (tier === 'closing' && !purchases.offer) {
-        return NextResponse.redirect(`${baseUrl}/pricing?error=offer_required`)
-      }
-
-      // Prevent re-purchasing owned tiers
-      if (purchases[tier]) {
+      // Prevent re-purchasing if already purchased
+      if (purchases.offer) {
         return NextResponse.redirect(`${baseUrl}/billing?error=already_purchased`)
       }
     }
@@ -153,7 +139,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ url: session.url })
     }
 
-    // Paid tier flow
+    // Offer tier flow - $500 payment
     const priceId = getPriceIdForTier(tier as Tier)
     if (!priceId) {
       return NextResponse.json(

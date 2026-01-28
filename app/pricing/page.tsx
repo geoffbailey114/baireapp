@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 import { PricingAccordion } from './pricing-accordion'
 
 export const metadata: Metadata = {
   title: 'Pricing',
-  description: `Start free with ${APP_NAME}. Pay as you go: $99 after trial, $200 at offer, $300 after closing. Total: $599 (normally $999).`,
+  description: `Start free with ${APP_NAME}. 48-hour trial, then $500 when you're ready to make an offer. Limited time: $599 total (normally $999).`,
   openGraph: {
     title: `Pricing | ${APP_NAME}`,
-    description: 'Start free. Pay as you go. Total: $599 (normally $999).',
+    description: 'Start free. Pay when you're ready to make an offer. Limited time: $599 (normally $999).',
     url: `${APP_URL}/pricing`,
   },
 }
@@ -21,14 +21,15 @@ export default function PricingPage() {
       <div className="container">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-12">
-          <span className="inline-flex items-center rounded-full bg-sage-100 px-3 py-1 text-sm font-medium text-sage-700 mb-6">
+          <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-1.5 text-sm font-semibold text-amber-800 mb-6 border border-amber-200">
+            <Clock className="h-4 w-4" />
             Limited Time: Save $400
           </span>
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            Pay as you go
+            Simple pricing
           </h1>
           <p className="mt-6 text-lg text-slate-600 leading-relaxed">
-            Start with a free 48-hour trial. Only pay when you're ready to move forward.
+            Try free for 48 hours. Only pay when you're ready to make an offer.
           </p>
         </div>
 
@@ -40,7 +41,7 @@ export default function PricingPage() {
                 Start Your Free Trial
               </h2>
               <p className="text-slate-600">
-                48 hours of full access. No charge if you cancel.
+                48 hours to explore BAIRE. No charge if you cancel.
               </p>
             </div>
 
@@ -52,27 +53,19 @@ export default function PricingPage() {
             </Button>
 
             <div className="text-center">
-              <p className="text-sm text-slate-500 mb-2">
+              <p className="text-sm text-slate-500 mb-3">
                 Credit card required · No charge today · Cancel anytime
               </p>
               <div className="inline-flex items-center gap-2 text-sm">
-                <span className="text-slate-400 line-through">$999 total</span>
-                <span className="text-sage-700 font-semibold">$599 total</span>
-                <span className="bg-sage-100 text-sage-700 px-2 py-0.5 rounded text-xs font-medium">
-                  SAVE $400
+                <span className="text-slate-400 line-through text-lg">$999</span>
+                <span className="text-sage-700 font-bold text-2xl">$599</span>
+              </div>
+              <div className="mt-2">
+                <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-semibold border border-amber-200">
+                  LIMITED TIME PRICING
                 </span>
               </div>
             </div>
-          </div>
-
-          {/* Skip Trial Option */}
-          <div className="text-center mt-4">
-            <Link 
-              href="/signup?tier=access" 
-              className="text-sm text-sage-600 hover:text-sage-700 underline"
-            >
-              Skip trial and start with Access ($99) →
-            </Link>
           </div>
         </div>
 
@@ -91,8 +84,8 @@ export default function PricingPage() {
               Only pay when you're ready
             </h3>
             <p className="text-slate-600">
-              BAIRE grows with your journey. You're never charged until you need the next level of support.
-              No surprises. No subscriptions. Just pay as you go.
+              Use BAIRE free to learn, explore, and prepare. When you find a home and want to make 
+              an offer, that's when you pay — not before. No surprises. No subscriptions.
             </p>
           </div>
         </div>

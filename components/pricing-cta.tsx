@@ -85,7 +85,7 @@ export function PricingCTA() {
               </Button>
             </div>
             <p className="mt-6 text-sm text-sage-200">
-              Advanced actions like offer prep, scheduling scripts, and waivers unlock with BAIRE Access after your trial.
+              Full offer prep, negotiation tools, and closing support unlock when you're ready to make an offer.
             </p>
           </motion.div>
         </div>

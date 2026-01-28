@@ -31,7 +31,11 @@ export default async function BillingPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600">Access Level</span>
-                <span className="font-medium text-slate-900 capitalize">{access.tier}</span>
+                <span className="font-medium text-slate-900 capitalize">
+                  {access.tier === 'trial' ? 'Free Trial' : 
+                   access.purchases.offer ? 'Full Access' : 
+                   access.tier}
+                </span>
               </div>
               {access.tier === 'trial' && access.trialEndsAt && (
                 <div className="flex justify-between">
@@ -52,41 +56,24 @@ export default async function BillingPage() {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <div>
-                  <span className="text-slate-900 font-medium">BAIRE Access</span>
-                  <p className="text-sm text-slate-500">Showings scripts, waivers, checklists</p>
+                  <span className="text-slate-900 font-medium">Free Trial</span>
+                  <p className="text-sm text-slate-500">48-hour educational access</p>
                 </div>
-                <span className={`px-3 py-1 rounded-full text-sm ${
-                  access.purchases.access 
-                    ? 'bg-sage-100 text-sage-700' 
-                    : 'bg-slate-100 text-slate-500'
-                }`}>
-                  {access.purchases.access ? 'Purchased ($99)' : 'Not purchased'}
+                <span className="px-3 py-1 rounded-full text-sm bg-sage-100 text-sage-700">
+                  Completed
                 </span>
               </div>
               <div className="flex justify-between items-center">
                 <div>
-                  <span className="text-slate-900 font-medium">BAIRE Offer</span>
-                  <p className="text-sm text-slate-500">Offer prep, negotiation playbooks</p>
+                  <span className="text-slate-900 font-medium">Full Access</span>
+                  <p className="text-sm text-slate-500">Offer prep, negotiation, closing support</p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-sm ${
                   access.purchases.offer 
                     ? 'bg-sage-100 text-sage-700' 
                     : 'bg-slate-100 text-slate-500'
                 }`}>
-                  {access.purchases.offer ? 'Purchased ($200)' : 'Not purchased'}
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <div>
-                  <span className="text-slate-900 font-medium">BAIRE Closing</span>
-                  <p className="text-sm text-slate-500">Post-close payment</p>
-                </div>
-                <span className={`px-3 py-1 rounded-full text-sm ${
-                  access.purchases.closing 
-                    ? 'bg-sage-100 text-sage-700' 
-                    : 'bg-slate-100 text-slate-500'
-                }`}>
-                  {access.purchases.closing ? 'Purchased ($300)' : 'Not purchased'}
+                  {access.purchases.offer ? 'Purchased ($500)' : 'Not purchased'}
                 </span>
               </div>
             </div>
@@ -96,7 +83,7 @@ export default async function BillingPage() {
               <div className="flex justify-between items-center">
                 <span className="text-slate-600">Total spent</span>
                 <span className="font-semibold text-slate-900">
-                  ${(access.purchases.access ? 99 : 0) + (access.purchases.offer ? 200 : 0) + (access.purchases.closing ? 300 : 0)}
+                  ${access.purchases.offer ? 500 : 0}
                 </span>
               </div>
             </div>
@@ -138,4 +125,3 @@ export default async function BillingPage() {
     </div>
   )
 }
-

@@ -26,7 +26,7 @@ const faqs = [
   {
     question: 'What does $599 include?',
     answer:
-      "The $599 one-time fee provides access to BAIRE for your entire home-buying transaction—from initial questions through closing. There are no additional charges, no commissions, and no recurring fees. Your access continues until you report that you've closed on your home.",
+      "The $599 limited-time price unlocks full access to BAIRE for your entire home-buying transaction. This includes showing scheduling scripts, waiver templates, offer preparation, negotiation playbooks, and closing support. You start with a free 48-hour trial to explore, then pay $500 when you're ready to schedule showings or make an offer.",
   },
   {
     question: 'Can BAIRE give me legal or financial advice?',
@@ -41,7 +41,7 @@ const faqs = [
   {
     question: 'Is there a free trial?',
     answer:
-      'Yes. You can try BAIRE with a limited number of educational queries before purchasing. The free trial gives you a sense of how BAIRE can help, though some features like detailed templates are reserved for paid members.',
+      'Yes! You get 48 hours to explore BAIRE completely free. Ask questions, learn about the home-buying process, and see how BAIRE can help you. The trial includes educational content and Q&A — when you\'re ready to schedule showings or make an offer, you can upgrade to unlock those tools.',
   },
   {
     question: 'How is my information protected?',

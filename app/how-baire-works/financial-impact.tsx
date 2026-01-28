@@ -38,7 +38,7 @@ export function FinancialImpact() {
               <p className="text-sm font-medium text-slate-700 mb-2">Example on a $400,000 home:</p>
               <ul className="text-sm space-y-1">
                 <li>Traditional buyer agent commission (2.5%): <strong>$10,000</strong></li>
-                <li>BAIRE total cost: <strong>$599</strong></li>
+                <li>BAIRE total cost: <strong>$599</strong> (limited time pricing)</li>
               </ul>
             </div>
 

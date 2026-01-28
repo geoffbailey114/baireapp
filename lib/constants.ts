@@ -4,9 +4,10 @@ export const APP_DESCRIPTION = 'AI-powered home-buying consultant for self-repre
 export const APP_URL = process.env.APP_BASE_URL || 'https://baireapp.com'
 
 // Pricing
-export const PRICE_AMOUNT = 599
+export const PRICE_AMOUNT = 500 // Offer tier price
+export const PRICE_TOTAL = 599 // Limited time total (trial free + offer $500 + $99 promo savings shown as $599)
 export const PRICE_CURRENCY = 'usd'
-export const PRODUCT_NAME = 'BAIRE Buyer Consultant'
+export const PRODUCT_NAME = 'BAIRE Full Access'
 
 // Trial limits
 export const FREE_TRIAL_QUERY_LIMIT = 5
