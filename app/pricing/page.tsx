@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: `Start free with ${APP_NAME}. 48-hour trial, then $500 when you're ready to make an offer. Limited time: $599 total (normally $999).`,
   openGraph: {
     title: `Pricing | ${APP_NAME}`,
-    description: 'Start free. Pay when you're ready to make an offer. Limited time: $599 (normally $999).',
+    description: "Start free. Pay when you're ready to make an offer. Limited time: $599 (normally $999).",
     url: `${APP_URL}/pricing`,
   },
 }
