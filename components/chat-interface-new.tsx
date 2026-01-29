@@ -193,7 +193,7 @@ export function ChatInterfaceNew({
   const tierBadge = getTierBadge()
 
   return (
-    <div className="flex h-[100dvh] bg-[#f9fafb]">
+    <div className="fixed inset-0 z-50 flex bg-[#f9fafb]">
       {/* Sidebar */}
       <aside className={cn(
         "fixed inset-y-0 left-0 z-50 w-72 bg-[#1a1a1a] transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0",

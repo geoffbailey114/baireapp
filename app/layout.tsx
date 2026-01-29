@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Navigation } from '@/components/navigation'
+import { Footer } from '@/components/footer'
 import { APP_NAME, APP_URL, APP_DESCRIPTION } from '@/lib/constants'
 import './globals.css'
 
@@ -62,7 +64,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen bg-white antialiased`}>
-        {children}
+        <Navigation />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   )

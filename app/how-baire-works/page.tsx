@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { ArrowRight, Check, X, Target, Search, Key, FileText, MessageSquare, Home } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { APP_NAME } from '@/lib/constants'
-import { PageWrapper } from '@/components/page-wrapper'
+
 
 export const metadata: Metadata = {
   title: 'How BAIRE Works',
@@ -79,7 +79,7 @@ const faqs = [
 
 export default function HowBAIREWorksPage() {
   return (
-    <PageWrapper>
+    
     <div>
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-sage-50 to-white">
@@ -351,6 +351,6 @@ export default function HowBAIREWorksPage() {
         </div>
       </section>
     </div>
-    </PageWrapper>
+    
   )
 }

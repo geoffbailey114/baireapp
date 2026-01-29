@@ -1,11 +1,12 @@
-import { PageWrapper } from '@/components/page-wrapper'
 'use client'
 
 import { Mail, MessageCircle, FileText } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
+
 export default function ContactPage() {
   return (
+    
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <div className="container py-16 md:py-24">
         {/* Header */}

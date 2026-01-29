@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { ArrowRight, Loader2, Eye, EyeOff, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { UserAgreement } from '@/components/user-agreement'
-import { PageWrapper } from '@/components/page-wrapper'
+
 
 function SignupForm() {
   const searchParams = useSearchParams()
@@ -244,12 +244,12 @@ function SignupFormFallback() {
 
 export default function SignupPage() {
   return (
-    <PageWrapper>
+    
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4">
       <Suspense fallback={<SignupFormFallback />}>
         <SignupForm />
       </Suspense>
     </div>
-    </PageWrapper>
+    
   )
 }

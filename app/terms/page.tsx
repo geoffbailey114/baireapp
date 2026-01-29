@@ -1,11 +1,11 @@
 'use client'
 
 import { Card, CardContent } from '@/components/ui/card'
-import { PageWrapper } from '@/components/page-wrapper'
+
 
 export default function TermsPage() {
   return (
-    <PageWrapper>
+    
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <div className="container py-16 md:py-24">
         <div className="max-w-4xl mx-auto">
@@ -143,6 +143,6 @@ export default function TermsPage() {
         </div>
       </div>
     </div>
-    </PageWrapper>
+    
   )
 }
