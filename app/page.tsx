@@ -1,4 +1,5 @@
 import { Hero } from '@/components/hero'
+import { CostComparison } from '@/components/cost-comparison'
 import { IndustryReality } from '@/components/industry-reality'
 import { Features } from '@/components/features'
 import { HowItWorks } from '@/components/how-it-works'
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <CostComparison />
       <IndustryReality />
       <Features />
       <HowItWorks />

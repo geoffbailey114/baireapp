@@ -291,38 +291,35 @@ export default function HowBAIREWorksPage() {
       </section>
 
       {/* Cost Comparison */}
-      <section className="py-16 bg-white border-t border-slate-100">
+      <section className="py-20 bg-gradient-to-b from-white to-slate-50">
         <div className="container">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold text-slate-900 text-center mb-8">
-              What you'll spend before closing
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-12">
+              Typical homebuying costs
             </h2>
 
-            <div className="bg-slate-50 rounded-2xl p-6 md:p-8">
-              <div className="space-y-4 mb-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-600">Home Inspection</span>
-                  <span className="font-medium text-slate-900">$500–$1,000</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-600">Appraisal</span>
-                  <span className="font-medium text-slate-900">$500–$700</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-600">BAIRE</span>
-                  <span className="font-semibold text-sage-700">$599 total</span>
-                </div>
+            <div className="grid sm:grid-cols-3 gap-6 mb-10">
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+                <p className="text-slate-500 text-sm mb-1">Inspection</p>
+                <p className="text-2xl font-bold text-slate-900">$500–$1,000</p>
               </div>
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+                <p className="text-slate-500 text-sm mb-1">Appraisal</p>
+                <p className="text-2xl font-bold text-slate-900">$500–$700</p>
+              </div>
+              <div className="bg-sage-50 rounded-xl p-6 border-2 border-sage-200">
+                <p className="text-sage-600 text-sm font-medium mb-1">BAIRE</p>
+                <p className="text-2xl font-bold text-sage-700">$599 total</p>
+              </div>
+            </div>
 
-              <div className="pt-6 border-t border-slate-200">
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-600">Buyer-agent commission avoided:</span>
-                  <span className="text-xl font-bold text-slate-900">$10,000–$20,000+</span>
-                </div>
-                <p className="text-sm text-slate-500 mt-2">
-                  On a typical home purchase
-                </p>
-              </div>
+            <div className="inline-block bg-slate-900 text-white rounded-2xl px-8 py-6">
+              <p className="text-slate-400 text-sm uppercase tracking-wide mb-1">
+                Buyer-agent commission avoided
+              </p>
+              <p className="text-3xl md:text-4xl font-bold">
+                typically $10,000–$15,000+
+              </p>
             </div>
           </div>
         </div>

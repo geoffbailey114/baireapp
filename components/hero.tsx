@@ -39,23 +39,15 @@ export function Hero() {
             a buyer&apos;s agent or paying their commission.
           </motion.p>
 
-          {/* Cost comparison */}
+          {/* Savings callout */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-10 bg-slate-50 rounded-2xl px-6 py-6 max-w-md mx-auto"
+            className="mt-10 inline-flex items-center gap-4 bg-slate-50 rounded-2xl px-8 py-5"
           >
-            <p className="text-sm font-medium text-slate-500 mb-3">Typical homebuying costs before closing:</p>
-            <div className="space-y-1 text-sm text-slate-600 mb-4">
-              <p>Inspection: $500–$1,000</p>
-              <p>Appraisal: $500–$700</p>
-              <p className="font-semibold text-sage-700">BAIRE: $599 total</p>
-            </div>
-            <div className="pt-3 border-t border-slate-200">
-              <p className="text-sm text-slate-500">Buyer-agent commission avoided:</p>
-              <p className="text-xl font-bold text-slate-900">often $10,000–$20,000+</p>
-            </div>
+            <span className="text-3xl md:text-4xl font-bold text-slate-900">$10K–$15K</span>
+            <span className="text-slate-600 text-left">saved on a typical home<br />purchase</span>
           </motion.div>
 
           <motion.div
