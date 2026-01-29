@@ -5,11 +5,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-06-20',
 })
 
-// Admin secret key - set this in your environment variables
-const ADMIN_SECRET = process.env.ADMIN_SECRET
-
 export async function POST(request: NextRequest) {
   try {
+    // Read at runtime, not build time
+    const ADMIN_SECRET = process.env.ADMIN_SECRET
+    
     // Verify admin secret
     const authHeader = request.headers.get('authorization')
     
@@ -145,6 +145,9 @@ export async function POST(request: NextRequest) {
 // GET method to list all comp users
 export async function GET(request: NextRequest) {
   try {
+    // Read at runtime, not build time
+    const ADMIN_SECRET = process.env.ADMIN_SECRET
+    
     // Verify admin secret
     const authHeader = request.headers.get('authorization')
     
