@@ -7,10 +7,10 @@ import { PricingAccordion } from './pricing-accordion'
 
 export const metadata: Metadata = {
   title: 'Pricing',
-  description: `Start free with ${APP_NAME}. 48-hour trial, then $500 when you're ready to make an offer. Limited time: $599 total (normally $999).`,
+  description: `Start free with ${APP_NAME}. 48-hour trial, then $99 for Access, $500 when you make an offer. Limited time: $599 total (normally $999).`,
   openGraph: {
     title: `Pricing | ${APP_NAME}`,
-    description: "Start free. Pay when you're ready to make an offer. Limited time: $599 (normally $999).",
+    description: "Start free. $99 after trial, $500 at offer. Limited time: $599 total (normally $999).",
     url: `${APP_URL}/pricing`,
   },
 }
@@ -29,7 +29,7 @@ export default function PricingPage() {
             Simple pricing
           </h1>
           <p className="mt-6 text-lg text-slate-600 leading-relaxed">
-            Try free for 48 hours. Only pay when you're ready to make an offer.
+            Try free for 48 hours. $99 to continue, $500 when you make an offer.
           </p>
         </div>
 
@@ -67,6 +67,16 @@ export default function PricingPage() {
               </div>
             </div>
           </div>
+
+          {/* Skip Trial Option */}
+          <div className="text-center mt-4">
+            <Link 
+              href="/signup?tier=access" 
+              className="text-sm text-sage-600 hover:text-sage-700 underline"
+            >
+              Skip trial and start with Access ($99) →
+            </Link>
+          </div>
         </div>
 
         {/* Pricing Accordion */}
@@ -81,11 +91,11 @@ export default function PricingPage() {
         <div className="mx-auto max-w-2xl mt-16 text-center">
           <div className="bg-slate-50 rounded-2xl p-8">
             <h3 className="text-lg font-semibold text-slate-900 mb-4">
-              Only pay when you're ready
+              Pay as you go
             </h3>
             <p className="text-slate-600">
-              Use BAIRE free to learn, explore, and prepare. When you find a home and want to make 
-              an offer, that's when you pay — not before. No surprises. No subscriptions.
+              Start free, then pay $99 after your trial to keep using BAIRE for showings and prep. 
+              When you're ready to make an offer, unlock the rest for $500. No surprises. No subscriptions.
             </p>
           </div>
         </div>

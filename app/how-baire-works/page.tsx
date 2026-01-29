@@ -290,6 +290,44 @@ export default function HowBAIREWorksPage() {
         </div>
       </section>
 
+      {/* Cost Comparison */}
+      <section className="py-16 bg-white border-t border-slate-100">
+        <div className="container">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-2xl font-bold text-slate-900 text-center mb-8">
+              What you'll spend before closing
+            </h2>
+
+            <div className="bg-slate-50 rounded-2xl p-6 md:p-8">
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-600">Home Inspection</span>
+                  <span className="font-medium text-slate-900">$500–$1,000</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-600">Appraisal</span>
+                  <span className="font-medium text-slate-900">$500–$700</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-600">BAIRE</span>
+                  <span className="font-semibold text-sage-700">$599 total</span>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-slate-200">
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-600">Buyer-agent commission avoided:</span>
+                  <span className="text-xl font-bold text-slate-900">$10,000–$20,000+</span>
+                </div>
+                <p className="text-sm text-slate-500 mt-2">
+                  On a typical home purchase
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-20 bg-sage-600">
         <div className="container">

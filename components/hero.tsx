@@ -39,15 +39,23 @@ export function Hero() {
             a buyer&apos;s agent or paying their commission.
           </motion.p>
 
-          {/* Savings callout */}
+          {/* Cost comparison */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-10 inline-flex items-center gap-4 bg-slate-50 rounded-2xl px-8 py-5"
+            className="mt-10 bg-slate-50 rounded-2xl px-6 py-6 max-w-md mx-auto"
           >
-            <span className="text-3xl md:text-4xl font-bold text-slate-900">$10K–$15K</span>
-            <span className="text-slate-600 text-left">saved on a typical home<br />purchase</span>
+            <p className="text-sm font-medium text-slate-500 mb-3">Typical homebuying costs before closing:</p>
+            <div className="space-y-1 text-sm text-slate-600 mb-4">
+              <p>Inspection: $500–$1,000</p>
+              <p>Appraisal: $500–$700</p>
+              <p className="font-semibold text-sage-700">BAIRE: $599 total</p>
+            </div>
+            <div className="pt-3 border-t border-slate-200">
+              <p className="text-sm text-slate-500">Buyer-agent commission avoided:</p>
+              <p className="text-xl font-bold text-slate-900">often $10,000–$20,000+</p>
+            </div>
           </motion.div>
 
           <motion.div
@@ -73,7 +81,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="mt-6 text-sm text-slate-500"
           >
-            Pay only when you&apos;re ready to make an offer. Limited time: $599 total.
+            $99 after trial · $500 when you make an offer · <Link href="/signup?tier=access" className="underline hover:text-slate-700">Skip trial →</Link>
           </motion.p>
         </div>
       </div>
