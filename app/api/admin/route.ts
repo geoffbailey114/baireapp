@@ -12,8 +12,18 @@ export async function POST(request: NextRequest) {
   try {
     // Verify admin secret
     const authHeader = request.headers.get('authorization')
-    if (!ADMIN_SECRET || authHeader !== `Bearer ${ADMIN_SECRET}`) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    
+    // Debug: Check if ADMIN_SECRET is even set
+    if (!ADMIN_SECRET) {
+      return NextResponse.json({ 
+        error: 'ADMIN_SECRET environment variable is not set' 
+      }, { status: 401 })
+    }
+    
+    if (authHeader !== `Bearer ${ADMIN_SECRET}`) {
+      return NextResponse.json({ 
+        error: 'Invalid admin key' 
+      }, { status: 401 })
     }
 
     const body = await request.json()
@@ -137,8 +147,18 @@ export async function GET(request: NextRequest) {
   try {
     // Verify admin secret
     const authHeader = request.headers.get('authorization')
-    if (!ADMIN_SECRET || authHeader !== `Bearer ${ADMIN_SECRET}`) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    
+    // Debug: Check if ADMIN_SECRET is even set
+    if (!ADMIN_SECRET) {
+      return NextResponse.json({ 
+        error: 'ADMIN_SECRET environment variable is not set' 
+      }, { status: 401 })
+    }
+    
+    if (authHeader !== `Bearer ${ADMIN_SECRET}`) {
+      return NextResponse.json({ 
+        error: 'Invalid admin key' 
+      }, { status: 401 })
     }
 
     // List all customers and filter for comp users
