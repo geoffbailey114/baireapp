@@ -15,6 +15,7 @@ export interface UserAccess {
   stripeCustomerId: string | null
   trialEndsAt: number | null // Unix timestamp
   isTrialExpired: boolean
+  isComp: boolean // Complimentary access granted by admin
   purchases: {
     access: boolean
     offer: boolean
@@ -56,15 +57,39 @@ async function getStripePurchases(customerId: string): Promise<{
   offer: boolean
   closing: boolean
   trialEndsAt: number | null
+  isComp: boolean
 }> {
   const purchases = {
     access: false,
     offer: false,
     closing: false,
     trialEndsAt: null as number | null,
+    isComp: false,
   }
 
   try {
+    // First check customer metadata for comp access
+    const customer = await stripe.customers.retrieve(customerId)
+    if (!('deleted' in customer)) {
+      // Check for comp/admin-granted access
+      if (customer.metadata?.comp_access === 'true' || customer.metadata?.admin_granted === 'true') {
+        purchases.isComp = true
+        purchases.access = true
+        purchases.offer = true
+        // Note: We give full access (offer tier) for comp users
+      }
+      
+      // Check for trial end time in customer metadata
+      if (customer.metadata?.trial_ends_at) {
+        purchases.trialEndsAt = parseInt(customer.metadata.trial_ends_at)
+      }
+    }
+
+    // If comp, skip payment checks
+    if (purchases.isComp) {
+      return purchases
+    }
+
     // Get all successful payments for this customer
     const paymentIntents = await stripe.paymentIntents.list({
       customer: customerId,
@@ -125,6 +150,7 @@ export async function getUserAccess(): Promise<UserAccess> {
     stripeCustomerId: null,
     trialEndsAt: null,
     isTrialExpired: false,
+    isComp: false,
     purchases: {
       access: false,
       offer: false,
@@ -148,6 +174,7 @@ export async function getUserAccess(): Promise<UserAccess> {
       stripeCustomerId: null,
       trialEndsAt,
       isTrialExpired,
+      isComp: false,
       purchases: { access: false, offer: false, closing: false },
     }
   }
@@ -159,10 +186,12 @@ export async function getUserAccess(): Promise<UserAccess> {
   const trialEndsAt = stripePurchases.trialEndsAt || jwt.trial_ends_at || null
   const isTrialExpired = trialEndsAt ? now > trialEndsAt : false
 
-  // Determine tier based on purchases
+  // Determine tier based on purchases (comp users get full offer access)
   let tier: AccessTier = 'none'
   
-  if (stripePurchases.closing) {
+  if (stripePurchases.isComp) {
+    tier = 'offer' // Comp users get full access
+  } else if (stripePurchases.closing) {
     tier = 'closing'
   } else if (stripePurchases.offer) {
     tier = 'offer'
@@ -178,6 +207,7 @@ export async function getUserAccess(): Promise<UserAccess> {
     stripeCustomerId: jwt.stripe_customer_id,
     trialEndsAt,
     isTrialExpired,
+    isComp: stripePurchases.isComp,
     purchases: stripePurchases,
   }
 }
@@ -197,6 +227,7 @@ export function canAccess(userAccess: UserAccess, requiredTier: AccessTier): boo
  * Get the next tier user needs to purchase
  */
 export function getNextTier(userAccess: UserAccess): AccessTier | null {
+  if (userAccess.isComp) return null // Comp users have full access
   if (userAccess.tier === 'closing') return null
   if (userAccess.tier === 'offer') return 'closing'
   if (userAccess.tier === 'access') return 'offer'

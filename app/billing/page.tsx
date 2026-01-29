@@ -32,7 +32,12 @@ export default async function BillingPage() {
               <div className="flex justify-between">
                 <span className="text-slate-600">Access Level</span>
                 <span className="font-medium text-slate-900 capitalize">
-                  {access.tier === 'trial' ? 'Free Trial' : 
+                  {access.isComp ? (
+                    <span className="flex items-center gap-2">
+                      Full Access
+                      <span className="text-xs bg-sage-100 text-sage-700 px-2 py-0.5 rounded">COMP</span>
+                    </span>
+                  ) : access.tier === 'trial' ? 'Free Trial' : 
                    access.purchases.offer ? 'Full Access (Offer)' : 
                    access.purchases.access ? 'Access' :
                    access.tier}
