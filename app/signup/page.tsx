@@ -58,7 +58,13 @@ function SignupForm() {
         throw new Error(signupData.error || 'Failed to create account')
       }
 
-      // Then redirect to Stripe checkout for the appropriate tier
+      // If user has comp access, skip checkout and go directly to the app
+      if (signupData.isComp) {
+        window.location.href = '/consultant'
+        return
+      }
+
+      // Otherwise, redirect to Stripe checkout for the appropriate tier
       const checkoutRes = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
