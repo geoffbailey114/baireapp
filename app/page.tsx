@@ -5,11 +5,12 @@ import { HowItWorks } from '@/components/how-it-works'
 import { TacticalAnswers } from '@/components/tactical-answers'
 import { PricingCTA } from '@/components/pricing-cta'
 import { FAQ } from '@/components/faq'
+import { PageWrapper } from '@/components/page-wrapper'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 
 export default function HomePage() {
   return (
-    <>
+    <PageWrapper>
       <Hero />
       <IndustryReality />
       <Features />
@@ -44,6 +45,6 @@ export default function HomePage() {
           }),
         }}
       />
-    </>
+    </PageWrapper>
   )
 }

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowRight, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { PageWrapper } from '@/components/page-wrapper'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -40,6 +41,7 @@ export default function LoginPage() {
   }
 
   return (
+    <PageWrapper>
     <div className="min-h-screen bg-gradient-to-b from-sage-50/50 to-white py-20">
       <div className="container">
         <div className="mx-auto max-w-md">
@@ -140,5 +142,6 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+    </PageWrapper>
   )
 }

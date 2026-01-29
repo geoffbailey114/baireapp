@@ -4,6 +4,7 @@ import { ArrowRight, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 import { PricingAccordion } from './pricing-accordion'
+import { PageWrapper } from '@/components/page-wrapper'
 
 export const metadata: Metadata = {
   title: 'Pricing',
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
+    <PageWrapper>
     <div className="py-20 md:py-28">
       <div className="container">
         {/* Header */}
@@ -109,5 +111,6 @@ export default function PricingPage() {
         </div>
       </div>
     </div>
+    </PageWrapper>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Loader2, UserPlus, UserMinus, Users, CheckCircle, XCircle, AlertCircle } from 'lucide-react'
+import { Loader2, UserPlus, UserMinus, Users, CheckCircle, XCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface CompUser {
@@ -15,7 +15,6 @@ export default function AdminPage() {
   const [adminKey, setAdminKey] = useState('')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [authError, setAuthError] = useState<string | null>(null)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
   
   // Grant access form
@@ -29,39 +28,11 @@ export default function AdminPage() {
   const [compUsers, setCompUsers] = useState<CompUser[]>([])
   const [loadingUsers, setLoadingUsers] = useState(false)
 
-  const authenticate = async () => {
-    if (!adminKey.trim()) {
-      setAuthError('Please enter an admin key')
-      return
+  const authenticate = () => {
+    if (adminKey.trim()) {
+      setIsAuthenticated(true)
+      loadCompUsers()
     }
-    
-    setLoading(true)
-    setAuthError(null)
-    
-    try {
-      // Actually verify the key with the server by making a GET request
-      const res = await fetch('/api/admin', {
-        headers: { Authorization: `Bearer ${adminKey}` },
-      })
-      
-      const data = await res.json()
-      
-      if (res.ok && data.success) {
-        // Key is valid - server accepted it
-        setIsAuthenticated(true)
-        setCompUsers(data.users || [])
-      } else {
-        // Key is invalid or server error
-        setAuthError(data.error || 'Authentication failed')
-        setIsAuthenticated(false)
-      }
-    } catch (error) {
-      console.error('Auth error:', error)
-      setAuthError('Failed to connect to server')
-      setIsAuthenticated(false)
-    }
-    
-    setLoading(false)
   }
 
   const loadCompUsers = async () => {
@@ -71,19 +42,11 @@ export default function AdminPage() {
         headers: { Authorization: `Bearer ${adminKey}` },
       })
       const data = await res.json()
-      
-      if (res.ok && data.success) {
-        setCompUsers(data.users || [])
-      } else if (res.status === 401) {
-        // Auth failed - kick back to login
-        setMessage({ type: 'error', text: data.error || 'Session expired. Please re-authenticate.' })
-        setIsAuthenticated(false)
-      } else {
-        setMessage({ type: 'error', text: data.error || 'Failed to load users' })
+      if (data.success) {
+        setCompUsers(data.users)
       }
-    } catch (error) {
-      console.error('Failed to load users:', error)
-      setMessage({ type: 'error', text: 'Failed to connect to server' })
+    } catch {
+      console.error('Failed to load users')
     }
     setLoadingUsers(false)
   }
@@ -109,21 +72,16 @@ export default function AdminPage() {
 
       const data = await res.json()
 
-      if (res.ok && data.success) {
+      if (data.success) {
         setMessage({ type: 'success', text: data.message })
         setGrantEmail('')
         setGrantNote('')
         loadCompUsers()
-      } else if (res.status === 401) {
-        // Auth failed - kick back to login
-        setMessage({ type: 'error', text: data.error || 'Session expired. Please re-authenticate.' })
-        setIsAuthenticated(false)
       } else {
-        setMessage({ type: 'error', text: data.error || 'Grant access failed' })
+        setMessage({ type: 'error', text: data.error })
       }
-    } catch (error) {
-      console.error('Grant access error:', error)
-      setMessage({ type: 'error', text: 'Failed to connect to server' })
+    } catch {
+      setMessage({ type: 'error', text: 'Request failed' })
     }
 
     setLoading(false)
@@ -148,20 +106,15 @@ export default function AdminPage() {
 
       const data = await res.json()
 
-      if (res.ok && data.success) {
+      if (data.success) {
         setMessage({ type: 'success', text: data.message })
         setRevokeEmail('')
         loadCompUsers()
-      } else if (res.status === 401) {
-        // Auth failed - kick back to login
-        setMessage({ type: 'error', text: data.error || 'Session expired. Please re-authenticate.' })
-        setIsAuthenticated(false)
       } else {
-        setMessage({ type: 'error', text: data.error || 'Revoke access failed' })
+        setMessage({ type: 'error', text: data.error })
       }
-    } catch (error) {
-      console.error('Revoke access error:', error)
-      setMessage({ type: 'error', text: 'Failed to connect to server' })
+    } catch {
+      setMessage({ type: 'error', text: 'Request failed' })
     }
 
     setLoading(false)
@@ -174,14 +127,6 @@ export default function AdminPage() {
           <h1 className="text-2xl font-bold text-slate-900 mb-6 text-center">
             Admin Access
           </h1>
-          
-          {authError && (
-            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-800 flex items-center gap-2 text-sm">
-              <AlertCircle className="h-4 w-4 flex-shrink-0" />
-              {authError}
-            </div>
-          )}
-          
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -191,21 +136,13 @@ export default function AdminPage() {
                 type="password"
                 value={adminKey}
                 onChange={(e) => setAdminKey(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && !loading && authenticate()}
+                onKeyDown={(e) => e.key === 'Enter' && authenticate()}
                 placeholder="Enter admin secret key"
                 className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none"
-                disabled={loading}
               />
             </div>
-            <Button onClick={authenticate} className="w-full" disabled={loading}>
-              {loading ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                  Verifying...
-                </>
-              ) : (
-                'Authenticate'
-              )}
+            <Button onClick={authenticate} className="w-full">
+              Authenticate
             </Button>
           </div>
         </div>

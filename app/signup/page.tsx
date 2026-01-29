@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { ArrowRight, Loader2, Eye, EyeOff, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { UserAgreement } from '@/components/user-agreement'
+import { PageWrapper } from '@/components/page-wrapper'
 
 function SignupForm() {
   const searchParams = useSearchParams()
@@ -58,13 +59,7 @@ function SignupForm() {
         throw new Error(signupData.error || 'Failed to create account')
       }
 
-      // If user has comp access, skip checkout and go directly to the app
-      if (signupData.isComp) {
-        window.location.href = '/consultant'
-        return
-      }
-
-      // Otherwise, redirect to Stripe checkout for the appropriate tier
+      // Then redirect to Stripe checkout for the appropriate tier
       const checkoutRes = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -249,10 +244,12 @@ function SignupFormFallback() {
 
 export default function SignupPage() {
   return (
+    <PageWrapper>
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4">
       <Suspense fallback={<SignupFormFallback />}>
         <SignupForm />
       </Suspense>
     </div>
+    </PageWrapper>
   )
 }

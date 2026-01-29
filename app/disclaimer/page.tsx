@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 
 export default function DisclaimerPage() {
   return (
+    <PageWrapper>
     <div className="py-16 md:py-24">
       <div className="container">
         <article className="prose-legal mx-auto max-w-3xl">

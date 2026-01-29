@@ -1,3 +1,4 @@
+import { PageWrapper } from '@/components/page-wrapper'
 'use client'
 
 import { Mail, MessageCircle, FileText } from 'lucide-react'

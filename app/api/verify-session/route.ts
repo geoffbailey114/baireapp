@@ -1,31 +1,37 @@
 import { NextResponse } from 'next/server'
-import { getUserAccess } from '@/lib/access'
+import { cookies } from 'next/headers'
+import { verifyJWT } from '@/lib/jwt'
+import { JWT_COOKIE_NAME } from '@/lib/constants'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
-    // Get full access info from Stripe (source of truth)
-    const access = await getUserAccess()
+    const cookieStore = cookies()
+    const token = cookieStore.get(JWT_COOKIE_NAME)?.value
 
-    if (!access.email) {
+    if (!token) {
       return NextResponse.json({
         authenticated: false,
         paid: false,
       })
     }
 
-    // User is "paid" if they have comp access OR have purchased access/offer tier
-    const isPaid = access.isComp || access.purchases.access || access.purchases.offer || access.purchases.closing
-    
+    const payload = await verifyJWT(token)
+
+    if (!payload) {
+      return NextResponse.json({
+        authenticated: false,
+        paid: false,
+      })
+    }
+
     return NextResponse.json({
       authenticated: true,
-      paid: isPaid,
-      isComp: access.isComp,
-      email: access.email,
-      tier: access.tier,
-      trialEndsAt: access.trialEndsAt,
-      isTrialExpired: access.isTrialExpired,
+      paid: payload.paid === true,
+      email: payload.email,
+      tier: payload.tier,
+      createdAt: payload.createdAt,
     })
   } catch (error) {
     console.error('Session verification error:', error)
