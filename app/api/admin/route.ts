@@ -1,29 +1,51 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
+// Force dynamic rendering - prevents caching of env vars
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-06-20',
 })
 
+// Helper function to verify admin authorization
+function verifyAdmin(request: NextRequest): { authorized: boolean; error?: string } {
+  const ADMIN_SECRET = process.env.ADMIN_SECRET
+  const authHeader = request.headers.get('authorization')
+  
+  if (!ADMIN_SECRET) {
+    console.error('ADMIN_SECRET is not configured in environment variables')
+    return { authorized: false, error: 'Server configuration error: ADMIN_SECRET not set' }
+  }
+  
+  if (!authHeader) {
+    return { authorized: false, error: 'Missing authorization header' }
+  }
+  
+  const expectedAuth = `Bearer ${ADMIN_SECRET}`
+  
+  // Debug logging (will show in Vercel logs)
+  console.log('Auth check:', {
+    hasAuthHeader: !!authHeader,
+    authHeaderLength: authHeader.length,
+    expectedLength: expectedAuth.length,
+    match: authHeader === expectedAuth
+  })
+  
+  if (authHeader !== expectedAuth) {
+    return { authorized: false, error: 'Invalid admin key' }
+  }
+  
+  return { authorized: true }
+}
+
 export async function POST(request: NextRequest) {
   try {
-    // Read at runtime, not build time
-    const ADMIN_SECRET = process.env.ADMIN_SECRET
-    
-    // Verify admin secret
-    const authHeader = request.headers.get('authorization')
-    
-    // Debug: Check if ADMIN_SECRET is even set
-    if (!ADMIN_SECRET) {
-      return NextResponse.json({ 
-        error: 'ADMIN_SECRET environment variable is not set' 
-      }, { status: 401 })
-    }
-    
-    if (authHeader !== `Bearer ${ADMIN_SECRET}`) {
-      return NextResponse.json({ 
-        error: 'Invalid admin key' 
-      }, { status: 401 })
+    // Verify admin authorization
+    const auth = verifyAdmin(request)
+    if (!auth.authorized) {
+      return NextResponse.json({ error: auth.error }, { status: 401 })
     }
 
     const body = await request.json()
@@ -145,23 +167,10 @@ export async function POST(request: NextRequest) {
 // GET method to list all comp users
 export async function GET(request: NextRequest) {
   try {
-    // Read at runtime, not build time
-    const ADMIN_SECRET = process.env.ADMIN_SECRET
-    
-    // Verify admin secret
-    const authHeader = request.headers.get('authorization')
-    
-    // Debug: Check if ADMIN_SECRET is even set
-    if (!ADMIN_SECRET) {
-      return NextResponse.json({ 
-        error: 'ADMIN_SECRET environment variable is not set' 
-      }, { status: 401 })
-    }
-    
-    if (authHeader !== `Bearer ${ADMIN_SECRET}`) {
-      return NextResponse.json({ 
-        error: 'Invalid admin key' 
-      }, { status: 401 })
+    // Verify admin authorization
+    const auth = verifyAdmin(request)
+    if (!auth.authorized) {
+      return NextResponse.json({ error: auth.error }, { status: 401 })
     }
 
     // List all customers and filter for comp users
