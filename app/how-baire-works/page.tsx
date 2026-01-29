@@ -315,10 +315,10 @@ export default function HowBAIREWorksPage() {
 
             <div className="inline-block bg-slate-900 text-white rounded-2xl px-8 py-6">
               <p className="text-slate-400 text-sm uppercase tracking-wide mb-1">
-                Buyer-agent commission avoided
+                Buyer-agent commission savings
               </p>
               <p className="text-3xl md:text-4xl font-bold">
-                typically $10,000–$15,000+
+                $10,000–$15,000+
               </p>
             </div>
           </div>
