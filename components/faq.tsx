@@ -26,7 +26,7 @@ const faqs = [
   {
     question: 'What does $599 include?',
     answer:
-      "The $599 limited-time price unlocks full access to BAIRE for your entire home-buying transaction. This includes showing scheduling scripts, waiver templates, offer preparation, negotiation playbooks, and closing support. You start with a free 48-hour trial to explore, then pay $500 when you're ready to schedule showings or make an offer.",
+      "The $599 limited-time total includes everything from start to finish. After your free 48-hour trial, you pay $99 for Access (showing scripts, waivers, checklists). When you're ready to make an offer, you pay $500 more for full offer prep, negotiation playbooks, and closing support.",
   },
   {
     question: 'Can BAIRE give me legal or financial advice?',
@@ -41,7 +41,7 @@ const faqs = [
   {
     question: 'Is there a free trial?',
     answer:
-      'Yes! You get 48 hours to explore BAIRE completely free. Ask questions, learn about the home-buying process, and see how BAIRE can help you. The trial includes educational content and Q&A — when you\'re ready to schedule showings or make an offer, you can upgrade to unlock those tools.',
+      "Yes! You get 48 hours to explore BAIRE completely free. Ask questions, learn about the home-buying process, and see how BAIRE can help. After 48 hours, you can upgrade to Access ($99) to unlock showing scripts and waivers. When you're ready to make an offer, the Offer tier ($500) unlocks everything else.",
   },
   {
     question: 'How is my information protected?',

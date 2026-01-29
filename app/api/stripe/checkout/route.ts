@@ -9,12 +9,14 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 const baseUrl = process.env.APP_BASE_URL || 'https://baireapp.com'
 
-type Tier = 'trial' | 'offer'
+type Tier = 'trial' | 'access' | 'offer'
 
 function getPriceIdForTier(tier: Tier): string | null {
   switch (tier) {
     case 'trial':
       return null // Trial uses setup mode, not a price
+    case 'access':
+      return process.env.STRIPE_PRICE_ACCESS!
     case 'offer':
       return process.env.STRIPE_PRICE_OFFER!
     default:
@@ -40,7 +42,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate tier
-    const validTiers: Tier[] = ['trial', 'offer']
+    const validTiers: Tier[] = ['trial', 'access', 'offer']
     if (!validTiers.includes(tier)) {
       return NextResponse.json(
         { error: 'Invalid tier' },
@@ -48,8 +50,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // For offer tier, verify user is authenticated
-    if (tier === 'offer') {
+    // For access/offer tiers, verify user is authenticated
+    if (tier === 'access' || tier === 'offer') {
       const cookieStore = await cookies()
       const token = cookieStore.get('baire_auth')?.value
 
@@ -70,8 +72,16 @@ export async function POST(request: NextRequest) {
 
       const purchases = payload.purchases as Record<string, boolean> || {}
 
-      // Prevent re-purchasing if already purchased
-      if (purchases.offer) {
+      // Block offer tier if access not purchased
+      if (tier === 'offer' && !purchases.access) {
+        return NextResponse.json(
+          { error: 'Access tier required before purchasing offer' },
+          { status: 400 }
+        )
+      }
+
+      // Prevent re-purchasing owned tiers
+      if (purchases[tier]) {
         return NextResponse.redirect(`${baseUrl}/billing?error=already_purchased`)
       }
     }
@@ -139,7 +149,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ url: session.url })
     }
 
-    // Offer tier flow - $500 payment
+    // Paid tier flow (access $99 or offer $500)
     const priceId = getPriceIdForTier(tier as Tier)
     if (!priceId) {
       return NextResponse.json(

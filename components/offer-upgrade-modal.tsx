@@ -44,10 +44,10 @@ export function OfferUpgradeModal({ isOpen, onClose }: OfferUpgradeModalProps) {
             <FileText className="h-6 w-6 text-sage-700" />
           </div>
           <h2 className="text-xl font-bold text-slate-900 mb-2">
-            Ready for Showings or an Offer?
+            Ready to Make an Offer?
           </h2>
           <p className="text-slate-600">
-            Unlock showing scripts, waiver templates, offer tools, and closing support.
+            Unlock full offer preparation, negotiation tools, and closing support.
           </p>
         </div>
 
@@ -56,11 +56,11 @@ export function OfferUpgradeModal({ isOpen, onClose }: OfferUpgradeModalProps) {
           <ul className="space-y-3">
             <li className="flex items-start gap-3 text-sm text-slate-700">
               <FileText className="h-4 w-4 text-sage-600 mt-0.5 flex-shrink-0" />
-              <span>Showing scripts & waiver templates</span>
+              <span>Full offer generation & strategy</span>
             </li>
             <li className="flex items-start gap-3 text-sm text-slate-700">
               <Target className="h-4 w-4 text-sage-600 mt-0.5 flex-shrink-0" />
-              <span>Full offer generation & negotiation playbooks</span>
+              <span>Negotiation playbooks & counteroffer strategies</span>
             </li>
             <li className="flex items-start gap-3 text-sm text-slate-700">
               <Scale className="h-4 w-4 text-sage-600 mt-0.5 flex-shrink-0" />

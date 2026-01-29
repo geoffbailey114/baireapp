@@ -19,14 +19,14 @@ export default function TrialEndedPage() {
             </h1>
             
             <p className="text-slate-600 mb-6">
-              Ready to schedule showings or make an offer? Unlock full access to continue your journey.
+              Upgrade to Access to continue using BAIRE for showings and more.
             </p>
 
             {/* Pricing */}
             <div className="mb-6 p-4 bg-slate-50 rounded-lg">
               <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="text-2xl font-bold text-slate-900">$500</span>
-                <span className="text-slate-400 line-through">$900</span>
+                <span className="text-2xl font-bold text-slate-900">$99</span>
+                <span className="text-slate-400 line-through">$199</span>
               </div>
               <span className="inline-flex items-center gap-1 text-xs text-amber-700 font-semibold bg-amber-100 px-2 py-0.5 rounded border border-amber-200">
                 <Clock className="h-3 w-3" />
@@ -35,14 +35,14 @@ export default function TrialEndedPage() {
             </div>
 
             <Button asChild size="xl" className="w-full mb-4">
-              <Link href="/api/stripe/checkout?tier=offer">
-                Unlock Full Access
+              <Link href="/api/stripe/checkout?tier=access">
+                Upgrade to Access — $99
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
 
             <p className="text-sm text-slate-500">
-              Includes showing scripts, waivers, offer prep, and closing support.
+              Includes showing scripts, waivers, and continued support.
             </p>
           </div>
 

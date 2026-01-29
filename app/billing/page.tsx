@@ -33,7 +33,8 @@ export default async function BillingPage() {
                 <span className="text-slate-600">Access Level</span>
                 <span className="font-medium text-slate-900 capitalize">
                   {access.tier === 'trial' ? 'Free Trial' : 
-                   access.purchases.offer ? 'Full Access' : 
+                   access.purchases.offer ? 'Full Access (Offer)' : 
+                   access.purchases.access ? 'Access' :
                    access.tier}
                 </span>
               </div>
@@ -65,7 +66,20 @@ export default async function BillingPage() {
               </div>
               <div className="flex justify-between items-center">
                 <div>
-                  <span className="text-slate-900 font-medium">Full Access</span>
+                  <span className="text-slate-900 font-medium">Access</span>
+                  <p className="text-sm text-slate-500">Showing scripts, waivers, checklists</p>
+                </div>
+                <span className={`px-3 py-1 rounded-full text-sm ${
+                  access.purchases.access 
+                    ? 'bg-sage-100 text-sage-700' 
+                    : 'bg-slate-100 text-slate-500'
+                }`}>
+                  {access.purchases.access ? 'Purchased ($99)' : 'Not purchased'}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <div>
+                  <span className="text-slate-900 font-medium">Offer</span>
                   <p className="text-sm text-slate-500">Offer prep, negotiation, closing support</p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-sm ${
@@ -83,7 +97,7 @@ export default async function BillingPage() {
               <div className="flex justify-between items-center">
                 <span className="text-slate-600">Total spent</span>
                 <span className="font-semibold text-slate-900">
-                  ${access.purchases.offer ? 500 : 0}
+                  ${(access.purchases.access ? 99 : 0) + (access.purchases.offer ? 500 : 0)}
                 </span>
               </div>
             </div>

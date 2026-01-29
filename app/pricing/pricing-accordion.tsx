@@ -9,14 +9,12 @@ const pricingSteps = [
     title: 'Free Trial',
     price: '$0',
     priceNote: '48 hours',
-    description: 'Try BAIRE free for 48 hours. Explore, learn, and prepare — upgrade anytime to unlock showings and offer tools.',
+    description: 'Try BAIRE free for 48 hours. Explore, learn, and see how BAIRE can help you.',
     features: [
       'Chat access for Q&A',
       'General home buying education',
       'Terminology & process guidance',
       'Timeline planning help',
-      'Red flag spotting tips',
-      'Basic walkthrough guidance',
     ],
     excludes: [
       'Showing scheduling scripts',
@@ -26,16 +24,31 @@ const pricingSteps = [
     note: 'No charge during trial. Cancel anytime within 48 hours.',
   },
   {
-    id: 'offer',
-    title: 'Full Access',
-    price: '$500',
-    priceNote: 'when ready',
-    fullPrice: '$900',
-    description: 'Unlock everything when you\'re ready to schedule showings or make an offer.',
+    id: 'access',
+    title: 'Access',
+    price: '$99',
+    priceNote: 'after trial',
+    fullPrice: '$199',
+    description: 'Continue using BAIRE after your trial. Unlock showing tools and keep learning.',
     features: [
       'Everything in Trial, plus:',
       'Showing scheduling scripts & templates',
       'Buyer waiver templates',
+      'Walkthrough checklists',
+      'Red flag spotting guide',
+      'Continued chat support',
+    ],
+    note: 'Charged after your 48-hour trial ends.',
+  },
+  {
+    id: 'offer',
+    title: 'Make an Offer',
+    price: '$500',
+    priceNote: 'when ready',
+    fullPrice: '$800',
+    description: "When you're ready to make an offer, unlock full offer preparation and closing support.",
+    features: [
+      'Everything in Access, plus:',
       'Full offer generation & strategy',
       'Negotiation playbooks',
       'State-specific language & terms',
@@ -126,7 +139,7 @@ export function PricingAccordion() {
         <div className="flex items-center justify-between">
           <div>
             <span className="font-semibold text-slate-900">Total (start to finish)</span>
-            <p className="text-sm text-slate-600">Pay when you're ready for showings or offers</p>
+            <p className="text-sm text-slate-600">$99 after trial + $500 when you make an offer</p>
           </div>
           <div className="text-right">
             <div className="flex items-center gap-2">
