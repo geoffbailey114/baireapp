@@ -3,6 +3,7 @@ import { IndustryReality } from '@/components/industry-reality'
 import { Features } from '@/components/features'
 import { HowItWorks } from '@/components/how-it-works'
 import { TacticalAnswers } from '@/components/tactical-answers'
+import { SimplePricing } from '@/components/simple-pricing'
 import { PricingCTA } from '@/components/pricing-cta'
 import { FAQ } from '@/components/faq'
 import { APP_NAME, APP_URL } from '@/lib/constants'
@@ -15,6 +16,7 @@ export default function HomePage() {
       <Features />
       <HowItWorks />
       <TacticalAnswers />
+      <SimplePricing />
       <PricingCTA />
       <FAQ />
 
