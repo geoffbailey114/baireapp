@@ -48,13 +48,10 @@ export function TacticalAnswers() {
               className="text-center mb-12"
             >
               <p className="text-xl text-slate-600 leading-relaxed mb-4">
-                Most buyers give up 2–3% to a buyer&apos;s agent. With BAIRE, you don&apos;t.
-              </p>
-              <p className="text-xl text-slate-600 leading-relaxed mb-4">
-                On a $400,000 home, that&apos;s $12,000 you&apos;re not paying — money that gives you leverage other buyers don&apos;t have.
+                On a $400,000 home, you skip $12,000 in buyer&apos;s agent fees.
               </p>
               <p className="text-xl text-slate-600 leading-relaxed">
-                When your offer doesn&apos;t include a buyer&apos;s agent commission, the seller keeps more — which makes your offer easier to accept.
+                That makes your offer easier for the seller to say yes to.
               </p>
             </motion.div>
 
