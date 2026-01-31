@@ -8,28 +8,28 @@ import { Button } from '@/components/ui/button'
 const steps = [
   {
     number: '01',
-    title: "Share a home you're interested in.",
+    title: "Share a home",
     description: 'Paste a Zillow, Redfin, or MLS link.',
   },
   {
     number: '02',
-    title: 'Schedule your own showing.',
-    description: "BAIRE provides a script, waiver, and steps to book tours without hiring a buyer's agent.",
+    title: 'Schedule your showing',
+    description: "BAIRE gives you the exact script, waiver, and steps to tour without hiring a buyer's agent. (This is where most buyers realize the old rules no longer apply.)",
   },
   {
     number: '03',
-    title: 'Tour with confidence.',
-    description: 'Know what to look for, what to ask, and how to spot red flags during walkthroughs.',
+    title: 'Tour with confidence',
+    description: "Know what matters, what doesn't, and where leverage is hiding.",
   },
   {
     number: '04',
-    title: 'Prepare a winning offer.',
-    description: "BAIRE helps you think through price, terms, contingencies, and negotiation strategy — without a buyer's agent.",
+    title: 'Build a winning offer',
+    description: "Price, terms, contingencies, and strategy — laid out clearly with trade-offs.",
   },
   {
     number: '05',
-    title: 'Close without commissions.',
-    description: 'From inspections to appraisal, title, and closing, BAIRE stays with you until the finish line.',
+    title: 'Close with leverage',
+    description: 'From inspection through closing, BAIRE stays with you — without commissions.',
   },
 ]
 
@@ -87,7 +87,7 @@ export function HowItWorks() {
           >
             <Button asChild size="xl" className="text-base px-8 h-14 rounded-full">
               <Link href="/signup">
-                Start Free — 48-Hour Trial
+                Start Free
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

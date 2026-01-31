@@ -26,7 +26,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl md:text-7xl leading-[1.1]"
           >
-            Win the house you want.
+            Win the home you want — without hiring a buyer&apos;s agent.
           </motion.h1>
 
           <motion.p
@@ -35,8 +35,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-8 text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto"
           >
-            BAIRE helps you go from walkthrough to winning offer — without hiring 
-            a buyer&apos;s agent or paying their commission.
+            BAIRE guides you from walkthrough to winning offer using AI trained on the real-world experience of thousands of agents — the full buyer playbook, without the commission.
           </motion.p>
 
           {/* Savings callout */}
@@ -46,7 +45,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-10 inline-flex items-center gap-4 bg-slate-50 rounded-2xl px-8 py-5"
           >
-            <span className="text-3xl md:text-4xl font-bold text-slate-900">$10K–$15K</span>
+            <span className="text-3xl md:text-4xl font-bold text-slate-900">$10,000–$15,000</span>
             <span className="text-slate-600 text-left">saved on a typical home<br />purchase</span>
           </motion.div>
 
@@ -58,12 +57,12 @@ export function Hero() {
           >
             <Button asChild size="xl" className="text-base px-8 h-14 rounded-full">
               <Link href="/signup">
-                Start Free — 48-Hour Trial
+                Start Free
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button variant="outline" size="xl" asChild className="text-base px-8 h-14 rounded-full">
-              <Link href="/how-baire-works">How BAIRE Works</Link>
+              <Link href="/how-baire-works">How It Works</Link>
             </Button>
           </motion.div>
 

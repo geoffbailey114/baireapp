@@ -5,16 +5,16 @@ import { X, Check } from 'lucide-react'
 
 const industryMyths = [
   "You need an agent to tour homes",
-  "Making offers is complicated",
-  "Negotiating takes years of experience",
-  "The 2–3% commission is just how it works",
+  "Offers are complicated",
+  "Negotiation takes years of experience",
+  "The 2–3% commission is unavoidable",
 ]
 
 const reality = [
-  "Touring homes is simple",
-  "Making offers is clear",
-  "Negotiating isn't magic",
-  "You can save $10,000–$15,000",
+  "Touring homes is straightforward",
+  "Offers follow clear structures",
+  "Negotiation is logic + leverage",
+  "That 2–3% can work for you",
 ]
 
 export function IndustryReality() {
@@ -29,7 +29,7 @@ export function IndustryReality() {
             transition={{ duration: 0.5 }}
             className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-center mb-16"
           >
-            Buying a home shouldn&apos;t require hiring a buyer&apos;s agent.
+            Buying a home changed. The playbook didn&apos;t.
           </motion.h2>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -45,7 +45,7 @@ export function IndustryReality() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100">
                   <X className="h-5 w-5 text-slate-500" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900">What the industry says</h3>
+                <h3 className="text-lg font-semibold text-slate-900">What the industry still says</h3>
               </div>
               <ul className="space-y-4">
                 {industryMyths.map((myth) => (
@@ -69,7 +69,7 @@ export function IndustryReality() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-100">
                   <Check className="h-5 w-5 text-sage-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900">The reality</h3>
+                <h3 className="text-lg font-semibold text-slate-900">What&apos;s actually true</h3>
               </div>
               <ul className="space-y-4">
                 {reality.map((fact) => (
@@ -89,7 +89,7 @@ export function IndustryReality() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-12 text-center text-lg text-slate-700"
           >
-            BAIRE makes buying more transparent, more confident, and far less expensive.
+            BAIRE replaces outdated assumptions with clarity, structure, and control.
           </motion.p>
         </div>
       </div>

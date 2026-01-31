@@ -1,47 +1,94 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { MessageSquare } from 'lucide-react'
+import { Check, X } from 'lucide-react'
 
-const examples = [
-  "I'd offer $420k here with a shorter inspection timeline and an appraisal cushion. It positions you to win without overpaying.",
-  "That furnace is near end-of-life — budget around $6,000 or negotiate a credit. I'll help you decide which fits your situation.",
-  "This home is likely to get multiple offers. Do you want an aggressive approach or a safer one? I'll lay out both.",
-  "If you're using VA financing, here's how I'd structure your terms so your offer still looks strong to the seller.",
+const leverageBenefits = [
+  "Make your offer more attractive without raising the price",
+  "Reduce how much cash you need to bring",
+  "Give the seller a higher net outcome",
+  "Help you win in competitive situations",
+]
+
+const baireIs = [
+  "Calm",
+  "Strategic",
+  "Always available",
+]
+
+const baireIsNot = [
+  "Anxiety",
+  "Pressure",
+  "Commissions",
+  "Conflicts",
 ]
 
 export function TacticalAnswers() {
   return (
     <>
-      {/* Emotional section */}
+      {/* Leverage section */}
       <section className="py-24 md:py-32 bg-white">
         <div className="container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto max-w-3xl">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900"
+              className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-center mb-8"
             >
-              Buying is emotional.<br />BAIRE isn&apos;t.
+              That 3% isn&apos;t a fee. It&apos;s leverage.
             </motion.h2>
-            <motion.p
+            
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mt-6 text-xl text-slate-600 leading-relaxed"
+              className="text-center mb-12"
             >
-              BAIRE thinks like a seasoned buyer&apos;s agent — but without anxiety, 
-              pressure, or commissions. BAIRE is always available, always strategic, 
-              and always working in your best interest.
+              <p className="text-xl text-slate-600 leading-relaxed mb-4">
+                On a $400,000 home, that&apos;s $12,000 the seller doesn&apos;t have to pay out.
+              </p>
+              <p className="text-xl text-slate-600 leading-relaxed">
+                When the seller keeps more money, your offer becomes easier to say yes to.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-slate-50 rounded-2xl p-8 mb-8"
+            >
+              <p className="text-lg font-medium text-slate-900 mb-6">
+                With BAIRE, that leverage can:
+              </p>
+              <ul className="space-y-4">
+                {leverageBenefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-sage-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-600">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-center text-lg font-medium text-slate-900"
+            >
+              BAIRE users negotiate from a stronger position — by design.
             </motion.p>
           </div>
         </div>
       </section>
 
-      {/* Tactical answers section */}
+      {/* Emotional section */}
       <section className="py-24 md:py-32 bg-slate-50">
         <div className="container">
           <div className="mx-auto max-w-3xl">
@@ -52,27 +99,49 @@ export function TacticalAnswers() {
               transition={{ duration: 0.5 }}
               className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-center mb-12"
             >
-              Ask anything. Get tactical answers.
+              Buying is emotional. BAIRE isn&apos;t.
             </motion.h2>
 
-            <div className="space-y-4">
-              {examples.map((example, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex gap-4 bg-white rounded-2xl p-6"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 flex-shrink-0">
-                    <MessageSquare className="h-5 w-5 text-slate-500" />
-                  </div>
-                  <p className="text-slate-600 italic leading-relaxed pt-1">
-                    &quot;{example}&quot;
-                  </p>
-                </motion.div>
-              ))}
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="bg-white rounded-2xl p-8"
+              >
+                <p className="text-lg font-medium text-slate-900 mb-6">
+                  BAIRE thinks like a seasoned buyer&apos;s agent:
+                </p>
+                <ul className="space-y-4">
+                  {baireIs.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-sage-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-slate-600">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="bg-white rounded-2xl p-8"
+              >
+                <p className="text-lg font-medium text-slate-900 mb-6">
+                  But without:
+                </p>
+                <ul className="space-y-4">
+                  {baireIsNot.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <X className="h-5 w-5 text-slate-400 flex-shrink-0 mt-0.5" />
+                      <span className="text-slate-600">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             </div>
           </div>
         </div>
