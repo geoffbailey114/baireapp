@@ -4,10 +4,10 @@ import { motion } from 'framer-motion'
 import { Check, X } from 'lucide-react'
 
 const leverageBenefits = [
-  "Make your offer more attractive without raising the price",
-  "Reduce how much cash you need to bring",
-  "Give the seller a higher net outcome",
-  "Help you win in competitive situations",
+  "Win without raising your price",
+  "Bring less cash to closing",
+  "Offer better terms than competing buyers",
+  "Stand out in competitive situations",
 ]
 
 const baireIs = [
@@ -37,7 +37,7 @@ export function TacticalAnswers() {
               transition={{ duration: 0.5 }}
               className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-center mb-8"
             >
-              That 3% isn&apos;t a fee. It&apos;s leverage.
+              Skip the 3%. Gain the advantage.
             </motion.h2>
             
             <motion.div
@@ -48,10 +48,13 @@ export function TacticalAnswers() {
               className="text-center mb-12"
             >
               <p className="text-xl text-slate-600 leading-relaxed mb-4">
-                On a $400,000 home, that&apos;s $12,000 the seller doesn&apos;t have to pay out.
+                Most buyers give up 2–3% to a buyer&apos;s agent. With BAIRE, you don&apos;t.
+              </p>
+              <p className="text-xl text-slate-600 leading-relaxed mb-4">
+                On a $400,000 home, that&apos;s $12,000 you&apos;re not paying — money that gives you leverage other buyers don&apos;t have.
               </p>
               <p className="text-xl text-slate-600 leading-relaxed">
-                When the seller keeps more money, your offer becomes easier to say yes to.
+                When your offer doesn&apos;t include a buyer&apos;s agent commission, the seller keeps more — which makes your offer easier to accept.
               </p>
             </motion.div>
 
@@ -63,7 +66,7 @@ export function TacticalAnswers() {
               className="bg-slate-50 rounded-2xl p-8 mb-8"
             >
               <p className="text-lg font-medium text-slate-900 mb-6">
-                With BAIRE, that leverage can:
+                With BAIRE, skipping the 3% lets you:
               </p>
               <ul className="space-y-4">
                 {leverageBenefits.map((benefit, index) => (
@@ -82,7 +85,7 @@ export function TacticalAnswers() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-center text-lg font-medium text-slate-900"
             >
-              BAIRE users negotiate from a stronger position — by design.
+              BAIRE users compete with an advantage — by design.
             </motion.p>
           </div>
         </div>
