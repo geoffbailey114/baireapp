@@ -9,44 +9,112 @@ import {
 
 const faqs = [
   {
-    question: 'What is BAIRE?',
-    answer:
-      "BAIRE is an AI-powered educational consultant designed to help self-represented home buyers understand the home-buying process. We provide clear explanations, answer your questions, and help you feel confident throughout your journey. We are not a real estate agent, broker, lawyer, or financial advisor.",
+    question: "How is BAIRE better than a buyer's agent?",
+    answer: (
+      <>
+        <p className="mb-3">A buyer&apos;s agent is one person, paid on commission, with limited experience and availability.</p>
+        <p className="mb-2">BAIRE is:</p>
+        <ul className="list-disc list-inside mb-3 space-y-1">
+          <li>Always on</li>
+          <li>Not paid more when you pay more</li>
+          <li>Trained on far more deal outcomes than any single agent</li>
+        </ul>
+        <p>It&apos;s not just cheaper. It&apos;s smarter and more aligned.</p>
+      </>
+    ),
   },
   {
-    question: 'Does BAIRE negotiate on my behalf?',
-    answer:
-      'No. BAIRE is strictly educational. We do not negotiate, represent, or act on your behalf in any way. We help you understand the process so you can make your own informed decisions. For negotiation and representation, you should work with a licensed real estate professional.',
+    question: 'Does BAIRE negotiate for me?',
+    answer: (
+      <>
+        <p className="mb-3">No — and that&apos;s the point.</p>
+        <p className="mb-3">Negotiation isn&apos;t who sends the message. It&apos;s knowing what to ask for, when, and why.</p>
+        <p>BAIRE gives you the strategy. You make the call.</p>
+      </>
+    ),
   },
   {
-    question: 'Is BAIRE a replacement for a real estate agent?',
-    answer:
-      'No. BAIRE is an educational tool that helps you understand the home-buying process. We do not provide the services of a licensed real estate agent, such as representation, negotiation, or fiduciary duties. Many buyers find BAIRE helpful alongside or instead of traditional agent services, but the choice is yours.',
+    question: 'Is BAIRE a lawyer?',
+    answer: (
+      <>
+        <p className="mb-3">No.</p>
+        <p className="mb-3">Just like a good agent, BAIRE doesn&apos;t pretend to be one.</p>
+        <p>Instead, it explains what matters, flags legal decision points, and helps you know when an attorney is worth involving — without guessing.</p>
+      </>
+    ),
   },
   {
-    question: 'What does $599 include?',
-    answer:
-      "The $599 limited-time total includes everything from start to finish. After your free 48-hour trial, you pay $99 for Access (showing scripts, waivers, checklists). When you're ready to make an offer, you pay $500 more for full offer prep, negotiation playbooks, and closing support.",
+    question: 'Is this actually legal?',
+    answer: (
+      <>
+        <p className="mb-3">Yes.</p>
+        <p className="mb-3">You are never required to use a buyer&apos;s agent to buy a home.</p>
+        <p>BAIRE exists because the process is learnable — and technology now makes it obvious.</p>
+      </>
+    ),
   },
   {
-    question: 'Can BAIRE give me legal or financial advice?',
-    answer:
-      'No. BAIRE provides educational information only. We do not provide legal, tax, or financial advice. For specific guidance in these areas, we encourage you to consult with licensed attorneys, CPAs, or financial advisors who can review your particular situation.',
+    question: 'How do I tour homes without an agent?',
+    answer: (
+      <>
+        <p className="mb-3">BAIRE gives you the exact scripts and steps to schedule showings without hiring a buyer&apos;s agent.</p>
+        <p>Once buyers see this step, everything else clicks.</p>
+      </>
+    ),
   },
   {
-    question: 'What happens after I close on my home?',
-    answer:
-      "When you've successfully closed on your home, you can mark your transaction as complete in BAIRE. This ends your current session. If you buy another home in the future, you're welcome to purchase access again for that new transaction.",
+    question: 'What does the $599 cover?',
+    answer: (
+      <>
+        <p className="mb-2">Everything you need to make and close an offer:</p>
+        <ul className="list-disc list-inside mb-3 space-y-1">
+          <li>Offer strategy and pricing</li>
+          <li>Terms and contingencies</li>
+          <li>Negotiation scenarios</li>
+          <li>Inspection and appraisal guidance</li>
+          <li>Closing clarity</li>
+        </ul>
+        <p className="mb-3">No commissions. No upsells.</p>
+        <p>Regular price is $999.</p>
+      </>
+    ),
   },
   {
-    question: 'Is there a free trial?',
-    answer:
-      "Yes! You get 48 hours to explore BAIRE completely free. Ask questions, learn about the home-buying process, and see how BAIRE can help. After 48 hours, you can upgrade to Access ($99) to unlock showing scripts and waivers. When you're ready to make an offer, the Offer tier ($500) unlocks everything else.",
+    question: 'Why is BAIRE so much cheaper?',
+    answer: (
+      <>
+        <p className="mb-3">Because BAIRE doesn&apos;t take a percentage of your purchase.</p>
+        <p className="mb-3">Agents earn more when you pay more. BAIRE costs the same either way.</p>
+        <p>That difference matters.</p>
+      </>
+    ),
   },
   {
-    question: 'How is my information protected?',
-    answer:
-      "We take privacy seriously. BAIRE uses industry-standard security practices. We do not sell your personal information. Your conversations are used only to provide you with the educational service you've requested. Please review our Privacy Policy for complete details.",
+    question: 'Who is BAIRE not for?',
+    answer: (
+      <>
+        <p className="mb-3">If you want someone else to control the process and earn commission for it, BAIRE isn&apos;t for you.</p>
+        <p>If you want clarity, leverage, and control — it is.</p>
+      </>
+    ),
+  },
+  {
+    question: 'What happens after I close?',
+    answer: (
+      <>
+        <p className="mb-3">Nothing.</p>
+        <p>You close. You keep the savings. BAIRE is done.</p>
+      </>
+    ),
+  },
+  {
+    question: 'Is my information safe?',
+    answer: (
+      <>
+        <p className="mb-3">Yes.</p>
+        <p>Your data isn&apos;t sold, shared, or used for marketing.</p>
+      </>
+    ),
   },
 ]
 
@@ -58,10 +126,6 @@ export function FAQ() {
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
             Frequently asked questions
           </h2>
-          <p className="mt-6 text-xl text-slate-600 leading-relaxed">
-            Have questions? We have answers. If you don&apos;t see what you&apos;re 
-            looking for, feel free to reach out.
-          </p>
         </div>
 
         <div className="mx-auto max-w-3xl">
@@ -78,25 +142,6 @@ export function FAQ() {
             ))}
           </Accordion>
         </div>
-
-        {/* FAQ Schema for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'FAQPage',
-              mainEntity: faqs.map((faq) => ({
-                '@type': 'Question',
-                name: faq.question,
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: faq.answer,
-                },
-              })),
-            }),
-          }}
-        />
       </div>
     </section>
   )
