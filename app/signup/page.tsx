@@ -3,7 +3,7 @@
 import { useState, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { ArrowRight, Loader2, Eye, EyeOff, Clock } from 'lucide-react'
+import { ArrowRight, Loader2, Eye, EyeOff, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { UserAgreement } from '@/components/user-agreement'
 
@@ -88,17 +88,13 @@ function SignupForm() {
   return (
     <div className="w-full max-w-md">
       <div className="text-center mb-8">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-800 mb-4 border border-amber-200">
-          <Clock className="h-3.5 w-3.5" />
-          Limited Time Pricing
-        </span>
         <h1 className="text-3xl font-bold text-slate-900">
           {isAccessTier ? 'Get Started with Access' : 'Start your free trial'}
         </h1>
         <p className="mt-2 text-slate-600">
           {isAccessTier 
             ? 'Skip the trial and get immediate access for $99.' 
-            : '48 hours free. No charge if you cancel.'}
+            : 'Free for 48 hours — pay only if you stay.'}
         </p>
       </div>
 
@@ -183,43 +179,46 @@ function SignupForm() {
               </>
             )}
           </Button>
-
-          <p className="text-center text-sm text-slate-500">
-            {isAccessTier 
-              ? 'You will be charged $99 after completing checkout.'
-              : 'Credit card required · No charge today · Cancel within 48 hours to avoid billing'}
-          </p>
         </form>
 
-        <div className="mt-6 pt-6 border-t border-slate-200">
+        <div className="mt-6 pt-6 border-t border-slate-200 space-y-3">
           <p className="text-center text-sm text-slate-600">
             Already have an account?{' '}
             <Link href="/login" className="font-medium text-sage-600 hover:text-sage-700">
               Log in
             </Link>
           </p>
-        </div>
 
-        {/* Toggle option */}
-        <div className="mt-4 text-center">
-          {isAccessTier ? (
-            <Link href="/signup" className="text-sm text-slate-500 hover:text-slate-700 underline">
-              ← Start with free trial instead
-            </Link>
-          ) : (
-            <Link href="/signup?tier=access" className="text-sm text-slate-500 hover:text-slate-700 underline">
-              Skip trial and start with Access ($99) →
-            </Link>
-          )}
-        </div>
-
-        {/* Pricing summary */}
-        <div className="mt-4 p-3 bg-slate-50 rounded-lg text-center">
-          <p className="text-xs text-slate-600">
-            <span className="font-semibold text-sage-700">$599 flat fee</span>{' '}
-            — $99 to start · $500 when you make an offer
+          {/* Toggle option */}
+          <p className="text-center">
+            {isAccessTier ? (
+              <Link href="/signup" className="text-sm text-slate-500 hover:text-slate-700 underline">
+                ← Start with free trial instead
+              </Link>
+            ) : (
+              <Link href="/signup?tier=access" className="text-sm text-slate-500 hover:text-slate-700 underline">
+                Ready to schedule a showing? Skip trial ($99) →
+              </Link>
+            )}
           </p>
         </div>
+      </div>
+
+      {/* Value props below card */}
+      <div className="mt-6 space-y-4">
+        {/* Unlimited offers callout */}
+        <div className="flex items-start gap-3 bg-sage-50 border border-sage-100 rounded-xl p-4">
+          <Shield className="h-5 w-5 text-sage-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="font-semibold text-slate-900">Unlimited offers. Zero risk.</p>
+            <p className="text-sm text-slate-600">Make as many offers as you need. No home? We refund — no questions asked.</p>
+          </div>
+        </div>
+        
+        {/* Pricing - minimal */}
+        <p className="text-center text-sm text-slate-500">
+          $599 flat fee — $99 to start · $500 when you make an offer
+        </p>
       </div>
     </div>
   )
@@ -230,7 +229,7 @@ function SignupFormFallback() {
     <div className="w-full max-w-md">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-slate-900">Start your free trial</h1>
-        <p className="mt-2 text-slate-600">48 hours free. Cancel anytime.</p>
+        <p className="mt-2 text-slate-600">Free for 48 hours — pay only if you stay.</p>
       </div>
       <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
         <div className="flex items-center justify-center py-12">
