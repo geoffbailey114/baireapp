@@ -63,17 +63,17 @@ export function SimplePricing() {
               </h3>
               
               <div className="mb-6">
-                <p className="text-3xl font-bold text-sage-700">$599 total</p>
-                <p className="text-sage-600">limited-time price — regularly $999</p>
+                <p className="text-3xl font-bold text-sage-700">$599 flat fee</p>
+                <p className="text-sage-600">$99 to start · $500 when you make an offer</p>
               </div>
 
-              <div className="bg-white rounded-xl p-4 mb-6 border border-sage-200">
-                <p className="text-lg font-semibold text-sage-800">Only paid when you&apos;re ready to make an offer</p>
+              <div className="bg-white rounded-xl p-4 border border-sage-200">
+                <p className="text-slate-700">No commissions. No hidden fees. BAIRE stays with you through closing.</p>
               </div>
             </motion.div>
           </div>
 
-          {/* You keep the rest */}
+          {/* Unlimited offers */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -82,10 +82,10 @@ export function SimplePricing() {
             className="text-center mb-16"
           >
             <p className="text-2xl font-bold text-slate-900 mb-4">
-              You keep the rest.
+              Unlimited offers. Zero risk.
             </p>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              That&apos;s thousands of dollars you don&apos;t give up — and leverage you can use to win.
+              Make as many offers as you need. No home? We refund — no questions asked.
             </p>
           </motion.div>
 
@@ -131,7 +131,7 @@ export function SimplePricing() {
               </Link>
             </Button>
             <p className="mt-4 text-sm text-slate-500">
-              $599 when you make an offer · Regularly $999
+              $99 to start · $500 when you make an offer
             </p>
           </motion.div>
         </div>

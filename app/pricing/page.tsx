@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Clock } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 import { PricingAccordion } from './pricing-accordion'
@@ -8,10 +8,10 @@ import { PricingAccordion } from './pricing-accordion'
 
 export const metadata: Metadata = {
   title: 'Pricing',
-  description: `Start free with ${APP_NAME}. 48-hour trial, then $99 for Access, $500 when you make an offer. Limited time: $599 total (normally $999).`,
+  description: `Start free with ${APP_NAME}. 48-hour trial, then $99 to start, $500 when you make an offer. $599 flat fee total.`,
   openGraph: {
     title: `Pricing | ${APP_NAME}`,
-    description: "Start free. $99 after trial, $500 at offer. Limited time: $599 total (normally $999).",
+    description: "Start free. $99 to start, $500 when you make an offer. $599 flat fee.",
     url: `${APP_URL}/pricing`,
   },
 }
@@ -23,15 +23,11 @@ export default function PricingPage() {
       <div className="container">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-12">
-          <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-1.5 text-sm font-semibold text-amber-800 mb-6 border border-amber-200">
-            <Clock className="h-4 w-4" />
-            Limited Time: Save $400
-          </span>
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
             Simple pricing
           </h1>
           <p className="mt-6 text-lg text-slate-600 leading-relaxed">
-            Try free for 48 hours. $99 to continue, $500 when you make an offer.
+            $599 flat fee. $99 to start, $500 when you make an offer.
           </p>
         </div>
 
@@ -58,15 +54,12 @@ export default function PricingPage() {
               <p className="text-sm text-slate-500 mb-3">
                 Credit card required · No charge today · Cancel anytime
               </p>
-              <div className="inline-flex items-center gap-2 text-sm">
-                <span className="text-slate-400 line-through text-lg">$999</span>
-                <span className="text-sage-700 font-bold text-2xl">$599</span>
+              <div className="text-sage-700 font-bold text-2xl">
+                $599 flat fee
               </div>
-              <div className="mt-2">
-                <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-semibold border border-amber-200">
-                  LIMITED TIME PRICING
-                </span>
-              </div>
+              <p className="text-sm text-slate-500 mt-1">
+                $99 to start · $500 when you make an offer
+              </p>
             </div>
           </div>
 

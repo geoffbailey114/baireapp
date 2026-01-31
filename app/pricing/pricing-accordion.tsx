@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, Check, Clock } from 'lucide-react'
+import { ChevronDown, Check } from 'lucide-react'
 
 const pricingSteps = [
   {
@@ -27,8 +27,7 @@ const pricingSteps = [
     id: 'access',
     title: 'Access',
     price: '$99',
-    priceNote: 'after trial',
-    fullPrice: '$199',
+    priceNote: 'to start',
     description: 'Continue using BAIRE after your trial. Unlock showing tools and keep learning.',
     features: [
       'Everything in Trial, plus:',
@@ -45,7 +44,6 @@ const pricingSteps = [
     title: 'Make an Offer',
     price: '$500',
     priceNote: 'when ready',
-    fullPrice: '$800',
     description: "When you're ready to make an offer, unlock full offer preparation and closing support.",
     features: [
       'Everything in Access, plus:',
@@ -58,7 +56,7 @@ const pricingSteps = [
       'Final walkthrough prep',
       'Closing day checklist',
     ],
-    note: 'One-time payment. Includes everything through closing.',
+    note: 'One-time payment. BAIRE stays with you through closing.',
   },
 ]
 
@@ -88,9 +86,6 @@ export function PricingAccordion() {
                 <div className="flex items-center gap-3">
                   <span className="font-semibold text-slate-900">{step.title}</span>
                   <span className="text-sage-700 font-bold">{step.price}</span>
-                  {step.fullPrice && (
-                    <span className="text-slate-400 text-sm line-through">{step.fullPrice}</span>
-                  )}
                   <span className="text-slate-500 text-sm">{step.priceNote}</span>
                 </div>
               </div>
@@ -139,17 +134,11 @@ export function PricingAccordion() {
         <div className="flex items-center justify-between">
           <div>
             <span className="font-semibold text-slate-900">Total (start to finish)</span>
-            <p className="text-sm text-slate-600">$99 after trial + $500 when you make an offer</p>
+            <p className="text-sm text-slate-600">$99 to start + $500 when you make an offer</p>
           </div>
           <div className="text-right">
-            <div className="flex items-center gap-2">
-              <span className="text-slate-400 line-through">$999</span>
-              <span className="text-2xl font-bold text-sage-700">$599</span>
-            </div>
-            <span className="inline-flex items-center gap-1 text-xs text-amber-700 font-semibold bg-amber-100 px-2 py-0.5 rounded border border-amber-200">
-              <Clock className="h-3 w-3" />
-              LIMITED TIME
-            </span>
+            <span className="text-2xl font-bold text-sage-700">$599</span>
+            <p className="text-sm text-slate-500">flat fee</p>
           </div>
         </div>
       </div>

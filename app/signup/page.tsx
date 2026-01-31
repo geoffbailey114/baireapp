@@ -216,9 +216,8 @@ function SignupForm() {
         {/* Pricing summary */}
         <div className="mt-4 p-3 bg-slate-50 rounded-lg text-center">
           <p className="text-xs text-slate-600">
-            <span className="line-through text-slate-400">$999</span>{' '}
-            <span className="font-semibold text-sage-700">$599 total</span>{' '}
-            — $99 after trial + $500 at offer
+            <span className="font-semibold text-sage-700">$599 flat fee</span>{' '}
+            — $99 to start · $500 when you make an offer
           </p>
         </div>
       </div>
