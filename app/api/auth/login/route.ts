@@ -12,9 +12,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET)
 const JWT_COOKIE_NAME = 'baire_auth'
 
-// Same in-memory store (would be replaced with Stripe customer lookup in production)
-const users = new Map<string, { passwordHash: string }>()
-
 async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder()
   const data = encoder.encode(password + process.env.JWT_SECRET)
@@ -34,44 +31,43 @@ export async function POST(request: Request) {
     }
 
     const normalizedEmail = email.toLowerCase().trim()
-    const user = users.get(normalizedEmail)
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'Invalid email or password' },
-        { status: 401 }
-      )
-    }
-
-    const passwordHash = await hashPassword(password)
-    if (passwordHash !== user.passwordHash) {
-      return NextResponse.json(
-        { error: 'Invalid email or password' },
-        { status: 401 }
-      )
-    }
 
     // Look up Stripe customer by email
-    let stripeCustomerId: string | undefined
+    const customers = await stripe.customers.list({
+      email: normalizedEmail,
+      limit: 1,
+    })
+
+    if (customers.data.length === 0) {
+      return NextResponse.json(
+        { error: 'Invalid email or password' },
+        { status: 401 }
+      )
+    }
+
+    const customer = customers.data[0]
+    const storedHash = customer.metadata?.password_hash
+
+    if (!storedHash) {
+      return NextResponse.json(
+        { error: 'Invalid email or password' },
+        { status: 401 }
+      )
+    }
+
+    // Verify password
+    const passwordHash = await hashPassword(password)
+    if (passwordHash !== storedHash) {
+      return NextResponse.json(
+        { error: 'Invalid email or password' },
+        { status: 401 }
+      )
+    }
+
+    // Get trial end from metadata if exists
     let trialEndsAt: number | undefined
-
-    try {
-      const customers = await stripe.customers.list({
-        email: normalizedEmail,
-        limit: 1,
-      })
-
-      if (customers.data.length > 0) {
-        const customer = customers.data[0]
-        stripeCustomerId = customer.id
-        
-        // Get trial end from metadata if exists
-        if (customer.metadata?.trial_ends_at) {
-          trialEndsAt = parseInt(customer.metadata.trial_ends_at)
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching Stripe customer:', error)
+    if (customer.metadata?.trial_ends_at) {
+      trialEndsAt = parseInt(customer.metadata.trial_ends_at)
     }
 
     // If no trial end stored, calculate new one (48 hours)
@@ -83,7 +79,7 @@ export async function POST(request: Request) {
     const token = await new SignJWT({
       sub: normalizedEmail,
       email: normalizedEmail,
-      stripe_customer_id: stripeCustomerId,
+      stripe_customer_id: customer.id,
       trial_ends_at: trialEndsAt,
     })
       .setProtectedHeader({ alg: 'HS256' })
