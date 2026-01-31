@@ -26,7 +26,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl md:text-7xl leading-[1.1]"
           >
-            Win the home you want — without hiring a buyer&apos;s agent.
+            Win the home — skip the commission.
           </motion.h1>
 
           <motion.p
