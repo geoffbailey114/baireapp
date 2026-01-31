@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Send, Loader2, AlertCircle, Menu, X, Plus, MessageSquare, ChevronLeft, Settings, Crown, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { UserProfile, generateProfileSummary } from '@/lib/user-profile'
 
 interface Message {
   id: string
@@ -25,12 +26,30 @@ interface ChatInterfaceProps {
   onMessageSent?: () => void
   userTier?: 'trial' | 'access' | 'offer' | 'comp'
   trialEndsAt?: number | null
+  userProfile?: UserProfile | null
 }
 
-const WELCOME_MESSAGE: Message = {
-  id: 'welcome',
-  role: 'assistant',
-  content: `Welcome to BAIRE! I'm here to help you navigate the home-buying process with confidence.
+function getWelcomeMessage(profile?: UserProfile | null): Message {
+  let content = `Welcome to BAIRE! I'm here to help you navigate the home-buying process with confidence.`
+  
+  if (profile?.onboardingCompleted && profile?.journeyStage) {
+    // Personalized based on journey stage
+    if (profile.journeyStage === 'starting') {
+      content = `Welcome to BAIRE! I see you're just starting to explore home buying. I'm here to help you understand the process from the ground up.`
+    } else if (profile.journeyStage === 'shopping') {
+      content = `Welcome back to BAIRE! Since you're actively shopping, I can help you evaluate properties, schedule showings, and understand what to look for.`
+    } else if (profile.journeyStage === 'ready-offer') {
+      content = `Welcome to BAIRE! You're ready to make moves. I can help you craft competitive offers and navigate negotiations.`
+    } else if (profile.journeyStage === 'under-contract') {
+      content = `Welcome to BAIRE! Congratulations on getting under contract. I can help you navigate inspections, contingencies, and the path to closing.`
+    }
+    
+    if (profile.buyerExperience === 'first-time') {
+      content += ` As a first-time buyer, don't hesitate to ask about anything—no question is too basic.`
+    }
+  }
+  
+  content += `
 
 Ask me anything about:
 • Scheduling showings & what to look for
@@ -40,7 +59,13 @@ Ask me anything about:
 
 **Note:** I provide educational guidance, not legal or financial advice. For specific situations, consult licensed professionals.
 
-What would you like to explore?`,
+What would you like to explore?`
+
+  return {
+    id: 'welcome',
+    role: 'assistant',
+    content,
+  }
 }
 
 export function ChatInterfaceNew({ 
@@ -48,13 +73,16 @@ export function ChatInterfaceNew({
   isTrialExhausted, 
   onMessageSent,
   userTier = 'trial',
-  trialEndsAt
+  trialEndsAt,
+  userProfile
 }: ChatInterfaceProps) {
+  const welcomeMessage = getWelcomeMessage(userProfile)
+  
   const [conversations, setConversations] = useState<Conversation[]>([
     {
       id: 'default',
       title: 'New conversation',
-      messages: [WELCOME_MESSAGE],
+      messages: [welcomeMessage],
       createdAt: new Date(),
     }
   ])
@@ -89,7 +117,7 @@ export function ChatInterfaceNew({
     const newConvo: Conversation = {
       id: Date.now().toString(),
       title: 'New conversation',
-      messages: [WELCOME_MESSAGE],
+      messages: [welcomeMessage],
       createdAt: new Date(),
     }
     setConversations(prev => [newConvo, ...prev])

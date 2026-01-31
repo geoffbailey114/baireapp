@@ -93,10 +93,10 @@ export default async function AccessPage({
 
         <div className="text-center">
           <Link 
-            href="/consultant"
+            href="/onboarding"
             className="inline-block bg-green-700 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-green-800"
           >
-            Start Chatting with BAIRE →
+            Continue Setup →
           </Link>
         </div>
 
