@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSession } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
 
-export default function GoogleCallbackPage() {
+function GoogleCallbackContent() {
   const { data: session, status } = useSession()
   const searchParams = useSearchParams()
   const [error, setError] = useState<string | null>(null)
@@ -100,5 +100,20 @@ export default function GoogleCallbackPage() {
         <p className="text-slate-600">Setting up your account...</p>
       </div>
     </div>
+  )
+}
+
+export default function GoogleCallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-[80vh] flex items-center justify-center py-12 px-4">
+        <div className="text-center">
+          <Loader2 className="h-8 w-8 animate-spin text-sage-600 mx-auto mb-4" />
+          <p className="text-slate-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <GoogleCallbackContent />
+    </Suspense>
   )
 }
