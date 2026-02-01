@@ -126,7 +126,7 @@ export function SimplePricing() {
           >
             <Button asChild size="xl" className="text-base px-8 h-14 rounded-full">
               <Link href="/signup">
-                Try BAIRE free for 48 hours
+                Start Free
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
