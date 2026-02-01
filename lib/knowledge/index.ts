@@ -1,14 +1,16 @@
 import { KnowledgeModule, AssembledPrompt, AssemblyContext } from './types'
 import { AccessTier } from '@/lib/access'
 
-// Import all modules
-import { coreIdentityModule } from './modules/core-identity'
-import { realEstateLawModule } from './modules/real-estate-law'
+// Import BAIRE Brain (consolidated knowledge module)
+import { baireBrainModule } from './modules/baire-brain'
+
+// Legacy modules (kept for reference, not actively used)
+// import { coreIdentityModule } from './modules/core-identity'
+// import { realEstateLawModule } from './modules/real-estate-law'
 
 // Registry of all available modules
 const ALL_MODULES: KnowledgeModule[] = [
-  coreIdentityModule,
-  realEstateLawModule,
+  baireBrainModule,
   // Add new modules here as they're created
 ]
 
