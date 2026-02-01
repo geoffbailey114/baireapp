@@ -25,18 +25,27 @@ export async function POST(request: Request) {
     const { 
       email, 
       password,
+      googleAuth,
       consentTimestamp,
       agreementVersion,
     } = body
 
-    if (!email || !password) {
+    if (!email) {
+      return NextResponse.json(
+        { error: 'Email required' },
+        { status: 400 }
+      )
+    }
+
+    // Password required unless using Google auth
+    if (!googleAuth && !password) {
       return NextResponse.json(
         { error: 'Email and password required' },
         { status: 400 }
       )
     }
 
-    if (password.length < 8) {
+    if (password && password.length < 8) {
       return NextResponse.json(
         { error: 'Password must be at least 8 characters' },
         { status: 400 }
@@ -53,8 +62,8 @@ export async function POST(request: Request) {
 
     if (existingCustomers.data.length > 0) {
       const existing = existingCustomers.data[0]
-      // If they have a password hash, they already have an account
-      if (existing.metadata?.password_hash) {
+      // If they have a password hash or google_auth, they already have an account
+      if (existing.metadata?.password_hash || existing.metadata?.google_auth) {
         return NextResponse.json(
           { error: 'An account with this email already exists. Please log in.' },
           { status: 400 }
@@ -62,17 +71,20 @@ export async function POST(request: Request) {
       }
     }
 
-    // Hash password
-    const passwordHash = await hashPassword(password)
-
     // Calculate trial end (48 hours from now)
     const trialEndsAt = Math.floor(Date.now() / 1000) + (48 * 60 * 60)
 
     // Build metadata
     const metadata: Record<string, string> = {
-      password_hash: passwordHash,
       trial_ends_at: trialEndsAt.toString(),
       created_at: new Date().toISOString(),
+    }
+
+    // Add password hash or Google auth flag
+    if (googleAuth) {
+      metadata.google_auth = 'true'
+    } else if (password) {
+      metadata.password_hash = await hashPassword(password)
     }
 
     // Add consent tracking if provided
@@ -103,6 +115,7 @@ export async function POST(request: Request) {
       email: normalizedEmail,
       stripe_customer_id: customerId,
       trial_ends_at: trialEndsAt,
+      google_auth: googleAuth || false,
     })
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
