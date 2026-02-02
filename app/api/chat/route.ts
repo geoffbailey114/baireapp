@@ -6,6 +6,7 @@ import { FREE_TRIAL_QUERY_LIMIT, JWT_COOKIE_NAME } from '@/lib/constants'
 import { assembleSystemPrompt } from '@/lib/knowledge'
 import { AccessTier } from '@/lib/access'
 import { deserializeProfile, generateProfileSummary } from '@/lib/user-profile'
+import { processListingUrl } from '@/lib/listing-lookup'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -107,6 +108,9 @@ export async function POST(request: NextRequest) {
     // Get user profile summary for personalization
     const profileSummary = await getUserProfileSummary(stripeCustomerId)
 
+    // Check for listing URLs and fetch data
+    const { hasListing, listingContext, listingData } = await processListingUrl(message)
+
     // Assemble system prompt using knowledge modules
     const { systemPrompt, modulesIncluded } = assembleSystemPrompt({
       userTier,
@@ -119,6 +123,14 @@ export async function POST(request: NextRequest) {
         content: systemPrompt,
       },
     ]
+
+    // If listing URL detected, inject listing context
+    if (hasListing && listingContext) {
+      messages.push({
+        role: 'system',
+        content: listingContext,
+      })
+    }
 
     const limitedHistory = (history as ChatMessage[]).slice(-10)
     messages.push(...limitedHistory)
@@ -176,8 +188,21 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       message: finalMessage,
       isTrialRestricted,
+      // Include listing info if found (useful for frontend display)
+      listing: hasListing ? {
+        found: listingData?.found,
+        source: listingData?.source,
+        address: listingData?.address,
+        price: listingData?.priceFormatted,
+        agent: listingData?.listingAgent?.name,
+        agentPhone: listingData?.listingAgent?.phone,
+      } : undefined,
       // Include for debugging (can remove in production)
-      _debug: process.env.NODE_ENV === 'development' ? { modulesIncluded } : undefined,
+      _debug: process.env.NODE_ENV === 'development' ? { 
+        modulesIncluded,
+        hasListing,
+        listingSource: listingData?.source,
+      } : undefined,
     })
   } catch (error) {
     console.error('Chat API error:', error)
