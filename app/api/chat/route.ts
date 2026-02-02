@@ -96,19 +96,45 @@ export async function POST(request: NextRequest) {
       const payload = await verifyJWT(token)
       stripeCustomerId = payload?.stripe_customer_id as string || null
       
-      // Determine tier from JWT
-      if (payload?.tier) {
-        userTier = payload.tier as AccessTier
-      } else if (payload?.paid) {
-        userTier = 'access'
+      // Check Stripe directly for the latest access status (handles comp granted after login)
+      if (stripeCustomerId) {
+        try {
+          const stripe = new (await import('stripe')).default(process.env.STRIPE_SECRET_KEY!, {
+            apiVersion: '2024-06-20',
+          })
+          const customer = await stripe.customers.retrieve(stripeCustomerId)
+          
+          if (customer && !customer.deleted) {
+            const metadata = customer.metadata || {}
+            const isComp = metadata.comp_access === 'true'
+            const hasPaidTier = metadata.tier === 'access' || metadata.tier === 'offer'
+            const hasPaidFlag = metadata.paid === 'true'
+            
+            // Determine tier from Stripe (source of truth)
+            if (isComp) {
+              userTier = 'comp'
+              isPaid = true
+            } else if (metadata.tier === 'offer') {
+              userTier = 'offer'
+              isPaid = true
+            } else if (metadata.tier === 'access' || hasPaidFlag) {
+              userTier = 'access'
+              isPaid = true
+            }
+          }
+        } catch (stripeError) {
+          console.error('Error checking Stripe for access:', stripeError)
+          // Fall back to JWT values
+          if (payload?.tier) {
+            userTier = payload.tier as AccessTier
+          }
+          isPaid = payload?.paid === true || 
+                   payload?.tier === 'access' || 
+                   payload?.tier === 'offer' || 
+                   payload?.tier === 'comp' ||
+                   payload?.isComp === true
+        }
       }
-      
-      // User has full access if: paid flag is true, OR tier is access/offer/comp
-      isPaid = payload?.paid === true || 
-               payload?.tier === 'access' || 
-               payload?.tier === 'offer' || 
-               payload?.tier === 'comp' ||
-               payload?.isComp === true
     }
 
     // Get user profile summary for personalization
@@ -149,7 +175,24 @@ export async function POST(request: NextRequest) {
     if (!isPaid) {
       messages.push({
         role: 'system',
-        content: 'Note: This user is on a free trial. Provide helpful educational information, but avoid providing detailed templates, checklists, or step-by-step action plans. Keep responses informative but general. Encourage them to upgrade for full access to detailed guidance.',
+        content: `IMPORTANT - TRIAL USER INSTRUCTIONS:
+This user is on a FREE TRIAL. Follow these rules:
+1. Provide helpful educational information, but keep detailed templates and step-by-step action plans brief
+2. At the END of responses about showings, offers, or negotiations, include an upgrade nudge
+3. Format the upgrade nudge EXACTLY like this (on its own line, italicized with asterisks):
+   *For more detailed scripts, templates, and step-by-step guidance, upgrade to Access for $99 — one-time, unlimited use.*
+4. Only include the upgrade nudge once per response, at the very end
+5. Do NOT include the upgrade nudge for simple questions or greetings`,
+      })
+    } else {
+      messages.push({
+        role: 'system',
+        content: `IMPORTANT - PAID USER INSTRUCTIONS:
+This user has FULL ACCESS (${userTier} tier). Follow these rules:
+1. Provide complete, detailed responses with full templates, scripts, and step-by-step guidance
+2. Do NOT mention upgrades, pricing, or upsells — they already have full access
+3. Do NOT say things like "consider upgrading" or "for more detailed guidance, upgrade"
+4. Give them the full value they paid for — comprehensive, actionable information`,
       })
     }
 

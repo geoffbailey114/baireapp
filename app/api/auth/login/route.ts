@@ -75,12 +75,29 @@ export async function POST(request: Request) {
       trialEndsAt = Math.floor(Date.now() / 1000) + (48 * 60 * 60)
     }
 
-    // Create JWT
+    // Determine access level from Stripe metadata
+    const isComp = customer.metadata?.comp_access === 'true'
+    const hasPaid = customer.metadata?.paid === 'true' || customer.metadata?.tier === 'access' || customer.metadata?.tier === 'offer'
+    
+    // Determine tier
+    let tier: 'trial' | 'access' | 'offer' | 'comp' = 'trial'
+    if (isComp) {
+      tier = 'comp'
+    } else if (customer.metadata?.tier === 'offer') {
+      tier = 'offer'
+    } else if (customer.metadata?.tier === 'access' || hasPaid) {
+      tier = 'access'
+    }
+
+    // Create JWT with all access info
     const token = await new SignJWT({
       sub: normalizedEmail,
       email: normalizedEmail,
       stripe_customer_id: customer.id,
       trial_ends_at: trialEndsAt,
+      paid: isComp || hasPaid,
+      tier: tier,
+      isComp: isComp,
     })
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()

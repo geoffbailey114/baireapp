@@ -9,6 +9,57 @@ import { UserProfile } from '@/lib/user-profile'
 const STORAGE_KEY = 'baire_conversations'
 const SIDEBAR_KEY = 'baire_sidebar_collapsed'
 
+// Format message content with markdown-style formatting
+function formatMessageContent(content: string): React.ReactNode {
+  // Split by lines to handle upgrade message specially
+  const lines = content.split('\n')
+  
+  return lines.map((line, lineIndex) => {
+    // Check if this is an upgrade nudge line (starts with * and ends with *)
+    const isUpgradeNudge = /^\*For more detailed|^\*Upgrade to Access|^\*For comprehensive/i.test(line.trim())
+    
+    if (isUpgradeNudge) {
+      // Style upgrade message as a standout callout
+      const cleanText = line.replace(/^\*|\*$/g, '').trim()
+      return (
+        <span key={lineIndex} className="block mt-4 pt-3 border-t border-sage-200">
+          <span className="inline-flex items-center gap-2 text-sage-700 italic">
+            <span className="text-sage-500">💡</span>
+            {cleanText}
+          </span>
+          {lineIndex < lines.length - 1 && '\n'}
+        </span>
+      )
+    }
+    
+    // Handle regular markdown formatting
+    let formatted: React.ReactNode = line
+    
+    // Bold: **text**
+    if (line.includes('**')) {
+      const parts = line.split(/\*\*([^*]+)\*\*/g)
+      formatted = parts.map((part, i) => 
+        i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+      )
+    }
+    
+    // Italic: *text* (single asterisks, but not the upgrade line)
+    else if (line.includes('*') && !isUpgradeNudge) {
+      const parts = line.split(/\*([^*]+)\*/g)
+      formatted = parts.map((part, i) => 
+        i % 2 === 1 ? <em key={i}>{part}</em> : part
+      )
+    }
+    
+    return (
+      <span key={lineIndex}>
+        {formatted}
+        {lineIndex < lines.length - 1 && '\n'}
+      </span>
+    )
+  })
+}
+
 interface Message {
   id: string
   role: 'user' | 'assistant'
@@ -429,12 +480,12 @@ export function ChatInterfaceNew({
                       <span className="text-white text-sm font-semibold">B</span>
                     </div>
                     <div className={cn("flex-1 min-w-0", message.isBlurred && "relative")}>
-                      <p className={cn(
+                      <div className={cn(
                         "text-[15px] leading-relaxed text-slate-800 whitespace-pre-wrap",
                         message.isBlurred && "blur-sm select-none"
                       )}>
-                        {message.content}
-                      </p>
+                        {formatMessageContent(message.content)}
+                      </div>
                       {message.isBlurred && (
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="bg-white/95 backdrop-blur px-6 py-4 rounded-xl shadow-lg text-center">
