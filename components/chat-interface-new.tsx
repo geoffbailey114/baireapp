@@ -1,12 +1,13 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { Send, Loader2, AlertCircle, Menu, X, Plus, MessageSquare, ChevronLeft, Settings, Crown, Sparkles, Trash2 } from 'lucide-react'
+import { Send, Loader2, AlertCircle, Menu, Plus, MessageSquare, Settings, Sparkles, Trash2, PanelLeftClose, PanelLeft } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { UserProfile, generateProfileSummary } from '@/lib/user-profile'
+import { UserProfile } from '@/lib/user-profile'
 
 const STORAGE_KEY = 'baire_conversations'
+const SIDEBAR_KEY = 'baire_sidebar_collapsed'
 
 interface Message {
   id: string
@@ -19,7 +20,7 @@ interface Conversation {
   id: string
   title: string
   messages: Message[]
-  createdAt: string // ISO string for serialization
+  createdAt: string
 }
 
 interface ChatInterfaceProps {
@@ -35,7 +36,6 @@ function getWelcomeMessage(profile?: UserProfile | null): Message {
   let content = `Welcome to BAIRE! I'm here to help you navigate the home-buying process with confidence.`
   
   if (profile?.onboardingCompleted && profile?.journeyStage) {
-    // Personalized based on journey stage
     if (profile.journeyStage === 'starting') {
       content = `Welcome to BAIRE! I see you're just starting to explore home buying. I'm here to help you understand the process from the ground up.`
     } else if (profile.journeyStage === 'shopping') {
@@ -58,8 +58,6 @@ Ask me anything about:
 • Understanding offers, contingencies, and terms
 • Negotiation strategies
 • The closing process
-
-**Note:** I provide educational guidance, not legal or financial advice. For specific situations, consult licensed professionals.
 
 What would you like to explore?`
 
@@ -94,12 +92,18 @@ export function ChatInterfaceNew({
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  // Load conversations from localStorage on mount
+  // Load from localStorage
   useEffect(() => {
     try {
+      const savedCollapsed = localStorage.getItem(SIDEBAR_KEY)
+      if (savedCollapsed !== null) {
+        setSidebarCollapsed(savedCollapsed === 'true')
+      }
+      
       const stored = localStorage.getItem(STORAGE_KEY)
       if (stored) {
         const parsed = JSON.parse(stored) as Conversation[]
@@ -109,21 +113,28 @@ export function ChatInterfaceNew({
         }
       }
     } catch (e) {
-      console.error('Failed to load conversations from localStorage:', e)
+      console.error('Failed to load from localStorage:', e)
     }
     setIsInitialized(true)
   }, [])
 
-  // Save conversations to localStorage whenever they change
+  // Save conversations
   useEffect(() => {
     if (isInitialized) {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(conversations))
       } catch (e) {
-        console.error('Failed to save conversations to localStorage:', e)
+        console.error('Failed to save conversations:', e)
       }
     }
   }, [conversations, isInitialized])
+
+  // Save sidebar state
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem(SIDEBAR_KEY, String(sidebarCollapsed))
+    }
+  }, [sidebarCollapsed, isInitialized])
 
   const activeConvo = conversations.find(c => c.id === activeConvoId) || conversations[0]
   const messages = activeConvo?.messages || []
@@ -136,7 +147,6 @@ export function ChatInterfaceNew({
     scrollToBottom()
   }, [messages])
 
-  // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto'
@@ -158,7 +168,6 @@ export function ChatInterfaceNew({
 
   const deleteConversation = (convoId: string) => {
     if (conversations.length === 1) {
-      // If it's the last conversation, just reset it
       setConversations([createDefaultConversation()])
       setActiveConvoId('default')
     } else {
@@ -186,7 +195,6 @@ export function ChatInterfaceNew({
       content: input.trim(),
     }
 
-    // Update conversation with user message
     setConversations(prev => prev.map(c => 
       c.id === activeConvoId 
         ? { 
@@ -253,130 +261,149 @@ export function ChatInterfaceNew({
   const getTierBadge = () => {
     switch (userTier) {
       case 'comp':
-        return { label: 'Full Access', icon: Sparkles, color: 'bg-purple-100 text-purple-700 border-purple-200' }
+        return { label: 'Full Access', icon: Sparkles, color: 'bg-sage-100 text-sage-700 border-sage-300' }
       case 'offer':
-        return { label: 'Full Access', icon: Crown, color: 'bg-sage-100 text-sage-700 border-sage-200' }
+        return { label: 'Full Access', icon: Sparkles, color: 'bg-sage-100 text-sage-700 border-sage-300' }
       case 'access':
-        return { label: 'Access', icon: null, color: 'bg-sage-100 text-sage-700 border-sage-200' }
+        return { label: 'Access', icon: null, color: 'bg-sage-100 text-sage-700 border-sage-300' }
       default:
-        return { label: 'Free Trial', icon: null, color: 'bg-amber-100 text-amber-700 border-amber-200' }
+        return { label: 'Free Trial', icon: null, color: 'bg-amber-50 text-amber-700 border-amber-200' }
     }
   }
 
   const tierBadge = getTierBadge()
 
-  return (
-    <div className="fixed inset-0 z-50 flex bg-[#f9fafb]">
-      {/* Sidebar */}
-      <aside className={cn(
-        "fixed inset-y-0 left-0 z-50 w-72 bg-[#1a1a1a] transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full"
-      )}>
-        <div className="flex flex-col h-full">
-          {/* Sidebar Header */}
-          <div className="p-4 border-b border-white/10">
-            <div className="flex items-center justify-between mb-4">
-              <Link href="/" className="text-white font-semibold text-lg">BAIRE</Link>
-              <button 
-                onClick={() => setSidebarOpen(false)}
-                className="lg:hidden text-white/60 hover:text-white"
+  // Sidebar content component to avoid duplication
+  const SidebarContent = ({ isMobile = false }: { isMobile?: boolean }) => (
+    <div className="flex flex-col h-full">
+      {/* Header */}
+      <div className="p-4 border-b border-sage-200">
+        <div className="flex items-center justify-between mb-4">
+          <Link href="/" className="text-sage-800 font-semibold text-lg">BAIRE</Link>
+          {isMobile && (
+            <button 
+              onClick={() => setSidebarOpen(false)}
+              className="text-sage-500 hover:text-sage-700 p-1"
+            >
+              <PanelLeftClose className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+        <button
+          onClick={startNewConversation}
+          className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg border border-sage-300 bg-white hover:bg-sage-100 text-sage-700 text-sm font-medium transition-colors"
+        >
+          <Plus className="h-4 w-4" />
+          New conversation
+        </button>
+      </div>
+
+      {/* Conversations */}
+      <div className="flex-1 overflow-y-auto p-2">
+        <div className="space-y-1">
+          {conversations.map((convo) => (
+            <div
+              key={convo.id}
+              className={cn(
+                "group w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-left transition-colors",
+                convo.id === activeConvoId 
+                  ? "bg-sage-200 text-sage-900" 
+                  : "text-sage-600 hover:bg-sage-100 hover:text-sage-800"
+              )}
+            >
+              <button
+                onClick={() => {
+                  setActiveConvoId(convo.id)
+                  if (isMobile) setSidebarOpen(false)
+                }}
+                className="flex-1 flex items-center gap-2 min-w-0"
               >
-                <X className="h-5 w-5" />
+                <MessageSquare className="h-4 w-4 flex-shrink-0" />
+                <span className="truncate">{convo.title}</span>
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  deleteConversation(convo.id)
+                }}
+                className="opacity-0 group-hover:opacity-100 p-1 hover:bg-sage-300 rounded transition-all"
+                title="Delete conversation"
+              >
+                <Trash2 className="h-3.5 w-3.5" />
               </button>
             </div>
-            <button
-              onClick={startNewConversation}
-              className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg bg-white/10 hover:bg-white/15 text-white text-sm font-medium transition-colors"
-            >
-              <Plus className="h-4 w-4" />
-              New conversation
-            </button>
-          </div>
-
-          {/* Conversations List */}
-          <div className="flex-1 overflow-y-auto p-2">
-            <div className="space-y-1">
-              {conversations.map((convo) => (
-                <div
-                  key={convo.id}
-                  className={cn(
-                    "group w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-left transition-colors",
-                    convo.id === activeConvoId 
-                      ? "bg-white/15 text-white" 
-                      : "text-white/70 hover:bg-white/10 hover:text-white"
-                  )}
-                >
-                  <button
-                    onClick={() => {
-                      setActiveConvoId(convo.id)
-                      setSidebarOpen(false)
-                    }}
-                    className="flex-1 flex items-center gap-2 min-w-0"
-                  >
-                    <MessageSquare className="h-4 w-4 flex-shrink-0" />
-                    <span className="truncate">{convo.title}</span>
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      deleteConversation(convo.id)
-                    }}
-                    className="opacity-0 group-hover:opacity-100 p-1 hover:bg-white/20 rounded transition-all"
-                    title="Delete conversation"
-                  >
-                    <Trash2 className="h-3.5 w-3.5" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Sidebar Footer - User Info */}
-          <div className="p-4 border-t border-white/10">
-            <div className={cn(
-              "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium border",
-              tierBadge.color
-            )}>
-              {tierBadge.icon && <tierBadge.icon className="h-4 w-4" />}
-              {tierBadge.label}
-            </div>
-            {userTier === 'trial' && trialEndsAt && (
-              <p className="text-xs text-white/50 mt-2 px-1">
-                Trial ends: {new Date(trialEndsAt * 1000).toLocaleDateString()}
-              </p>
-            )}
-            <div className="mt-3 space-y-1">
-              <Link 
-                href="/billing" 
-                className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-white/70 hover:bg-white/10 hover:text-white transition-colors"
-              >
-                <Settings className="h-4 w-4" />
-                Settings & Billing
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
+      </div>
+
+      {/* Footer */}
+      <div className="p-4 border-t border-sage-200">
+        <div className={cn(
+          "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium border",
+          tierBadge.color
+        )}>
+          {tierBadge.icon && <tierBadge.icon className="h-4 w-4" />}
+          {tierBadge.label}
+        </div>
+        <div className="mt-3">
+          <Link 
+            href="/billing" 
+            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-sage-600 hover:bg-sage-100 hover:text-sage-800 transition-colors"
+          >
+            <Settings className="h-4 w-4" />
+            Settings & Billing
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="fixed inset-0 z-50 flex bg-white">
+      {/* Desktop Sidebar */}
+      <aside className={cn(
+        "hidden lg:flex flex-col border-r border-sage-200 bg-sage-50 transition-all duration-300 ease-in-out overflow-hidden",
+        sidebarCollapsed ? "w-0" : "w-72"
+      )}>
+        <SidebarContent />
       </aside>
 
-      {/* Sidebar Overlay */}
+      {/* Mobile Sidebar */}
       {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
+        <>
+          <div 
+            className="fixed inset-0 bg-black/20 z-40 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+          <aside className="fixed inset-y-0 left-0 z-50 w-72 bg-sage-50 border-r border-sage-200 lg:hidden">
+            <SidebarContent isMobile />
+          </aside>
+        </>
       )}
 
       {/* Main Chat Area */}
       <main className="flex-1 flex flex-col min-w-0">
-        {/* Mobile Header */}
-        <header className="flex items-center gap-3 px-4 py-3 border-b border-slate-200 bg-white lg:hidden">
+        {/* Header */}
+        <header className="flex items-center gap-3 px-4 py-3 border-b border-slate-200 bg-white">
+          {/* Mobile menu */}
           <button
             onClick={() => setSidebarOpen(true)}
-            className="p-2 -ml-2 text-slate-600 hover:text-slate-900"
+            className="p-2 -ml-2 text-slate-600 hover:text-slate-900 lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
+          
+          {/* Desktop collapse toggle */}
+          <button
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className="hidden lg:flex p-2 -ml-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+            title={sidebarCollapsed ? "Show sidebar" : "Hide sidebar"}
+          >
+            {sidebarCollapsed ? <PanelLeft className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
+          </button>
+          
           <span className="font-semibold text-slate-900">BAIRE</span>
+          
           <div className={cn(
             "ml-auto px-2.5 py-1 rounded-full text-xs font-medium border",
             tierBadge.color
@@ -456,7 +483,7 @@ export function ChatInterfaceNew({
           </div>
         )}
 
-        {/* Input Area */}
+        {/* Input */}
         <div className="border-t border-slate-200 bg-white p-4">
           <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
             <div className="relative flex items-end gap-3 bg-slate-100 rounded-2xl px-4 py-3">

@@ -561,9 +561,20 @@ Source: ${listing.source.charAt(0).toUpperCase() + listing.source.slice(1)}`
       context += `
 **Phone:** Not found — ask user to check listing page`
     }
+    if (listing.listingAgent.email) {
+      context += `
+**Email:** ${listing.listingAgent.email}`
+    }
     if (listing.listingAgent.brokerage) {
       context += `
 **Brokerage:** ${listing.listingAgent.brokerage}`
+    }
+    
+    // Always recommend getting email if not found
+    if (!listing.listingAgent.email) {
+      context += `
+
+💡 **EMAIL TIP:** When calling, ask for the agent's email address. This allows the buyer to send their pre-approval letter and self-representation waiver directly, which demonstrates they're serious and prepared.`
     }
   } else {
     context += `

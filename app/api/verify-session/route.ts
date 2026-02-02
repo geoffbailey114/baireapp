@@ -31,6 +31,8 @@ export async function GET() {
       paid: payload.paid === true,
       email: payload.email,
       tier: payload.tier,
+      isComp: payload.tier === 'comp' || payload.isComp === true,
+      trialEndsAt: payload.trialEndsAt,
       createdAt: payload.createdAt,
     })
   } catch (error) {

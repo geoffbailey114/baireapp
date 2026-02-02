@@ -94,15 +94,21 @@ export async function POST(request: NextRequest) {
     
     if (token) {
       const payload = await verifyJWT(token)
-      isPaid = payload?.paid === true
       stripeCustomerId = payload?.stripe_customer_id as string || null
       
       // Determine tier from JWT
       if (payload?.tier) {
         userTier = payload.tier as AccessTier
-      } else if (isPaid) {
+      } else if (payload?.paid) {
         userTier = 'access'
       }
+      
+      // User has full access if: paid flag is true, OR tier is access/offer/comp
+      isPaid = payload?.paid === true || 
+               payload?.tier === 'access' || 
+               payload?.tier === 'offer' || 
+               payload?.tier === 'comp' ||
+               payload?.isComp === true
     }
 
     // Get user profile summary for personalization
