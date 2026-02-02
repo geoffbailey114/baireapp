@@ -1,10 +1,12 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-import { Send, Loader2, AlertCircle, Menu, X, Plus, MessageSquare, ChevronLeft, Settings, Crown, Sparkles } from 'lucide-react'
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { Send, Loader2, AlertCircle, Menu, X, Plus, MessageSquare, ChevronLeft, Settings, Crown, Sparkles, Trash2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { UserProfile, generateProfileSummary } from '@/lib/user-profile'
+
+const STORAGE_KEY = 'baire_conversations'
 
 interface Message {
   id: string
@@ -17,7 +19,7 @@ interface Conversation {
   id: string
   title: string
   messages: Message[]
-  createdAt: Date
+  createdAt: string // ISO string for serialization
 }
 
 interface ChatInterfaceProps {
@@ -77,15 +79,16 @@ export function ChatInterfaceNew({
   userProfile
 }: ChatInterfaceProps) {
   const welcomeMessage = getWelcomeMessage(userProfile)
+  const [isInitialized, setIsInitialized] = useState(false)
   
-  const [conversations, setConversations] = useState<Conversation[]>([
-    {
-      id: 'default',
-      title: 'New conversation',
-      messages: [welcomeMessage],
-      createdAt: new Date(),
-    }
-  ])
+  const createDefaultConversation = useCallback((): Conversation => ({
+    id: 'default',
+    title: 'New conversation',
+    messages: [welcomeMessage],
+    createdAt: new Date().toISOString(),
+  }), [welcomeMessage])
+  
+  const [conversations, setConversations] = useState<Conversation[]>([createDefaultConversation()])
   const [activeConvoId, setActiveConvoId] = useState('default')
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -93,6 +96,34 @@ export function ChatInterfaceNew({
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  // Load conversations from localStorage on mount
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (stored) {
+        const parsed = JSON.parse(stored) as Conversation[]
+        if (parsed && parsed.length > 0) {
+          setConversations(parsed)
+          setActiveConvoId(parsed[0].id)
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load conversations from localStorage:', e)
+    }
+    setIsInitialized(true)
+  }, [])
+
+  // Save conversations to localStorage whenever they change
+  useEffect(() => {
+    if (isInitialized) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(conversations))
+      } catch (e) {
+        console.error('Failed to save conversations to localStorage:', e)
+      }
+    }
+  }, [conversations, isInitialized])
 
   const activeConvo = conversations.find(c => c.id === activeConvoId) || conversations[0]
   const messages = activeConvo?.messages || []
@@ -118,11 +149,25 @@ export function ChatInterfaceNew({
       id: Date.now().toString(),
       title: 'New conversation',
       messages: [welcomeMessage],
-      createdAt: new Date(),
+      createdAt: new Date().toISOString(),
     }
     setConversations(prev => [newConvo, ...prev])
     setActiveConvoId(newConvo.id)
     setSidebarOpen(false)
+  }
+
+  const deleteConversation = (convoId: string) => {
+    if (conversations.length === 1) {
+      // If it's the last conversation, just reset it
+      setConversations([createDefaultConversation()])
+      setActiveConvoId('default')
+    } else {
+      setConversations(prev => prev.filter(c => c.id !== convoId))
+      if (activeConvoId === convoId) {
+        const remaining = conversations.filter(c => c.id !== convoId)
+        setActiveConvoId(remaining[0]?.id || 'default')
+      }
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -252,22 +297,36 @@ export function ChatInterfaceNew({
           <div className="flex-1 overflow-y-auto p-2">
             <div className="space-y-1">
               {conversations.map((convo) => (
-                <button
+                <div
                   key={convo.id}
-                  onClick={() => {
-                    setActiveConvoId(convo.id)
-                    setSidebarOpen(false)
-                  }}
                   className={cn(
-                    "w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-left transition-colors",
+                    "group w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-left transition-colors",
                     convo.id === activeConvoId 
                       ? "bg-white/15 text-white" 
                       : "text-white/70 hover:bg-white/10 hover:text-white"
                   )}
                 >
-                  <MessageSquare className="h-4 w-4 flex-shrink-0" />
-                  <span className="truncate">{convo.title}</span>
-                </button>
+                  <button
+                    onClick={() => {
+                      setActiveConvoId(convo.id)
+                      setSidebarOpen(false)
+                    }}
+                    className="flex-1 flex items-center gap-2 min-w-0"
+                  >
+                    <MessageSquare className="h-4 w-4 flex-shrink-0" />
+                    <span className="truncate">{convo.title}</span>
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      deleteConversation(convo.id)
+                    }}
+                    className="opacity-0 group-hover:opacity-100 p-1 hover:bg-white/20 rounded transition-all"
+                    title="Delete conversation"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </button>
+                </div>
               ))}
             </div>
           </div>

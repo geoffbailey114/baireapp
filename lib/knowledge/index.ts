@@ -1,8 +1,10 @@
 import { KnowledgeModule, AssembledPrompt, AssemblyContext } from './types'
 import { AccessTier } from '@/lib/access'
 
-// Import BAIRE Brain (consolidated knowledge module)
+// Import BAIRE Brain (consolidated knowledge module from research)
 import { baireBrainModule } from './modules/baire-brain'
+// Import showing-scheduling for waiver template and detailed scripts
+import { showingSchedulingModule } from './modules/showing-scheduling'
 
 // Legacy modules (kept for reference, not actively used)
 // import { coreIdentityModule } from './modules/core-identity'
@@ -11,6 +13,7 @@ import { baireBrainModule } from './modules/baire-brain'
 // Registry of all available modules
 const ALL_MODULES: KnowledgeModule[] = [
   baireBrainModule,
+  showingSchedulingModule, // Supplements brain with waiver template + detailed scripts
   // Add new modules here as they're created
 ]
 
