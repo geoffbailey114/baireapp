@@ -73,15 +73,17 @@ async function fetchPageHtml(url: string): Promise<string | null> {
   }
 
   try {
+    // URL must be properly encoded
+    const encodedUrl = encodeURIComponent(url)
+    
     const params = new URLSearchParams({
       api_key: SCRAPINGBEE_API_KEY,
       url: url,
-      render_js: 'true',      // Critical: these sites use JavaScript
-      wait: '3000',           // Wait for dynamic content
-      wait_for: 'body',       // Ensure body is loaded
-      block_ads: 'true',
-      block_resources: 'false',
-      premium_proxy: 'true',  // Better success rate for real estate sites
+      render_js: 'true',           // Critical: these sites use JavaScript
+      wait: '5000',                // Wait longer for Zillow's slow loading
+      block_resources: 'false',    // Don't block resources (Zillow needs them)
+      stealth_proxy: 'true',       // Use stealth mode for anti-bot sites
+      country_code: 'us',          // US proxy for US listings
     })
 
     console.log(`Fetching listing via ScrapingBee: ${url}`)
