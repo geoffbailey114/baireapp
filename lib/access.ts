@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 })
 
 // Access tiers in order (renamed: showings -> offer)
-export type AccessTier = 'none' | 'trial' | 'access' | 'offer' | 'closing'
+export type AccessTier = 'none' | 'trial' | 'access' | 'offer' | 'closing' | 'comp'
 
 export interface UserAccess {
   tier: AccessTier
@@ -216,7 +216,7 @@ export async function getUserAccess(): Promise<UserAccess> {
  * Check if user can access a specific feature
  */
 export function canAccess(userAccess: UserAccess, requiredTier: AccessTier): boolean {
-  const tierOrder: AccessTier[] = ['none', 'trial', 'access', 'offer', 'closing']
+  const tierOrder: AccessTier[] = ['none', 'trial', 'access', 'offer', 'closing', 'comp']
   const userTierIndex = tierOrder.indexOf(userAccess.tier)
   const requiredTierIndex = tierOrder.indexOf(requiredTier)
   
