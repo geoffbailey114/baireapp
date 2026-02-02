@@ -466,7 +466,7 @@ export async function fetchListingData(url: string, source: string): Promise<Lis
       parsedData = parseGeneric(html, url)
   }
 
-  const hasData = parsedData.address || parsedData.price || parsedData.listingAgent
+  const hasData = !!(parsedData.address || parsedData.price || parsedData.listingAgent)
 
   return {
     found: hasData,
