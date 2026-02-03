@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowRight, ArrowLeft, Loader2, Check, Home, MapPin, DollarSign, Clock, Users, Target } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Loader2, Check, Home, MapPin, DollarSign, Clock, Users, Target, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import {
   UserProfile,
@@ -38,6 +38,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   })
 
   const steps = [
+    { title: 'Your Name', icon: User },
     { title: 'Your Journey', icon: Target },
     { title: 'Experience', icon: Users },
     { title: 'Property', icon: Home },
@@ -145,8 +146,46 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       {/* Content */}
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-2xl mx-auto px-4 py-8">
-          {/* Step 0: Journey Stage */}
+          {/* Step 0: Name */}
           {step === 0 && (
+            <StepContainer
+              title="What's your name?"
+              subtitle="We'll personalize your experience"
+            >
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="firstName" className="block text-sm font-medium text-slate-700 mb-1">
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    value={profile.firstName || ''}
+                    onChange={(e) => updateProfile({ firstName: e.target.value })}
+                    placeholder="Enter your first name"
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent text-slate-800 placeholder:text-slate-400"
+                    autoFocus
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastName" className="block text-sm font-medium text-slate-700 mb-1">
+                    Last Name <span className="text-slate-400">(optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    value={profile.lastName || ''}
+                    onChange={(e) => updateProfile({ lastName: e.target.value })}
+                    placeholder="Enter your last name"
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent text-slate-800 placeholder:text-slate-400"
+                  />
+                </div>
+              </div>
+            </StepContainer>
+          )}
+
+          {/* Step 1: Journey Stage */}
+          {step === 1 && (
             <StepContainer
               title="Where are you in your home buying journey?"
               subtitle="This helps us tailor our guidance to your needs"
@@ -165,8 +204,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             </StepContainer>
           )}
 
-          {/* Step 1: Buyer Experience */}
-          {step === 1 && (
+          {/* Step 2: Buyer Experience */}
+          {step === 2 && (
             <StepContainer
               title="Have you bought a home before?"
               subtitle="We'll adjust our explanations based on your experience"
@@ -185,8 +224,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             </StepContainer>
           )}
 
-          {/* Step 2: Property Types */}
-          {step === 2 && (
+          {/* Step 3: Property Types */}
+          {step === 3 && (
             <StepContainer
               title="What type of property are you looking for?"
               subtitle="Select all that apply"
@@ -211,8 +250,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             </StepContainer>
           )}
 
-          {/* Step 3: Location */}
-          {step === 3 && (
+          {/* Step 4: Location */}
+          {step === 4 && (
             <StepContainer
               title="Where are you looking to buy?"
               subtitle="This helps us provide location-specific guidance"
@@ -258,8 +297,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             </StepContainer>
           )}
 
-          {/* Step 4: Budget */}
-          {step === 4 && (
+          {/* Step 5: Budget */}
+          {step === 5 && (
             <StepContainer
               title="What's your budget range?"
               subtitle="This helps us give relevant advice"
@@ -277,8 +316,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             </StepContainer>
           )}
 
-          {/* Step 5: Financing */}
-          {step === 5 && (
+          {/* Step 6: Financing */}
+          {step === 6 && (
             <StepContainer
               title="What's your financing status?"
               subtitle="Pre-approval strengthens your offers"
@@ -297,8 +336,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             </StepContainer>
           )}
 
-          {/* Step 6: Timeline */}
-          {step === 6 && (
+          {/* Step 7: Timeline */}
+          {step === 7 && (
             <StepContainer
               title="When are you hoping to buy?"
               subtitle="This helps us prioritize what to cover"
@@ -317,8 +356,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             </StepContainer>
           )}
 
-          {/* Step 7: Agent Status */}
-          {step === 7 && (
+          {/* Step 8: Agent Status */}
+          {step === 8 && (
             <StepContainer
               title="Are you working with a buyer's agent?"
               subtitle="BAIRE is designed for self-represented buyers, but we can help either way"
@@ -337,8 +376,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             </StepContainer>
           )}
 
-          {/* Step 8: Help Priorities */}
-          {step === 8 && (
+          {/* Step 9: Help Priorities */}
+          {step === 9 && (
             <StepContainer
               title="What do you most want help with?"
               subtitle="Select up to 3 priorities"

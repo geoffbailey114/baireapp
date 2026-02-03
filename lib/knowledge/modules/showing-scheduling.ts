@@ -8,41 +8,76 @@ export const showingSchedulingModule: KnowledgeModule = {
   enabled: true,
   content: `## SHOWING SCHEDULING EXPERTISE
 
-### When User Shares a Property Link (Zillow, Redfin, Realtor.com, etc.)
+### EMAIL-FIRST APPROACH (RECOMMENDED)
+Most listing agents want to see proof of financing BEFORE they'll take time to schedule a showing. The most effective approach is:
+
+1. **Get the agent's email** (call or text to request it)
+2. **Email your pre-approval letter + signed waiver** before asking to schedule
+3. **Then call to schedule** once they've seen you're a serious, qualified buyer
+
+This shows you're professional and saves everyone time.
+
+### When User Shares a Property Link
 When a user shares a property listing link or says they want to schedule a showing:
 
-1. **IMMEDIATELY ask for or acknowledge the listing agent's contact info**
-   - If they shared a link, tell them: "You can find the listing agent's contact info on that listing page - look for 'Listing Agent' or 'Listing by' section with their name and phone number."
-   - If they already have the info, proceed directly to the script.
+1. **Acknowledge the listing and extract agent info if available**
+2. **Recommend the EMAIL-FIRST approach** — get the agent's email to send documents
+3. **Provide both the call script AND email template**
 
-2. **Provide a SPECIFIC call script** — not generic advice. Give them exact words.
+### STEP 1: CALL SCRIPT TO GET AGENT'S EMAIL
 
-3. **Always provide the Self-Representation Waiver template** when discussing showings.
-
-### EXACT SCRIPT FOR CALLING LISTING AGENTS
-
-Tell the user to say:
-
+Tell the user to say (use their actual name if known):
 ---
 **Opening:**
-"Hi, this is [YOUR NAME]. I'm calling about the property at [ADDRESS]. I'm a self-represented buyer and I'd like to schedule a showing."
+"Hi, this is [USER'S NAME]. I'm calling about the property at [ADDRESS]. I'm a self-represented buyer interested in scheduling a showing."
 
-**If agent asks about your agent:**
-"I understand I have the right to an agent, but I have chosen to represent myself. I have a pre-approval letter from my lender and I'll bring a signed Self-Representation Waiver acknowledging that I understand my rights."
+**Request Email:**
+"I have my pre-approval letter ready and a signed Self-Representation Waiver. Could you text or give me your email address so I can send those over? Most agents like to see pre-qualification before scheduling."
 
-**Scheduling:**
-"I'd like to see the home on [DAY] at [TIME]. Does that work for the seller's schedule?"
+**If they give email:**
+"Perfect, I'll send those right over. Once you've had a chance to review, I'd love to schedule a showing — would [DAY] at [TIME] work?"
 
-**Closing:**
-"Great, I'll bring my pre-approval letter and the signed waiver. What's the best way to access the property — will you be there or is there a lockbox?"
-
+**If they want to schedule directly:**
+"Great! I'll bring my pre-approval letter and signed waiver to the showing. What's the best way to access the property — will you be there or is there a lockbox?"
 ---
 
-### SELF-REPRESENTATION WAIVER TEMPLATE
+### STEP 2: EMAIL TEMPLATE
 
-Always provide this waiver when users are scheduling showings. Introduce it as:
+Once user has the agent's email, provide this template:
+---
+**Subject:** Pre-Qualified Self-Represented Buyer - [PROPERTY ADDRESS]
 
-"Here's a Self-Representation Waiver template you can print and sign. This shows the listing agent you're serious and understand your rights. **Note: This is a template for educational purposes. BAIRE is not a law firm — have an attorney review if you want legal certainty.**"
+Hi [AGENT NAME],
+
+I'm interested in scheduling a showing for [PROPERTY ADDRESS]. I'm a pre-approved, self-represented buyer.
+
+Attached please find:
+1. My pre-approval letter from [LENDER NAME]
+2. Signed Self-Representation Waiver
+
+I'm available [LIST 2-3 TIMES]. Please let me know what works best for the seller's schedule.
+
+Thank you,
+[YOUR NAME]
+[YOUR PHONE]
+---
+
+### SELF-REPRESENTATION WAIVER
+
+**HOW TO GET THE WAIVER:**
+Tell the user: "You have two options for the Self-Representation Waiver:
+
+**Option 1 - Download Ready-to-Use Template:**
+Download the waiver directly: **[baireapp.com/api/waiver](https://baireapp.com/api/waiver)** — this will download a Word-compatible document you can fill in, print, and sign.
+
+**Option 2 - Copy & Paste:**
+1. Copy the waiver text below into a Word document (or Google Doc)
+2. Fill in your name and the property address
+3. Print, sign, and date the document
+4. Scan or photograph the signed document to email to the agent
+5. Bring 2 printed copies to the showing (one for you, one for the agent)
+
+**Note: This is a template for educational purposes. BAIRE is not a law firm — have an attorney review if you want legal certainty.**"
 
 ---
 
@@ -72,30 +107,31 @@ Buyer Printed Name: _________________________
 
 ---
 
-### WHY THIS APPROACH WORKS
+### WHY EMAIL-FIRST WORKS BETTER
 
 Explain to users:
-- Listing agents appreciate prepared, serious buyers
-- The waiver removes their liability concerns
-- Self-represented buyers are attractive because no commission to split
-- Being organized makes you stand out from other buyers
+- Agents are busy — they prioritize buyers who are clearly qualified
+- Sending docs BEFORE the call shows you're serious and organized
+- Pre-approval proof eliminates "tire kicker" concerns
+- The signed waiver removes their liability worries upfront
+- You'll get faster responses and better treatment
 
 ### COMMON LISTING AGENT OBJECTIONS & RESPONSES
 
 **"We prefer to work with agents"**
-→ User should say: "I understand. I'm well-prepared with financing in place and I've done my research. I'll make the process easy for you."
+→ User should say: "I understand. I'm well-prepared with financing in place and I've done my research. I'll make the process easy for you — I've already sent my pre-approval and waiver."
 
 **"You should really have an agent"**
 → User should say: "I appreciate the advice. I've made an informed decision to self-represent. I have resources to help me through the process and I'll have an attorney review contracts."
 
 **"I can't show you the property without an agent"**
-→ User should say: "Actually, since the NAR settlement in August 2024, buyers aren't required to have agents. I'm happy to sign a waiver acknowledging I'm self-represented. Would that work?"
+→ User should say: "Actually, since the NAR settlement in August 2024, buyers aren't required to have agents. I've already sent you my signed waiver acknowledging I'm self-represented. Would you be able to show the property?"
 
 ### BEFORE THE SHOWING CHECKLIST
 
 Remind users to prepare:
-- [ ] Pre-approval letter from lender
-- [ ] Signed Self-Representation Waiver (2 copies)
+- [ ] Pre-approval letter from lender (bring printed copy)
+- [ ] Signed Self-Representation Waiver (bring 2 printed copies)
 - [ ] Photo ID
 - [ ] List of questions about the property
 - [ ] Phone to take photos/video (ask permission first)

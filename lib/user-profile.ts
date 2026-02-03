@@ -69,6 +69,8 @@ export const HELP_PRIORITIES = [
 
 // Profile type
 export interface UserProfile {
+  firstName: string | null
+  lastName: string | null
   journeyStage: typeof JOURNEY_STAGES[number]['value'] | null
   buyerExperience: typeof BUYER_EXPERIENCE[number]['value'] | null
   propertyTypes: Array<typeof PROPERTY_TYPES[number]['value']>
@@ -86,6 +88,8 @@ export interface UserProfile {
 
 // Default empty profile
 export const DEFAULT_PROFILE: UserProfile = {
+  firstName: null,
+  lastName: null,
   journeyStage: null,
   buyerExperience: null,
   propertyTypes: [],
@@ -104,6 +108,8 @@ export const DEFAULT_PROFILE: UserProfile = {
 // Serialize profile to fit in Stripe metadata (max 500 chars per value)
 export function serializeProfile(profile: UserProfile): Record<string, string> {
   return {
+    profile_first_name: profile.firstName || '',
+    profile_last_name: profile.lastName || '',
     profile_journey: profile.journeyStage || '',
     profile_experience: profile.buyerExperience || '',
     profile_property_types: profile.propertyTypes.join(','),
@@ -127,6 +133,8 @@ export function deserializeProfile(metadata: Stripe.Metadata | null | undefined)
   const location = metadata.profile_location?.split(',') || []
   
   return {
+    firstName: metadata.profile_first_name || null,
+    lastName: metadata.profile_last_name || null,
     journeyStage: (metadata.profile_journey as UserProfile['journeyStage']) || null,
     buyerExperience: (metadata.profile_experience as UserProfile['buyerExperience']) || null,
     propertyTypes: metadata.profile_property_types 
@@ -154,6 +162,9 @@ export function generateProfileSummary(profile: UserProfile): string {
   }
 
   const parts: string[] = []
+  
+  // Name
+  const userName = profile.firstName || null
 
   // Experience
   if (profile.buyerExperience === 'first-time') {
@@ -186,7 +197,13 @@ export function generateProfileSummary(profile: UserProfile): string {
     parts.push("and is already under contract on a property")
   }
 
-  let summary = parts.length > 0 
+  // Build summary with name
+  let summary = ''
+  if (userName) {
+    summary = `USER'S NAME: ${userName}. Use their name naturally in responses when appropriate (e.g., "Great question, ${userName}!" or "Here's what I'd recommend, ${userName}...").\n\n`
+  }
+  
+  summary += parts.length > 0 
     ? `You're speaking with ${parts.join(' ')}.`
     : ''
 
