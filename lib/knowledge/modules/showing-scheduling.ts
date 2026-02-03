@@ -65,9 +65,9 @@ Say: "Actually, since the NAR settlement in August 2024, buyers aren't required 
 
 ### ENDING THE SHOWING GUIDANCE
 
-**IMPORTANT: After providing the script and pushback tips, end with this offer:**
+**IMPORTANT: After providing the script and pushback tips, end with this offer (make it bold so they don't miss it):**
 
-"Once you're ready, let me know and I'll share the waiver template for you to print, sign, and email to the agent along with your pre-approval."
+**"Once you're ready, let me know and I'll share the waiver template for you to print, sign, and email to the agent along with your pre-approval."**
 
 **Do NOT automatically include the waiver template.** Wait for the user to ask for it. This keeps the response focused and avoids overwhelming them with too much at once.
 
