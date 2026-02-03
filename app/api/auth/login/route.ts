@@ -47,6 +47,18 @@ export async function POST(request: Request) {
 
     const customer = customers.data[0]
     const storedHash = customer.metadata?.password_hash
+    const isGoogleUser = customer.metadata?.google_auth === 'true'
+
+    // Check if this is a Google-only account (no password set)
+    if (!storedHash && isGoogleUser) {
+      return NextResponse.json(
+        { 
+          error: 'This account uses Google Sign-In. Please click "Login with Google" above.',
+          code: 'GOOGLE_ACCOUNT'
+        },
+        { status: 401 }
+      )
+    }
 
     if (!storedHash) {
       return NextResponse.json(

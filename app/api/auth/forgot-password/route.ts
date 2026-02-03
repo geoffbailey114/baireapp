@@ -33,20 +33,68 @@ export async function POST(request: Request) {
     if (customers.data.length === 0) {
       return NextResponse.json({ 
         success: true,
-        message: 'If an account exists with this email, you will receive a password reset link.',
+        message: 'If an account exists with this email, you will receive instructions.',
       })
     }
 
     const customer = customers.data[0]
+    const isGoogleUser = customer.metadata?.google_auth === 'true'
+    const hasPassword = !!customer.metadata?.password_hash
 
-    // Check if they have a password (some customers may have gone through Stripe but not set password)
-    if (!customer.metadata?.password_hash) {
+    // CASE 1: Google user (no password set)
+    if (isGoogleUser && !hasPassword) {
+      // Send email reminding them to use Google login
+      if (process.env.RESEND_API_KEY) {
+        try {
+          await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              from: process.env.FROM_EMAIL || 'BAIRE <noreply@baireapp.com>',
+              to: normalizedEmail,
+              subject: 'BAIRE Login Reminder',
+              html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+                  <h2>You signed up with Google</h2>
+                  <p>It looks like you created your BAIRE account using Google Sign-In, so there's no password to reset.</p>
+                  <p style="margin: 30px 0;">
+                    <a href="${baseUrl}/login" style="background-color: #4a7c59; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
+                      Login with Google
+                    </a>
+                  </p>
+                  <p style="color: #666; font-size: 14px;">Just click "Login with Google" on the login page and you'll be all set!</p>
+                  <p style="color: #666; font-size: 14px;">If you'd like to set a password for your account instead, reply to this email and we'll help you out.</p>
+                  <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
+                  <p style="color: #999; font-size: 12px;">BAIRE - Your AI Home Buying Consultant</p>
+                </div>
+              `,
+            }),
+          })
+        } catch (emailError) {
+          console.error('Failed to send Google reminder email:', emailError)
+        }
+      }
+
       return NextResponse.json({ 
         success: true,
-        message: 'If an account exists with this email, you will receive a password reset link.',
+        message: 'If an account exists with this email, you will receive instructions.',
+        // Hint for the UI (won't reveal to attackers since we always return success)
+        hint: 'google',
       })
     }
 
+    // CASE 2: No password set (incomplete signup, not Google)
+    if (!hasPassword) {
+      return NextResponse.json({ 
+        success: true,
+        message: 'If an account exists with this email, you will receive instructions.',
+      })
+    }
+
+    // CASE 3: Normal password user - send reset link
     // Generate secure reset token
     const resetToken = crypto.randomBytes(32).toString('hex')
     const resetTokenExpires = Date.now() + (60 * 60 * 1000) // 1 hour from now
