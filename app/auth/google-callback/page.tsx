@@ -9,6 +9,7 @@ function GoogleCallbackContent() {
   const { data: session, status } = useSession()
   const searchParams = useSearchParams()
   const [error, setError] = useState<string | null>(null)
+  const [statusMessage, setStatusMessage] = useState('Setting up your account...')
 
   useEffect(() => {
     async function handleGoogleSignIn() {
@@ -23,54 +24,72 @@ function GoogleCallbackContent() {
         const email = session.user.email
         const tier = searchParams.get('tier') || 'trial'
 
-        // Create account in our system
-        const signupRes = await fetch('/api/auth/signup', {
+        // First, try to log in as existing user
+        setStatusMessage('Checking your account...')
+        const loginRes = await fetch('/api/auth/google-login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            password: null, // Google users don't have a password
-            googleAuth: true,
-            consentTimestamp: new Date().toISOString(),
-            agreementVersion: '1.0',
-          }),
+          body: JSON.stringify({ email }),
         })
 
-        const signupData = await signupRes.json()
+        const loginData = await loginRes.json()
 
-        // If account already exists, that's okay - proceed to checkout or login
-        if (!signupRes.ok && !signupData.error?.includes('already exists')) {
-          throw new Error(signupData.error || 'Failed to create account')
-        }
-
-        // If account exists, check if they have active access
-        if (signupData.error?.includes('already exists')) {
-          // Redirect to login with a message
-          window.location.href = '/login?message=account-exists'
+        // If login succeeded, user exists - redirect to consultant
+        if (loginRes.ok && loginData.success) {
+          setStatusMessage('Welcome back! Redirecting...')
+          window.location.href = '/consultant'
           return
         }
 
-        // Create Stripe checkout session
-        const checkoutRes = await fetch('/api/stripe/checkout', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            tier,
-            consentTimestamp: new Date().toISOString(),
-            agreementVersion: '1.0',
-            googleAuth: true,
-          }),
-        })
+        // If user doesn't exist, create new account
+        if (loginData.error === 'USER_NOT_FOUND') {
+          setStatusMessage('Creating your account...')
+          
+          // Create account in our system
+          const signupRes = await fetch('/api/auth/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email,
+              password: null, // Google users don't have a password
+              googleAuth: true,
+              consentTimestamp: new Date().toISOString(),
+              agreementVersion: '1.0',
+            }),
+          })
 
-        const checkoutData = await checkoutRes.json()
+          const signupData = await signupRes.json()
 
-        if (!checkoutRes.ok) {
-          throw new Error(checkoutData.error || 'Failed to start checkout')
+          if (!signupRes.ok && !signupData.error?.includes('already exists')) {
+            throw new Error(signupData.error || 'Failed to create account')
+          }
+
+          // Create Stripe checkout session
+          const checkoutRes = await fetch('/api/stripe/checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email,
+              tier,
+              consentTimestamp: new Date().toISOString(),
+              agreementVersion: '1.0',
+              googleAuth: true,
+            }),
+          })
+
+          const checkoutData = await checkoutRes.json()
+
+          if (!checkoutRes.ok) {
+            throw new Error(checkoutData.error || 'Failed to start checkout')
+          }
+
+          // Redirect to Stripe
+          window.location.href = checkoutData.url
+          return
         }
 
-        // Redirect to Stripe
-        window.location.href = checkoutData.url
+        // Some other error
+        throw new Error(loginData.error || 'Authentication failed')
       } catch (err) {
         console.error('Google callback error:', err)
         setError(err instanceof Error ? err.message : 'Something went wrong')
@@ -85,8 +104,8 @@ function GoogleCallbackContent() {
       <div className="min-h-[80vh] flex items-center justify-center py-12 px-4">
         <div className="text-center">
           <p className="text-red-600 mb-4">{error}</p>
-          <a href="/signup" className="text-sage-600 hover:text-sage-700 underline">
-            Back to signup
+          <a href="/login" className="text-sage-600 hover:text-sage-700 underline">
+            Back to login
           </a>
         </div>
       </div>
@@ -97,7 +116,7 @@ function GoogleCallbackContent() {
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4">
       <div className="text-center">
         <Loader2 className="h-8 w-8 animate-spin text-sage-600 mx-auto mb-4" />
-        <p className="text-slate-600">Setting up your account...</p>
+        <p className="text-slate-600">{statusMessage}</p>
       </div>
     </div>
   )
