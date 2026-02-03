@@ -60,19 +60,21 @@ export function TacticalAnswers() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-slate-50 rounded-2xl p-8 mb-8"
+              className="flex justify-center mb-8"
             >
-              <p className="text-lg font-medium text-slate-900 mb-6">
-                With BAIRE, skipping the 3% lets you:
-              </p>
-              <ul className="space-y-4">
-                {leverageBenefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-sage-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-slate-600">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="bg-slate-50 rounded-2xl p-8 inline-block">
+                <p className="text-lg font-medium text-slate-900 mb-6">
+                  With BAIRE, skipping the 3% lets you:
+                </p>
+                <ul className="space-y-4">
+                  {leverageBenefits.map((benefit, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-sage-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-slate-600">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
 
             <motion.p
