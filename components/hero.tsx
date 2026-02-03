@@ -35,7 +35,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-8 text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto"
           >
-            From walkthrough to winning offer — AI trained on thousands of agents, without the commission.
+            From walkthrough to keys — BAIRE guides you every step, trained on thousands of agents, without the commission.
           </motion.p>
 
           {/* Savings callout */}
