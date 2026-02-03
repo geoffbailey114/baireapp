@@ -49,8 +49,7 @@ export const TIMELINE = [
 ] as const
 
 export const AGENT_STATUS = [
-  { value: 'no-agent', label: 'No agent', description: "I'm going it alone with BAIRE" },
-  { value: 'considering', label: 'Considering an agent', description: 'Still deciding' },
+  { value: 'no-agent', label: 'No agent', description: "BAIRE and I got this" },
   { value: 'not-committed', label: 'Talked to agents but not committed', description: "Haven't signed anything" },
   { value: 'signed', label: 'Signed buyer agreement', description: 'Already have an agent' },
 ] as const
@@ -244,8 +243,6 @@ export function generateProfileSummary(profile: UserProfile): string {
   // Agent status - important for BAIRE context
   if (profile.agentStatus === 'no-agent') {
     summary += " They're going without a buyer's agent."
-  } else if (profile.agentStatus === 'considering') {
-    summary += " They're still deciding whether to use an agent."
   } else if (profile.agentStatus === 'not-committed') {
     summary += " They've talked to agents but haven't committed to one."
   } else if (profile.agentStatus === 'signed') {
