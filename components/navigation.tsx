@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -27,13 +26,10 @@ export function Navigation() {
       <nav className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <Image
-            src="/logo.png"
+          <img
+            src="/logo.svg"
             alt="BAIRE"
-            width={120}
-            height={56}
             className="h-8 w-auto"
-            priority
           />
         </Link>
 

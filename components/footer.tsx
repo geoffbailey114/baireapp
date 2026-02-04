@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -11,11 +10,9 @@ export function Footer() {
           {/* Logo & Description */}
           <div className="md:col-span-2">
             <Link href="/" className="inline-block mb-4">
-              <Image
-                src="/logo.png"
+              <img
+                src="/logo-white.svg"
                 alt="BAIRE"
-                width={100}
-                height={40}
                 className="h-8 w-auto"
               />
             </Link>
