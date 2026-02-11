@@ -22,7 +22,7 @@ const steps = [
     number: '03',
     icon: FileText,
     title: 'Build and negotiate offers',
-    description: 'BAIRE helps you determine what to offer, how to structure terms, and when to push or walk away. Real-time scenario modeling for counteroffers and escalation.',
+    description: 'BAIRE helps you determine what to offer, how to structure terms, and when to push or walk away. Real-time scenario modeling for counteroffers and escalation. Need pre-qualification first? BAIRE connects you directly with a national lender.',
     replaces: 'Replaces: Agent negotiation',
   },
   {

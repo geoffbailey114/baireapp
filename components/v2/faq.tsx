@@ -53,6 +53,15 @@ const faqs = [
     ),
   },
   {
+    question: "What if I can't get pre-qualified for a mortgage?",
+    answer: (
+      <>
+        <p className="mb-3">BAIRE connects you directly with NFM Lending — a national lender licensed in 49 states — for pre-qualification. No searching on your own.</p>
+        <p>If you can&apos;t get pre-qualified, we&apos;ll refund you in full. You don&apos;t pay for something you can&apos;t use.</p>
+      </>
+    ),
+  },
+  {
     question: 'Is AI really smart enough to replace an agent?',
     answer: (
       <>

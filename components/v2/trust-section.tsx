@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { RotateCcw, Calculator, Unlock } from 'lucide-react'
+import { RotateCcw, Calculator, Unlock, BadgeCheck } from 'lucide-react'
 
 const trustCards = [
   {
@@ -60,6 +60,32 @@ export function TrustSection() {
               </motion.div>
             ))}
           </div>
+
+          {/* Pre-qualification guarantee — featured bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-4 bg-[#3d4a3d] rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8"
+          >
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/40 mb-2">Included with BAIRE</p>
+              <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
+                Pre-qualified or your money back.
+              </h3>
+              <p className="text-sm md:text-base text-white/60 leading-relaxed">
+                No need to hunt for a mortgage broker. BAIRE connects you directly with a national lender for pre-qualification. If you can&apos;t get pre-qualified, we refund you in full.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="bg-white/8 border border-white/10 rounded-xl px-6 py-4 text-center">
+                <p className="text-[10px] font-semibold tracking-wide text-white/40 mb-1">Pre-qualification by</p>
+                <p className="text-lg font-bold text-white tracking-wide">NFM Lending</p>
+                <p className="text-[10px] text-white/30 mt-1">Licensed in 49 states · Est. 1998</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
