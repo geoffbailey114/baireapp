@@ -32,7 +32,7 @@ export function HeroV2() {
             className="text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl md:text-7xl leading-[1.1]"
           >
             Buy your home.{' '}
-            <span className="text-sage-600">Skip the commission.</span>
+            <span className="text-sage-500">Skip the commission.</span>
           </motion.h1>
 
           <motion.p

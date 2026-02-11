@@ -68,9 +68,9 @@ export function PricingV2() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-[#3d4a3d] rounded-2xl p-8 text-white relative"
+              className="bg-[#3d4a3d] rounded-2xl p-8 text-white relative overflow-hidden"
             >
-              <span className="absolute -top-3 right-6 bg-white/15 text-white text-xs font-bold px-3 py-1 rounded-md tracking-wide">
+              <span className="inline-block bg-white/15 text-white text-xs font-bold px-3 py-1 rounded-md tracking-wide mb-5">
                 SAVE $1,500
               </span>
               <p className="text-xs font-bold tracking-[0.1em] uppercase text-white/40 mb-4">Pay Today</p>
