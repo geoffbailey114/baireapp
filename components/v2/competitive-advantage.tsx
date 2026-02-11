@@ -41,7 +41,7 @@ export function CompetitiveAdvantage() {
               className="bg-slate-50 rounded-2xl border border-slate-200 p-8"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#C4695E]" />
                 <span className="text-xs font-bold tracking-[0.1em] uppercase text-slate-400">Buyer with agent</span>
               </div>
               <div className="flex justify-between py-3 border-b border-slate-200 text-sm">
@@ -50,11 +50,11 @@ export function CompetitiveAdvantage() {
               </div>
               <div className="flex justify-between py-3 border-b border-slate-200 text-sm">
                 <span className="text-slate-500">Buyer&apos;s agent fee (2.5%)</span>
-                <span className="font-semibold text-red-500">−$10,000</span>
+                <span className="font-semibold text-[#C4695E]">−$10,000</span>
               </div>
               <div className="flex justify-between items-baseline pt-5 mt-3 border-t-2 border-slate-200">
                 <span className="text-xs font-bold tracking-wide uppercase text-slate-400">Seller keeps</span>
-                <span className="text-2xl font-bold text-red-500">$390,000</span>
+                <span className="text-2xl font-bold text-[#C4695E]">$390,000</span>
               </div>
             </motion.div>
 
@@ -75,10 +75,10 @@ export function CompetitiveAdvantage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-sage-900 rounded-2xl p-8 text-white"
+              className="bg-[#3d4a3d] rounded-2xl p-8 text-white"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#6ECB94]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-white" />
                 <span className="text-xs font-bold tracking-[0.1em] uppercase text-white/40">BAIRE buyer</span>
               </div>
               <div className="flex justify-between py-3 border-b border-white/5 text-sm">
@@ -87,11 +87,11 @@ export function CompetitiveAdvantage() {
               </div>
               <div className="flex justify-between py-3 border-b border-white/5 text-sm">
                 <span className="text-white/40">Buyer&apos;s agent fee</span>
-                <span className="font-semibold text-[#6ECB94]">$0</span>
+                <span className="font-semibold text-white">$0</span>
               </div>
               <div className="flex justify-between items-baseline pt-5 mt-3 border-t-2 border-white/10">
                 <span className="text-xs font-bold tracking-wide uppercase text-white/40">Seller keeps</span>
-                <span className="text-2xl font-bold text-[#6ECB94]">$400,000</span>
+                <span className="text-2xl font-bold text-white">$400,000</span>
               </div>
             </motion.div>
           </div>

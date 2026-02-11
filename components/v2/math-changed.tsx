@@ -55,7 +55,7 @@ export function MathChanged() {
               className="bg-white rounded-2xl border border-slate-200 p-8"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#C4695E]" />
                 <span className="text-xs font-bold tracking-[0.1em] uppercase text-slate-400">With a buyer&apos;s agent</span>
               </div>
 
@@ -63,7 +63,7 @@ export function MathChanged() {
                 {agentRows.map((row) => (
                   <div key={row.label} className="flex justify-between items-baseline py-3 border-b border-slate-100 last:border-b-0">
                     <span className="text-sm text-slate-500">{row.label}</span>
-                    <span className={`text-sm font-semibold ${row.negative ? 'text-red-500' : 'text-slate-900'}`}>
+                    <span className={`text-sm font-semibold ${row.negative ? 'text-[#C4695E]' : 'text-slate-900'}`}>
                       {row.value}
                     </span>
                   </div>
@@ -72,7 +72,7 @@ export function MathChanged() {
 
               <div className="mt-5 pt-5 border-t-2 border-slate-100 flex justify-between items-baseline">
                 <span className="text-xs font-bold tracking-wide uppercase text-slate-400">Added cost</span>
-                <span className="text-3xl font-bold text-red-500">$10,000</span>
+                <span className="text-3xl font-bold text-[#C4695E]">$10,000</span>
               </div>
             </motion.div>
 
@@ -82,10 +82,10 @@ export function MathChanged() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-sage-900 rounded-2xl p-8 text-white"
+              className="bg-[#3d4a3d] rounded-2xl p-8 text-white"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#6ECB94]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-white" />
                 <span className="text-xs font-bold tracking-[0.1em] uppercase text-white/40">With BAIRE</span>
               </div>
 
@@ -93,7 +93,7 @@ export function MathChanged() {
                 {baireRows.map((row) => (
                   <div key={row.label} className="flex justify-between items-baseline py-3 border-b border-white/5 last:border-b-0">
                     <span className="text-sm text-white/40">{row.label}</span>
-                    <span className={`text-sm font-semibold ${row.highlight ? 'text-[#6ECB94]' : 'text-white'}`}>
+                    <span className="text-sm font-semibold text-white">
                       {row.value}
                     </span>
                   </div>
@@ -102,12 +102,12 @@ export function MathChanged() {
 
               <div className="mt-5 pt-5 border-t-2 border-white/10 flex justify-between items-baseline">
                 <span className="text-xs font-bold tracking-wide uppercase text-white/40">Added cost</span>
-                <span className="text-3xl font-bold text-[#6ECB94]">$995</span>
+                <span className="text-3xl font-bold text-white">$995</span>
               </div>
 
-              <div className="mt-4 bg-[#6ECB94]/10 border border-[#6ECB94]/15 rounded-xl px-4 py-3 flex items-center gap-2">
-                <DollarSign className="h-4 w-4 text-[#6ECB94] flex-shrink-0" />
-                <span className="text-sm font-medium text-[#6ECB94]">You keep $9,005 more in your pocket</span>
+              <div className="mt-4 bg-white/8 border border-white/10 rounded-xl px-4 py-3 flex items-center gap-2">
+                <DollarSign className="h-4 w-4 text-white/80 flex-shrink-0" />
+                <span className="text-sm font-medium text-white/80">You keep $9,005 more in your pocket</span>
               </div>
             </motion.div>
           </div>
