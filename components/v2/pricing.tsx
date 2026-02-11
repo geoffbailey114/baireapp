@@ -68,7 +68,7 @@ export function PricingV2() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-sage-950 rounded-2xl p-8 text-white relative"
+              className="bg-sage-900 rounded-2xl p-8 text-white relative"
             >
               <span className="absolute -top-3 right-6 bg-sage-600 text-white text-xs font-bold px-3 py-1 rounded-md tracking-wide">
                 SAVE $1,500
@@ -79,27 +79,27 @@ export function PricingV2() {
 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3 text-sm">
-                  <Check className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <Check className="h-4 w-4 text-[#6ECB94] flex-shrink-0 mt-0.5" />
                   <span className="text-white/70">Everything in Pay at Closing</span>
                 </li>
                 <li className="flex items-start gap-3 text-sm">
-                  <Check className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <Check className="h-4 w-4 text-[#6ECB94] flex-shrink-0 mt-0.5" />
                   <span className="text-white/70">Save $1,500 instantly</span>
                 </li>
                 <li className="flex items-start gap-3 text-sm">
-                  <Check className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <Check className="h-4 w-4 text-[#6ECB94] flex-shrink-0 mt-0.5" />
                   <span className="text-white/70">Immediate full access</span>
                 </li>
                 <li className="flex items-start gap-3 text-sm">
-                  <Check className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <Check className="h-4 w-4 text-[#6ECB94] flex-shrink-0 mt-0.5" />
                   <span className="text-white/70">30-day money-back guarantee</span>
                 </li>
                 <li className="flex items-start gap-3 text-sm">
-                  <Check className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <Check className="h-4 w-4 text-[#6ECB94] flex-shrink-0 mt-0.5" />
                   <span className="text-white/70">Keep access forever</span>
                 </li>
                 <li className="flex items-start gap-3 text-sm">
-                  <Check className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <Check className="h-4 w-4 text-[#6ECB94] flex-shrink-0 mt-0.5" />
                   <span className="text-white/70">Priority support</span>
                 </li>
               </ul>

@@ -12,12 +12,12 @@ const trustCards = [
   {
     icon: Calculator,
     title: 'The math protects you',
-    description: "Even if BAIRE only saves you half of what an agent costs, you're still $4,000+ ahead. The numbers work even in the worst case.",
+    description: "Even if you pay an agent half their typical fee, you're still $4,000 ahead.",
   },
   {
     icon: Unlock,
     title: 'No lock-in. Ever.',
-    description: "No buyer's agreement. No contract with BAIRE. If you want to hire an agent mid-process, go for it. You're always in control.",
+    description: "No buyer's agreement. No long-term commitment. Cancel anytime, for any reason. You stay because BAIRE is worth it — not because you're stuck.",
   },
 ]
 
@@ -38,7 +38,7 @@ export function TrustSection() {
               We built this so you can&apos;t lose.
             </h2>
             <p className="text-lg text-slate-600 max-w-md mx-auto">
-              No contracts. No lock-in. No buyer&apos;s agreement. Just answers.
+              No buyer&apos;s agreement. No lock-in. No fine print. Just answers.
             </p>
           </motion.div>
 

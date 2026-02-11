@@ -75,10 +75,10 @@ export function CompetitiveAdvantage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-sage-950 rounded-2xl p-8 text-white"
+              className="bg-sage-900 rounded-2xl p-8 text-white"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#6ECB94]" />
                 <span className="text-xs font-bold tracking-[0.1em] uppercase text-white/40">BAIRE buyer</span>
               </div>
               <div className="flex justify-between py-3 border-b border-white/5 text-sm">
@@ -87,11 +87,11 @@ export function CompetitiveAdvantage() {
               </div>
               <div className="flex justify-between py-3 border-b border-white/5 text-sm">
                 <span className="text-white/40">Buyer&apos;s agent fee</span>
-                <span className="font-semibold text-green-400">$0</span>
+                <span className="font-semibold text-[#6ECB94]">$0</span>
               </div>
               <div className="flex justify-between items-baseline pt-5 mt-3 border-t-2 border-white/10">
                 <span className="text-xs font-bold tracking-wide uppercase text-white/40">Seller keeps</span>
-                <span className="text-2xl font-bold text-green-400">$400,000</span>
+                <span className="text-2xl font-bold text-[#6ECB94]">$400,000</span>
               </div>
             </motion.div>
           </div>

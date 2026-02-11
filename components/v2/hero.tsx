@@ -41,7 +41,7 @@ export function HeroV2() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-8 text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto"
           >
-            BAIRE gives you the knowledge of 100,000 agents — what to offer, what to ask, when to walk away — without the contract or the 2–3% fee.
+            BAIRE gives you the knowledge of 100,000 agents — what to offer, what to ask, when to walk away — without signing a buyer's agreement or paying the 2–3% fee.
           </motion.p>
 
           <motion.div

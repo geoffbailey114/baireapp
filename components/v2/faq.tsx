@@ -13,7 +13,7 @@ const faqs = [
     answer: (
       <>
         <p className="mb-3">Yes. You can attend open houses freely, and for private showings, you contact the listing agent directly.</p>
-        <p>BAIRE gives you the exact scripts — what to say, what to email, what to text. Most listing agents are happy to show their property to a serious, qualified buyer.</p>
+        <p>BAIRE pulls the listing agent&apos;s name and contact info straight from the listing, then gives you word-for-word scripts — what to say, what to text, what to email. Most listing agents are happy to show their property to a serious, qualified buyer.</p>
       </>
     ),
   },

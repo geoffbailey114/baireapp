@@ -8,8 +8,8 @@ const steps = [
     number: '01',
     icon: Search,
     title: 'Find and evaluate homes',
-    description: 'Paste any listing link. BAIRE analyzes comparable sales, pricing trends, and red flags — so you know what a home is actually worth before you even visit.',
-    replaces: 'Replaces: Agent\'s CMA',
+    description: 'Paste a link from Zillow, Realtor.com, or any listing site. BAIRE analyzes comparable sales, pricing trends, and red flags — so you know what a home is actually worth before you even visit.',
+    replaces: 'Replaces: Agent pricing your home\'s value',
   },
   {
     number: '02',

@@ -42,7 +42,7 @@ export function MathChanged() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-center text-lg text-slate-600 max-w-xl mx-auto mb-14 leading-relaxed"
           >
-            Today, most agents require a signed buyer agreement before they&apos;ll work with you. That agreement spells out what <strong className="text-slate-900">you</strong> pay — typically 2–3% of your home&apos;s price.
+            Today, agents are required to have a signed buyer agreement before they can show you a home. That agreement spells out what <strong className="text-slate-900">you</strong> pay — typically 2–3% of your home&apos;s price.
           </motion.p>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -82,10 +82,10 @@ export function MathChanged() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-sage-950 rounded-2xl p-8 text-white"
+              className="bg-sage-900 rounded-2xl p-8 text-white"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#6ECB94]" />
                 <span className="text-xs font-bold tracking-[0.1em] uppercase text-white/40">With BAIRE</span>
               </div>
 
@@ -93,7 +93,7 @@ export function MathChanged() {
                 {baireRows.map((row) => (
                   <div key={row.label} className="flex justify-between items-baseline py-3 border-b border-white/5 last:border-b-0">
                     <span className="text-sm text-white/40">{row.label}</span>
-                    <span className={`text-sm font-semibold ${row.highlight ? 'text-green-400' : 'text-white'}`}>
+                    <span className={`text-sm font-semibold ${row.highlight ? 'text-[#6ECB94]' : 'text-white'}`}>
                       {row.value}
                     </span>
                   </div>
@@ -102,12 +102,12 @@ export function MathChanged() {
 
               <div className="mt-5 pt-5 border-t-2 border-white/10 flex justify-between items-baseline">
                 <span className="text-xs font-bold tracking-wide uppercase text-white/40">Added cost</span>
-                <span className="text-3xl font-bold text-green-400">$995</span>
+                <span className="text-3xl font-bold text-[#6ECB94]">$995</span>
               </div>
 
-              <div className="mt-4 bg-green-400/10 border border-green-400/15 rounded-xl px-4 py-3 flex items-center gap-2">
-                <DollarSign className="h-4 w-4 text-green-400 flex-shrink-0" />
-                <span className="text-sm font-medium text-green-400">You keep $9,005 more in your pocket</span>
+              <div className="mt-4 bg-[#6ECB94]/10 border border-[#6ECB94]/15 rounded-xl px-4 py-3 flex items-center gap-2">
+                <DollarSign className="h-4 w-4 text-[#6ECB94] flex-shrink-0" />
+                <span className="text-sm font-medium text-[#6ECB94]">You keep $9,005 more in your pocket</span>
               </div>
             </motion.div>
           </div>
