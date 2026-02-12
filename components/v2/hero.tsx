@@ -67,7 +67,7 @@ export function HeroV2() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-6 text-sm text-slate-500"
           >
-            Free to try · $995 today or $2,495 at closing · <Link href="#pricing" className="underline hover:text-slate-700">See pricing</Link>
+            Free to try · $995 one-time · 30-day money back · <Link href="#pricing" className="underline hover:text-slate-700">See pricing</Link>
           </motion.p>
         </div>
       </div>
