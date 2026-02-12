@@ -18,7 +18,7 @@ const ALL_MODULES: KnowledgeModule[] = [
 ]
 
 // Tier hierarchy for access checking
-const TIER_HIERARCHY: AccessTier[] = ['none', 'trial', 'access', 'offer', 'closing', 'comp']
+const TIER_HIERARCHY: AccessTier[] = ['none', 'trial', 'full_access', 'comp']
 
 function canAccessModule(userTier: AccessTier, requiredTier?: AccessTier): boolean {
   if (!requiredTier) return true // No requirement = accessible to all
