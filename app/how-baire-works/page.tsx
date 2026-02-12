@@ -192,7 +192,7 @@ export default function HowBAIREWorksPage() {
               className="bg-white text-sage-700 hover:bg-sage-50 text-base px-8 h-14 rounded-full"
             >
               <Link href="/signup">
-                Get Started
+                Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

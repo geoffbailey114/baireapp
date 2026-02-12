@@ -24,7 +24,6 @@ export async function POST(request: Request) {
       )
     }
 
-    // Handle the event
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session
@@ -32,44 +31,35 @@ export async function POST(request: Request) {
           sessionId: session.id,
           customerId: session.customer,
           tier: session.metadata?.tier,
-          priceId: session.metadata?.price_id,
         })
 
-        // Update customer metadata with purchase info
         if (session.customer && session.metadata?.tier) {
           const customerId = typeof session.customer === 'string' 
             ? session.customer 
             : session.customer.id
 
           const tier = session.metadata.tier
-
-          // Get existing metadata
           const customer = await stripe.customers.retrieve(customerId)
           if (customer.deleted) break
 
           const existingMetadata = customer.metadata || {}
-
-          // Update metadata to track purchases
-          const updates: Record<string, string> = {
-            ...existingMetadata,
-          }
+          const updates: Record<string, string> = { ...existingMetadata }
 
           if (tier === 'trial') {
             updates.trial_started_at = Math.floor(Date.now() / 1000).toString()
-            updates.trial_ends_at = session.metadata.trial_ends_at || ''
             updates.has_payment_method = 'true'
-          } else if (tier === 'access') {
+            // trial_ends_at is set during signup
+          } else if (tier === 'full_access') {
+            updates.full_access_purchased_at = Math.floor(Date.now() / 1000).toString()
+          }
+          // Legacy support: still handle old tiers if they come through
+          else if (tier === 'access') {
             updates.access_purchased_at = Math.floor(Date.now() / 1000).toString()
-          } else if (tier === 'showings') {
-            updates.showings_purchased_at = Math.floor(Date.now() / 1000).toString()
-          } else if (tier === 'closing') {
-            updates.closing_purchased_at = Math.floor(Date.now() / 1000).toString()
+          } else if (tier === 'offer' || tier === 'showings') {
+            updates.offer_purchased_at = Math.floor(Date.now() / 1000).toString()
           }
 
-          await stripe.customers.update(customerId, {
-            metadata: updates,
-          })
-
+          await stripe.customers.update(customerId, { metadata: updates })
           console.log('Customer metadata updated:', updates)
         }
         break
@@ -83,7 +73,6 @@ export async function POST(request: Request) {
           paymentMethod: setupIntent.payment_method,
         })
 
-        // Attach the payment method as default for future charges
         if (setupIntent.customer && setupIntent.payment_method) {
           const customerId = typeof setupIntent.customer === 'string'
             ? setupIntent.customer
@@ -110,8 +99,25 @@ export async function POST(request: Request) {
           id: paymentIntent.id,
           amount: paymentIntent.amount,
           customerId: paymentIntent.customer,
-          priceId: paymentIntent.metadata?.price_id,
+          tier: paymentIntent.metadata?.tier,
         })
+
+        // If this is a trial conversion or direct purchase, update metadata
+        if (paymentIntent.customer && paymentIntent.metadata?.tier === 'full_access') {
+          const customerId = typeof paymentIntent.customer === 'string'
+            ? paymentIntent.customer
+            : paymentIntent.customer.id
+
+          const customer = await stripe.customers.retrieve(customerId)
+          if (!customer.deleted) {
+            await stripe.customers.update(customerId, {
+              metadata: {
+                ...customer.metadata,
+                full_access_purchased_at: Math.floor(Date.now() / 1000).toString(),
+              },
+            })
+          }
+        }
         break
       }
 
@@ -121,19 +127,6 @@ export async function POST(request: Request) {
           id: paymentIntent.id,
           customerId: paymentIntent.customer,
           error: paymentIntent.last_payment_error?.message,
-        })
-        break
-      }
-
-      case 'customer.subscription.created':
-      case 'customer.subscription.updated':
-      case 'customer.subscription.deleted': {
-        const subscription = event.data.object as Stripe.Subscription
-        console.log('Subscription event:', {
-          type: event.type,
-          subscriptionId: subscription.id,
-          status: subscription.status,
-          customerId: subscription.customer,
         })
         break
       }

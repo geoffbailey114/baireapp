@@ -6,17 +6,22 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-06-20',
 })
 
-// Access tiers in order (renamed: showings -> offer)
-export type AccessTier = 'none' | 'trial' | 'access' | 'offer' | 'closing' | 'comp'
+// Simplified access tiers
+export type AccessTier = 'none' | 'trial' | 'full_access' | 'comp'
+
+// Legacy tiers for backward compatibility
+type LegacyTier = 'access' | 'offer' | 'closing'
 
 export interface UserAccess {
   tier: AccessTier
   email: string | null
   stripeCustomerId: string | null
-  trialEndsAt: number | null // Unix timestamp
+  trialEndsAt: number | null
   isTrialExpired: boolean
-  isComp: boolean // Complimentary access granted by admin
+  isComp: boolean
   purchases: {
+    full_access: boolean
+    // Legacy flags — kept for backward compat
     access: boolean
     offer: boolean
     closing: boolean
@@ -53,6 +58,7 @@ export async function getJWTPayload(): Promise<JWTPayload | null> {
  * Fetch user's purchase history from Stripe
  */
 async function getStripePurchases(customerId: string): Promise<{
+  full_access: boolean
   access: boolean
   offer: boolean
   closing: boolean
@@ -60,6 +66,7 @@ async function getStripePurchases(customerId: string): Promise<{
   isComp: boolean
 }> {
   const purchases = {
+    full_access: false,
     access: false,
     offer: false,
     closing: false,
@@ -68,39 +75,33 @@ async function getStripePurchases(customerId: string): Promise<{
   }
 
   try {
-    // First check customer metadata for comp access
     const customer = await stripe.customers.retrieve(customerId)
     if (!('deleted' in customer)) {
       // Check for comp/admin-granted access
       if (customer.metadata?.comp_access === 'true' || customer.metadata?.admin_granted === 'true') {
         purchases.isComp = true
+        purchases.full_access = true
         purchases.access = true
         purchases.offer = true
-        // Note: We give full access (offer tier) for comp users
       }
       
-      // Check for trial end time in customer metadata
+      // Check for new full_access purchase
+      if (customer.metadata?.full_access_purchased_at) {
+        purchases.full_access = true
+      }
+
+      // Check for trial end time
       if (customer.metadata?.trial_ends_at) {
         purchases.trialEndsAt = parseInt(customer.metadata.trial_ends_at)
       }
     }
 
-    // If comp, skip payment checks
-    if (purchases.isComp) {
+    // If comp or full_access already confirmed, skip payment checks
+    if (purchases.isComp || purchases.full_access) {
       return purchases
     }
 
-    // Get all successful payments for this customer
-    const paymentIntents = await stripe.paymentIntents.list({
-      customer: customerId,
-      limit: 100,
-    })
-
-    const priceAccess = process.env.STRIPE_PRICE_ACCESS
-    const priceOffer = process.env.STRIPE_PRICE_OFFER || process.env.STRIPE_PRICE_SHOWINGS // Support both names
-    const priceClosing = process.env.STRIPE_PRICE_CLOSING
-
-    // Check checkout sessions for metadata
+    // Check checkout sessions for purchase metadata
     const sessions = await stripe.checkout.sessions.list({
       customer: customerId,
       limit: 100,
@@ -108,30 +109,40 @@ async function getStripePurchases(customerId: string): Promise<{
 
     for (const session of sessions.data) {
       if (session.payment_status === 'paid') {
-        const priceId = session.metadata?.price_id
         const tier = session.metadata?.tier
         
-        if (priceId === priceAccess || tier === 'access') purchases.access = true
-        if (priceId === priceOffer || tier === 'offer' || tier === 'showings') purchases.offer = true
-        if (priceId === priceClosing || tier === 'closing') purchases.closing = true
+        if (tier === 'full_access') purchases.full_access = true
+        // Legacy tier support
+        if (tier === 'access') purchases.access = true
+        if (tier === 'offer' || tier === 'showings') purchases.offer = true
+        if (tier === 'closing') purchases.closing = true
       }
       
-      // Check for trial end time
       if (session.metadata?.trial_ends_at) {
         purchases.trialEndsAt = parseInt(session.metadata.trial_ends_at)
       }
     }
 
-    // Also check payment intents metadata as backup
+    // Also check payment intents as backup
+    const paymentIntents = await stripe.paymentIntents.list({
+      customer: customerId,
+      limit: 100,
+    })
+
     for (const pi of paymentIntents.data) {
       if (pi.status === 'succeeded') {
-        const priceId = pi.metadata?.price_id
         const tier = pi.metadata?.tier
         
-        if (priceId === priceAccess || tier === 'access') purchases.access = true
-        if (priceId === priceOffer || tier === 'offer' || tier === 'showings') purchases.offer = true
-        if (priceId === priceClosing || tier === 'closing') purchases.closing = true
+        if (tier === 'full_access') purchases.full_access = true
+        if (tier === 'access') purchases.access = true
+        if (tier === 'offer' || tier === 'showings') purchases.offer = true
+        if (tier === 'closing') purchases.closing = true
       }
+    }
+
+    // Legacy: if they bought both access + offer under old model, grant full_access
+    if (purchases.access && purchases.offer) {
+      purchases.full_access = true
     }
   } catch (error) {
     console.error('Error fetching Stripe purchases:', error)
@@ -141,7 +152,7 @@ async function getStripePurchases(customerId: string): Promise<{
 }
 
 /**
- * Get user's current access level (server-side, authoritative)
+ * Get user's current access level
  */
 export async function getUserAccess(): Promise<UserAccess> {
   const defaultAccess: UserAccess = {
@@ -152,6 +163,7 @@ export async function getUserAccess(): Promise<UserAccess> {
     isTrialExpired: false,
     isComp: false,
     purchases: {
+      full_access: false,
       access: false,
       offer: false,
       closing: false,
@@ -163,7 +175,6 @@ export async function getUserAccess(): Promise<UserAccess> {
 
   const now = Math.floor(Date.now() / 1000)
   
-  // If no Stripe customer yet, check if in trial period
   if (!jwt.stripe_customer_id) {
     const trialEndsAt = jwt.trial_ends_at || null
     const isTrialExpired = trialEndsAt ? now > trialEndsAt : false
@@ -175,28 +186,22 @@ export async function getUserAccess(): Promise<UserAccess> {
       trialEndsAt,
       isTrialExpired,
       isComp: false,
-      purchases: { access: false, offer: false, closing: false },
+      purchases: { full_access: false, access: false, offer: false, closing: false },
     }
   }
 
-  // Fetch purchases from Stripe (source of truth)
   const stripePurchases = await getStripePurchases(jwt.stripe_customer_id)
   
-  // Determine trial status
   const trialEndsAt = stripePurchases.trialEndsAt || jwt.trial_ends_at || null
   const isTrialExpired = trialEndsAt ? now > trialEndsAt : false
 
-  // Determine tier based on purchases (comp users get full offer access)
+  // Determine tier
   let tier: AccessTier = 'none'
   
   if (stripePurchases.isComp) {
-    tier = 'offer' // Comp users get full access
-  } else if (stripePurchases.closing) {
-    tier = 'closing'
-  } else if (stripePurchases.offer) {
-    tier = 'offer'
-  } else if (stripePurchases.access) {
-    tier = 'access'
+    tier = 'comp'
+  } else if (stripePurchases.full_access) {
+    tier = 'full_access'
   } else if (!isTrialExpired && trialEndsAt) {
     tier = 'trial'
   }
@@ -213,85 +218,32 @@ export async function getUserAccess(): Promise<UserAccess> {
 }
 
 /**
- * Check if user can access a specific feature
+ * Check if user has paid access (full_access, comp, or legacy full)
  */
-export function canAccess(userAccess: UserAccess, requiredTier: AccessTier): boolean {
-  const tierOrder: AccessTier[] = ['none', 'trial', 'access', 'offer', 'closing', 'comp']
-  const userTierIndex = tierOrder.indexOf(userAccess.tier)
-  const requiredTierIndex = tierOrder.indexOf(requiredTier)
-  
-  return userTierIndex >= requiredTierIndex
+export function hasPaidAccess(userAccess: UserAccess): boolean {
+  return (
+    userAccess.tier === 'full_access' ||
+    userAccess.tier === 'comp' ||
+    userAccess.purchases.full_access
+  )
 }
 
 /**
- * Get the next tier user needs to purchase
+ * Check if user can access the consultant (trial or paid)
  */
-export function getNextTier(userAccess: UserAccess): AccessTier | null {
-  if (userAccess.isComp) return null // Comp users have full access
-  if (userAccess.tier === 'closing') return null
-  if (userAccess.tier === 'offer') return 'closing'
-  if (userAccess.tier === 'access') return 'offer'
-  if (userAccess.tier === 'trial') return 'access'
-  return 'access' // For 'none'
+export function canAccessConsultant(userAccess: UserAccess): boolean {
+  return (
+    userAccess.tier === 'trial' ||
+    userAccess.tier === 'full_access' ||
+    userAccess.tier === 'comp'
+  )
 }
 
 /**
- * Get price ID for a tier
- */
-export function getPriceIdForTier(tier: AccessTier): string | null {
-  switch (tier) {
-    case 'access':
-      return process.env.STRIPE_PRICE_ACCESS || null
-    case 'offer':
-      return process.env.STRIPE_PRICE_OFFER || process.env.STRIPE_PRICE_SHOWINGS || null
-    case 'closing':
-      return process.env.STRIPE_PRICE_CLOSING || null
-    default:
-      return null
-  }
-}
-
-/**
- * Feature flags based on tier
+ * Feature flags — simplified: trial gets everything, full_access keeps it
  */
 export const TIER_FEATURES = {
   trial: {
-    generalQA: true,
-    educationalContent: true,
-    basicGuidance: true,
-    showingScripts: false,
-    waivers: false,
-    walkthroughChecklists: false,
-    offerPrep: false,
-    negotiationPlaybooks: false,
-    stateSpecificLanguage: false,
-    closingSupport: false,
-  },
-  access: {
-    generalQA: true,
-    educationalContent: true,
-    basicGuidance: true,
-    showingScripts: true,
-    waivers: true,
-    walkthroughChecklists: true,
-    offerPrep: false,
-    negotiationPlaybooks: false,
-    stateSpecificLanguage: false,
-    closingSupport: false,
-  },
-  offer: {
-    generalQA: true,
-    educationalContent: true,
-    basicGuidance: true,
-    showingScripts: true,
-    waivers: true,
-    walkthroughChecklists: true,
-    offerPrep: true,
-    negotiationPlaybooks: true,
-    stateSpecificLanguage: true,
-    closingSupport: false,
-  },
-  closing: {
     generalQA: true,
     educationalContent: true,
     basicGuidance: true,
@@ -302,5 +254,21 @@ export const TIER_FEATURES = {
     negotiationPlaybooks: true,
     stateSpecificLanguage: true,
     closingSupport: true,
+    compAnalysis: true,
+    exitPlaybook: true,
+  },
+  full_access: {
+    generalQA: true,
+    educationalContent: true,
+    basicGuidance: true,
+    showingScripts: true,
+    waivers: true,
+    walkthroughChecklists: true,
+    offerPrep: true,
+    negotiationPlaybooks: true,
+    stateSpecificLanguage: true,
+    closingSupport: true,
+    compAnalysis: true,
+    exitPlaybook: true,
   },
 } as const

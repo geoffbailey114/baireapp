@@ -82,9 +82,9 @@ export async function POST(request: Request) {
       trialEndsAt = parseInt(customer.metadata.trial_ends_at)
     }
 
-    // If no trial end stored, calculate new one (48 hours)
+    // If no trial end stored, calculate new one (7 days)
     if (!trialEndsAt) {
-      trialEndsAt = Math.floor(Date.now() / 1000) + (48 * 60 * 60)
+      trialEndsAt = Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60)
     }
 
     // Determine access level from Stripe metadata

@@ -9,21 +9,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 const baseUrl = process.env.APP_BASE_URL || 'https://baireapp.com'
 
-type Tier = 'trial' | 'access' | 'offer'
-
-function getPriceIdForTier(tier: Tier): string | null {
-  switch (tier) {
-    case 'trial':
-      return null // Trial uses setup mode, not a price
-    case 'access':
-      return process.env.STRIPE_PRICE_ACCESS!
-    case 'offer':
-      return process.env.STRIPE_PRICE_OFFER!
-    default:
-      return null
-  }
-}
-
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
@@ -41,61 +26,15 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate tier
-    const validTiers: Tier[] = ['trial', 'access', 'offer']
-    if (!validTiers.includes(tier)) {
-      return NextResponse.json(
-        { error: 'Invalid tier' },
-        { status: 400 }
-      )
-    }
-
-    // For access/offer tiers, verify user is authenticated
-    if (tier === 'access' || tier === 'offer') {
-      const cookieStore = await cookies()
-      const token = cookieStore.get('baire_auth')?.value
-
-      if (!token) {
-        return NextResponse.json(
-          { error: 'Authentication required' },
-          { status: 401 }
-        )
-      }
-
-      const payload = await verifyJWT(token)
-      if (!payload) {
-        return NextResponse.json(
-          { error: 'Invalid session' },
-          { status: 401 }
-        )
-      }
-
-      const purchases = payload.purchases as Record<string, boolean> || {}
-
-      // Block offer tier if access not purchased
-      if (tier === 'offer' && !purchases.access) {
-        return NextResponse.json(
-          { error: 'Access tier required before purchasing offer' },
-          { status: 400 }
-        )
-      }
-
-      // Prevent re-purchasing owned tiers
-      if (purchases[tier]) {
-        return NextResponse.redirect(`${baseUrl}/billing?error=already_purchased`)
-      }
-    }
-
     // Build metadata with consent info
     const metadata: Record<string, string> = {
       tier,
       userEmail: email,
     }
 
-    // Add consent tracking if provided
     if (consentTimestamp) {
       metadata.consentTimestamp = consentTimestamp
-      metadata.agreementVersion = agreementVersion || '1.0'
+      metadata.agreementVersion = agreementVersion || '2.0'
       metadata.consentType = 'self_representation_agreement'
     }
 
@@ -110,32 +49,32 @@ export async function POST(request: NextRequest) {
     if (customers.data.length > 0) {
       customerId = customers.data[0].id
       
-      // Update customer metadata with consent info
       if (consentTimestamp) {
         await stripe.customers.update(customerId, {
           metadata: {
             ...customers.data[0].metadata,
             consentTimestamp,
-            agreementVersion: agreementVersion || '1.0',
+            agreementVersion: agreementVersion || '2.0',
             consentType: 'self_representation_agreement',
           },
         })
       }
     } else {
-      const customerData: Stripe.CustomerCreateParams = {
+      const customer = await stripe.customers.create({
         email,
         metadata: consentTimestamp ? {
           consentTimestamp,
-          agreementVersion: agreementVersion || '1.0',
+          agreementVersion: agreementVersion || '2.0',
           consentType: 'self_representation_agreement',
         } : {},
-      }
-      
-      const customer = await stripe.customers.create(customerData)
+      })
       customerId = customer.id
     }
 
-    // Trial flow: setup mode to collect card without charging
+    // ============================================
+    // TRIAL FLOW: Setup mode — collect card, no charge
+    // User gets 7 days free, then cron charges $995
+    // ============================================
     if (tier === 'trial') {
       const session = await stripe.checkout.sessions.create({
         customer: customerId,
@@ -149,13 +88,30 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ url: session.url })
     }
 
-    // Paid tier flow (access $99 or offer $500)
-    const priceId = getPriceIdForTier(tier as Tier)
+    // ============================================
+    // DIRECT PURCHASE: $995 full access (skip trial)
+    // Used if we add a "skip trial" option later
+    // ============================================
+    const priceId = process.env.STRIPE_PRICE_FULL_ACCESS
     if (!priceId) {
+      console.error('STRIPE_PRICE_FULL_ACCESS not configured')
       return NextResponse.json(
-        { error: 'Invalid tier configuration' },
+        { error: 'Pricing not configured' },
         { status: 500 }
       )
+    }
+
+    // Verify auth for direct purchase
+    const cookieStore = await cookies()
+    const token = cookieStore.get('baire_auth')?.value
+    if (token) {
+      const payload = await verifyJWT(token)
+      if (payload) {
+        const purchases = payload.purchases as Record<string, boolean> || {}
+        if (purchases.full_access) {
+          return NextResponse.redirect(`${baseUrl}/billing?error=already_purchased`)
+        }
+      }
     }
 
     const session = await stripe.checkout.sessions.create({
@@ -168,9 +124,12 @@ export async function POST(request: NextRequest) {
           quantity: 1,
         },
       ],
-      success_url: `${baseUrl}/access?session_id={CHECKOUT_SESSION_ID}&tier=${tier}`,
+      success_url: `${baseUrl}/access?session_id={CHECKOUT_SESSION_ID}&tier=full_access`,
       cancel_url: `${baseUrl}/pricing`,
-      metadata,
+      metadata: {
+        ...metadata,
+        tier: 'full_access',
+      },
     })
 
     return NextResponse.json({ url: session.url })

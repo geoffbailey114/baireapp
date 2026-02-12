@@ -47,7 +47,8 @@ export function PricingV2() {
           >
             <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/40 mb-5">Full access</p>
             <p className="text-5xl font-bold text-white mb-2">$995</p>
-            <p className="text-sm text-white/50 mb-8">One payment · instant access · keep forever</p>
+            <p className="text-sm text-white/50 mb-2">after your 7-day free trial</p>
+            <p className="text-sm text-white/40 mb-8">One payment · keep forever · cancel trial anytime</p>
 
             <ul className="space-y-3.5 mb-10">
               {features.map((feature) => (
@@ -63,7 +64,7 @@ export function PricingV2() {
               className="w-full bg-white text-[#3d4a3d] hover:bg-white/90 rounded-full h-13 text-base font-semibold"
             >
               <Link href="/signup">
-                Get Started
+                Start Free Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

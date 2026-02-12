@@ -11,7 +11,7 @@ import { APP_NAME, APP_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: `${APP_NAME} — Buy a Home Without a Buyer's Agent | Save $10,000+`,
-  description: 'BAIRE is an AI-powered home buying consultant that replaces the buyer\'s agent. Get comp analysis, negotiation coaching, and closing guidance for $995 — and save $10,000+ in commissions.',
+  description: 'BAIRE is an AI-powered home buying consultant that replaces the buyer\'s agent. Try free for 7 days — get comp analysis, negotiation coaching, and closing guidance for $995 and save $10,000+ in commissions.',
   alternates: {
     canonical: APP_URL,
   },

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { openai, OPENAI_MODEL } from '@/lib/openai'
 import { verifyJWT } from '@/lib/jwt'
-import { FREE_TRIAL_QUERY_LIMIT, JWT_COOKIE_NAME } from '@/lib/constants'
+import { JWT_COOKIE_NAME } from '@/lib/constants'
 import { assembleSystemPrompt } from '@/lib/knowledge'
 import { AccessTier } from '@/lib/access'
 import { deserializeProfile, generateProfileSummary } from '@/lib/user-profile'
@@ -106,19 +106,18 @@ export async function POST(request: NextRequest) {
           
           if (customer && !customer.deleted) {
             const metadata = customer.metadata || {}
-            const isComp = metadata.comp_access === 'true'
-            const hasPaidTier = metadata.tier === 'access' || metadata.tier === 'offer'
+            const isComp = metadata.comp_access === 'true' || metadata.admin_granted === 'true'
+            const hasFullAccess = metadata.full_access_purchased_at
+            // Legacy: old tier purchases also grant access
+            const hasLegacyAccess = metadata.access_purchased_at || metadata.tier === 'access' || metadata.tier === 'offer'
             const hasPaidFlag = metadata.paid === 'true'
             
             // Determine tier from Stripe (source of truth)
             if (isComp) {
               userTier = 'comp'
               isPaid = true
-            } else if (metadata.tier === 'offer') {
-              userTier = 'offer'
-              isPaid = true
-            } else if (metadata.tier === 'access' || hasPaidFlag) {
-              userTier = 'access'
+            } else if (hasFullAccess || hasLegacyAccess || hasPaidFlag) {
+              userTier = 'full_access'
               isPaid = true
             }
           }
@@ -129,6 +128,7 @@ export async function POST(request: NextRequest) {
             userTier = payload.tier as AccessTier
           }
           isPaid = payload?.paid === true || 
+                   payload?.tier === 'full_access' ||
                    payload?.tier === 'access' || 
                    payload?.tier === 'offer' || 
                    payload?.tier === 'comp' ||
@@ -176,13 +176,11 @@ export async function POST(request: NextRequest) {
       messages.push({
         role: 'system',
         content: `IMPORTANT - TRIAL USER INSTRUCTIONS:
-This user is on a FREE TRIAL. Follow these rules:
-1. Provide helpful educational information, but keep detailed templates and step-by-step action plans brief
-2. At the END of responses about showings, offers, or negotiations, include an upgrade nudge
-3. Format the upgrade nudge EXACTLY like this (on its own line, italicized with asterisks):
-   *For more detailed scripts, templates, and step-by-step guidance, upgrade to Access for $99 — one-time, unlimited use.*
-4. Only include the upgrade nudge once per response, at the very end
-5. Do NOT include the upgrade nudge for simple questions or greetings`,
+This user is on a 7-DAY FREE TRIAL. Follow these rules:
+1. Provide helpful, complete responses — give them the full experience so they see the value
+2. Trial users get FULL access to all features during their 7 days
+3. Do NOT mention upgrades, pricing, or upsells during the trial — let the product speak for itself
+4. Treat them exactly like a paid user during the trial period`,
       })
     } else {
       messages.push({
@@ -199,7 +197,7 @@ This user has FULL ACCESS (${userTier} tier). Follow these rules:
     const completion = await openai.chat.completions.create({
       model: OPENAI_MODEL,
       messages: messages as any,
-      max_tokens: isPaid ? 1500 : 800,
+      max_tokens: 1500,
       temperature: 0.7,
     })
 
@@ -212,31 +210,10 @@ This user has FULL ACCESS (${userTier} tier). Follow these rules:
       )
     }
 
-    let finalMessage = responseMessage
-    let isTrialRestricted = false
-
-    if (!isPaid) {
-      const restrictedPatterns = [
-        /checklist:/i,
-        /step-by-step:/i,
-        /template:/i,
-        /action items:/i,
-        /\[\s*\]/g,
-      ]
-
-      const hasRestrictedContent = restrictedPatterns.some(pattern => 
-        pattern.test(responseMessage)
-      )
-
-      if (hasRestrictedContent && responseMessage.length > 500) {
-        finalMessage = responseMessage.substring(0, 500) + '...\n\n[Upgrade to BAIRE for full access to detailed templates and checklists]'
-        isTrialRestricted = true
-      }
-    }
+    const finalMessage = responseMessage
 
     return NextResponse.json({
       message: finalMessage,
-      isTrialRestricted,
       // Include listing info if found (useful for frontend display)
       listing: hasListing ? {
         found: listingData?.found,

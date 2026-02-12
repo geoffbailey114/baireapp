@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Pricing — $995 One Time | Save $10,000+ vs a Buyer\'s Agent',
-  description: 'BAIRE costs $995 one time. A buyer\'s agent costs $10,000–$15,000. Same knowledge. No commission. 30-day money-back guarantee.',
+  title: 'Pricing — 7 Days Free, Then $995 | Save $10,000+ vs a Buyer\'s Agent',
+  description: 'Try BAIRE free for 7 days. Then $995 one time. A buyer\'s agent costs $10,000–$15,000. Same knowledge. No commission. Cancel anytime.',
   alternates: {
     canonical: `${APP_URL}/pricing`,
   },
@@ -75,7 +75,8 @@ export default function PricingPage() {
           <div className="max-w-md mx-auto bg-[#3d4a3d] rounded-2xl p-10 text-white overflow-hidden">
             <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/40 mb-5">Full access</p>
             <p className="text-5xl font-bold text-white mb-2">$995</p>
-            <p className="text-sm text-white/50 mb-8">One payment · instant access · keep forever</p>
+            <p className="text-sm text-white/50 mb-2">after your 7-day free trial</p>
+            <p className="text-sm text-white/40 mb-8">One payment · keep forever · cancel trial anytime</p>
 
             <ul className="space-y-3.5 mb-10">
               {features.map((feature) => (
@@ -91,7 +92,7 @@ export default function PricingPage() {
               className="w-full bg-white text-[#3d4a3d] hover:bg-white/90 rounded-full h-13 text-base font-semibold"
             >
               <Link href="/signup">
-                Get Started
+                Start Free Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -172,7 +173,7 @@ export default function PricingPage() {
               className="bg-white text-sage-700 hover:bg-sage-50 text-base px-8 h-14 rounded-full"
             >
               <Link href="/signup">
-                Get Started
+                Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

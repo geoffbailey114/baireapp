@@ -71,8 +71,8 @@ export async function POST(request: Request) {
       }
     }
 
-    // Calculate trial end (48 hours from now)
-    const trialEndsAt = Math.floor(Date.now() / 1000) + (48 * 60 * 60)
+    // Calculate trial end (7 days from now)
+    const trialEndsAt = Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60)
 
     // Build metadata
     const metadata: Record<string, string> = {
