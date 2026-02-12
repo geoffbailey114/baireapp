@@ -1,11 +1,10 @@
 // Application constants
 export const APP_NAME = 'BAIRE'
-export const APP_DESCRIPTION = 'AI-powered home-buying consultant for self-represented buyers. Get expert guidance without the traditional agent commission.'
+export const APP_DESCRIPTION = 'AI-powered home buying consultant that replaces the buyer\'s agent. Comp analysis, negotiation coaching, and closing guidance for $995 — save $10,000+ in commissions.'
 export const APP_URL = process.env.APP_BASE_URL || 'https://baireapp.com'
 
 // Pricing
-export const PRICE_AMOUNT = 500 // Offer tier price
-export const PRICE_TOTAL = 599 // Limited time total (trial free + offer $500 + $99 promo savings shown as $599)
+export const PRICE_AMOUNT = 995
 export const PRICE_CURRENCY = 'usd'
 export const PRODUCT_NAME = 'BAIRE Full Access'
 
@@ -15,17 +14,23 @@ export const TRIAL_STORAGE_KEY = 'baire_trial_count'
 
 // Auth
 export const JWT_COOKIE_NAME = 'baire_auth'
-export const JWT_EXPIRY_DAYS = 365 // Expiry handled by closing, not time
+export const JWT_EXPIRY_DAYS = 365
 
-// SEO Keywords (for reference, used naturally in content)
+// SEO Keywords (used naturally in content and metadata)
 export const SEO_KEYWORDS = [
+  'buy home without buyer agent',
   'AI home buying consultant',
-  'buy home without agent',
   'skip buyer agent commission',
-  'flat-fee home buying',
-  'guide to buying without agent',
+  'NAR settlement home buying',
   'self-represented home buyer',
-  'home buying education',
+  'home buying without realtor',
+  'save buyer agent commission',
+  'BAIRE app',
+  'buy home without realtor 2025',
+  'how to buy a house without an agent',
+  'buyer agent alternative',
+  'flat fee home buying',
+  'no commission home buying',
 ]
 
 // Navigation links
@@ -43,7 +48,7 @@ export const FOOTER_LEGAL_LINKS = [
 ]
 
 // Disclaimer text used across the app
-export const DISCLAIMER_SHORT = 'BAIRE is an educational tool, not a real estate agent, broker, lawyer, or financial advisor. BAIRE does not negotiate on your behalf or provide legal, tax, or financial advice. Always consult licensed professionals for specific guidance.'
+export const DISCLAIMER_SHORT = 'BAIRE is an educational technology platform, not a real estate agent, broker, lawyer, or financial advisor. BAIRE does not negotiate on your behalf or provide legal, tax, or financial advice. Always consult licensed professionals for specific guidance.'
 
 export const DISCLAIMER_CHAT = `You are BAIRE, an AI-powered educational home-buying consultant. You help self-represented home buyers understand the process, terminology, and considerations involved in purchasing a home.
 
@@ -75,13 +80,3 @@ TONE AND STYLE:
 When users ask for advice that crosses into legal, tax, or financial territory, gently redirect them to consult appropriate professionals while still providing educational context where possible.
 
 Always end responses that touch on legal, financial, or high-stakes matters with a reminder that users should verify information with licensed professionals.`
-
-
-
-
-
-
-
-
-
-

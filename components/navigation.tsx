@@ -23,17 +23,19 @@ export function Navigation() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <nav className="container flex h-16 items-center justify-between">
+      <nav className="container flex h-16 items-center justify-between" aria-label="Main navigation">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center" aria-label="BAIRE Home">
           <img
             src="/logo.svg"
             alt="BAIRE"
             className="h-8 w-auto"
+            width={120}
+            height={32}
           />
         </Link>
 
-        {/* Desktop Navigation - All Right Aligned */}
+        {/* Desktop Navigation */}
         <div className="hidden md:flex md:items-center md:gap-8">
           {navLinks.map((link) => (
             <Link
@@ -52,8 +54,8 @@ export function Navigation() {
           <Button variant="ghost" asChild>
             <Link href="/login">Log In</Link>
           </Button>
-          <Button asChild>
-            <Link href="/signup">Start Free Trial</Link>
+          <Button asChild className="rounded-full">
+            <Link href="/signup">Get Started</Link>
           </Button>
         </div>
 
@@ -63,6 +65,7 @@ export function Navigation() {
           className="md:hidden p-2 text-slate-600"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? (
             <X className="h-6 w-6" />
@@ -74,7 +77,7 @@ export function Navigation() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white">
+        <div className="md:hidden border-t border-slate-200 bg-white" role="navigation" aria-label="Mobile navigation">
           <div className="container py-4 space-y-4">
             {navLinks.map((link) => (
               <Link
@@ -95,8 +98,8 @@ export function Navigation() {
               <Button variant="outline" asChild className="w-full">
                 <Link href="/login">Log In</Link>
               </Button>
-              <Button asChild className="w-full">
-                <Link href="/signup">Start Free Trial</Link>
+              <Button asChild className="w-full rounded-full">
+                <Link href="/signup">Get Started</Link>
               </Button>
             </div>
           </div>

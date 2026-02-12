@@ -1,37 +1,38 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { AuthProvider } from '@/components/auth-provider'
-import { APP_NAME, APP_URL, APP_DESCRIPTION } from '@/lib/constants'
+import { APP_NAME, APP_URL, APP_DESCRIPTION, SEO_KEYWORDS } from '@/lib/constants'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], display: 'swap' })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#627362',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: `${APP_NAME} - Buy Without a Buyer's Agent`,
+    default: `${APP_NAME} — Buy a Home Without a Buyer's Agent`,
     template: `%s | ${APP_NAME}`,
   },
   description: APP_DESCRIPTION,
-  keywords: [
-    'home buying',
-    'self-represented buyer',
-    'no buyer agent',
-    'save commission',
-    'real estate',
-    'AI home buying',
-    'FSBO',
-    'buy without agent',
-  ],
-  authors: [{ name: APP_NAME }],
+  keywords: SEO_KEYWORDS,
+  authors: [{ name: APP_NAME, url: APP_URL }],
   creator: APP_NAME,
+  publisher: APP_NAME,
+  alternates: {
+    canonical: APP_URL,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: APP_URL,
-    title: `${APP_NAME} - Buy Without a Buyer's Agent`,
+    title: `${APP_NAME} — Buy a Home Without a Buyer's Agent | Save $10,000+`,
     description: APP_DESCRIPTION,
     siteName: APP_NAME,
     images: [
@@ -39,13 +40,13 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'BAIRE - Buy Without a Buyer\'s Agent',
+        alt: 'BAIRE — AI Home Buying Consultant. $995 instead of $10,000+ agent commission.',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${APP_NAME} - Buy Without a Buyer's Agent`,
+    title: `${APP_NAME} — Buy a Home Without a Buyer's Agent`,
     description: APP_DESCRIPTION,
     images: ['/og-image.png'],
   },
@@ -63,6 +64,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 }
 

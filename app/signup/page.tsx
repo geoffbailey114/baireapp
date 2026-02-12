@@ -4,7 +4,7 @@ import { useState, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
-import { ArrowRight, Loader2, Eye, EyeOff, Shield } from 'lucide-react'
+import { ArrowRight, Loader2, Eye, EyeOff, Shield, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { UserAgreement } from '@/components/user-agreement'
 
@@ -34,11 +34,9 @@ function GoogleIcon({ className }: { className?: string }) {
 
 function SignupForm() {
   const searchParams = useSearchParams()
-  const tierParam = searchParams.get('tier')
   
-  // Determine which tier to checkout for
-  const tier = tierParam === 'access' ? 'access' : 'trial'
-  const isAccessTier = tier === 'access'
+  // Default to full access ($995)
+  const tier = 'access'
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -72,7 +70,6 @@ function SignupForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate agreement checkbox
     if (!agreementAccepted) {
       setAgreementError(true)
       return
@@ -82,11 +79,9 @@ function SignupForm() {
     setError(null)
     setAgreementError(false)
 
-    // Capture consent timestamp
     const consentTimestamp = new Date().toISOString()
 
     try {
-      // First create the account
       const signupRes = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -94,7 +89,7 @@ function SignupForm() {
           email, 
           password,
           consentTimestamp,
-          agreementVersion: '1.0',
+          agreementVersion: '2.0',
         }),
       })
 
@@ -104,7 +99,7 @@ function SignupForm() {
         throw new Error(signupData.error || 'Failed to create account')
       }
 
-      // Then redirect to Stripe checkout for the appropriate tier
+      // Redirect to Stripe checkout for $995 full access
       const checkoutRes = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -112,7 +107,7 @@ function SignupForm() {
           email,
           tier,
           consentTimestamp,
-          agreementVersion: '1.0',
+          agreementVersion: '2.0',
         }),
       })
 
@@ -122,7 +117,6 @@ function SignupForm() {
         throw new Error(checkoutData.error || 'Failed to start checkout')
       }
 
-      // Redirect to Stripe
       window.location.href = checkoutData.url
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
@@ -134,12 +128,10 @@ function SignupForm() {
     <div className="w-full max-w-md">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-slate-900">
-          {isAccessTier ? 'Get Started with Access' : 'Start your free trial'}
+          Get started with BAIRE
         </h1>
         <p className="mt-2 text-slate-600">
-          {isAccessTier 
-            ? 'Skip the trial and get immediate access for $99.' 
-            : 'Free for 48 hours — pay only if you stay.'}
+          Full access. $995 one time. 30-day money-back guarantee.
         </p>
       </div>
 
@@ -215,7 +207,7 @@ function SignupForm() {
             </div>
           </div>
 
-          {/* User Agreement - Simplified */}
+          {/* User Agreement */}
           <div className={`flex items-start gap-3 p-4 rounded-lg ${agreementError ? 'bg-red-50 border border-red-200' : 'bg-slate-50'}`}>
             <input
               type="checkbox"
@@ -245,7 +237,7 @@ function SignupForm() {
             type="submit"
             disabled={loading || googleLoading}
             size="lg"
-            className="w-full"
+            className="w-full rounded-full"
           >
             {loading ? (
               <>
@@ -254,51 +246,41 @@ function SignupForm() {
               </>
             ) : (
               <>
-                {isAccessTier ? 'Continue to Payment ($99)' : 'Start Free Trial'}
+                Get Started — $995
                 <ArrowRight className="ml-2 h-4 w-4" />
               </>
             )}
           </Button>
         </form>
 
-        <div className="mt-6 pt-6 border-t border-slate-200 space-y-3">
+        <div className="mt-6 pt-6 border-t border-slate-200">
           <p className="text-center text-sm text-slate-600">
             Already have an account?{' '}
             <Link href="/login" className="font-medium text-sage-600 hover:text-sage-700">
               Log in
             </Link>
           </p>
-
-          {/* Toggle option */}
-          <p className="text-center">
-            {isAccessTier ? (
-              <Link href="/signup" className="text-sm text-slate-500 hover:text-slate-700 underline">
-                ← Start with free trial instead
-              </Link>
-            ) : (
-              <Link href="/signup?tier=access" className="text-sm text-slate-500 hover:text-slate-700 underline">
-                Ready to schedule a showing? Skip trial ($99) →
-              </Link>
-            )}
-          </p>
         </div>
       </div>
 
-      {/* Value props below card */}
+      {/* Trust props below card */}
       <div className="mt-6 space-y-4">
-        {/* Unlimited offers callout */}
         <div className="flex items-start gap-3 bg-sage-50 border border-sage-100 rounded-xl p-4">
           <Shield className="h-5 w-5 text-sage-600 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="font-semibold text-slate-900">Unlimited offers. Zero risk.</p>
-            <p className="text-sm text-slate-600">Make as many offers as you need. No home? We refund — no questions asked.</p>
+            <p className="font-semibold text-slate-900">30-day money-back guarantee</p>
+            <p className="text-sm text-slate-600">If BAIRE doesn&apos;t deliver, you get a full refund. No questions asked.</p>
           </div>
         </div>
         
-        {/* Pricing - minimal */}
-        <p className="text-center text-sm text-slate-500">
-          $599 flat fee — $99 to start · $500 when you make an offer
-        </p>
+        <div className="flex flex-wrap justify-center gap-4 text-xs text-slate-400">
+          {['One payment', 'Instant access', 'Keep forever', 'No buyer\'s agreement'].map((item) => (
+            <span key={item} className="flex items-center gap-1.5">
+              <Check className="h-3 w-3" />
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -308,8 +290,8 @@ function SignupFormFallback() {
   return (
     <div className="w-full max-w-md">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">Start your free trial</h1>
-        <p className="mt-2 text-slate-600">Free for 48 hours — pay only if you stay.</p>
+        <h1 className="text-3xl font-bold text-slate-900">Get started with BAIRE</h1>
+        <p className="mt-2 text-slate-600">Full access. $995 one time. 30-day money-back guarantee.</p>
       </div>
       <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
         <div className="flex items-center justify-center py-12">
@@ -322,12 +304,10 @@ function SignupFormFallback() {
 
 export default function SignupPage() {
   return (
-    
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4">
       <Suspense fallback={<SignupFormFallback />}>
         <SignupForm />
       </Suspense>
     </div>
-    
   )
 }

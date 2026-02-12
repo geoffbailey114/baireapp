@@ -6,9 +6,9 @@ import { ArrowRight, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const trustItems = [
-  'Free to try',
   '30-day money back',
   "No buyer's agreement",
+  'Keep access forever',
 ]
 
 export function CTAV2() {

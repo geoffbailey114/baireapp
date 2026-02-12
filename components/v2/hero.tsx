@@ -52,7 +52,7 @@ export function HeroV2() {
           >
             <Button asChild size="xl" className="text-base px-8 h-14 rounded-full">
               <Link href="/signup">
-                Start Free
+                Get Started
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -67,7 +67,7 @@ export function HeroV2() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-6 text-sm text-slate-500"
           >
-            Free to try · $995 one-time · 30-day money back · <Link href="#pricing" className="underline hover:text-slate-700">See pricing</Link>
+            $995 one-time · 30-day money back · No buyer&apos;s agreement · <Link href="#pricing" className="underline hover:text-slate-700">See pricing</Link>
           </motion.p>
         </div>
       </div>
