@@ -2,16 +2,15 @@ import Stripe from 'stripe'
 
 // Profile field options
 export const JOURNEY_STAGES = [
-  { value: 'starting', label: 'Just starting to explore', description: 'Learning about the process' },
+  { value: 'starting', label: 'Just starting to look', description: 'Learning about the process' },
   { value: 'shopping', label: 'Actively shopping', description: 'Looking at listings, scheduling tours' },
+  { value: 'pre-approved', label: 'Pre-approved and shopping', description: 'Have a pre-approval letter' },
   { value: 'ready-offer', label: 'Ready to make an offer', description: 'Found a property or close to it' },
-  { value: 'under-contract', label: 'Under contract', description: 'Already have an accepted offer' },
-  { value: 'curious', label: 'Just curious', description: 'Not buying right now' },
 ] as const
 
 export const BUYER_EXPERIENCE = [
   { value: 'first-time', label: 'First-time buyer', description: "I've never purchased a home" },
-  { value: 'done-before', label: 'Done it before', description: "I've bought 1-2 homes" },
+  { value: 'done-before', label: 'Bought once before', description: "I've bought 1-2 homes" },
   { value: 'experienced', label: 'Experienced', description: "I've bought 3+ homes" },
 ] as const
 
