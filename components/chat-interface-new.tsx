@@ -93,8 +93,8 @@ function getWelcomeMessage(profile?: UserProfile | null): Message {
       content = `Welcome back to BAIRE! Since you're actively shopping, I can help you evaluate properties, schedule showings, and understand what to look for.`
     } else if (profile.journeyStage === 'ready-offer') {
       content = `Welcome to BAIRE! You're ready to make moves. I can help you craft competitive offers and navigate negotiations.`
-    } else if (profile.journeyStage === 'under-contract') {
-      content = `Welcome to BAIRE! Congratulations on getting under contract. I can help you navigate inspections, contingencies, and the path to closing.`
+    } else if (profile.journeyStage === 'pre-approved') {
+      content = `Welcome to BAIRE! Great job getting pre-approved — that puts you in a strong position. I can help you evaluate properties and make competitive offers.`
     }
     
     if (profile.buyerExperience === 'first-time') {

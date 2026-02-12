@@ -191,8 +191,8 @@ export function generateProfileSummary(profile: UserProfile): string {
     parts.push("and is actively shopping for homes")
   } else if (profile.journeyStage === 'ready-offer') {
     parts.push("and is ready to make an offer")
-  } else if (profile.journeyStage === 'under-contract') {
-    parts.push("and is already under contract on a property")
+  } else if (profile.journeyStage === 'pre-approved') {
+    parts.push("and is pre-approved and actively shopping")
   }
 
   // Build summary with name
