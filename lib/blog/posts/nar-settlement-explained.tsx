@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: 'nar-settlement-explained',
   title: 'NAR Settlement Explained: What It Means for Home Buyers in 2026',
   description: 'The NAR settlement changed how buyer\'s agent commissions work. Learn what changed, why it matters, and how you can save $10,000+ on your next home purchase.',
-  publishedAt: '2026-02-12T00:00:00Z',
+  publishedAt: '2026-02-09T00:00:00Z',
   author: {
     name: 'BAIRE',
     url: 'https://baireapp.com',
@@ -21,6 +21,7 @@ export const post: BlogPost = {
   ],
   readingTime: 8,
   published: true,
+  relatedSlugs: ['do-you-need-a-buyers-agent', 'how-to-buy-without-agent-step-by-step', 'what-it-looks-like-buying-without-agent'],
   faqs: [
     {
       question: 'What is the NAR settlement?',
@@ -113,6 +114,12 @@ export const post: BlogPost = {
       </p>
       <p>
         <strong><a href="/signup">Try BAIRE free for 7 days →</a></strong>
+      </p>
+
+      <hr />
+
+      <p>
+        <strong>Keep reading:</strong> <a href="/blog/do-you-need-a-buyers-agent">Do You Actually Need a Buyer&apos;s Agent?</a> &rarr; <a href="/blog/how-to-buy-without-agent-step-by-step">Step-by-Step Walkthrough</a> &rarr; <a href="/blog/what-it-looks-like-buying-without-agent">What It Actually Looks Like</a>
       </p>
     </>
   ),

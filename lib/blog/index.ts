@@ -6,11 +6,16 @@ import { BlogPost, BlogPostMeta, BlogCategory, CATEGORY_META } from './types'
 // ============================================================
 
 import { post as narSettlementExplained } from './posts/nar-settlement-explained'
+import { post as doYouNeedBuyersAgent } from './posts/do-you-need-a-buyers-agent'
+import { post as howToBuyWithoutAgent } from './posts/how-to-buy-without-agent-step-by-step'
+import { post as whatItLooksLike } from './posts/what-it-looks-like-buying-without-agent'
 // Import new posts here:
-// import { post as howToBuyWithoutAgent } from './posts/how-to-buy-without-agent'
 
 const ALL_POSTS: BlogPost[] = [
   narSettlementExplained,
+  doYouNeedBuyersAgent,
+  howToBuyWithoutAgent,
+  whatItLooksLike,
   // Add new posts here
 ]
 
