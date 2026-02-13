@@ -17,7 +17,7 @@ const trustCards = [
   {
     icon: Unlock,
     title: 'No lock-in. Ever.',
-    description: "No buyer's agreement. No long-term commitment. Cancel anytime, for any reason. You stay because BAIRE is worth it — not because you're stuck.",
+    description: "No buyer's agreement. No long-term commitment. Try free for 7 days, and if you're not convinced, you're protected by our 30-day money-back guarantee. You stay because BAIRE is worth it — not because you're stuck.",
   },
 ]
 
