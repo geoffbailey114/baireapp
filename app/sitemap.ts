@@ -1,10 +1,12 @@
 import { MetadataRoute } from 'next'
 import { APP_URL } from '@/lib/constants'
+import { getBlogSitemapEntries } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.APP_BASE_URL || APP_URL
 
-  return [
+  // Static pages
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -22,6 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
@@ -47,6 +55,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.3,
     },
-    // Note: /access, /consultant, /v1, /v2 excluded from sitemap
   ]
+
+  // Dynamic blog posts
+  const blogEntries: MetadataRoute.Sitemap = getBlogSitemapEntries().map(entry => ({
+    url: `${baseUrl}/blog/${entry.slug}`,
+    lastModified: new Date(entry.updatedAt),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
+  return [...staticPages, ...blogEntries]
 }

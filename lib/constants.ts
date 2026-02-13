@@ -26,11 +26,16 @@ export const SEO_KEYWORDS = [
   'home buying without realtor',
   'save buyer agent commission',
   'BAIRE app',
-  'buy home without realtor 2025',
+  'buy home without realtor 2026',
   'how to buy a house without an agent',
   'buyer agent alternative',
-  'flat fee home buying',
   'no commission home buying',
+  'unrepresented home buyer',
+  'buy house no agent 2026',
+  'NAR settlement buyer commission 2026',
+  'home buying AI assistant',
+  'replace buyer agent',
+  'buyer agent cost savings',
 ]
 
 // Navigation links
@@ -38,6 +43,7 @@ export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/how-baire-works', label: 'How It Works' },
   { href: '/pricing', label: 'Pricing' },
+  { href: '/blog', label: 'Blog' },
 ]
 
 export const FOOTER_LEGAL_LINKS = [
