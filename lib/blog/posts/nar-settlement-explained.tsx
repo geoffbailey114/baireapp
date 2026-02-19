@@ -7,8 +7,8 @@ export const post: BlogPost = {
   description: 'The NAR settlement changed how buyer\'s agent commissions work. Learn what changed, why it matters, and how you can save $10,000+ on your next home purchase.',
   publishedAt: '2026-02-09T00:00:00Z',
   author: {
-    name: 'BAIRE',
-    url: 'https://baireapp.com',
+    name: 'Susie Johnson',
+    url: 'https://baireapp.com/blog',
   },
   category: 'nar-settlement',
   tags: ['NAR settlement', 'buyer agent commission', 'home buying 2026', 'save money'],
