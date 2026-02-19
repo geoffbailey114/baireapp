@@ -7,8 +7,8 @@ export const post: BlogPost = {
   description: 'Most buyers assume they need an agent. But after the NAR settlement, the math tells a different story. Here\'s what buyer\'s agents actually do, what they can\'t do, and how to decide.',
   publishedAt: '2026-02-10T00:00:00Z',
   author: {
-    name: 'BAIRE',
-    url: 'https://baireapp.com',
+    name: 'Susie Johnson',
+    url: 'https://baireapp.com/blog',
   },
   category: 'process',
   tags: ['buyer agent', 'NAR settlement', 'home buying 2026', 'self-represented buyer', 'agent commission', 'first-time buyer'],
