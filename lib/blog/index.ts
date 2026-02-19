@@ -5,17 +5,31 @@ import { BlogPost, BlogPostMeta, BlogCategory, CATEGORY_META } from './types'
 // Import each post file here. This is the single source of truth.
 // ============================================================
 
+// Existing posts
 import { post as narSettlementExplained } from './posts/nar-settlement-explained'
 import { post as doYouNeedBuyersAgent } from './posts/do-you-need-a-buyers-agent'
-import { post as howToBuyWithoutAgent } from './posts/how-to-buy-without-agent-step-by-step'
+import { post as howToBuyStepByStep } from './posts/how-to-buy-without-agent-step-by-step'
 import { post as whatItLooksLike } from './posts/what-it-looks-like-buying-without-agent'
+
+// Stack 1: Commission Myth (NEW)
+import { post as buyerAgentIsntFree } from './posts/buyer-agent-isnt-free'
+import { post as trueCost30Year } from './posts/true-cost-buyer-agent-30-year-mortgage'
+import { post as fiveThings12000 } from './posts/five-things-paying-buyer-agent-12000'
+import { post as everythingFor995 } from './posts/get-everything-buyer-agent-offers-for-995'
+
 // Import new posts here:
 
 const ALL_POSTS: BlogPost[] = [
+  // Existing
   narSettlementExplained,
   doYouNeedBuyersAgent,
-  howToBuyWithoutAgent,
+  howToBuyStepByStep,
   whatItLooksLike,
+  // Stack 1: Commission Myth
+  buyerAgentIsntFree,
+  trueCost30Year,
+  fiveThings12000,
+  everythingFor995,
   // Add new posts here
 ]
 
