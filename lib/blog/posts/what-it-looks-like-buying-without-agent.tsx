@@ -7,8 +7,8 @@ export const post: BlogPost = {
   description: 'Real conversations, real negotiations, and real savings. A practical walkthrough of what self-represented home buying looks like from the first phone call to closing day.',
   publishedAt: '2026-02-12T00:00:00Z',
   author: {
-    name: 'BAIRE',
-    url: 'https://baireapp.com',
+    name: 'Patrick Londa',
+    url: 'https://baireapp.com/blog',
   },
   category: 'process',
   tags: ['self-represented buyer', 'real examples', 'negotiation', 'commission savings', 'home inspection', 'closing process', 'BAIRE'],
