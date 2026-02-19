@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: 'buyer-agent-isnt-free',
   title: "Your Buyer's Agent Isn't Free — Here's Who's Actually Paying",
   description: "The 'seller pays' myth has cost home buyers billions. Here's how buyer agent commissions really work — and who's actually footing the bill.",
-  publishedAt: '2026-02-18T00:00:00Z',
+  publishedAt: '2026-02-13T00:00:00Z',
   author: {
     name: 'Susie Johnson',
     url: 'https://baireapp.com/blog',
@@ -18,6 +18,9 @@ export const post: BlogPost = {
     'seller pays buyer agent myth',
     'buyer agent cost',
     'NAR settlement commissions',
+    'who pays the buyer agent commission',
+    'is my buyer agent really free',
+    'does the seller pay my realtor',
   ],
   readingTime: 9,
   published: true,
@@ -50,6 +53,9 @@ export const post: BlogPost = {
   ],
   content: () => (
     <>
+      <p>
+        <strong>The short version:</strong> Buyer&apos;s agent commissions have never been free. The cost is embedded in the home&apos;s sale price, financed into the buyer&apos;s mortgage, and compounded with interest for up to 30 years — turning a $10,000 commission into roughly $23,950 in total payments on a $400,000 home at 7%.
+      </p>
       <p>
         I recently thought of a conversation I had with a couple I met with last year who&apos;d just closed on their first house. It was a decent spot — three bedrooms outside of Austin, mid-$300s. They were thrilled. When the conversation turned to what the whole thing cost, the husband said something I&apos;ve heard a hundred times.
       </p>

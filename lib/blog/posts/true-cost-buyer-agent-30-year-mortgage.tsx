@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: 'true-cost-buyer-agent-30-year-mortgage',
   title: "The True Cost of a Buyer's Agent on a 30-Year Mortgage",
   description: "A 2.5% commission sounds small — until you finance it for 30 years. Here's the real math on what your buyer's agent costs over the life of your loan.",
-  publishedAt: '2026-02-18T00:00:00Z',
+  publishedAt: '2026-02-15T00:00:00Z',
   author: {
     name: 'Patrick Londa',
     url: 'https://baireapp.com/blog',
@@ -18,6 +18,9 @@ export const post: BlogPost = {
     'buyer agent commission financed',
     'how much does buyer agent cost mortgage',
     'buyer agent commission interest',
+    'how much does buyer agent commission cost over 30 years',
+    'what does 2.5 percent commission really cost',
+    'buyer agent commission opportunity cost',
   ],
   readingTime: 8,
   published: true,
@@ -50,6 +53,9 @@ export const post: BlogPost = {
   ],
   content: () => (
     <>
+      <p>
+        <strong>The short version:</strong> A 2.5% buyer&apos;s agent commission on a $400,000 home is $10,000 at closing — but financed over 30 years at 7%, the total cost is approximately $23,950. On a $550,000 home, it reaches $32,930. The opportunity cost of that monthly difference, invested over 30 years, approaches $97,000.
+      </p>
       <p>
         Most people think of a buyer&apos;s agent&apos;s commission as a single number. Two and a half percent. Maybe three. On a $400,000 home, that&apos;s $10,000 or $12,000. A meaningful amount, sure, but not the kind of figure that changes your financial trajectory.
       </p>

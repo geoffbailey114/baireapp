@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: 'five-things-paying-buyer-agent-12000',
   title: "5 Things You're Paying Your Buyer's Agent $12,000 to Do",
   description: "Break down the five core tasks a buyer's agent performs — finding homes, running comps, writing offers, negotiating, and coordinating — and what it takes to handle each one yourself.",
-  publishedAt: '2026-02-18T00:00:00Z',
+  publishedAt: '2026-02-17T00:00:00Z',
   author: {
     name: 'Susie Johnson',
     url: 'https://baireapp.com/blog',
@@ -18,6 +18,9 @@ export const post: BlogPost = {
     'buy home without agent',
     'do I need a buyer agent',
     'what buyer agent does for commission',
+    'can I buy a house without a realtor',
+    'what does a realtor actually do for buyers',
+    'is a buyer agent worth the commission',
   ],
   readingTime: 10,
   published: true,
@@ -50,6 +53,9 @@ export const post: BlogPost = {
   ],
   content: () => (
     <>
+      <p>
+        <strong>The short version:</strong> A buyer&apos;s agent performs five core tasks — finding properties, running comps, writing offers, negotiating, and coordinating closing. None of these requires a real estate license to do on your own behalf, and none involves specialized skills beyond research, arithmetic, and organized communication.
+      </p>
       <p>
         Here&apos;s an exercise most home buyers never do. Take the total commission your buyer&apos;s agent would earn on your purchase, and then list everything they actually do for that money. Not what you assume they do. Not the vague sense that they&apos;re &quot;handling things.&quot; The specific tasks.
       </p>
@@ -150,7 +156,7 @@ export const post: BlogPost = {
         Step back and look at the list. Five categories: property search, comp analysis, form completion, negotiation, and coordination. None of them requires a license. None of them is inaccessible to a motivated buyer with a computer, a phone, and a reasonable attention to detail.
       </p>
       <p>
-        This doesn&apos;t mean going without an agent is the right call for everyone. If you&apos;re buying your first home and you&apos;d rather not think about any of this, an agent can take things off your plate, and that convenience has legitimate value. But it&apos;s convenience, not necessity. And a $12,000 convenience charge deserves the same scrutiny you&apos;d give any other five-figure expense in your life.
+        This doesn&apos;t mean going without an agent is the right call for everyone. If you&apos;re buying your first home and you&apos;d rather not think about any of this, an agent can take things off your plate, and that convenience has legitimate value. (For a deeper look at who should and shouldn&apos;t use one, see <a href="/blog/do-you-need-a-buyers-agent">our full breakdown</a>.) But it&apos;s convenience, not necessity. And a $12,000 convenience charge deserves the same scrutiny you&apos;d give any other five-figure expense in your life.
       </p>
       <p>
         The question isn&apos;t whether you&apos;re capable. You are. The question is whether you have the structure and information to do it well. Because the tasks themselves are just tasks. They&apos;re not mysteries.

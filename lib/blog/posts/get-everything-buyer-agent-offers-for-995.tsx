@@ -18,13 +18,16 @@ export const post: BlogPost = {
     'BAIRE vs buyer agent',
     'flat fee home buying help',
     'self-represented buyer support',
+    'how to buy a house without a realtor',
+    'what is BAIRE',
+    'cheapest way to buy a home without agent',
   ],
   readingTime: 8,
   published: true,
   relatedSlugs: [
     'five-things-paying-buyer-agent-12000',
+    'true-cost-buyer-agent-30-year-mortgage',
     'buyer-agent-isnt-free',
-    'nar-settlement-explained',
   ],
   faqs: [
     {
@@ -50,6 +53,9 @@ export const post: BlogPost = {
   ],
   content: () => (
     <>
+      <p>
+        <strong>The short version:</strong> BAIRE is a $995 flat-fee platform that provides self-represented home buyers with comp analysis guidance, offer strategy, negotiation coaching, inspection interpretation, and closing support — the same core knowledge a buyer&apos;s agent provides, without the $10,000–$15,000 commission. It&apos;s not a brokerage and doesn&apos;t represent you. It educates and empowers you to represent yourself.
+      </p>
       <p>
         You&apos;ve seen <a href="/blog/buyer-agent-isnt-free">where the money goes</a>. You&apos;ve run <a href="/blog/true-cost-buyer-agent-30-year-mortgage">the 30-year math</a>. You&apos;ve looked at <a href="/blog/five-things-paying-buyer-agent-12000">the five things an agent does</a> and realized that none of them is out of reach.
       </p>
