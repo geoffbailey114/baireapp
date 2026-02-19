@@ -7,8 +7,8 @@ export const post: BlogPost = {
   description: 'The complete practical guide to buying a home without a buyer\'s agent. From pre-approval to closing day — every step, every form, every deadline explained in plain English.',
   publishedAt: '2026-02-11T00:00:00Z',
   author: {
-    name: 'BAIRE',
-    url: 'https://baireapp.com',
+    name: 'Patrick Londa',
+    url: 'https://baireapp.com/blog',
   },
   category: 'process',
   tags: ['step by step', 'home buying process', 'self-represented buyer', 'purchase agreement', 'home inspection', 'closing process', 'first-time buyer'],
