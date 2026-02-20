@@ -9,73 +9,50 @@ import {
 
 const faqs = [
   {
-    question: "Can I actually tour homes without an agent?",
+    question: 'How do I tour homes without an agent?',
     answer: (
       <>
-        <p className="mb-3">Yes. You can attend open houses freely, and for private showings, you contact the listing agent directly.</p>
-        <p>BAIRE pulls the listing agent&apos;s name and contact info straight from the listing, then gives you word-for-word scripts — what to say, what to text, what to email. Most listing agents are happy to show their property to a serious, qualified buyer.</p>
+        <p>You contact the listing agent directly. BAIRE gives you word-for-word scripts that present you as a serious, qualified buyer. Most listing agents prefer this &mdash; they represent the seller, and an unrepresented buyer means no competing agent to coordinate around.</p>
       </>
     ),
   },
   {
-    question: 'Will sellers take my offer seriously without an agent?',
+    question: 'Will sellers take my offer seriously?',
     answer: (
       <>
-        <p className="mb-3">Your offer is actually stronger. When you don&apos;t have a buyer&apos;s agent, there&apos;s no 2–3% commission for the seller to pay out.</p>
-        <p>On a $400K home, that means the seller keeps $10,000 more from your offer than from an identical offer with an agent attached. You&apos;re not at a disadvantage — you&apos;re the better deal on paper.</p>
+        <p>More seriously, not less. An unrepresented buyer&apos;s offer costs the seller nothing in buyer-agent commission. On a $400K home, your offer effectively puts $10,000 more in the seller&apos;s pocket compared to a represented buyer at the same price.</p>
       </>
     ),
   },
   {
-    question: "How will I know what the home is actually worth?",
+    question: 'How do I know what the home is actually worth?',
     answer: (
       <>
-        <p className="mb-3">BAIRE analyzes comparable sales, days on market, price trends, and seller motivation signals to help you understand a home&apos;s real value.</p>
-        <p>This is the same analysis agents do (called a CMA) — you just get it instantly, without the commission attached.</p>
+        <p>BAIRE runs the same comparable sales analysis agents use &mdash; pulled from the same data, without the spin. You&apos;ll see what similar homes sold for, how long they sat, and what that means for your offer. You decide. Not your agent.</p>
       </>
     ),
   },
   {
-    question: 'What about inspections and appraisals?',
+    question: 'What about negotiations when things go sideways?',
     answer: (
       <>
-        <p className="mb-3">BAIRE guides you through hiring inspectors, reading reports, identifying deal-breakers vs. minor issues, ordering appraisals, and using findings as negotiation leverage.</p>
-        <p>For what it&apos;s worth — agents don&apos;t inspect houses either. They hand you a business card. BAIRE does the same, plus teaches you what the report means.</p>
+        <p>BAIRE&apos;s negotiation module covers inspection responses, appraisal gaps, seller concessions, and deal-threatening scenarios in real time. You&apos;ll have a specific framework for every situation &mdash; not vague advice to &ldquo;talk to your agent.&rdquo;</p>
       </>
     ),
   },
   {
-    question: 'What if something goes wrong and I need to back out?',
+    question: "I've never bought a home before. Is this realistic?",
     answer: (
       <>
-        <p>BAIRE includes an exit strategy playbook covering how contingencies protect you, exact language for exercising your right to cancel, and templates for repair requests, credit negotiations, or walking away. You&apos;ll always know your options.</p>
+        <p>BAIRE was built for buyers who are smart, resourceful, and done paying for things they can handle themselves. You managed harder things on a smaller budget. The process is learnable. BAIRE makes sure you don&apos;t have to learn it alone.</p>
       </>
     ),
   },
   {
-    question: "What if I can't get pre-qualified for a mortgage?",
+    question: 'What if the deal falls through and I need to back out?',
     answer: (
       <>
-        <p className="mb-3">BAIRE connects you directly with NFM Lending — a national lender licensed in 49 states — for pre-qualification. No searching on your own.</p>
-        <p>If you can&apos;t get pre-qualified, we&apos;ll refund you in full. You don&apos;t pay for something you can&apos;t use.</p>
-      </>
-    ),
-  },
-  {
-    question: 'Is AI really smart enough to replace an agent?',
-    answer: (
-      <>
-        <p className="mb-3">BAIRE isn&apos;t replacing an agent with a chatbot. It&apos;s trained on the collective knowledge of thousands of real transactions — what works, what doesn&apos;t, what to watch for.</p>
-        <p>It gives you the strategic thinking and market knowledge agents provide, without the commission or conflicts of interest. And it&apos;s available at 2am when you&apos;re stressing about your offer.</p>
-      </>
-    ),
-  },
-  {
-    question: "I've never bought a home before. Can I really do this?",
-    answer: (
-      <>
-        <p className="mb-3">That&apos;s exactly who BAIRE was built for. The entire platform is a step-by-step process — from your first search to closing day.</p>
-        <p>At every stage, you&apos;ll know exactly what to do, what comes next, and what to watch for. You won&apos;t be guessing. You&apos;ll be guided.</p>
+        <p>The exit strategy playbook covers every contingency: inspection, financing, appraisal, and cold feet. You&apos;ll know exactly which clauses protect you, when your earnest money is at risk, and how to exit cleanly when that&apos;s the right call.</p>
       </>
     ),
   },
@@ -83,25 +60,15 @@ const faqs = [
     question: 'Does BAIRE negotiate for me?',
     answer: (
       <>
-        <p className="mb-3">No — and that&apos;s the point. Negotiation isn&apos;t who sends the message. It&apos;s knowing what to ask for, when, and why.</p>
-        <p>BAIRE gives you the strategy. You make the call.</p>
+        <p>BAIRE gives you the strategy, the framing, and the specific language to use. You execute it. That&apos;s the distinction &mdash; and it&apos;s the one that keeps you in control of the biggest financial decision of your life, not a stranger on commission.</p>
       </>
     ),
   },
   {
-    question: 'Is BAIRE a lawyer?',
+    question: 'Is BAIRE a licensed brokerage or law firm?',
     answer: (
       <>
-        <p className="mb-3">No. Just like a good agent, BAIRE doesn&apos;t pretend to be one.</p>
-        <p>Instead, it explains what matters, flags legal decision points, and helps you know when an attorney is worth involving — without guessing.</p>
-      </>
-    ),
-  },
-  {
-    question: 'Is my information safe?',
-    answer: (
-      <>
-        <p>Yes. Your data isn&apos;t sold, shared, or used for marketing.</p>
+        <p>No. BAIRE is an educational technology platform. We provide knowledge, frameworks, and guidance &mdash; not legal advice and not brokerage representation. You represent yourself. BAIRE makes sure you&apos;re the most prepared person in the room when you do.</p>
       </>
     ),
   },
@@ -112,9 +79,13 @@ export function FAQV2() {
     <section id="faq" className="py-24 md:py-32 bg-white">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
-            Common questions
+          <p className="text-xs font-bold tracking-[0.15em] uppercase text-sage-600 mb-4">Common questions</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4">
+            What confident buyers ask before starting.
           </h2>
+          <p className="text-lg text-slate-500">
+            Not &ldquo;can I do this&rdquo; &mdash; but &ldquo;how does this work.&rdquo;
+          </p>
         </div>
 
         <div className="mx-auto max-w-3xl">

@@ -82,34 +82,42 @@ export default function HomePage() {
             mainEntity: [
               {
                 '@type': 'Question',
-                name: 'Can I really buy a home without a buyer\'s agent?',
+                name: 'How do I tour homes without an agent?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Yes. There is no law requiring you to hire a buyer\'s agent. You can tour homes, write offers, and close — all without one. BAIRE gives you the knowledge agents have, so you can do it confidently.',
+                  text: 'You contact the listing agent directly. BAIRE gives you word-for-word scripts that present you as a serious, qualified buyer. Most listing agents prefer this — they represent the seller, and an unrepresented buyer means no competing agent to coordinate around.',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'How much does BAIRE cost compared to a buyer\'s agent?',
+                name: 'Will sellers take my offer seriously without a buyer\'s agent?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'BAIRE costs $995 one time. A buyer\'s agent typically costs 2-3% of the home price — that\'s $10,000 to $15,000 on a $400K-$600K home. And since the NAR settlement, that commission comes out of your pocket, not the seller\'s.',
+                  text: 'More seriously, not less. An unrepresented buyer\'s offer costs the seller nothing in buyer-agent commission. On a $400K home, your offer effectively puts $10,000 more in the seller\'s pocket compared to a represented buyer at the same price.',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'What if I can\'t get pre-qualified for a mortgage?',
+                name: 'How do I know what a home is actually worth without an agent?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'BAIRE connects you directly with NFM Lending — a national lender licensed in 49 states — for pre-qualification. If you can\'t get pre-qualified, BAIRE refunds you in full.',
+                  text: 'BAIRE runs the same comparable sales analysis agents use — pulled from the same data, without the spin. You\'ll see what similar homes sold for, how long they sat, and what that means for your offer.',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'What changed with the NAR settlement?',
+                name: 'Does BAIRE negotiate for me?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Before August 2024, the seller paid the buyer\'s agent commission and it was baked into the listing price. Now, buyer agent compensation is negotiated separately. If you don\'t use a buyer\'s agent, the seller doesn\'t have to pay that commission — making your offer 2-3% stronger.',
+                  text: 'BAIRE gives you the strategy, the framing, and the specific language to use. You execute it. That\'s the distinction — and it\'s the one that keeps you in control of the biggest financial decision of your life, not a stranger on commission.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Is BAIRE a licensed brokerage or law firm?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'No. BAIRE is an educational technology platform. We provide knowledge, frameworks, and guidance — not legal advice and not brokerage representation. You represent yourself. BAIRE makes sure you\'re the most prepared person in the room when you do.',
                 },
               },
             ],

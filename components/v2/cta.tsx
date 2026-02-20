@@ -6,9 +6,9 @@ import { ArrowRight, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const trustItems = [
+  '7 days free',
   '30-day money back',
   "No buyer's agreement",
-  'Keep access forever',
 ]
 
 export function CTAV2() {
@@ -23,10 +23,11 @@ export function CTAV2() {
           className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
-            Try BAIRE before your next showing.
+            You were right to question it.{' '}
+            <span className="text-sage-200">BAIRE is what comes next.</span>
           </h2>
           <p className="mt-6 text-xl text-sage-100 leading-relaxed max-w-lg mx-auto">
-            No commitment. No contract. No buyer&apos;s agreement. Just the knowledge you need to buy confidently — and keep thousands more in your pocket.
+            No buyer&apos;s agreement. No lock-in. 7 days free. Everything you need from first showing to closing day.
           </p>
           <div className="mt-10">
             <Button 
@@ -35,7 +36,7 @@ export function CTAV2() {
               className="bg-white text-sage-700 hover:bg-sage-50 text-base px-8 h-14 rounded-full"
             >
               <Link href="/signup">
-                Start Free Trial
+                Get Started
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
