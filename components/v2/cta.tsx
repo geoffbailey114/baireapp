@@ -30,9 +30,9 @@ export function CTAV2() {
             No buyer&apos;s agreement. No lock-in. 7 days free. Everything you need from first showing to closing day.
           </p>
           <div className="mt-10">
-            <Button 
-              asChild 
-              size="xl" 
+            <Button
+              asChild
+              size="xl"
               className="bg-white text-sage-700 hover:bg-sage-50 text-base px-8 h-14 rounded-full"
             >
               <Link href="/signup">

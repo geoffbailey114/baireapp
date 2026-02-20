@@ -85,7 +85,7 @@ export default function HomePage() {
                 name: 'How do I tour homes without an agent?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'You contact the listing agent directly. BAIRE gives you word-for-word scripts that present you as a serious, qualified buyer. Most listing agents prefer this — they represent the seller, and an unrepresented buyer means no competing agent to coordinate around.',
+                  text: 'BAIRE pulls the listing agent\'s name and contact info straight from the listing, then gives you word-for-word scripts that present you as a serious, qualified buyer. Most listing agents prefer this — they represent the seller, and an unrepresented buyer means no competing agent to coordinate around.',
                 },
               },
               {

@@ -10,16 +10,6 @@ export function HeroV2() {
     <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">
       <div className="container py-24 md:py-32 lg:py-40">
         <div className="mx-auto max-w-3xl text-center">
-          {/* Eyebrow */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-xs font-bold tracking-[0.15em] uppercase text-sage-600 mb-8"
-          >
-            Post-NAR Settlement &middot; The math changed in 2024
-          </motion.p>
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
