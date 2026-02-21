@@ -51,7 +51,7 @@ export function PricingV2() {
             className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm"
           >
             {/* Dark top section */}
-            <div className="bg-sage-900 px-8 py-10 text-white">
+            <div className="bg-sage-600 px-8 py-10 text-white">
               <p className="text-xs font-bold tracking-[0.12em] uppercase text-white/50 mb-5">
                 Full access &middot; All 5 stages &middot; Every market
               </p>

@@ -83,10 +83,10 @@ export function MathChanged() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-sage-900 rounded-2xl p-8 text-white"
+              className="bg-sage-600 rounded-2xl p-8 text-white"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#6ECB94]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-white" />
                 <span className="text-xs font-bold tracking-[0.1em] uppercase text-white/40">With BAIRE</span>
               </div>
 
@@ -94,7 +94,7 @@ export function MathChanged() {
                 {baireRows.map((row) => (
                   <div key={row.label} className="flex justify-between items-baseline py-3 border-b border-white/5 last:border-b-0">
                     <span className="text-sm text-white/40">{row.label}</span>
-                    <span className={`text-sm font-semibold ${row.highlight ? 'text-[#6ECB94]' : 'text-white'}`}>
+                    <span className={`text-sm font-semibold ${row.highlight ? 'text-white' : 'text-white'}`}>
                       {row.value}
                     </span>
                   </div>
@@ -103,7 +103,7 @@ export function MathChanged() {
 
               <div className="mt-5 pt-5 border-t-2 border-white/10 flex justify-between items-baseline">
                 <span className="text-xs font-bold tracking-wide uppercase text-white/40">Added cost</span>
-                <span className="text-3xl font-bold text-[#6ECB94]">$995</span>
+                <span className="text-3xl font-bold text-white">$995</span>
               </div>
 
               <div className="mt-4 bg-white/10 border border-white/15 rounded-xl px-4 py-3 flex items-center gap-2">
