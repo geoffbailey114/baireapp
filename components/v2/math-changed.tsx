@@ -106,9 +106,9 @@ export function MathChanged() {
                 <span className="text-3xl font-bold text-[#6ECB94]">$995</span>
               </div>
 
-              <div className="mt-4 bg-[#6ECB94]/10 border border-[#6ECB94]/15 rounded-xl px-4 py-3 flex items-center gap-2">
-                <DollarSign className="h-4 w-4 text-[#6ECB94] flex-shrink-0" />
-                <span className="text-sm font-medium text-[#6ECB94]">You keep $9,005 more in your pocket</span>
+              <div className="mt-4 bg-white/10 border border-white/15 rounded-xl px-4 py-3 flex items-center gap-2">
+                <DollarSign className="h-4 w-4 text-white/70 flex-shrink-0" />
+                <span className="text-sm font-medium text-white/80">You keep $9,005 more in your pocket</span>
               </div>
             </motion.div>
           </div>
