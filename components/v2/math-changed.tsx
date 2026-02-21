@@ -47,7 +47,7 @@ export function MathChanged() {
           </motion.p>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Agent Card */}
+            {/* Agent Card — white */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -73,42 +73,42 @@ export function MathChanged() {
 
               <div className="mt-5 pt-5 border-t-2 border-slate-100 flex justify-between items-baseline">
                 <span className="text-xs font-bold tracking-wide uppercase text-slate-400">Added cost</span>
-                <span className="text-3xl font-bold text-red-500">$10,000</span>
+                <span className="text-3xl font-bold text-slate-900">$10,000</span>
               </div>
             </motion.div>
 
-            {/* BAIRE Card — white to match competitive advantage section */}
+            {/* BAIRE Card — dark sage */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white rounded-2xl border border-slate-200 p-8"
+              className="bg-sage-900 rounded-2xl p-8 text-white"
             >
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#6ECB94]" />
-                <span className="text-xs font-bold tracking-[0.1em] uppercase text-slate-400">With BAIRE</span>
+                <span className="text-xs font-bold tracking-[0.1em] uppercase text-white/40">With BAIRE</span>
               </div>
 
               <div className="space-y-0">
                 {baireRows.map((row) => (
-                  <div key={row.label} className="flex justify-between items-baseline py-3 border-b border-slate-100 last:border-b-0">
-                    <span className="text-sm text-slate-500">{row.label}</span>
-                    <span className={`text-sm font-semibold ${row.highlight ? 'text-sage-700' : 'text-slate-900'}`}>
+                  <div key={row.label} className="flex justify-between items-baseline py-3 border-b border-white/5 last:border-b-0">
+                    <span className="text-sm text-white/40">{row.label}</span>
+                    <span className={`text-sm font-semibold ${row.highlight ? 'text-[#6ECB94]' : 'text-white'}`}>
                       {row.value}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-5 pt-5 border-t-2 border-slate-100 flex justify-between items-baseline">
-                <span className="text-xs font-bold tracking-wide uppercase text-slate-400">Added cost</span>
-                <span className="text-3xl font-bold text-sage-700">$995</span>
+              <div className="mt-5 pt-5 border-t-2 border-white/10 flex justify-between items-baseline">
+                <span className="text-xs font-bold tracking-wide uppercase text-white/40">Added cost</span>
+                <span className="text-3xl font-bold text-[#6ECB94]">$995</span>
               </div>
 
-              <div className="mt-4 bg-sage-50 border border-sage-200 rounded-xl px-4 py-3 flex items-center gap-2">
-                <DollarSign className="h-4 w-4 text-sage-600 flex-shrink-0" />
-                <span className="text-sm font-medium text-sage-700">You keep $9,005 more in your pocket</span>
+              <div className="mt-4 bg-[#6ECB94]/10 border border-[#6ECB94]/15 rounded-xl px-4 py-3 flex items-center gap-2">
+                <DollarSign className="h-4 w-4 text-[#6ECB94] flex-shrink-0" />
+                <span className="text-sm font-medium text-[#6ECB94]">You keep $9,005 more in your pocket</span>
               </div>
             </motion.div>
           </div>
