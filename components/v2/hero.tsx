@@ -16,11 +16,8 @@ export function HeroV2() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl md:text-7xl leading-[1.1]"
           >
-            You found the house.
-            <br />
-            You ran the numbers.
-            <br />
-            <span className="text-sage-600">You don&apos;t need the agent.</span>
+            Buy your home.{' '}
+            <span className="text-sage-600">Skip the commission.</span>
           </motion.h1>
 
           <motion.p
@@ -29,7 +26,7 @@ export function HeroV2() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-8 text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto"
           >
-            BAIRE gives you everything a buyer&apos;s agent knows &mdash; comp analysis, offer strategy, negotiation coaching, inspection guidance, and closing support &mdash; for $995 instead of $12,000+.
+            Get the knowledge of 100,000 agents without signing a buyer&apos;s agreement &mdash; and keep $10,000 or more in your pocket.
           </motion.p>
 
           <motion.div
