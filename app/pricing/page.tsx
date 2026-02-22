@@ -34,15 +34,11 @@ export default function PricingPage() {
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-12">
           <p className="text-xs font-bold tracking-[0.15em] uppercase text-sage-600 mb-4">Pricing</p>
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl mb-6">
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl mb-4">
             One price. Everything included.
-            <br />
-            No tiers. No upsells. No surprises.
           </h1>
-          <p className="text-lg text-slate-600 leading-relaxed">
-            A buyer&apos;s agent costs $10,000&ndash;$15,000 on a $400K&ndash;$600K home.
-            <br />
-            BAIRE costs $995. You do the math &mdash; you already have.
+          <p className="text-lg text-slate-600">
+            No tiers. No upsells. No surprises.
           </p>
         </div>
 

@@ -30,15 +30,11 @@ export function PricingV2() {
             className="text-center mb-12"
           >
             <p className="text-xs font-bold tracking-[0.15em] uppercase text-sage-600 mb-4">Pricing</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4">
               One price. Everything included.
-              <br />
-              No tiers. No upsells. No surprises.
             </h2>
-            <p className="text-lg text-slate-600 leading-relaxed">
-              A buyer&apos;s agent costs $10,000&ndash;$15,000 on a $400K&ndash;$600K home.
-              <br />
-              BAIRE costs $995. You do the math &mdash; you already have.
+            <p className="text-lg text-slate-600 max-w-md mx-auto">
+              No tiers. No upsells. No surprises.
             </p>
           </motion.div>
 
