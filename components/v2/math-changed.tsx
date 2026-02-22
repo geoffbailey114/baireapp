@@ -73,7 +73,7 @@ export function MathChanged() {
 
               <div className="mt-5 pt-5 border-t-2 border-slate-100 flex justify-between items-baseline">
                 <span className="text-xs font-bold tracking-wide uppercase text-slate-400">Added cost</span>
-                <span className="text-3xl font-bold text-slate-900">$10,000</span>
+                <span className="text-3xl font-bold text-red-500">$10,000</span>
               </div>
             </motion.div>
 
