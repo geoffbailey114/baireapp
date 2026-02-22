@@ -5,13 +5,13 @@ import { Button } from '@/components/ui/button'
 import { APP_NAME, APP_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'How BAIRE Works \u2014 Buy a Home Without an Agent, Step by Step',
+  title: 'How BAIRE Works — Buy a Home Without an Agent, Step by Step',
   description: 'See exactly how BAIRE replaces the buyer\'s agent: comp analysis, showing scripts, offer strategy, negotiation coaching, and closing guidance. $995 one time.',
   alternates: {
     canonical: `${APP_URL}/how-baire-works`,
   },
   openGraph: {
-    title: 'How BAIRE Works \u2014 Your AI Home Buying Consultant',
+    title: 'How BAIRE Works — Your AI Home Buying Consultant',
     description: 'From first search to closing day. BAIRE walks you through every step agents charge $10,000+ for.',
     url: `${APP_URL}/how-baire-works`,
   },
@@ -22,7 +22,7 @@ const steps = [
     number: '01',
     icon: Search,
     title: 'Find and evaluate homes',
-    description: 'Paste a link from Zillow, Realtor.com, or any listing site. BAIRE analyzes comparable sales, pricing trends, and red flags \u2014 so you know what a home is actually worth before you even visit.',
+    description: 'Paste a link from Zillow, Realtor.com, or any listing site. BAIRE analyzes comparable sales, pricing trends, and red flags — so you know what a home is actually worth before you even visit.',
     replaces: 'Replaces: Agent pricing your home\'s value',
     details: [
       'Comparable sales analysis in your target area',
@@ -65,7 +65,7 @@ const steps = [
     replaces: 'Replaces: Agent referrals',
     details: [
       'How to choose and hire inspectors',
-      'Inspection report translation \u2014 plain English',
+      'Inspection report translation — plain English',
       'Which findings are deal-breakers vs. cosmetic',
       'How to negotiate repair credits or price reductions',
     ],
@@ -80,7 +80,7 @@ const steps = [
       'Title company selection guidance',
       'Closing disclosure review in plain English',
       'Final walkthrough checklist',
-      'Exit strategy playbook \u2014 how to back out if needed',
+      'Exit strategy playbook — how to back out if needed',
     ],
   },
 ]
@@ -99,7 +99,7 @@ export default function HowBAIREWorksPage() {
               <span className="text-sage-500">Without the agent.</span>
             </h1>
             <p className="mt-6 text-xl text-slate-600 leading-relaxed max-w-xl mx-auto">
-              BAIRE walks you through every step of buying a home \u2014 from first search to closing day. No gaps. No guessing. No $10,000 commission.
+              BAIRE walks you through every step of buying a home — from first search to closing day. No gaps. No guessing. No $10,000 commission.
             </p>
           </div>
         </div>
@@ -155,8 +155,8 @@ export default function HowBAIREWorksPage() {
               {/* Agent card */}
               <div className="bg-white rounded-2xl border border-slate-200 p-8 text-center">
                 <p className="text-xs font-bold tracking-[0.1em] uppercase text-slate-400 mb-4">Traditional agent</p>
-                <p className="text-4xl font-bold text-red-500 mb-2">$10,000\u2013$15,000</p>
-                <p className="text-sm text-slate-500">2-3% on a $400K\u2013$600K home</p>
+                <p className="text-4xl font-bold text-red-500 mb-2">$10,000&ndash;$15,000</p>
+                <p className="text-sm text-slate-500">2-3% on a $400K&ndash;$600K home</p>
                 <p className="text-sm text-slate-400 mt-3">Now paid by you, not the seller</p>
               </div>
 
@@ -164,7 +164,7 @@ export default function HowBAIREWorksPage() {
               <div className="bg-sage-600 rounded-2xl p-8 text-center text-white">
                 <p className="text-xs font-bold tracking-[0.1em] uppercase text-white/40 mb-4">BAIRE</p>
                 <p className="text-4xl font-bold text-white mb-2">$995</p>
-                <p className="text-sm text-white/50">One payment \u00b7 keep forever</p>
+                <p className="text-sm text-white/50">One payment &middot; keep forever</p>
                 <p className="text-sm text-white/40 mt-3">30-day money-back guarantee</p>
               </div>
             </div>
