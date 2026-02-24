@@ -23,6 +23,14 @@ import { post as whatFirstTimersNeedToKnow } from './posts/what-first-time-buyer
 import { post as firstTimeBuyerRoadmap } from './posts/first-time-buyer-roadmap-pre-approval-to-closing'
 import { post as firstTimeBuyerCaseStudy } from './posts/first-time-buyer-purchases-home-without-agent'
 
+// Stack 2: State-by-State — Texas
+import { post as texasCommissions } from './posts/texas-buyer-agent-commissions'
+import { post as texasHowToBuy } from './posts/texas-how-to-buy-without-agent-trec'
+// DEPLOY Feb 25:
+// import { post as texasListingAgents } from './posts/texas-listing-agents-unrepresented-buyers'
+// DEPLOY Feb 26:
+// import { post as texasBuySmarter } from './posts/texas-buy-home-smarter-995'
+
 // Import new posts here:
 
 const ALL_POSTS: BlogPost[] = [
@@ -41,6 +49,11 @@ const ALL_POSTS: BlogPost[] = [
   whatFirstTimersNeedToKnow,
   firstTimeBuyerRoadmap,
   firstTimeBuyerCaseStudy,
+  // Stack 2: State-by-State — Texas
+  texasCommissions,
+  texasHowToBuy,
+  // DEPLOY Feb 25: texasListingAgents,
+  // DEPLOY Feb 26: texasBuySmarter,
   // Add new posts here
 ]
 
@@ -118,14 +131,6 @@ export function getActiveCategories(): { category: BlogCategory; label: string; 
     .sort((a, b) => b.count - a.count)
 }
 
-/** Get sitemap entries for all published blog posts */
-export function getBlogSitemapEntries(): { slug: string; updatedAt: string }[] {
-  return getAllPosts().map(p => ({
-    slug: p.slug,
-    updatedAt: p.updatedAt || p.publishedAt,
-  }))
-}
-
 /** Get all unique tags with counts */
 export function getAllTags(): { tag: string; count: number }[] {
   const counts: Record<string, number> = {}
@@ -136,6 +141,14 @@ export function getAllTags(): { tag: string; count: number }[] {
   return Object.entries(counts)
     .map(([tag, count]) => ({ tag, count }))
     .sort((a, b) => b.count - a.count)
+}
+
+/** Get sitemap entries for all published blog posts */
+export function getBlogSitemapEntries(): { slug: string; updatedAt: string }[] {
+  return getAllPosts().map(p => ({
+    slug: p.slug,
+    updatedAt: p.updatedAt || p.publishedAt,
+  }))
 }
 
 /** Calculate reading time from word count */
