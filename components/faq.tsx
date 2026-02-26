@@ -63,19 +63,18 @@ const faqs = [
     ),
   },
   {
-    question: 'What does the $599 cover?',
+    question: 'What does the $995 cover?',
     answer: (
       <>
-        <p className="mb-2">Everything you need to make and close an offer:</p>
+        <p className="mb-2">Everything you need — from first search to closing day:</p>
         <ul className="list-disc list-inside mb-3 space-y-1">
-          <li>Offer strategy and pricing</li>
-          <li>Terms and contingencies</li>
-          <li>Negotiation scenarios</li>
+          <li>Comp analysis &amp; pricing intelligence</li>
+          <li>Showing scripts &amp; listing agent contact guidance</li>
+          <li>Offer strategy and negotiation coaching</li>
           <li>Inspection and appraisal guidance</li>
-          <li>Closing clarity</li>
+          <li>Closing support</li>
         </ul>
-        <p className="mb-3">No commissions. No upsells.</p>
-        <p>Regular price is $999.</p>
+        <p>No commissions. No upsells.</p>
       </>
     ),
   },

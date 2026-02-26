@@ -6,7 +6,7 @@ BAIRE is an AI-powered educational platform that helps self-represented home buy
 
 - **AI-Powered Consultant**: Ask questions about home buying and get educational responses
 - **Free Trial**: 5 free queries to try the service
-- **One-Time Payment**: $599 for full access until you close on your home
+- **One-Time Payment**: $995 for full access until you close on your home
 - **Secure Authentication**: JWT-based auth with HttpOnly cookies
 - **No Database Required**: MVP uses JWT + localStorage + Stripe metadata
 
@@ -114,56 +114,26 @@ openssl rand -base64 32
    - `STRIPE_SECRET_KEY` → `sk_live_...`
    - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` → `pk_live_...`
 4. Create new webhook endpoint for production URL
-5. Update `STRIPE_WEBHOOK_SECRET` with production webhook secret
+5. Update `STRIPE_WEBHOOK_SECRET` with new signing secret
 
-## Deployment to Vercel
+## Deployment (Vercel)
 
-### Via Vercel Dashboard
+### First Deployment
 
-1. Go to [vercel.com](https://vercel.com)
-2. Import your GitHub repository
-3. Add environment variables in Project Settings:
-   - All variables from `.env.example`
-   - Use production values for live deployment
+1. Push code to GitHub
+2. Import project in [Vercel](https://vercel.com)
+3. Add all environment variables in Project Settings
 4. Deploy
 
-### Via Vercel CLI
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Login
-vercel login
-
-# Deploy (follow prompts)
-vercel
-
-# Deploy to production
-vercel --prod
-```
-
-### Environment Variables in Vercel
-
-1. Go to Project Settings > Environment Variables
-2. Add each variable from `.env.example`
-3. Set appropriate values for Production/Preview/Development
-
-## DNS Configuration (Squarespace → Vercel)
-
-### Add Your Domain to Vercel
+### Custom Domain
 
 1. Go to Project Settings > Domains
-2. Add your domain (e.g., `baire.ai`)
+2. Add your domain (e.g., `baireapp.com`)
 3. Vercel will show required DNS records
 
-### Configure DNS in Squarespace
+### Configure DNS
 
-1. Log in to Squarespace
-2. Go to **Settings > Domains > your domain > DNS Settings**
-3. Add the following records:
-
-**For apex domain (baire.ai):**
+**For apex domain (baireapp.com):**
 ```
 Type: A
 Host: @
@@ -177,17 +147,16 @@ Host: www
 Value: cname.vercel-dns.com
 ```
 
-4. Wait for DNS propagation (can take up to 48 hours)
-5. Vercel will automatically provision SSL certificate
+Wait for DNS propagation (can take up to 48 hours). Vercel will automatically provision SSL certificate.
 
 ### Verify DNS
 
 ```bash
 # Check A record
-dig baire.ai A
+dig baireapp.com A
 
 # Check CNAME
-dig www.baire.ai CNAME
+dig www.baireapp.com CNAME
 ```
 
 ## Project Structure
@@ -204,6 +173,7 @@ baire/
 │   ├── access/           # Post-payment page
 │   ├── consultant/       # AI chat interface
 │   ├── pricing/          # Pricing page
+│   ├── about/            # About page
 │   ├── terms/            # Legal pages
 │   ├── privacy/
 │   ├── disclaimer/
@@ -250,40 +220,11 @@ BAIRE includes:
 1. Use Stripe test card: `4242 4242 4242 4242`
 2. Any future expiry date
 3. Any CVC
-
-### Test Webhook Locally
-
-```bash
-# Terminal 1: Run dev server
-npm run dev
-
-# Terminal 2: Forward Stripe webhooks
-stripe listen --forward-to localhost:3000/api/stripe-webhook
-
-# Terminal 3: Trigger test event
-stripe trigger checkout.session.completed
-```
-
-## Production Checklist
-
-- [ ] All environment variables set in Vercel
-- [ ] Stripe webhook configured for production URL
-- [ ] Stripe account activated for live payments
-- [ ] DNS configured and SSL active
-- [ ] Test complete payment flow in production
-- [ ] Verify auth cookie works across pages
-- [ ] Test closing flow
-- [ ] Review legal pages for accuracy
-- [ ] Create actual OG image (1200x630)
-- [ ] Set up error monitoring (optional: Sentry)
-
-## Support
-
-For questions about BAIRE:
-- General: hello@baire.ai
-- Support: support@baire.ai
-- Legal: legal@baire.ai
+4. Complete checkout
+5. Verify redirect to /access
+6. Verify JWT cookie is set
+7. Verify /consultant is accessible
 
 ## License
 
-Proprietary - All rights reserved
+Proprietary — BAIREAPP, LLC

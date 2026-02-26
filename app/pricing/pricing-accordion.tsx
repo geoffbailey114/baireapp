@@ -8,55 +8,34 @@ const pricingSteps = [
     id: 'trial',
     title: 'Free Trial',
     price: '$0',
-    priceNote: '48 hours',
-    description: 'Try BAIRE free for 48 hours. Explore, learn, and see how BAIRE can help you.',
+    priceNote: '7 days',
+    description: 'Try BAIRE free for 7 days. Full access to every feature.',
     features: [
-      'Chat access for Q&A',
+      'Full AI consultant access',
+      'Comp analysis & pricing intelligence',
+      'Showing scripts & listing agent guidance',
       'General home buying education',
       'Terminology & process guidance',
-      'Timeline planning help',
     ],
-    excludes: [
-      'Showing scheduling scripts',
-      'Waiver templates',
-      'Offer preparation tools',
-    ],
-    note: 'No charge during trial. Cancel anytime within 48 hours.',
+    note: 'No charge during trial. Cancel anytime within 7 days.',
   },
   {
-    id: 'access',
-    title: 'Access',
-    price: '$99',
-    priceNote: 'to start',
-    description: 'Continue using BAIRE after your trial. Unlock showing tools and keep learning.',
+    id: 'full',
+    title: 'Full Access',
+    price: '$995',
+    priceNote: 'one payment',
+    description: 'Everything you need from first search to closing day. One payment. Yours forever.',
     features: [
       'Everything in Trial, plus:',
-      'Showing scheduling scripts & templates',
-      'Buyer waiver templates',
-      'Walkthrough checklists',
-      'Red flag spotting guide',
-      'Continued chat support',
+      'Offer strategy & negotiation coaching',
+      'Counteroffer modeling & frameworks',
+      'Inspection & appraisal guidance',
+      'Exit strategy playbook',
+      'NFM Lending pre-qualification (49 states)',
+      'Closing support & document review',
+      'Priority support',
     ],
-    note: 'Charged after your 48-hour trial ends.',
-  },
-  {
-    id: 'offer',
-    title: 'Make an Offer',
-    price: '$500',
-    priceNote: 'when ready',
-    description: "When you're ready to make an offer, unlock full offer preparation and closing support.",
-    features: [
-      'Everything in Access, plus:',
-      'Full offer generation & strategy',
-      'Negotiation playbooks',
-      'State-specific language & terms',
-      'Price & terms guidance',
-      'Counteroffer strategies',
-      'Closing disclosure review',
-      'Final walkthrough prep',
-      'Closing day checklist',
-    ],
-    note: 'One-time payment. BAIRE stays with you through closing.',
+    note: 'Charged on day 8 if you don\'t cancel. 30-day money-back guarantee.',
   },
 ]
 
@@ -108,19 +87,6 @@ export function PricingAccordion() {
                   </li>
                 ))}
               </ul>
-              {step.excludes && (
-                <div className="mb-4 p-3 bg-slate-100 rounded-lg">
-                  <p className="text-xs font-medium text-slate-500 mb-2">Upgrade to unlock:</p>
-                  <ul className="space-y-1">
-                    {step.excludes.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-slate-500">
-                        <span className="text-slate-400">→</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
               <p className="text-sm text-slate-500 bg-slate-50 rounded-lg p-3">
                 {step.note}
               </p>
@@ -134,10 +100,10 @@ export function PricingAccordion() {
         <div className="flex items-center justify-between">
           <div>
             <span className="font-semibold text-slate-900">Total (start to finish)</span>
-            <p className="text-sm text-slate-600">$99 to start + $500 when you make an offer</p>
+            <p className="text-sm text-slate-600">7-day free trial, then one payment</p>
           </div>
           <div className="text-right">
-            <span className="text-2xl font-bold text-sage-700">$599</span>
+            <span className="text-2xl font-bold text-sage-700">$995</span>
             <p className="text-sm text-slate-500">flat fee</p>
           </div>
         </div>

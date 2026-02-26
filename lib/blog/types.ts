@@ -55,6 +55,13 @@ export interface BlogPostMeta {
 
   /** Related post slugs (for internal linking) */
   relatedSlugs?: string[]
+
+  /**
+   * TL;DR summary — rendered as a highlighted callout at the top of the post.
+   * Acts as a GEO extraction beacon for LLMs. 2-3 sentences, self-contained,
+   * factual, includes key data points. LLMs frequently extract this as the answer.
+   */
+  tldr?: string
 }
 
 export interface BlogFAQ {

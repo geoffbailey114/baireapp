@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { X, ArrowRight, FileText, Target, Scale, Clock } from 'lucide-react'
+import { X, ArrowRight, FileText, Target, Scale } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface OfferUpgradeModalProps {
@@ -56,15 +56,15 @@ export function OfferUpgradeModal({ isOpen, onClose }: OfferUpgradeModalProps) {
           <ul className="space-y-3">
             <li className="flex items-start gap-3 text-sm text-slate-700">
               <FileText className="h-4 w-4 text-sage-600 mt-0.5 flex-shrink-0" />
-              <span>Full offer generation & strategy</span>
+              <span>Full offer generation &amp; strategy</span>
             </li>
             <li className="flex items-start gap-3 text-sm text-slate-700">
               <Target className="h-4 w-4 text-sage-600 mt-0.5 flex-shrink-0" />
-              <span>Negotiation playbooks & counteroffer strategies</span>
+              <span>Negotiation playbooks &amp; counteroffer strategies</span>
             </li>
             <li className="flex items-start gap-3 text-sm text-slate-700">
               <Scale className="h-4 w-4 text-sage-600 mt-0.5 flex-shrink-0" />
-              <span>State-specific language & closing support</span>
+              <span>State-specific language &amp; closing support</span>
             </li>
           </ul>
         </div>
@@ -72,15 +72,11 @@ export function OfferUpgradeModal({ isOpen, onClose }: OfferUpgradeModalProps) {
         {/* Pricing */}
         <div className="text-center mb-6">
           <div className="flex items-center justify-center gap-2">
-            <span className="text-2xl font-bold text-slate-900">$500</span>
-            <span className="text-slate-400 line-through">$900</span>
+            <span className="text-2xl font-bold text-slate-900">$995</span>
           </div>
-          <div className="mt-2">
-            <span className="inline-flex items-center gap-1 text-xs text-amber-700 font-semibold bg-amber-100 px-2 py-0.5 rounded border border-amber-200">
-              <Clock className="h-3 w-3" />
-              LIMITED TIME - Save $400
-            </span>
-          </div>
+          <p className="text-sm text-slate-500 mt-1">
+            One payment. Everything included through closing.
+          </p>
         </div>
 
         {/* CTA */}
@@ -99,7 +95,7 @@ export function OfferUpgradeModal({ isOpen, onClose }: OfferUpgradeModalProps) {
         </Button>
 
         <p className="text-xs text-slate-500 text-center mt-4">
-          One-time payment. Includes everything through closing.
+          30-day money-back guarantee. No buyer&apos;s agreement required.
         </p>
       </div>
     </div>
