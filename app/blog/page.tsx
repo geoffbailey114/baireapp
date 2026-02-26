@@ -23,19 +23,9 @@ export const metadata: Metadata = {
   },
 }
 
-export default function BlogPage({
-  searchParams,
-}: {
-  searchParams: { category?: string }
-}) {
+export default function BlogPage() {
   const allPosts = getAllPosts()
   const categories = getActiveCategories()
-  const activeCategory = searchParams.category || null
-
-  const filteredPosts = activeCategory
-    ? allPosts.filter(p => p.category === activeCategory)
-    : allPosts
-
   const baseUrl = APP_URL
 
   return (
@@ -66,23 +56,15 @@ export default function BlogPage({
             <div className="flex flex-wrap gap-2 mb-10">
               <Link
                 href="/blog"
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                  !activeCategory
-                    ? 'bg-[#2d3b2d] text-white'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
+                className="px-3 py-1.5 rounded-full text-sm font-medium transition-colors bg-[#2d3b2d] text-white"
               >
                 All
               </Link>
               {categories.map(({ category, label, count }) => (
                 <Link
                   key={category}
-                  href={`/blog?category=${category}`}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                    activeCategory === category
-                      ? 'bg-[#2d3b2d] text-white'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
+                  href={`/blog/${category}`}
+                  className="px-3 py-1.5 rounded-full text-sm font-medium transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200"
                 >
                   {label} ({count})
                 </Link>
@@ -91,13 +73,13 @@ export default function BlogPage({
           )}
 
           {/* Posts */}
-          {filteredPosts.length === 0 ? (
+          {allPosts.length === 0 ? (
             <p className="text-slate-500 text-center py-12">
-              No posts yet in this category. Check back soon.
+              No posts yet. Check back soon.
             </p>
           ) : (
             <div className="space-y-8">
-              {filteredPosts.map((post) => (
+              {allPosts.map((post) => (
                 <article key={post.slug} className="group">
                   <Link href={`/blog/${post.slug}`} className="block">
                     <div className="border border-slate-200 rounded-xl p-6 hover:border-slate-300 hover:shadow-sm transition-all">
@@ -158,8 +140,8 @@ export default function BlogPage({
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               Ready to buy without an agent?
             </h2>
-            <p className="text-slate-600 mb-6">
-              Try BAIRE free for 7 days. Comp analysis, offer strategy, negotiation coaching — everything you need.
+            <p className="text-slate-600 mb-5">
+              BAIRE gives you everything an agent does — for $995 instead of $10,000+.
             </p>
             <Link
               href="/signup"

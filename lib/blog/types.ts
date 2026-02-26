@@ -189,7 +189,7 @@ export function generateBreadcrumbSchema(post: BlogPostMeta, baseUrl: string) {
         '@type': 'ListItem',
         position: 3,
         name: CATEGORY_META[post.category].label,
-        item: `${baseUrl}/blog?category=${post.category}`,
+        item: `${baseUrl}/blog/${post.category}`,
       },
       {
         '@type': 'ListItem',

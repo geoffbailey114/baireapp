@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { APP_URL } from '@/lib/constants'
-import { getBlogSitemapEntries } from '@/lib/blog'
+import { getBlogSitemapEntries, getActiveCategories } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.APP_BASE_URL || APP_URL
@@ -63,6 +63,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
+  // Blog category pages
+  const categoryEntries: MetadataRoute.Sitemap = getActiveCategories().map(({ category }) => ({
+    url: `${baseUrl}/blog/${category}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.6,
+  }))
+
   // Dynamic blog posts
   const blogEntries: MetadataRoute.Sitemap = getBlogSitemapEntries().map(entry => ({
     url: `${baseUrl}/blog/${entry.slug}`,
@@ -71,5 +79,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...blogEntries]
+  return [...staticPages, ...categoryEntries, ...blogEntries]
 }

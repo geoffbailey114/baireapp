@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { Inter } from 'next/font/google'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
@@ -7,6 +8,8 @@ import { APP_NAME, APP_URL, APP_DESCRIPTION, SEO_KEYWORDS } from '@/lib/constant
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
+
+const GA_MEASUREMENT_ID = 'G-6SZ4KJSGC6'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -81,6 +84,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      </head>
       <body className={`${inter.className} min-h-screen bg-white antialiased`}>
         <AuthProvider>
           <Navigation />
