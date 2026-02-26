@@ -27,9 +27,9 @@ import { post as firstTimeBuyerCaseStudy } from './posts/first-time-buyer-purcha
 import { post as texasCommissions } from './posts/texas-buyer-agent-commissions'
 import { post as texasHowToBuy } from './posts/texas-how-to-buy-without-agent-trec'
 // DEPLOY Feb 25:
-// import { post as texasListingAgents } from './posts/texas-listing-agents-unrepresented-buyers'
+import { post as texasListingAgents } from './posts/texas-listing-agents-unrepresented-buyers'
 // DEPLOY Feb 26:
-// import { post as texasBuySmarter } from './posts/texas-buy-home-smarter-995'
+import { post as texasBuySmarter } from './posts/texas-buy-home-smarter-995'
 
 // Import new posts here:
 
@@ -52,8 +52,8 @@ const ALL_POSTS: BlogPost[] = [
   // Stack 2: State-by-State — Texas
   texasCommissions,
   texasHowToBuy,
-  // DEPLOY Feb 25: texasListingAgents,
-  // DEPLOY Feb 26: texasBuySmarter,
+  texasListingAgents,
+  texasBuySmarter,
   // Add new posts here
 ]
 
