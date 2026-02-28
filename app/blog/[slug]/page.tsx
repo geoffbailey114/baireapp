@@ -415,7 +415,7 @@ function BlogPostPage({ post }: { post: BlogPost }) {
 
           {/* TL;DR — GEO Extraction Beacon */}
           {post.tldr && (
-            <div className="mb-10 rounded-r-xl border-l-4 border-sage-500 bg-sage-50 px-6 py-5">
+            <div className="mb-10 rounded-xl border-l-4 border-sage-500 bg-sage-50 px-6 py-5">
               <p className="text-xs font-bold tracking-[0.12em] uppercase text-sage-600 mb-2">
                 TL;DR
               </p>
