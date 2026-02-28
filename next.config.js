@@ -4,24 +4,6 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-  async redirects() {
-    return [
-      {
-        // Redirect old query-param category URLs to path-based
-        // /blog?category=savings → /blog/savings (301 permanent)
-        source: '/blog',
-        has: [
-          {
-            type: 'query',
-            key: 'category',
-            value: '(?<cat>.+)',
-          },
-        ],
-        destination: '/blog/:cat',
-        permanent: true,
-      },
-    ]
-  },
   async headers() {
     return [
       {
