@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { AuthProvider } from '@/components/auth-provider'
+import { AIReferralTracker } from '@/components/ai-referral-tracker'
 import { APP_NAME, APP_URL, APP_DESCRIPTION, SEO_KEYWORDS } from '@/lib/constants'
 import './globals.css'
 
@@ -105,6 +106,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </AuthProvider>
+        <AIReferralTracker />
       </body>
     </html>
   )
