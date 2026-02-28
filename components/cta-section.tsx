@@ -21,7 +21,7 @@ export function CTASection() {
           </h2>
           <p className="mt-6 text-xl text-sage-100 leading-relaxed">
             Join buyers who have used BAIRE to understand the home-buying 
-            process. Start with a free trial or get full access for $599.
+            process. Start with a free trial or get full access for $995.
           </p>
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 

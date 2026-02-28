@@ -49,7 +49,7 @@ export function PricingCTA() {
             </Button>
           </div>
           <p className="mt-6 text-sm text-sage-200">
-            $99 after trial · $500 when you make an offer
+            7-day free trial &middot; $995 for full access through closing
           </p>
         </motion.div>
       </div>

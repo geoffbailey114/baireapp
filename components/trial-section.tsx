@@ -17,7 +17,7 @@ export function TrialSection() {
           className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Try BAIRE free for 48 hours.
+            Try BAIRE free for 7 days.
           </h2>
           <p className="mt-4 text-lg text-sage-100">
             See how much easier buying can feel when you have a smarter, faster, 
@@ -30,13 +30,13 @@ export function TrialSection() {
               className="bg-white text-sage-700 hover:bg-sage-50"
             >
               <Link href="/pricing">
-                Start Free — 48-Hour Trial
+                Start Free — 7-Day Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
           <p className="mt-6 text-sm text-sage-200">
-            Advanced actions like offer prep, scheduling scripts, and waivers unlock with BAIRE Access after your trial.
+            Full access to every feature. $995 after trial if you continue.
           </p>
         </motion.div>
       </div>

@@ -7,7 +7,7 @@ export function ValueProp() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
             The average buyer's agent commission is $12,000.
             <br />
-            <span className="text-sage-600">BAIRE costs $599.</span>
+            <span className="text-sage-600">BAIRE costs $995.</span>
           </h2>
 
           {/* Supporting text */}
