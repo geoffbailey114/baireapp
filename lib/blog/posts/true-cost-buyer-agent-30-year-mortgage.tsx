@@ -4,8 +4,10 @@ import { BlogPost } from '../types'
 export const post: BlogPost = {
   slug: 'true-cost-buyer-agent-30-year-mortgage',
   title: "The True Cost of a Buyer's Agent on a 30-Year Mortgage",
-  description: "A 2.5% commission sounds small — until you finance it for 30 years. Here's the real math on what your buyer's agent costs over the life of your loan.",
+  description: "A 2.5% commission sounds small \u2014 until you finance it for 30 years. Here\u2019s the real math on what your buyer\u2019s agent costs over the life of your loan.",
+  tldr: "A 2.5% buyer\u2019s agent commission on a $400,000 home is $10,000 at closing \u2014 but financed over 30 years at 5.75%, the total cost is approximately $21,000. On a $550,000 home, it reaches nearly $29,000. The opportunity cost of that monthly difference, invested over 30 years, approaches $86,000.",
   publishedAt: '2026-02-15T00:00:00Z',
+  updatedAt: '2026-02-28T00:00:00Z',
   author: {
     name: 'Patrick Londa',
     url: 'https://baireapp.com/blog',
@@ -32,30 +34,27 @@ export const post: BlogPost = {
   faqs: [
     {
       question: 'How much does a 2.5% buyer agent commission actually cost over 30 years?',
-      answer: "On a $400,000 home at 2.5% commission financed at 7% for 30 years, the commission portion alone costs approximately $23,950 in total payments — nearly $14,000 in interest on top of the original $10,000 commission.",
+      answer: "On a $400,000 home at 2.5% commission financed at 5.75% for 30 years, the commission portion alone costs approximately $21,000 in total payments \u2014 about $11,000 in interest on top of the original $10,000 commission.",
     },
     {
       question: 'Why does the commission cost more than the percentage suggests?',
-      answer: "Because it gets embedded in your purchase price and financed as part of your mortgage. You're not just paying the commission — you're paying 30 years of interest on it. A $10,000 commission becomes roughly $24,000 over the life of the loan at current rates.",
+      answer: "Because it gets embedded in your purchase price and financed as part of your mortgage. You\u2019re not just paying the commission \u2014 you\u2019re paying 30 years of interest on it. A $10,000 commission becomes roughly $21,000 over the life of the loan at current rates.",
     },
     {
       question: 'What is the opportunity cost of a buyer agent commission?',
-      answer: "If you invested the monthly mortgage difference (roughly $66/month on a $400,000 home) into an index fund averaging 8% annual returns over 30 years, you'd accumulate approximately $97,000. That's the true opportunity cost of the embedded commission.",
+      answer: "If you invested the monthly mortgage difference (roughly $58/month on a $400,000 home) into an index fund averaging 8% annual returns over 30 years, you\u2019d accumulate approximately $86,000. That\u2019s the true opportunity cost of the embedded commission.",
     },
     {
       question: 'Does the commission affect my equity and PMI?',
-      answer: "Yes. A higher purchase price from embedded commission means lower starting equity, a higher loan-to-value ratio, and potentially longer private mortgage insurance requirements — especially for buyers putting down less than 20%.",
+      answer: "Yes. A higher purchase price from embedded commission means lower starting equity, a higher loan-to-value ratio, and potentially longer private mortgage insurance requirements \u2014 especially for buyers putting down less than 20%.",
     },
     {
       question: 'What if I pay my agent directly instead of through the sale price?',
-      answer: "Paying your agent directly at closing eliminates the interest compounding issue. But you still face the sticker price — a $10,000 check at closing is cash that could go toward closing costs, a larger down payment, or a rate buydown that saves thousands over the loan term.",
+      answer: "Paying your agent directly at closing eliminates the interest compounding issue. But you still face the sticker price \u2014 a $10,000 check at closing is cash that could go toward closing costs, a larger down payment, or a rate buydown that saves thousands over the loan term.",
     },
   ],
   content: () => (
     <>
-      <p>
-        <strong>The short version:</strong> A 2.5% buyer&apos;s agent commission on a $400,000 home is $10,000 at closing — but financed over 30 years at 7%, the total cost is approximately $23,950. On a $550,000 home, it reaches $32,930. The opportunity cost of that monthly difference, invested over 30 years, approaches $97,000.
-      </p>
       <p>
         Most people think of a buyer&apos;s agent&apos;s commission as a single number. Two and a half percent. Maybe three. On a $400,000 home, that&apos;s $10,000 or $12,000. A meaningful amount, sure, but not the kind of figure that changes your financial trajectory.
       </p>
@@ -63,7 +62,7 @@ export const post: BlogPost = {
         Except it does. Because that&apos;s not actually what you pay.
       </p>
       <p>
-        The number on the closing statement is just the beginning. If you&apos;re financing — and about 87% of buyers are — that commission gets folded into your loan. And once it&apos;s in the loan, it compounds. Quietly, steadily, for 30 years.
+        The number on the closing statement is just the beginning. If you&apos;re financing &mdash; and about 87% of buyers are &mdash; that commission gets folded into your loan. And once it&apos;s in the loan, it compounds. Quietly, steadily, for 30 years.
       </p>
       <p>
         Let&apos;s do the math that most buyers never see.
@@ -71,7 +70,7 @@ export const post: BlogPost = {
 
       <h2>How the Commission Gets into Your Mortgage</h2>
       <p>
-        When a seller lists a home, they factor in their costs. Listing agent commission, buyer-agent commission, closing costs, repairs, staging. All of it gets built into the asking price. The seller isn&apos;t going to absorb a 5% commission out of their equity if they can avoid it — they price the home to cover it.
+        When a seller lists a home, they factor in their costs. Listing agent commission, buyer-agent commission, closing costs, repairs, staging. All of it gets built into the asking price. The seller isn&apos;t going to absorb a 5% commission out of their equity if they can avoid it &mdash; they price the home to cover it.
       </p>
       <p>
         So when you buy a $400,000 home and a 2.5% buyer-agent commission is embedded in that price, you&apos;re borrowing $10,000 more than the home might have been priced at without that cost. Your down payment is calculated on the higher number. Your monthly payment is calculated on the higher number. Your interest accrues on the higher number.
@@ -82,7 +81,7 @@ export const post: BlogPost = {
 
       <h2>The 30-Year Math, Three Ways</h2>
       <p>
-        Let&apos;s keep this simple and work through three price points. I&apos;m using a 7% fixed rate, which is roughly where mortgages have been sitting. If rates drop, the total cost comes down some. If they stay or climb, these numbers get worse.
+        Let&apos;s keep this simple and work through three price points. I&apos;m using a 5.75% fixed rate, which is in the range where 30-year mortgages have been landing recently. If rates tick down further, the total cost improves a bit. If they climb back toward the mid-sixes, it gets worse. But at any rate buyers have seen in the last two years, the story is the same: a five-figure commission turns into a much larger number once it&apos;s inside your mortgage.
       </p>
 
       <h3>$300,000 Home</h3>
@@ -90,10 +89,10 @@ export const post: BlogPost = {
         Buyer-agent commission at 2.5%: $7,500.
       </p>
       <p>
-        Financed over 30 years at 7%, that $7,500 generates approximately $17,960 in total payments. You&apos;re paying $10,460 in interest alone on the commission portion of your mortgage.
+        Financed over 30 years at 5.75%, that $7,500 generates approximately $15,750 in total payments. You&apos;re paying over $8,200 in interest alone on the commission portion of your mortgage.
       </p>
       <p>
-        Your agent&apos;s monthly surcharge on your mortgage: about $50. Over 360 months, it becomes nearly $18,000.
+        Your agent&apos;s monthly surcharge on your payment: about $44. Over 360 months, it becomes nearly $16,000.
       </p>
 
       <h3>$400,000 Home</h3>
@@ -101,10 +100,10 @@ export const post: BlogPost = {
         Commission at 2.5%: $10,000.
       </p>
       <p>
-        Financed over 30 years at 7%: approximately $23,950 in total payments. That&apos;s $13,950 in pure interest stacked on top of the original commission.
+        Financed over 30 years at 5.75%: approximately $21,000 in total payments. That&apos;s $11,000 in pure interest stacked on top of the original commission.
       </p>
       <p>
-        Your &quot;free&quot; agent now costs roughly $66 a month, every month, for your entire mortgage term.
+        Your &quot;free&quot; agent now costs roughly $58 a month, every month, for your entire mortgage term.
       </p>
 
       <h3>$550,000 Home</h3>
@@ -112,21 +111,21 @@ export const post: BlogPost = {
         Commission at 2.5%: $13,750.
       </p>
       <p>
-        Financed over 30 years at 7%: approximately $32,930.
+        Financed over 30 years at 5.75%: approximately $28,900.
       </p>
       <p>
-        Thirty-three thousand dollars. For a service that took maybe 40 hours of someone&apos;s time spread over a couple of months. That works out to more than $800 per hour of your agent&apos;s actual labor, paid out over 30 years of yours.
+        Nearly twenty-nine thousand dollars. For a service that took maybe 40 hours of someone&apos;s time spread over a couple of months. That works out to more than $700 per hour of your agent&apos;s actual labor, paid out over 30 years of yours.
       </p>
 
       <h2>The &quot;It&apos;s Only a Few Dollars a Month&quot; Trap</h2>
       <p>
-        The instinct here is to minimize it. Sixty-six dollars a month on a $400,000 home? That&apos;s a streaming subscription and a couple of coffees. It doesn&apos;t feel like much in the context of a $2,600 mortgage payment.
+        The instinct here is to minimize it. Fifty-eight dollars a month on a $400,000 home? That&apos;s a streaming subscription and a couple of coffees. It doesn&apos;t feel like much in the context of a $2,400 mortgage payment.
       </p>
       <p>
-        But $66 a month for 360 months is $23,950. And that&apos;s just the direct cost.
+        But $58 a month for 360 months is $21,000. And that&apos;s just the direct cost.
       </p>
       <p>
-        Here&apos;s the opportunity cost. Put $66 a month into a basic index fund averaging 8% annual returns over 30 years, and you&apos;d have roughly $97,000. That&apos;s not a typo. The true opportunity cost of that embedded commission — the money you could have built if it weren&apos;t sitting in a bank&apos;s interest column — approaches six figures.
+        Here&apos;s the opportunity cost. Put $58 a month into a basic index fund averaging 8% annual returns over 30 years, and you&apos;d have roughly $86,000. That&apos;s not a typo. The true opportunity cost of that embedded commission &mdash; the money you could have built if it weren&apos;t sitting in a bank&apos;s interest column &mdash; approaches six figures.
       </p>
       <p>
         I&apos;m not suggesting every buyer should skip representation and invest the difference. But the decision to hire an agent should be made with clear eyes about what it costs. Not the sticker price. Not the comfortable fiction that it&apos;s free. The real, compounded, financed-for-decades number.
@@ -146,15 +145,15 @@ export const post: BlogPost = {
         For buyers putting down less than 20%, this matters even more. The higher purchase price can extend the window during which you&apos;re required to carry private mortgage insurance. On an FHA loan, where PMI often lasts the full loan term, every extra dollar in the purchase price stretches that cost further.
       </p>
       <p>
-        None of this is dramatic on its own. But stacked together — higher monthly payments, more interest, lower starting equity, longer PMI — the commission&apos;s real cost starts looking very different from the number on the settlement statement.
+        None of this is dramatic on its own. But stacked together &mdash; higher monthly payments, more interest, lower starting equity, longer PMI &mdash; the commission&apos;s real cost starts looking very different from the number on the settlement statement.
       </p>
 
       <h2>What About Paying Your Agent Directly?</h2>
       <p>
-        Post-settlement, some buyers are now signing agreements to pay their agent directly at closing — sometimes as a flat fee, sometimes as a percentage. If you&apos;re paying out of pocket rather than having it folded into the price, the interest compounding issue disappears.
+        Post-settlement, some buyers are now signing agreements to pay their agent directly at closing &mdash; sometimes as a flat fee, sometimes as a percentage. If you&apos;re paying out of pocket rather than having it folded into the price, the interest compounding issue disappears.
       </p>
       <p>
-        That&apos;s a real improvement in transparency. But the sticker price is still the sticker price. Writing a $10,000 check at closing is still $10,000. For many buyers — especially first-timers who&apos;ve scraped together a down payment — that&apos;s a significant chunk of cash that could go toward closing costs, a larger down payment, or a rate buydown that saves thousands over the loan term.
+        That&apos;s a real improvement in transparency. But the sticker price is still the sticker price. Writing a $10,000 check at closing is still $10,000. For many buyers &mdash; especially first-timers who&apos;ve scraped together a down payment &mdash; that&apos;s a significant chunk of cash that could go toward closing costs, a larger down payment, or a rate buydown that saves thousands over the loan term.
       </p>
       <p>
         Whether the commission is embedded or direct, the question remains: is the service worth the cost?
@@ -162,7 +161,7 @@ export const post: BlogPost = {
 
       <h2>That&apos;s the Question, Isn&apos;t It?</h2>
       <p>
-        Once you see the real math, the conversation shifts. It&apos;s no longer &quot;do I want an agent?&quot; (most people do — agents are helpful). It becomes &quot;is what my agent provides worth $24,000? Or $33,000? Or whatever the financed number is on my specific purchase?&quot;
+        Once you see the real math, the conversation shifts. It&apos;s no longer &quot;do I want an agent?&quot; (most people do &mdash; agents are helpful). It becomes &quot;is what my agent provides worth $21,000? Or $29,000? Or whatever the financed number is on my specific purchase?&quot;
       </p>
       <p>
         And to answer that honestly, you need to know what the agent actually does. Not the vague impression. Not the handshake and the business card. The actual, specific, enumerable tasks.
@@ -173,7 +172,7 @@ export const post: BlogPost = {
 
       <hr />
       <p>
-        So what are you actually getting for that money? In our next piece, we lay out the five core tasks your buyer&apos;s agent performs — and what it takes to handle each one yourself: <a href="/blog/five-things-paying-buyer-agent-12000">5 Things You&apos;re Paying Your Buyer&apos;s Agent $12,000 to Do (That You Can Do Yourself)</a>.
+        So what are you actually getting for that money? In our next piece, we lay out the five core tasks your buyer&apos;s agent performs &mdash; and what it takes to handle each one yourself: <a href="/blog/five-things-paying-buyer-agent-12000">5 Things You&apos;re Paying Your Buyer&apos;s Agent $12,000 to Do (That You Can Do Yourself)</a>.
       </p>
     </>
   ),
