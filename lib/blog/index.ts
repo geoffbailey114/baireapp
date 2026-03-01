@@ -26,10 +26,13 @@ import { post as firstTimeBuyerCaseStudy } from './posts/first-time-buyer-purcha
 // Stack 2: State-by-State — Texas
 import { post as texasCommissions } from './posts/texas-buyer-agent-commissions'
 import { post as texasHowToBuy } from './posts/texas-how-to-buy-without-agent-trec'
-// DEPLOY Feb 25:
 import { post as texasListingAgents } from './posts/texas-listing-agents-unrepresented-buyers'
-// DEPLOY Feb 26:
 import { post as texasBuySmarter } from './posts/texas-buy-home-smarter-995'
+
+// Stack 3: State-by-State — Arizona
+import { post as arizonaCommissions } from './posts/arizona-buyer-agent-commissions'
+import { post as arizonaHowToBuy } from './posts/arizona-how-to-buy-without-agent-escrow'
+import { post as arizonaWinningPhoenix } from './posts/arizona-self-represented-buyers-winning-phoenix'
 
 // Import new posts here:
 
@@ -54,6 +57,10 @@ const ALL_POSTS: BlogPost[] = [
   texasHowToBuy,
   texasListingAgents,
   texasBuySmarter,
+  // Stack 3: State-by-State — Arizona
+  arizonaCommissions,
+  arizonaHowToBuy,
+  arizonaWinningPhoenix,
   // Add new posts here
 ]
 
