@@ -34,9 +34,14 @@ import { post as arizonaCommissions } from './posts/arizona-buyer-agent-commissi
 import { post as arizonaHowToBuy } from './posts/arizona-how-to-buy-without-agent-escrow'
 import { post as arizonaWinningPhoenix } from './posts/arizona-self-represented-buyers-winning-phoenix'
 
+// Pillar Pages
+import { post as completeGuideNoRealtor } from './posts/buy-home-without-realtor-complete-guide'
+
 // Import new posts here:
 
 const ALL_POSTS: BlogPost[] = [
+  // Pillar Pages
+  completeGuideNoRealtor,
   // Existing
   narSettlementExplained,
   doYouNeedBuyersAgent,
