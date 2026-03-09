@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: 'first-time-buyer-purchases-home-without-agent',
   title: "What It Looks Like When a First-Time Buyer Purchases a Home Without an Agent",
   description: "A real walkthrough of a first-time buyer\u2019s experience purchasing a home self-represented \u2014 from the first phone call to closing day, with the actual numbers.",
-  tldr: `A first-time buyer purchased a home self-represented and saved over $20,000 compared to using a traditional buyer's agent — including a $4,000 price reduction, $2,500 in closing credits, and the avoided $9,125 buyer-agent commission. BAIRE provided guidance through every step for $995.`,
+  tldr: 'A first-time buyer purchased a home self-represented and saved over $20,000 compared to using a traditional buyer\'s agent — including a $4,000 price reduction, $2,500 in closing credits, and the avoided $9,125 buyer-agent commission. BAIRE provided guidance through every step for $995.',
   publishedAt: '2026-02-22T00:00:00Z',
   author: {
     name: 'Patrick Londa',

@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: 'texas-how-to-buy-without-agent-trec',
   title: "How to Buy a Home Without an Agent in Texas: TREC Forms, Disclosures, and Process",
   description: "The complete step-by-step guide to buying a home in Texas without a buyer\u2019s agent. TREC 1-4 contract, option period, title company closing \u2014 every detail explained.",
-  tldr: `Buying a home in Texas without an agent uses the TREC 1-4 Residential Contract, available free from the Texas Real Estate Commission. The process includes a negotiated option period (7-10 days, $100-$500 fee), a title company closing, and no attorney requirement. Texas listing agents work with self-represented buyers regularly.`,
+  tldr: 'Buying a home in Texas without an agent uses the TREC 1-4 Residential Contract, available free from the Texas Real Estate Commission. The process includes a negotiated option period (7-10 days,   description: "The complete step-by-step guide to buying a home in Texas without a buyer\u2019s agent. TREC 1-4 contract, option period, title company closing \u2014 every detail explained.",00-$500 fee), a title company closing, and no attorney requirement. Texas listing agents work with self-represented buyers regularly.',
   publishedAt: '2026-02-24T00:00:00Z',
   author: {
     name: 'Patrick Londa',
