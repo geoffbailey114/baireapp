@@ -5,6 +5,7 @@ export const post: BlogPost = {
   slug: 'what-it-looks-like-buying-without-agent',
   title: 'What It Actually Looks Like to Buy a Home Without an Agent',
   description: 'Real conversations, real negotiations, and real savings. A practical walkthrough of what self-represented home buying looks like from the first phone call to closing day.',
+  tldr: `A real walkthrough of buying a home self-represented: calling listing agents for showings, negotiating directly with sellers, using inspection findings for price leverage, and closing through a title company. In one example, the buyer saved over $18,000 compared to the traditional route — including a price reduction, closing cost credits, and the avoided commission.`,
   publishedAt: '2026-02-12T00:00:00Z',
   author: {
     name: 'Patrick Londa',
