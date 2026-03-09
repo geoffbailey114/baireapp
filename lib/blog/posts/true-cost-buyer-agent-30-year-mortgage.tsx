@@ -4,8 +4,7 @@ import { BlogPost } from '../types'
 export const post: BlogPost = {
   slug: 'true-cost-buyer-agent-30-year-mortgage',
   title: "The True Cost of a Buyer's Agent on a 30-Year Mortgage",
-  description: "A 2.5% commission sounds small \u2014 until you finance it for 30 years. Here\u2019s the real math on what your buyer\u2019s agent costs over the life of your loan.",
-  tldr: "A 2.5% buyer\u2019s agent commission on a $400,000 home is $10,000 at closing \u2014 but financed over 30 years at 5.75%, the total cost is approximately $21,000. On a $550,000 home, it reaches nearly $29,000. The opportunity cost of that monthly difference, invested over 30 years, approaches $86,000.",
+  description: "A 2.5% commission sounds small \u2014 until you finance it for 30 years. Here\u2019s the real math on what your buyer\u2019s agent costs over the life of your loan.",  tldr: `When the buyer-agent commission is financed as part of your mortgage, you pay interest on it for 30 years. A $10,000 commission at 6.5% interest costs over $22,700 in total payments over the life of the loan. That's the true cost of a 'free' buyer's agent.`,
   publishedAt: '2026-02-15T00:00:00Z',
   updatedAt: '2026-02-28T00:00:00Z',
   author: {

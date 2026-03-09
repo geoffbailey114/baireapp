@@ -5,6 +5,7 @@ export const post: BlogPost = {
   slug: 'do-you-need-a-buyers-agent',
   title: 'Do You Actually Need a Buyer\'s Agent to Buy a House?',
   description: 'Most buyers assume they need an agent. But after the NAR settlement, the math tells a different story. Here\'s what buyer\'s agents actually do, what they can\'t do, and how to decide.',
+  tldr: `No. There is no law requiring you to use a buyer's agent. After the NAR settlement, using one means signing a buyer's agreement and paying 2-3% commission. The tasks agents perform — finding homes, scheduling showings, writing offers — don't require a license. Legal advice, inspections, and appraisals are always handled by third parties, agent or not.`,
   publishedAt: '2026-02-10T00:00:00Z',
   author: {
     name: 'Susie Johnson',
