@@ -5,7 +5,6 @@ export const post: BlogPost = {
   slug: 'first-home-feels-overwhelming',
   title: "Buying Your First Home Feels Overwhelming. Here\u2019s Why It\u2019s Simpler Than You Think.",
   description: "First-time buyers think home buying is impossibly complex. It\u2019s not. Here\u2019s what\u2019s actually involved \u2014 and why the fear is almost always worse than the reality.",
-  tldr: `Buying your first home feels overwhelming because you're doing something you've never done before — not because the process is actually complicated. The steps are predictable: get pre-approved, search, tour, offer, inspect, close. With the right guidance, first-time buyers navigate this process successfully every day.`,
   publishedAt: '2026-02-19T00:00:00Z',
   author: {
     name: 'Susie Johnson',

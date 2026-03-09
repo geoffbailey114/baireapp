@@ -5,8 +5,6 @@ export const post: BlogPost = {
   slug: 'buyer-agent-isnt-free',
   title: "Your Buyer's Agent Isn't Free — Here's Who's Actually Paying",
   description: "The 'seller pays' myth has cost home buyers billions. Here's how buyer agent commissions really work — and who's actually footing the bill.",
-  tldr: `The buyer's agent commission was never free. It was built into the sale price and paid by the seller — which means you, the buyer, financed it as part of your mortgage. On a $400K home at 2.5%, that's 
-  description: "The 'seller pays' myth has cost home buyers billions. Here's how buyer agent commissions really work — and who's actually footing the bill.",0,000 upfront and over $20,000 when financed over 30 years at current rates.`,
   publishedAt: '2026-02-13T00:00:00Z',
   author: {
     name: 'Susie Johnson',

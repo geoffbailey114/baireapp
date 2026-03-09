@@ -5,8 +5,6 @@ export const post: BlogPost = {
   slug: 'get-everything-buyer-agent-offers-for-995',
   title: "How to Get Everything a Buyer's Agent Offers for $995",
   description: "You've seen the math. You know the tasks. Here's how BAIRE gives you comp analysis, offer strategy, negotiation coaching, and closing support — for a fraction of agent commission.",
-  tldr: `BAIRE provides everything a buyer's agent does — comp analysis, offer strategy, negotiation coaching, inspection guidance, and closing support — for $995 instead of 
-  description: "You've seen the math. You know the tasks. Here's how BAIRE gives you comp analysis, offer strategy, negotiation coaching, and closing support — for a fraction of agent commission.",0,000+. No buyer's agreement required. 7-day free trial. 30-day money-back guarantee.`,
   publishedAt: '2026-02-18T00:00:00Z',
   author: {
     name: 'Patrick Londa',
