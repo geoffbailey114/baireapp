@@ -5,8 +5,6 @@ export const post: BlogPost = {
   slug: 'how-to-buy-without-agent-step-by-step',
   title: 'How to Buy a House Without a Buyer\'s Agent: A Step-by-Step Walkthrough',
   description: 'The complete practical guide to buying a home without a buyer\'s agent. From pre-approval to closing day — every step, every form, every deadline explained in plain English.',
-  tldr: 'Buying without a buyer\'s agent follows the same steps: get pre-approved, search listings, schedule showings by calling the listing agent, write offers using your state\'s standard forms, negotiate, inspect, and close through a title company. The process is the same — you just handle communication directly and save 
-  description: 'The complete practical guide to buying a home without a buyer\'s agent. From pre-approval to closing day — every step, every form, every deadline explained in plain English.',0,000+ in commission.',
   publishedAt: '2026-02-11T00:00:00Z',
   author: {
     name: 'Patrick Londa',

@@ -5,7 +5,6 @@ export const post: BlogPost = {
   slug: 'five-things-paying-buyer-agent-12000',
   title: "5 Things You're Paying Your Buyer's Agent $12,000 to Do",
   description: "Break down the five core tasks a buyer's agent performs — finding homes, running comps, writing offers, negotiating, and coordinating — and what it takes to handle each one yourself.",
-  tldr: 'Five things   description: "Break down the five core tasks a buyer's agent performs — finding homes, running comps, writing offers, negotiating, and coordinating — and what it takes to handle each one yourself.",2,000 in buyer-agent commission buys you — and what it doesn\'t. Agents can\'t give legal advice, can\'t perform inspections, can\'t do appraisals, and access the same MLS data you do. The   description: "Break down the five core tasks a buyer's agent performs — finding homes, running comps, writing offers, negotiating, and coordinating — and what it takes to handle each one yourself.",2,000 pays for convenience and communication — tasks available for a fraction of the cost.',
   publishedAt: '2026-02-17T00:00:00Z',
   author: {
     name: 'Susie Johnson',

@@ -5,7 +5,6 @@ export const post: BlogPost = {
   slug: 'what-first-time-buyers-need-to-know',
   title: "What First-Time Home Buyers Actually Need to Know (and What They Can Safely Ignore)",
   description: "Not all home-buying advice matters equally. Here\u2019s what first-time buyers should focus on, what they can skip, and how to filter the noise.",
-  tldr: 'First-time buyers need to know three things: get pre-approved before you start looking, budget for costs beyond the down payment (inspection, closing costs, moving), and understand that an agent is optional — not required. The NAR settlement now requires a buyer\'s agreement before agents show homes, making the cost visible.',
   publishedAt: '2026-02-20T00:00:00Z',
   author: {
     name: 'Susie Johnson',

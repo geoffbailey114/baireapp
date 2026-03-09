@@ -5,7 +5,6 @@ export const post: BlogPost = {
   slug: 'texas-buyer-agent-commissions',
   title: "Texas Has the Highest Buyer-Agent Commissions in the Country. Do You Have to Pay Them?",
   description: "Texas buyer-agent commissions rank among the nation\u2019s highest. Here\u2019s how they work, what the NAR settlement changed, and why Texas buyers don\u2019t have to pay them.",
-  tldr: 'Texas buyer-agent commissions average 2.5-3% of the purchase price. On the median Texas home, that\'s $8,000-  description: "Texas buyer-agent commissions rank among the nation\u2019s highest. Here\u2019s how they work, what the NAR settlement changed, and why Texas buyers don\u2019t have to pay them.",0,000. After the NAR settlement, Texas buyers must sign a buyer representation agreement (TREC form) before an agent shows homes. Buying without an agent in Texas avoids this cost entirely.',
   publishedAt: '2026-02-23T00:00:00Z',
   author: {
     name: 'Susie Johnson',
