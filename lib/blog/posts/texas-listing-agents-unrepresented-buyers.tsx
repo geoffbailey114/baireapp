@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: 'texas-listing-agents-unrepresented-buyers',
   title: "What Texas Listing Agents Actually Think About Unrepresented Buyers",
   description: "Worried listing agents won\u2019t take you seriously without a buyer\u2019s agent? Here\u2019s what Texas agents actually say \u2014 and how to make your offer stand out.",
-  tldr: 'Texas listing agents are required to work with unrepresented buyers under TREC rules. They cannot refuse to show a home because you don\'t have an agent. Many listing agents prefer working with self-represented buyers because the transaction is simpler and their seller nets more money.',
+  tldr: `Texas listing agents are required to work with unrepresented buyers under TREC rules. They cannot refuse to show a home because you don't have an agent. Many listing agents prefer working with self-represented buyers because the transaction is simpler and their seller nets more money.`,
   publishedAt: '2026-02-25T00:00:00Z',
   author: {
     name: 'Susie Johnson',
