@@ -5,6 +5,7 @@ export const post: BlogPost = {
   slug: 'texas-buy-home-smarter-995',
   title: "Buy Your Next Texas Home Smarter: The $995 Alternative to a $15,000 Agent",
   description: "A side-by-side cost comparison of buying a Texas home with an agent versus self-represented with BAIRE. TREC guidance, comp analysis, negotiation coaching \u2014 for $995.",
+  tldr: 'Texas buyers can purchase a home with BAIRE\'s AI-powered guidance for $995 instead of paying $8,000-  description: "A side-by-side cost comparison of buying a Texas home with an agent versus self-represented with BAIRE. TREC guidance, comp analysis, negotiation coaching \u2014 for $995.",0,000 in buyer-agent commission. BAIRE provides TREC contract assistance, comp analysis, negotiation coaching, and closing support — all without a buyer representation agreement.',
   publishedAt: '2026-02-26T00:00:00Z',
   author: {
     name: 'Patrick Londa',

@@ -4,7 +4,10 @@ import { BlogPost } from '../types'
 export const post: BlogPost = {
   slug: 'nar-settlement-explained',
   title: 'NAR Settlement Explained: What It Means for Home Buyers in 2026',
-  description: 'The NAR settlement changed how buyer\'s agent commissions work. Learn what changed, why it matters, and how you can save $10,000+ on your next home purchase.',
+  description: 'The NAR settlement changed how buyer\'s agent commissions work. Learn what changed, why it matters, and how you can save 
+  description: 'The NAR settlement changed how buyer\'s agent commissions work. Learn what changed, why it matters, and how you can save $10,000+ on your next home purchase.',0,000+ on your next home purchase.',
+  tldr: 'The 2024 NAR settlement changed how buyer-agent commissions work. Buyers must now sign a buyer\'s agreement before an agent will show them homes, committing to pay 2-3% of the purchase price — typically 
+  description: 'The NAR settlement changed how buyer\'s agent commissions work. Learn what changed, why it matters, and how you can save $10,000+ on your next home purchase.',0,000+ on a $400K home. This makes the cost of an agent visible and unavoidable for the first time. Buyers who purchase without an agent avoid this agreement entirely and make structurally stronger offers.',
   publishedAt: '2026-02-09T00:00:00Z',
   author: {
     name: 'Susie Johnson',
