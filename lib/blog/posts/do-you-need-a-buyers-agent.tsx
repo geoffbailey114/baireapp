@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: 'Most buyers assume they need an agent. But after the NAR settlement, the math tells a different story. Here\'s what buyer\'s agents actually do, what they can\'t do, and how to decide.',
   tldr: `No. There is no law requiring you to use a buyer’s agent. After the NAR settlement, using one means signing a buyer’s agreement and paying 2-3% commission. The tasks agents perform — finding homes, scheduling showings, writing offers — don’t require a license. Legal advice, inspections, and appraisals are always handled by third parties, agent or not.`,
   publishedAt: '2026-02-10T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'process',
   tags: ['buyer agent', 'NAR settlement', 'home buying 2026', 'self-represented buyer', 'agent commission', 'first-time buyer'],
@@ -198,6 +200,11 @@ export const post: BlogPost = {
       </p>
       <p>
         It&apos;s also increasingly common. The <a href="/blog/nar-settlement-explained">NAR settlement</a> didn&apos;t just change how commissions work&mdash;it normalized the idea that buyers have choices. And as more buyers explore those choices, the stigma around self-representation is fading fast.
+      </p>
+
+      
+      <p>
+        For the full step-by-step process, see our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />

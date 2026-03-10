@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -6,11 +7,10 @@ export const post: BlogPost = {
   title: "The True Cost of a Buyer's Agent on a 30-Year Mortgage",
   description: "A 2.5% commission sounds small \u2014 until you finance it for 30 years. Here\u2019s the real math on what your buyer\u2019s agent costs over the life of your loan.",
   tldr: "A 2.5% buyer\u2019s agent commission on a $400,000 home is $10,000 at closing \u2014 but financed over 30 years at 5.75%, the total cost is approximately $21,000. On a $550,000 home, it reaches nearly $29,000. The opportunity cost of that monthly difference, invested over 30 years, approaches $86,000.",
-  publishedAt: '2026-02-15T00:00:00Z',
-  updatedAt: '2026-02-28T00:00:00Z',
+  publishedAt: '2026-02-15T00:00:00Z',  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'savings',
   tags: ['buyer agent commission', 'commission math', 'mortgage costs', '30-year mortgage', 'home buying costs'],
@@ -168,6 +168,11 @@ export const post: BlogPost = {
       </p>
       <p>
         That&apos;s exactly what we break down next.
+      </p>
+
+      
+      <p>
+        Ready to skip the commission? Here’s our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />

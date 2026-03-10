@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "Texas buyer-agent commissions rank among the nation\u2019s highest. Here\u2019s how they work, what the NAR settlement changed, and why Texas buyers don\u2019t have to pay them.",
   tldr: `Texas buyer-agent commissions average 2.5-3% of the purchase price. On the median Texas home, that’s $8,000-$10,000. After the NAR settlement, Texas buyers must sign a buyer representation agreement (TREC form) before an agent shows homes. Buying without an agent in Texas avoids this cost entirely.`,
   publishedAt: '2026-02-23T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'state-guides',
   tags: ['Texas', 'buyer agent commission', 'NAR settlement', 'TREC', 'DFW real estate', 'Austin real estate', 'Houston real estate', 'self-represented buyer'],
@@ -158,6 +160,11 @@ export const post: BlogPost = {
       </p>
       <p>
         And if you&apos;re an investor buying multiple properties in Texas, the commission savings compound. Five properties at $12,000 each is $60,000 in commissions that could be working as equity instead.
+      </p>
+
+      
+      <p>
+        For the national overview, see our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />

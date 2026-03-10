@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "Break down the five core tasks a buyer's agent performs — finding homes, running comps, writing offers, negotiating, and coordinating — and what it takes to handle each one yourself.",
   tldr: `Five things $12,000 in buyer-agent commission buys you — and what it doesn’t. Agents can’t give legal advice, can’t perform inspections, can’t do appraisals, and access the same MLS data you do. The $12,000 pays for convenience and communication — tasks available for a fraction of the cost.`,
   publishedAt: '2026-02-17T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'savings',
   tags: ['buyer agent tasks', 'what agents do', 'self-represented buyer', 'DIY home buying', 'commission value'],
@@ -161,6 +163,11 @@ export const post: BlogPost = {
       </p>
       <p>
         The question isn&apos;t whether you&apos;re capable. You are. The question is whether you have the structure and information to do it well. Because the tasks themselves are just tasks. They&apos;re not mysteries.
+      </p>
+
+      
+      <p>
+        See how the full process works in our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying without a realtor</Link>.
       </p>
 
       <hr />

@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "First-time buyers think home buying is impossibly complex. It\u2019s not. Here\u2019s what\u2019s actually involved \u2014 and why the fear is almost always worse than the reality.",
   tldr: `Buying your first home feels overwhelming because you’re doing something you’ve never done before — not because the process is actually complicated. The steps are predictable: get pre-approved, search, tour, offer, inspect, close. With the right guidance, first-time buyers navigate this process successfully every day.`,
   publishedAt: '2026-02-19T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'first-time-buyer',
   tags: ['first-time buyer', 'home buying fear', 'home buying process', 'buyer confidence', 'real estate basics', 'self-represented buyer'],
@@ -169,6 +171,11 @@ export const post: BlogPost = {
       </p>
       <p>
         The process of buying a home is learnable. It&apos;s structured. It&apos;s been done millions of times by people no smarter or more prepared than you. What you need isn&apos;t talent. It&apos;s a clear picture of what happens, in what order, and what decisions you&apos;ll face at each step.
+      </p>
+
+      
+      <p>
+        First-time buyer? Start with our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />

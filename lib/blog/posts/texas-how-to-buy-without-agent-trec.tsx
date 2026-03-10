@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "The complete step-by-step guide to buying a home in Texas without a buyer\u2019s agent. TREC 1-4 contract, option period, title company closing \u2014 every detail explained.",
   tldr: `Buying a home in Texas without an agent uses the TREC 1-4 Residential Contract, available free from the Texas Real Estate Commission. The process includes a negotiated option period (7-10 days, $100-$500 fee), a title company closing, and no attorney requirement. Texas listing agents work with self-represented buyers regularly.`,
   publishedAt: '2026-02-24T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'state-guides',
   tags: ['Texas', 'TREC 1-4', 'option period', 'self-represented buyer', 'home buying process', 'title company closing', 'Texas real estate', 'step by step'],
@@ -183,6 +185,11 @@ export const post: BlogPost = {
       </p>
       <p>
         And if you want a structured system that walks you through the Texas purchase process step by step&mdash;comp analysis, offer preparation guidance, option period strategy, inspection interpretation, closing support&mdash;that&apos;s exactly what platforms like <strong><a href="/signup">BAIRE</a></strong> provide. BAIRE is an educational technology platform built for self-represented buyers. It&apos;s not a brokerage. It doesn&apos;t practice law. It provides the knowledge and framework so you can handle the process confidently. At $995, it&apos;s roughly one-twelfth the cost of a typical Texas buyer-agent commission.
+      </p>
+
+      
+      <p>
+        For the national overview, see our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />

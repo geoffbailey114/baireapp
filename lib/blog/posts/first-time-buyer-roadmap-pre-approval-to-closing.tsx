@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "The complete play-by-play for first-time home buyers. Every stage, every action, every decision \u2014 from getting your finances straight to getting the keys.",
   tldr: `The complete first-time buyer roadmap: (1) check credit and save for costs, (2) get pre-approved, (3) define your search criteria, (4) tour homes, (5) make an offer, (6) do your inspection, (7) get through appraisal, (8) close. Each step has a timeline, typical costs, and specific action items.`,
   publishedAt: '2026-02-21T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'first-time-buyer',
   tags: ['first-time buyer', 'home buying roadmap', 'pre-approval', 'purchase agreement', 'home inspection', 'closing process', 'self-represented buyer', 'step by step'],
@@ -194,6 +196,11 @@ export const post: BlogPost = {
       </p>
       <p>
         Whether you use a platform like that or build your own system from scratch, the principle holds: have a structure, follow the structure, and don&apos;t improvise when there&apos;s money on the line.
+      </p>
+
+      
+      <p>
+        For the big-picture overview, see our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />

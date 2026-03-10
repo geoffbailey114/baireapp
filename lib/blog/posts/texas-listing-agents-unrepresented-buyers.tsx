@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "Worried listing agents won\u2019t take you seriously without a buyer\u2019s agent? Here\u2019s what Texas agents actually say \u2014 and how to make your offer stand out.",
   tldr: `Texas listing agents are required to work with unrepresented buyers under TREC rules. They cannot refuse to show a home because you don’t have an agent. Many listing agents prefer working with self-represented buyers because the transaction is simpler and their seller nets more money.`,
   publishedAt: '2026-02-25T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'state-guides',
   tags: ['Texas', 'listing agents', 'unrepresented buyer', 'self-represented buyer', 'buyer confidence', 'TREC', 'offer strategy', 'negotiation'],
@@ -175,6 +177,11 @@ export const post: BlogPost = {
       </p>
       <p>
         And with standardized TREC forms, title company closings, and the option period protecting you at every step&mdash;you absolutely can.
+      </p>
+
+      
+      <p>
+        For the national overview, see our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />

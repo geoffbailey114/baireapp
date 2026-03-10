@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "The 'seller pays' myth has cost home buyers billions. Here's how buyer agent commissions really work — and who's actually footing the bill.",
   tldr: `The buyer’s agent commission was never free. It was built into the sale price and paid by the seller — which means you, the buyer, financed it as part of your mortgage. On a $400K home at 2.5%, that’s $10,000 upfront and over $20,000 when financed over 30 years at current rates.`,
   publishedAt: '2026-02-13T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'savings',
   tags: ['buyer agent commission', 'commission myth', 'NAR settlement', 'home buying costs', 'save money'],
@@ -166,6 +168,11 @@ export const post: BlogPost = {
       </p>
       <p>
         In real estate, you now know the answer.
+      </p>
+
+      
+      <p>
+        See what the process looks like in our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying without a realtor</Link>.
       </p>
 
       <hr />

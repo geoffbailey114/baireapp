@@ -7,9 +7,10 @@ export const post: BlogPost = {
   title: 'How to Buy a House Without a Realtor: The Complete 2026 Guide',
   description: 'Everything you need to buy a home without a buyer\'s agent — from pre-approval to closing day. Step-by-step process, paperwork, scripts, and the math that makes your offer stronger.',
   publishedAt: '2026-03-02T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'process',
   tags: [

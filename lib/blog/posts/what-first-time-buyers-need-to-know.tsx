@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "Not all home-buying advice matters equally. Here\u2019s what first-time buyers should focus on, what they can skip, and how to filter the noise.",
   tldr: `First-time buyers need to know three things: get pre-approved before you start looking, budget for costs beyond the down payment (inspection, closing costs, moving), and understand that an agent is optional — not required. The NAR settlement now requires a buyer’s agreement before agents show homes, making the cost visible.`,
   publishedAt: '2026-02-20T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'first-time-buyer',
   tags: ['first-time buyer', 'home buying advice', 'pre-approval', 'mortgage shopping', 'contingencies', 'inspection report', 'home buying tips'],
@@ -185,6 +187,11 @@ export const post: BlogPost = {
       </p>
       <p>
         That&apos;s the difference between a buyer who feels overwhelmed and a buyer who feels prepared. It&apos;s not intelligence. It&apos;s not experience. It&apos;s a map.
+      </p>
+
+      
+      <p>
+        For the full process from start to finish, see our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />

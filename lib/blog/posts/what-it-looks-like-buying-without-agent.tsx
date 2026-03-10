@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: 'Real conversations, real negotiations, and real savings. A practical walkthrough of what self-represented home buying looks like from the first phone call to closing day.',
   tldr: `A real walkthrough of buying a home self-represented: calling listing agents for showings, negotiating directly with sellers, using inspection findings for price leverage, and closing through a title company. In one example, the buyer saved over $18,000 compared to the traditional route — including a price reduction, closing cost credits, and the avoided commission.`,
   publishedAt: '2026-02-12T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'process',
   tags: ['self-represented buyer', 'real examples', 'negotiation', 'commission savings', 'home inspection', 'closing process', 'BAIRE'],
@@ -174,6 +176,11 @@ export const post: BlogPost = {
       </p>
       <p>
         If you&apos;re considering buying a home without an agent, you&apos;re not doing something risky. You&apos;re making a choice that more buyers are making every year. The only question is whether you have the right tools and information to do it well.
+      </p>
+
+      
+      <p>
+        Want the full playbook? Start with our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying without a realtor</Link>.
       </p>
 
       <hr />

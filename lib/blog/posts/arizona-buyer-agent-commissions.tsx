@@ -7,9 +7,10 @@ export const post: BlogPost = {
   description: "Arizona buyer-agent commissions cost $12,000\u2013$17,500 on a typical home. Here\u2019s how they work, what the NAR settlement changed, and why Arizona buyers don\u2019t have to pay them.",
   tldr: "On a $440,000 Phoenix home, a 2.75% buyer-agent commission is $12,100 at closing \u2014 but financed over 30 years at 5.75%, the total cost reaches approximately $25,400. Arizona is an escrow state with no attorney requirement and standardized contracts, making it one of the most accessible states for self-represented buying.",
   publishedAt: '2026-02-27T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'state-guides',
   tags: ['Arizona', 'buyer agent commission', 'NAR settlement', 'Phoenix real estate', 'Scottsdale real estate', 'Tucson real estate', 'escrow state', 'self-represented buyer'],

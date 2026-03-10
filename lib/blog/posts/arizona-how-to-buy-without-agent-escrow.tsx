@@ -7,9 +7,10 @@ export const post: BlogPost = {
   description: "The complete step-by-step guide to buying a home in Arizona without a buyer\u2019s agent. AAR contract, BINSR, escrow closing, inspection period \u2014 every detail explained.",
   tldr: "Arizona\u2019s escrow-based closings, standardized AAR contract, and 10-day inspection period with BINSR make it one of the most accessible states for self-represented buying. No attorney is required. The process runs 30\u201345 days from contract to keys, with the escrow company handling closing mechanics for both represented and unrepresented buyers.",
   publishedAt: '2026-02-28T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'state-guides',
   tags: ['Arizona', 'escrow closing', 'AAR contract', 'BINSR', 'self-represented buyer', 'home buying process', 'Phoenix real estate', 'SPDS'],

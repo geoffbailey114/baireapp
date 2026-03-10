@@ -7,9 +7,10 @@ export const post: BlogPost = {
   description: "Phoenix is competitive, but self-represented buyers have a structural advantage. Here\u2019s how they\u2019re using commission-free offers, speed, and clean contracts to win deals.",
   tldr: "In Phoenix\u2019s competitive market, self-represented buyers are winning by leading with net-proceeds math \u2014 a $440,000 offer with no buyer-agent commission nets the seller more than a $450,000 offer with a 3% commission. Combined with speed, clean AAR contracts, and Arizona\u2019s escrow infrastructure, unrepresented buyers are increasingly the preferred offer.",
   publishedAt: '2026-03-01T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'state-guides',
   tags: ['Arizona', 'Phoenix real estate', 'self-represented buyer', 'competitive offer', 'buyer agent alternative', 'new construction Arizona', 'BAIRE', 'escrow closing'],

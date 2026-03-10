@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "A real walkthrough of a first-time buyer\u2019s experience purchasing a home self-represented \u2014 from the first phone call to closing day, with the actual numbers.",
   tldr: `A first-time buyer purchased a home self-represented and saved over $20,000 compared to using a traditional buyer’s agent — including a $4,000 price reduction, $2,500 in closing credits, and the avoided $9,125 buyer-agent commission. BAIRE provided guidance through every step for $995.`,
   publishedAt: '2026-02-22T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'first-time-buyer',
   tags: ['first-time buyer', 'case study', 'self-represented buyer', 'BAIRE', 'commission savings', 'real example', 'home buying experience'],
@@ -209,6 +211,11 @@ export const post: BlogPost = {
       </p>
       <p>
         <em>Your first home purchase doesn&apos;t have to be scary. It just has to be informed.</em>
+      </p>
+
+      
+      <p>
+        For the complete process overview, see our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying without a realtor</Link>.
       </p>
 
       <hr />

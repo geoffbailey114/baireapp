@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "A side-by-side cost comparison of buying a Texas home with an agent versus self-represented with BAIRE. TREC guidance, comp analysis, negotiation coaching \u2014 for $995.",
   tldr: `Texas buyers can purchase a home with BAIRE’s AI-powered guidance for $995 instead of paying $8,000-$10,000 in buyer-agent commission. BAIRE provides TREC contract assistance, comp analysis, negotiation coaching, and closing support — all without a buyer representation agreement.`,
   publishedAt: '2026-02-26T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'state-guides',
   tags: ['Texas', 'BAIRE', 'buyer agent alternative', 'commission savings', 'TREC', 'self-represented buyer', 'cost comparison', 'DFW real estate'],
@@ -170,6 +172,11 @@ export const post: BlogPost = {
       </p>
       <p>
         <em>That&apos;s what BAIRE is.</em>
+      </p>
+
+      
+      <p>
+        For the national overview, see our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />

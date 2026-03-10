@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: 'The NAR settlement changed how buyer\'s agent commissions work. Learn what changed, why it matters, and how you can save $10,000+ on your next home purchase.',
   tldr: `The 2024 NAR settlement changed how buyer-agent commissions work. Buyers must now sign a buyer’s agreement before an agent will show them homes, committing to pay 2-3% of the purchase price — typically $10,000+ on a $400K home. This makes the cost of an agent visible and unavoidable for the first time. Buyers who purchase without an agent avoid this agreement entirely and make structurally stronger offers.`,
   publishedAt: '2026-02-09T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Susie Johnson',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'nar-settlement',
   tags: ['NAR settlement', 'buyer agent commission', 'home buying 2026', 'save money'],
@@ -115,6 +117,11 @@ export const post: BlogPost = {
       </p>
       <p>
         <strong><a href="/signup">Try BAIRE free for 7 days →</a></strong>
+      </p>
+
+      
+      <p>
+        Ready to buy without an agent? Here’s <Link href="/blog/buy-home-without-realtor-complete-guide">the complete guide</Link>.
       </p>
 
       <hr />

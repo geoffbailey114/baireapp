@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: "You've seen the math. You know the tasks. Here's how BAIRE gives you comp analysis, offer strategy, negotiation coaching, and closing support — for a fraction of agent commission.",
   tldr: `BAIRE provides everything a buyer’s agent does — comp analysis, offer strategy, negotiation coaching, inspection guidance, and closing support — for $995 instead of $10,000+. No buyer’s agreement required. 7-day free trial. 30-day money-back guarantee.`,
   publishedAt: '2026-02-18T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'comparisons',
   tags: ['BAIRE', 'buyer agent alternative', 'save on commission', 'self-represented buyer', 'AI home buying'],

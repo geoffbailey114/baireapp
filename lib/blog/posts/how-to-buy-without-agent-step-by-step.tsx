@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { BlogPost } from '../types'
 
 export const post: BlogPost = {
@@ -7,9 +8,10 @@ export const post: BlogPost = {
   description: 'The complete practical guide to buying a home without a buyer\'s agent. From pre-approval to closing day — every step, every form, every deadline explained in plain English.',
   tldr: `Buying without a buyer’s agent follows the same steps: get pre-approved, search listings, schedule showings by calling the listing agent, write offers using your state’s standard forms, negotiate, inspect, and close through a title company. The process is the same — you just handle communication directly and save $10,000+ in commission.`,
   publishedAt: '2026-02-11T00:00:00Z',
+  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'Patrick Londa',
-    url: 'https://baireapp.com/blog',
+    name: 'BAIRE',
+    url: 'https://baireapp.com/about',
   },
   category: 'process',
   tags: ['step by step', 'home buying process', 'self-represented buyer', 'purchase agreement', 'home inspection', 'closing process', 'first-time buyer'],
@@ -223,6 +225,11 @@ export const post: BlogPost = {
       </p>
       <p>
         Whether you use a platform like that or build your own checklist from scratch, the principle is the same: have a system, follow the system, and don&apos;t wing it.
+      </p>
+
+      
+      <p>
+        This walkthrough is part of our <Link href="/blog/buy-home-without-realtor-complete-guide">complete guide to buying a home without a realtor</Link>.
       </p>
 
       <hr />
