@@ -31,6 +31,8 @@ export const post: BlogPost = {
     'five-things-paying-buyer-agent-12000',
     'true-cost-buyer-agent-30-year-mortgage',
     'buyer-agent-isnt-free',
+  
+    'buy-home-without-realtor-complete-guide',
   ],
   faqs: [
     {
