@@ -82,13 +82,6 @@ export const post: BlogPost = {
         She asked me why that mattered. It took me about four minutes to explain the seller-side math. By the time I finished, she had the same expression I&rsquo;ve seen dozens of times since then: the quiet realization that something she assumed was protecting her was actually costing her deals.
       </p>
 
-      <div className="bg-slate-50 border border-slate-200 rounded-lg px-6 py-5 my-8">
-        <p className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-2">TL;DR</p>
-        <p className="text-slate-800 mb-0">
-          When two buyers submit identical offers on the same home, the one without a buyer&rsquo;s agent attached is the stronger offer &mdash; because the seller nets more money on the exact same price. On a $400,000 home, that&rsquo;s $10,000 more in the seller&rsquo;s pocket. This structural advantage holds in every market condition.
-        </p>
-      </div>
-
       <h2>The Math Most Buyers Never Think About</h2>
       <p>
         When you buy a home with a buyer&rsquo;s agent, the seller doesn&rsquo;t see your offer price in isolation. They see what they&rsquo;ll actually walk away with after commissions, closing costs, and fees. That number &mdash; what the seller nets &mdash; is what actually drives their decision.
