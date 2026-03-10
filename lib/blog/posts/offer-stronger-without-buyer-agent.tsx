@@ -10,8 +10,8 @@ export const post: BlogPost = {
   slug: 'offer-stronger-without-buyer-agent',
   title: 'Why Your Offer Is Stronger Without a Buyer\'s Agent',
   description: 'Counterintuitive but true: unrepresented buyers make stronger offers. Here\'s the seller-side math that explains why — and what it means for your home purchase.',
-  publishedAt: '2026-03-10T00:00:00Z',
-  updatedAt: '2026-03-10T00:00:00Z',
+  publishedAt: '2026-03-03T00:00:00Z',
+  updatedAt: '2026-03-03T00:00:00Z',
   author: {
     name: 'BAIRE',
     url: 'https://baireapp.com/about',

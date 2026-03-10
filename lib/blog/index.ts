@@ -36,12 +36,14 @@ import { post as arizonaWinningPhoenix } from './posts/arizona-self-represented-
 
 // Pillar Pages
 import { post as completeGuideNoRealtor } from './posts/buy-home-without-realtor-complete-guide'
+import { post as offerStronger } from './posts/offer-stronger-without-buyer-agent'
 
 // Import new posts here:
 
 const ALL_POSTS: BlogPost[] = [
   // Pillar Pages
   completeGuideNoRealtor,
+  offerStronger,
   // Existing
   narSettlementExplained,
   doYouNeedBuyersAgent,
