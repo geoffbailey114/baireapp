@@ -38,12 +38,41 @@ import { post as arizonaWinningPhoenix } from './posts/arizona-self-represented-
 import { post as completeGuideNoRealtor } from './posts/buy-home-without-realtor-complete-guide'
 import { post as offerStronger } from './posts/offer-stronger-without-buyer-agent'
 
+// Batch 1 Posts
+import { post as buyersAgreement } from './posts/buyers-agreement-explained'
+import { post as howToWriteOffer } from './posts/how-to-write-offer-without-agent'
+import { post as paperworkChecklist } from './posts/paperwork-buying-house-without-realtor'
+import { post as buyFsbo } from './posts/buy-fsbo-home-without-agent'
+
+// Batch 2 Posts
+import { post as newConstruction } from './posts/buying-new-construction-without-realtor'
+import { post as agentCost } from './posts/how-much-does-buyers-agent-cost'
+import { post as aiRealtor } from './posts/what-is-ai-realtor'
+// DEPLOY Mar 11:
+// import { post as baireVsAgent } from './posts/baire-vs-traditional-buyers-agent'
+// DEPLOY Mar 12:
+// import { post as baireVsHoma } from './posts/baire-vs-homa'
+// DEPLOY Mar 13:
+// import { post as viewingChecklist } from './posts/home-viewing-checklist'
+
 // Import new posts here:
 
 const ALL_POSTS: BlogPost[] = [
   // Pillar Pages
   completeGuideNoRealtor,
   offerStronger,
+  // Batch 1 Posts
+  buyersAgreement,
+  howToWriteOffer,
+  paperworkChecklist,
+  buyFsbo,
+  // Batch 2 Posts
+  newConstruction,
+  agentCost,
+  aiRealtor,
+  // DEPLOY Mar 11: baireVsAgent,
+  // DEPLOY Mar 12: baireVsHoma,
+  // DEPLOY Mar 13: viewingChecklist,
   // Existing
   narSettlementExplained,
   doYouNeedBuyersAgent,
