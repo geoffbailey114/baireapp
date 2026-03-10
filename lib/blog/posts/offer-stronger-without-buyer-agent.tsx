@@ -227,7 +227,8 @@ export const post: BlogPost = {
         </p>
         <Link
           href="/signup"
-          className="inline-block bg-[#2d3b2d] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#3a4d3a] transition-colors"
+          className="inline-block bg-[#2d3b2d] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#3a4d3a] transition-colors no-underline"
+          style={{ color: 'white' }}
         >
           Start your free trial &rarr;
         </Link>
