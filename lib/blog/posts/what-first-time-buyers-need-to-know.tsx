@@ -197,7 +197,7 @@ export const post: BlogPost = {
       <hr />
 
       <p>
-        <strong>Next up:</strong> Now that you know what to focus on, the next question is practical: what does the actual buying process look like, step by step, for a first-time buyer handling it themselves? We lay it all out in <a href="/blog/first-time-buyer-roadmap-pre-approval-to-closing">A First-Time Buyer&apos;s Roadmap: From Pre-Approval to Closing Day</a>.
+        <strong>Next up:</strong> Now that you know what to focus on, the next question is practical: what does the actual buying process look like, step by step, for a first-time buyer handling it themselves? We lay it all out in <a href="/blog/first-time-buyer-roadmap-pre-approval-to-closing">First-Time Home Buyer Checklist: Pre-Approval to Closing (2026)</a>.
       </p>
     </>
   ),

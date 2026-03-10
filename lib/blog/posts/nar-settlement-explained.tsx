@@ -116,6 +116,9 @@ export const post: BlogPost = {
         It&apos;s not &quot;going without help.&quot; It&apos;s upgrading to better help at a fraction of the cost.
       </p>
       <p>
+        For legal questions about your specific transaction, consult a real estate attorney.
+      </p>
+      <p>
         <strong><a href="/signup">Try BAIRE free for 7 days →</a></strong>
       </p>
 

@@ -4,9 +4,9 @@ import { BlogPost } from '../types'
 
 export const post: BlogPost = {
   slug: 'first-time-buyer-roadmap-pre-approval-to-closing',
-  title: "A First-Time Buyer\u2019s Roadmap: From Pre-Approval to Closing Day",
-  description: "The complete play-by-play for first-time home buyers. Every stage, every action, every decision \u2014 from getting your finances straight to getting the keys.",
-  tldr: `The complete first-time buyer roadmap: (1) check credit and save for costs, (2) get pre-approved, (3) define your search criteria, (4) tour homes, (5) make an offer, (6) do your inspection, (7) get through appraisal, (8) close. Each step has a timeline, typical costs, and specific action items.`,
+  title: "First-Time Home Buyer Checklist: Pre-Approval to Closing (2026)",
+  description: "The complete first-time home buyer checklist \u2014 every stage from pre-approval to closing day. Actions, decisions, and deadlines explained in plain English.",
+  tldr: `The home buying process has 8 stages: get pre-approved, define your search, see homes, pull comps, write your offer, negotiate, inspect, and close. Each stage has specific actions and a defined timeline. No step requires a buyer\u2019s agent \u2014 and skipping one saves you $10,000+ on a typical purchase.`,
   publishedAt: '2026-02-21T00:00:00Z',
   updatedAt: '2026-03-10T00:00:00Z',
   author: {
@@ -16,6 +16,8 @@ export const post: BlogPost = {
   category: 'first-time-buyer',
   tags: ['first-time buyer', 'home buying roadmap', 'pre-approval', 'purchase agreement', 'home inspection', 'closing process', 'self-represented buyer', 'step by step'],
   keywords: [
+    'first time homebuyer checklist',
+    'first time home buyer checklist 2026',
     'first time buyer roadmap',
     'home buying process step by step',
     'first time home buyer guide 2026',
@@ -196,6 +198,9 @@ export const post: BlogPost = {
       </p>
       <p>
         Whether you use a platform like that or build your own system from scratch, the principle holds: have a structure, follow the structure, and don&apos;t improvise when there&apos;s money on the line.
+      </p>
+      <p>
+        For legal questions about your specific transaction, consult a real estate attorney.
       </p>
 
       

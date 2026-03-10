@@ -3,14 +3,13 @@ import { BlogPost } from '../types'
 
 export const post: BlogPost = {
   slug: 'arizona-self-represented-buyers-winning-phoenix',
-  title: "How Self-Represented Buyers Are Winning in the Phoenix Market",
+  title: "How Self-Represented Buyers Are Winning in Arizona\u2019s Phoenix Market",
   description: "Phoenix is competitive, but self-represented buyers have a structural advantage. Here\u2019s how they\u2019re using commission-free offers, speed, and clean contracts to win deals.",
   tldr: "In Phoenix\u2019s competitive market, self-represented buyers are winning by leading with net-proceeds math \u2014 a $440,000 offer with no buyer-agent commission nets the seller more than a $450,000 offer with a 3% commission. Combined with speed, clean AAR contracts, and Arizona\u2019s escrow infrastructure, unrepresented buyers are increasingly the preferred offer.",
   publishedAt: '2026-03-01T00:00:00Z',
-  updatedAt: '2026-03-10T00:00:00Z',
   author: {
-    name: 'BAIRE',
-    url: 'https://baireapp.com/about',
+    name: 'Susie Johnson',
+    url: 'https://baireapp.com/blog',
   },
   category: 'state-guides',
   tags: ['Arizona', 'Phoenix real estate', 'self-represented buyer', 'competitive offer', 'buyer agent alternative', 'new construction Arizona', 'BAIRE', 'escrow closing'],
@@ -46,7 +45,7 @@ export const post: BlogPost = {
     },
     {
       question: 'What is BAIRE and how does it help Arizona buyers?',
-      answer: "BAIRE is an educational technology platform for self-represented buyers. For $995 (with a 7-day free trial), it provides comp analysis frameworks, BINSR strategy guidance, escrow closing preparation, and negotiation coaching tailored to Arizona\u2019s market. It\u2019s not a brokerage and doesn\u2019t collect a commission.",
+      answer: "BAIRE is an educational technology platform for self-represented buyers. For $995 (with a 7-day free trial), it provides comp analysis frameworks, BINSR strategy guidance, escrow closing preparation, and negotiation coaching tailored to Arizona\u2019s market. It\u2019s not a brokerage and doesn\u2019t collect a commission. For legal questions specific to your transaction, consult a real estate attorney.",
     },
     {
       question: 'What Phoenix-specific strategies help self-represented buyers?',
@@ -167,6 +166,9 @@ export const post: BlogPost = {
       </p>
       <p>
         It&apos;s not a brokerage. It doesn&apos;t fill out your forms. It doesn&apos;t represent you in the transaction. It gives you the knowledge and the structure so you don&apos;t need someone to do that for you.
+      </p>
+      <p>
+        For legal questions specific to your Arizona transaction, consult a real estate attorney.
       </p>
       <p>
         Seven-day free trial. Full access. No commitment. <strong><a href="/signup">Start at baireapp.com.</a></strong>
