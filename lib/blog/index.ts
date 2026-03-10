@@ -38,12 +38,23 @@ import { post as arizonaWinningPhoenix } from './posts/arizona-self-represented-
 import { post as completeGuideNoRealtor } from './posts/buy-home-without-realtor-complete-guide'
 import { post as offerStronger } from './posts/offer-stronger-without-buyer-agent'
 
+// Batch 1 Posts
+import { post as buyersAgreement } from './posts/buyers-agreement-explained'
+import { post as howToWriteOffer } from './posts/how-to-write-offer-without-agent'
+import { post as paperworkChecklist } from './posts/paperwork-buying-house-without-realtor'
+import { post as buyFsbo } from './posts/buy-fsbo-home-without-agent'
+
 // Import new posts here:
 
 const ALL_POSTS: BlogPost[] = [
   // Pillar Pages
   completeGuideNoRealtor,
   offerStronger,
+  // Batch 1 Posts
+  buyersAgreement,
+  howToWriteOffer,
+  paperworkChecklist,
+  buyFsbo,
   // Existing
   narSettlementExplained,
   doYouNeedBuyersAgent,
