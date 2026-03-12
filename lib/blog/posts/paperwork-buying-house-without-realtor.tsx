@@ -207,37 +207,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>What paperwork do I need to buy a house without a realtor?</h3>
-      <p>
-        The core documents: pre-approval letter, earnest money payment, state purchase agreement form, home inspection report, homeowner&rsquo;s insurance binder, closing disclosure, and government-issued ID for closing. Everything else &mdash; title commitment, deed, seller disclosure &mdash; is produced by the title company, lender, or seller and delivered to you.
-      </p>
-
-      <h3>Where do I get the purchase agreement without an agent?</h3>
-      <p>
-        Your state&rsquo;s real estate commission publishes the standard form for free. Search &ldquo;[your state] real estate commission purchase agreement.&rdquo; You can also ask the listing agent to send you a blank copy.
-      </p>
-
-      <h3>Do I need a buyer&rsquo;s agreement to buy a house?</h3>
-      <p>
-        No. A buyer&rsquo;s agreement is only required if you&rsquo;re using a buyer&rsquo;s agent &mdash; and agents are the ones required to have it signed, not buyers. If you&rsquo;re self-represented, you skip this document entirely along with the 2-3% commission it commits you to paying.
-      </p>
-
-      <h3>What is the closing disclosure and when do I get it?</h3>
-      <p>
-        The closing disclosure is the final document from your lender showing every cost in the transaction &mdash; loan terms, closing costs, prepaid items, and the exact cash you need to bring to closing. Federal law requires your lender to send it at least three business days before you close. Read it carefully and compare every line against your original Loan Estimate.
-      </p>
-
-      <h3>Do I need a real estate attorney if I don&rsquo;t have an agent?</h3>
-      <p>
-        In some states, yes &mdash; attorney involvement at closing is required by law. In most states, a title company handles closing without an attorney. Check your state&rsquo;s requirements. Regardless of where you live, consulting a real estate attorney for legal questions about your specific transaction is always a sound decision.
-      </p>
-
-      <h3>What&rsquo;s the difference between title search and title insurance?</h3>
-      <p>
-        A title search reviews public records to confirm the seller owns the property free and clear. Title insurance protects you financially if any ownership issues surface after closing &mdash; old liens, unpaid taxes, or disputes that the title search missed. Both are standard; both are handled by the title company.
-      </p>
     </>
   ),
 }

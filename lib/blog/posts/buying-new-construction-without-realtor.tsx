@@ -208,37 +208,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>Do you need a realtor to buy new construction?</h3>
-      <p>
-        No. Builders sell directly to buyers all the time. The builder&rsquo;s sales representative handles the process on their side. You represent yourself, review the builder&rsquo;s contract carefully (ideally with a real estate attorney), negotiate what&rsquo;s negotiable, and close through the builder&rsquo;s title company or one you select.
-      </p>
-
-      <h3>Will the builder discount the price if I don&rsquo;t use an agent?</h3>
-      <p>
-        Builders rarely move on base price &mdash; it protects comps across the whole community. But some offer closing cost credits, upgrade incentives, or rate buydowns for unrepresented buyers who come directly. Ask explicitly: &ldquo;What incentives are available for buyers without a buyer&rsquo;s agent?&rdquo;
-      </p>
-
-      <h3>Is the builder&rsquo;s contract the same as a standard purchase agreement?</h3>
-      <p>
-        No. Builder contracts are written by the builder&rsquo;s attorneys and favor the builder on timelines, cancellation rights, material substitutions, and dispute resolution. Have a real estate attorney review it before you sign.
-      </p>
-
-      <h3>Should I use the builder&rsquo;s preferred lender?</h3>
-      <p>
-        Compare it against an independent lender first. Get a Loan Estimate from both and compare rate, APR, and fees side by side. If the preferred lender&rsquo;s incentive makes them genuinely the better deal, use them. If the incentive just covers the rate gap, it may not be worth it over a 30-year loan.
-      </p>
-
-      <h3>Do I need a home inspection on a brand new house?</h3>
-      <p>
-        Yes. New construction has defects &mdash; sometimes significant ones. Schedule a pre-drywall inspection if the builder allows it, and a final inspection before closing. Hire your own inspector, not one the builder recommends.
-      </p>
-
-      <h3>What does a builder&rsquo;s warranty cover?</h3>
-      <p>
-        The standard structure is 1-2-10: one year on workmanship, two years on mechanical systems, ten years on structural defects. Read the actual warranty document for exclusions and the claims process. &ldquo;Ten-year structural warranty&rdquo; sounds comprehensive until you read what&rsquo;s excluded.
-      </p>
     </>
   ),
 }

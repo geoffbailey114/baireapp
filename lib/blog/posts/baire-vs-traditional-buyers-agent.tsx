@@ -235,32 +235,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>Is BAIRE better than a buyer&rsquo;s agent?</h3>
-      <p>
-        For most standard resale transactions, BAIRE provides the core services at a fraction of the cost with a structural offer advantage. Traditional agents add physical presence and local relationships. The right answer depends on your transaction complexity, your comfort with the process, and how much the cost difference matters.
-      </p>
-
-      <h3>What can BAIRE do that a buyer&rsquo;s agent can&rsquo;t?</h3>
-      <p>
-        Be available at 10pm when you find a listing. Process comps without cognitive shortcuts or commission incentives. Cost $995 instead of $10,000. Produce a structurally stronger offer because no buyer-agent commission is attached. None of those are small differences.
-      </p>
-
-      <h3>What can a buyer&rsquo;s agent do that BAIRE can&rsquo;t?</h3>
-      <p>
-        Attend showings physically, sign documents as your representative, and bring hyperlocal relationship capital in specific markets. Notably, agents legally cannot provide legal advice &mdash; that&rsquo;s the same for both options.
-      </p>
-
-      <h3>Does BAIRE weaken my offer because I don&rsquo;t have an agent?</h3>
-      <p>
-        No &mdash; it strengthens it. Without a buyer-agent commission attached, the seller nets more on the same price. On a $400,000 home at 2.5%, that&rsquo;s $10,000 more in the seller&rsquo;s pocket compared to an identical offer from a buyer with an agent.
-      </p>
-
-      <h3>Do I sign anything with BAIRE like I do with an agent?</h3>
-      <p>
-        No buyer&rsquo;s agreement, no exclusivity period, no lock-in. You pay $995 one-time and can cancel within 30 days for a full refund.
-      </p>
     </>
   ),
 }

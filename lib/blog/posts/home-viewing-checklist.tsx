@@ -183,32 +183,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>What should I look for when viewing a house for the first time?</h3>
-      <p>
-        Prioritize the things listing photos don&rsquo;t show: roof condition, foundation cracks, water stains on ceilings, floor softness near bathrooms and kitchens, HVAC and water heater age, and the electrical panel type. The rooms themselves matter, but they&rsquo;re visible in the photos. The systems and structure are what you&rsquo;re there to evaluate.
-      </p>
-
-      <h3>What are the biggest red flags at a home showing?</h3>
-      <p>
-        Active water damage or unexplained staining, strong musty or chemical odors, significant foundation cracks (especially diagonal or horizontal), electrical panels with fuses rather than breakers, and visible unpermitted additions. None are automatic disqualifiers &mdash; all require professional evaluation before proceeding.
-      </p>
-
-      <h3>How long should I spend at a home showing?</h3>
-      <p>
-        At least 30-45 minutes for a serious showing. Budget more time for homes you&rsquo;re strongly considering. Don&rsquo;t let anyone rush you &mdash; you&rsquo;re evaluating a six-figure purchase.
-      </p>
-
-      <h3>Can I tour homes without a buyer&rsquo;s agent?</h3>
-      <p>
-        Yes. Contact the listing agent directly using the contact information on the listing. Identify yourself as a pre-approved, self-represented buyer and request a showing. Listing agents show unrepresented buyers homes regularly.
-      </p>
-
-      <h3>Should I take photos during a showing?</h3>
-      <p>
-        Yes &mdash; with a note attached to each one explaining what you were documenting. Photos of concerns without context lose their meaning within a few days. &ldquo;Water stain bathroom ceiling SE corner&rdquo; combined with a photo is useful when you&rsquo;re comparing four homes a week later.
-      </p>
     </>
   ),
 }

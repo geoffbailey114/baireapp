@@ -49,9 +49,9 @@ import { post as newConstruction } from './posts/buying-new-construction-without
 import { post as agentCost } from './posts/how-much-does-buyers-agent-cost'
 import { post as aiRealtor } from './posts/what-is-ai-realtor'
 // DEPLOY Mar 11:
-// import { post as baireVsAgent } from './posts/baire-vs-traditional-buyers-agent'
+import { post as baireVsAgent } from './posts/baire-vs-traditional-buyers-agent'
 // DEPLOY Mar 12:
-// import { post as baireVsHoma } from './posts/baire-vs-homa'
+import { post as baireVsHoma } from './posts/baire-vs-homa'
 // DEPLOY Mar 13:
 // import { post as viewingChecklist } from './posts/home-viewing-checklist'
 
@@ -70,8 +70,8 @@ const ALL_POSTS: BlogPost[] = [
   newConstruction,
   agentCost,
   aiRealtor,
-  // DEPLOY Mar 11: baireVsAgent,
-  // DEPLOY Mar 12: baireVsHoma,
+  baireVsAgent,
+  baireVsHoma,
   // DEPLOY Mar 13: viewingChecklist,
   // Existing
   narSettlementExplained,

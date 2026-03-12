@@ -237,42 +237,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>Is my offer actually stronger without a buyer&rsquo;s agent?</h3>
-      <p>
-        Structurally, yes. When you don&rsquo;t have a buyer&rsquo;s agent, there&rsquo;s no buyer-agent commission attached to your offer &mdash; typically 2.5% of the purchase price. On a $400,000 home, that&rsquo;s $10,000 the seller keeps. Two identical offers at the same price, the one without a buyer&rsquo;s agent attached nets the seller $10,000 more. That&rsquo;s not an opinion; it&rsquo;s arithmetic.
-      </p>
-
-      <h3>Do sellers actually prefer buyers without agents?</h3>
-      <p>
-        Many do, when the purchase price is comparable. Without a buyer-agent commission, the seller nets more from the same offer. Listing agents present net proceeds to their seller clients &mdash; and a clean offer from an unrepresented buyer often looks better on that math than a represented offer at the same price.
-      </p>
-
-      <h3>Won&rsquo;t the listing agent just pocket the buyer-agent commission?</h3>
-      <p>
-        No. The listing agent&rsquo;s commission is fixed in the listing agreement, separate from whatever buyer-agent compensation the seller offered. If you don&rsquo;t bring a buyer&rsquo;s agent, the buyer-agent commission simply isn&rsquo;t part of the transaction. It doesn&rsquo;t automatically roll to the listing agent&rsquo;s side. The seller keeps it.
-      </p>
-
-      <h3>Does this advantage disappear in a seller&rsquo;s market?</h3>
-      <p>
-        It changes shape, but it doesn&rsquo;t disappear. In a competitive market with multiple offers, the no-agent advantage can function as a tiebreaker or close the gap between two bids. If you&rsquo;re competing at the same price as a represented buyer, the seller nets $10,000 more from your offer. That&rsquo;s a meaningful difference when sellers are comparing offers side-by-side.
-      </p>
-
-      <h3>How did the NAR settlement change this?</h3>
-      <p>
-        Before the 2024 NAR settlement, buyer-agent compensation was bundled into the listing commission and sellers paid it automatically, often without understanding the cost. After the settlement, it&rsquo;s decoupled. Sellers have real visibility into what each offer costs them &mdash; and buyers who use an agent must now sign a buyer&rsquo;s agreement explicitly stating what they agree to pay, before they&rsquo;ve seen a single home. That transparency makes the no-agent advantage much more visible to sellers than it was before.
-      </p>
-
-      <h3>What if the seller has already agreed to pay buyer-agent commission?</h3>
-      <p>
-        Some sellers still offer buyer-agent compensation to attract the widest pool of buyers. If a seller is offering 2.5% buyer-agent compensation and you don&rsquo;t have an agent, that 2.5% is not paid. In some cases, you can negotiate to have it applied as a closing cost credit instead &mdash; effectively reducing your out-of-pocket costs at closing. How that plays out depends on the seller and the terms of the specific transaction.
-      </p>
-
-      <h3>Can I really handle this without an agent?</h3>
-      <p>
-        The mechanics of buying a home &mdash; accessing listings, contacting listing agents, filling out standard purchase agreement forms, navigating inspection and closing &mdash; are more accessible than most buyers realize. The knowledge gap is real, but it&rsquo;s closeable. BAIRE provides the comp analysis, offer preparation guidance, negotiation frameworks, and closing support that buyers need to work through the process confidently, for $995 instead of $10,000+. Consult a real estate attorney for legal questions specific to your transaction.
-      </p>
     </>
   ),
 }

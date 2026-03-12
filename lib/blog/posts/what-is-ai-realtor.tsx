@@ -154,37 +154,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>What is an AI realtor?</h3>
-      <p>
-        The term covers real estate technology platforms that use AI &mdash; from listing platforms with automated valuation tools to full guidance platforms like BAIRE that walk buyers through the entire purchase process. An AI realtor is not a licensed real estate agent or brokerage. It&rsquo;s software that provides information, analysis, and frameworks.
-      </p>
-
-      <h3>Can AI replace a real estate agent for buying a home?</h3>
-      <p>
-        For many buyers, yes &mdash; for the parts that actually require knowledge rather than physical presence. Comp analysis, offer preparation, negotiation frameworks, document review, and closing guidance are all things AI handles well. Physical attendance at showings and legal advice require human professionals. Most buyers find that the gap is smaller than they expected.
-      </p>
-
-      <h3>Is BAIRE a licensed real estate agent or brokerage?</h3>
-      <p>
-        No. BAIRE is an educational technology platform. It doesn&rsquo;t hold a real estate license, doesn&rsquo;t represent buyers in transactions, and doesn&rsquo;t sign documents on anyone&rsquo;s behalf. It provides information and frameworks that help buyers work through the process themselves. Consult a real estate attorney for legal questions about your specific transaction.
-      </p>
-
-      <h3>How is BAIRE different from Zillow?</h3>
-      <p>
-        Zillow is a listing platform. Its core function is showing you homes for sale with basic market data. BAIRE is a guidance platform. Its function is walking you through the buying process after you&rsquo;ve identified a home &mdash; comp analysis, offer structuring, negotiation, inspection, and closing. They serve different parts of the process.
-      </p>
-
-      <h3>What does an AI home buying platform cost?</h3>
-      <p>
-        BAIRE is $995 one-time. Traditional buyer&rsquo;s agents cost 2-3% of the purchase price &mdash; $10,000 to $15,000 on a typical home. Flat-fee agents charge $2,000&ndash;$5,000. Listing platforms like Zillow and Redfin are free for buyers to use, but they don&rsquo;t provide transaction guidance.
-      </p>
-
-      <h3>Is AI home buying safe?</h3>
-      <p>
-        Buying a home without an agent is legal in all 50 states and has been for as long as real estate has existed. The risks come from not having adequate information &mdash; paying too much, missing red flags, signing documents you don&rsquo;t understand. BAIRE addresses the information gap. For legal questions, it refers buyers to real estate attorneys. For financing, it connects buyers with NFM Lending.
-      </p>
     </>
   ),
 }

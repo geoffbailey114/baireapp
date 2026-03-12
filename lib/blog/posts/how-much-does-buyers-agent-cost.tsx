@@ -248,32 +248,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>How much does a buyer&rsquo;s agent typically cost?</h3>
-      <p>
-        The national average is approximately 2.5% of the purchase price. On a $400,000 home that&rsquo;s $10,000. On a $600,000 home, $15,000. The rate is now disclosed upfront in the buyer&rsquo;s agreement you sign before seeing any homes &mdash; a change that came from the 2024 NAR settlement.
-      </p>
-
-      <h3>Does the seller always pay the buyer&rsquo;s agent commission?</h3>
-      <p>
-        Not anymore. Before the NAR settlement, sellers typically offered buyer-agent compensation through the MLS. That automatic offer is gone. Some sellers still cover it. Others don&rsquo;t. If the seller won&rsquo;t pay and you&rsquo;ve signed a buyer&rsquo;s agreement, you owe it at closing.
-      </p>
-
-      <h3>Can I negotiate my buyer&rsquo;s agent commission down?</h3>
-      <p>
-        Yes &mdash; before you sign the buyer&rsquo;s agreement. After you&rsquo;ve signed, the rate is set. The time to negotiate is at the beginning of the relationship, before you&rsquo;ve toured homes and emotionally committed to working with this agent.
-      </p>
-
-      <h3>What does the buyer-agent commission actually pay for?</h3>
-      <p>
-        Comp analysis, scheduling showings, writing offers, communicating with the listing agent, and coordinating with the lender and title company. These are real services. But comp data is publicly available, purchase agreement forms are free, and the coordination functions are handled by title and lender regardless. The question is whether the full percentage is worth it for your situation.
-      </p>
-
-      <h3>Is there a cheaper alternative to a buyer&rsquo;s agent?</h3>
-      <p>
-        Flat-fee agents charge $2,000&ndash;$5,000 depending on the market. BAIRE is $995 as an educational platform &mdash; not a licensed agent, but providing comp analysis, offer preparation guidance, and closing support with no buyer&rsquo;s agreement and no commission on your offer.
-      </p>
     </>
   ),
 }

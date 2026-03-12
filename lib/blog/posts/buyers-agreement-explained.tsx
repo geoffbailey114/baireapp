@@ -213,42 +213,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>What is a buyer&rsquo;s agreement?</h3>
-      <p>
-        A buyer&rsquo;s agreement &mdash; also called a buyer agency agreement, buyer representation agreement, or buyer broker agreement &mdash; is a contract between you and a real estate agent. It specifies the commission you agree to pay (typically 2-3% of the purchase price), the term of the relationship, and the exclusivity terms. After the 2024 NAR settlement, agents must have one signed before showing any home.
-      </p>
-
-      <h3>Do I have to sign a buyer&rsquo;s agreement?</h3>
-      <p>
-        No. The requirement falls on agents &mdash; they can&rsquo;t show you homes without one. But you have no obligation to use a buyer&rsquo;s agent at all. You can represent yourself, contact listing agents directly, and buy a home without signing any buyer&rsquo;s agreement.
-      </p>
-
-      <h3>How much does signing a buyer&rsquo;s agreement actually cost me?</h3>
-      <p>
-        The agreement itself is free to sign. But it commits you to paying your agent&rsquo;s commission at closing &mdash; typically 2-3% of the purchase price. On a $400,000 home at 2.5%, that&rsquo;s $10,000. The seller may agree to cover it, but they&rsquo;re no longer required to. If they won&rsquo;t, you pay it out of pocket.
-      </p>
-
-      <h3>Can I cancel a buyer&rsquo;s agreement after signing?</h3>
-      <p>
-        Possibly, depending on the terms. Some agreements include a mutual cancellation clause with written notice. Others lock you in for the full term with no exit provision. Read the cancellation section before you sign &mdash; and if there&rsquo;s no clear exit clause, negotiate one in before agreeing to anything.
-      </p>
-
-      <h3>What&rsquo;s the difference between exclusive and non-exclusive buyer&rsquo;s agreements?</h3>
-      <p>
-        An exclusive agreement means you can&rsquo;t work with other buyer&rsquo;s agents during the term &mdash; and you owe the commission to this agent if you buy a qualifying home, even if they had nothing to do with finding it. A non-exclusive agreement gives you more flexibility to work with multiple agents or switch. Non-exclusive is less common, but it&rsquo;s negotiable.
-      </p>
-
-      <h3>What happens to the buyer-agent commission if I don&rsquo;t have an agent?</h3>
-      <p>
-        If you don&rsquo;t have a buyer&rsquo;s agent, there&rsquo;s no buyer-agent commission in the transaction. Some sellers pre-emptively offer buyer-agent compensation in their listing terms to attract represented buyers &mdash; but if you&rsquo;re unrepresented, that compensation isn&rsquo;t paid to anyone. The seller keeps it, which makes your offer more attractive on a net-proceeds basis.
-      </p>
-
-      <h3>Is BAIRE an alternative to signing a buyer&rsquo;s agreement?</h3>
-      <p>
-        Yes. BAIRE is an educational technology platform &mdash; not a brokerage &mdash; that provides comp analysis, offer preparation guidance, negotiation frameworks, and closing support for $995. There&rsquo;s no buyer&rsquo;s agreement, no lock-in, and no commission attached to your offer. Consult a real estate attorney for legal questions about your specific transaction.
-      </p>
     </>
   ),
 }

@@ -234,42 +234,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>How do I make an offer on a house without a realtor?</h3>
-      <p>
-        Download your state&rsquo;s standard residential purchase agreement from the state real estate commission website &mdash; it&rsquo;s free. Fill in the purchase price, earnest money, proposed closing date, and contingencies. Sign it, attach your pre-approval letter, and email it to the listing agent. That&rsquo;s the process. No agent required.
-      </p>
-
-      <h3>Where do I get the purchase agreement form if I don&rsquo;t have an agent?</h3>
-      <p>
-        Your state&rsquo;s real estate commission publishes the standard form for free. Search &ldquo;[your state] real estate commission purchase agreement&rdquo; or ask the listing agent to send you a blank copy &mdash; they&rsquo;ll usually do it without hesitation.
-      </p>
-
-      <h3>What contingencies protect me as an unrepresented buyer?</h3>
-      <p>
-        The three standard contingencies &mdash; inspection, financing, and appraisal &mdash; protect you whether you have an agent or not. Include all three unless you have a specific reason to waive one. Each contingency you waive represents a real financial risk: earnest money forfeiture, being locked into a flawed home, or owing cash at closing when the bank disagrees with your price.
-      </p>
-
-      <h3>How much earnest money should I offer without an agent?</h3>
-      <p>
-        The standard range is 1-3% of the purchase price. In competitive markets, 2-3% signals that you&rsquo;re serious. In slower markets, 1% is often enough. Earnest money isn&rsquo;t an extra fee &mdash; it&rsquo;s applied toward your down payment or closing costs at closing.
-      </p>
-
-      <h3>What do I put for buyer&rsquo;s agent commission on the offer form?</h3>
-      <p>
-        If you&rsquo;re self-represented, enter $0 or N/A. There&rsquo;s no buyer&rsquo;s agent to compensate. This is one of the structural advantages of buying without an agent &mdash; the seller nets more on the same purchase price because no buyer-agent commission is being deducted.
-      </p>
-
-      <h3>What if the seller counters my offer?</h3>
-      <p>
-        A counteroffer is a new offer from the seller modifying your terms. You can accept it, reject it, or send back your own counter. Most deals involve at least one round of negotiation. The key is knowing your walkaway number before you start &mdash; the maximum price and minimum terms you&rsquo;re willing to accept &mdash; so you negotiate from clarity instead of emotion.
-      </p>
-
-      <h3>Can I write a personal letter with my offer?</h3>
-      <p>
-        Some buyers do. Some states restrict or ban personal letters because they can introduce fair housing concerns. Before including one, check whether your state has any restrictions. If you do write one, keep it brief and avoid mentioning family composition, religion, or anything that could be used as a basis for discrimination.
-      </p>
     </>
   ),
 }

@@ -179,32 +179,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>What is the main difference between BAIRE and HOMA?</h3>
-      <p>
-        HOMA is a licensed brokerage that represents buyers &mdash; you sign a representation agreement, and they act on your behalf. BAIRE is an educational technology platform &mdash; you represent yourself, with no agreement and no commission attached to your offer. Different models for different preferences around control.
-      </p>
-
-      <h3>Is HOMA available outside Florida?</h3>
-      <p>
-        HOMA has primarily operated in Florida with limited expansion elsewhere. BAIRE is available in all 50 states as an educational platform.
-      </p>
-
-      <h3>Which makes my offer stronger?</h3>
-      <p>
-        BAIRE, structurally. Because no buyer-agent commission is attached to your offer, the seller nets more on the same purchase price. HOMA is a brokerage with commission dynamics in the transaction.
-      </p>
-
-      <h3>Does HOMA have a better track record than BAIRE?</h3>
-      <p>
-        HOMA has closed 3,000+ transactions in Florida, which is a real operational track record. BAIRE is a newer platform. Whether track record matters depends on what you&rsquo;re evaluating &mdash; HOMA&rsquo;s history is as a brokerage that acts for buyers, not as an educational platform that empowers buyers to act for themselves.
-      </p>
-
-      <h3>Who is BAIRE best for vs. HOMA?</h3>
-      <p>
-        BAIRE is best for buyers who want to stay in control of their transaction, want the structural offer advantage of no buyer-agent commission, and are buying anywhere in the country. HOMA may appeal to buyers who specifically want a licensed brokerage handling things on their behalf and are purchasing in the Florida market.
-      </p>
     </>
   ),
 }

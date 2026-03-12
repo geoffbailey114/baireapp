@@ -228,37 +228,6 @@ export const post: BlogPost = {
         </p>
       </div>
 
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>How do I buy a house directly from the owner without a realtor?</h3>
-      <p>
-        Find the FSBO listing on Zillow, FSBO.com, or Facebook Marketplace. Pull comparable sales to verify the price. Contact the owner, tour the home, and negotiate directly. Use your state&rsquo;s standard purchase agreement to submit your offer. Hire a title company to handle the closing &mdash; they run the title search, prepare the deed, and coordinate the exchange of funds.
-      </p>
-
-      <h3>Is it safe to buy a FSBO home without an agent?</h3>
-      <p>
-        Yes, if you take the right steps. The two biggest protections: (1) a home inspection by a licensed inspector you hired &mdash; not one the seller suggested &mdash; and (2) a title company running a thorough title search before closing. Those two steps catch the problems that catch buyers off guard.
-      </p>
-
-      <h3>Can I negotiate the price on a FSBO home?</h3>
-      <p>
-        Yes &mdash; and often more effectively than through agents, because you&rsquo;re talking directly to the decision-maker. Base your negotiation on comparable sales data, not what feels right. FSBO homes are often overpriced because sellers lack access to professional comp analysis. Showing up with data &mdash; recent closed sales, price per square foot, days on market in the neighborhood &mdash; is your strongest negotiating position.
-      </p>
-
-      <h3>Who handles the closing paperwork in a FSBO deal?</h3>
-      <p>
-        A title company or real estate attorney. They handle the title search, deed preparation, escrow, and recording of the transfer. This is non-negotiable. Never close a real estate transaction without a title company or attorney involved, regardless of whether agents are present.
-      </p>
-
-      <h3>Do FSBO sellers have to disclose defects?</h3>
-      <p>
-        Yes. Every state has seller disclosure requirements &mdash; known defects, lead paint on pre-1978 homes, water damage history, and others depending on the state. FSBO sellers are subject to the same disclosure laws as sellers represented by agents. Ask the seller explicitly for all required disclosures and verify they&rsquo;ve provided them completely. If they&rsquo;re unsure what&rsquo;s required, point them to your state&rsquo;s real estate commission website.
-      </p>
-
-      <h3>What are the biggest risks when buying a FSBO home?</h3>
-      <p>
-        Four main risks: overpriced listing (solve with your own comp analysis), incomplete seller disclosures (ask explicitly, verify), unpermitted improvements (ask about any additions or renovations, check with the county if needed), and title issues (run a title search through a title company before you close, without exception).
-      </p>
     </>
   ),
 }
